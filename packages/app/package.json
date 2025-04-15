@@ -1,0 +1,35 @@
+{
+  "name": "@bbook/app",
+  "version": "0.0.1",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/react": "^19.0.10"
+  },
+  "scripts": {
+    "build": "echo 'Add build script for app package'",
+    "clean": "rm -rf .turbo && rm -rf node_modules"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.0"
+  },
+  "dependencies": {
+    "@bbook/ui": "workspace:*",
+    "@bbook/config": "workspace:*",
+    "@react-navigation/native": "^7.0.18",
+    "@tamagui/animations-react-native": "^1.125.35",
+    "@tamagui/colors": "^1.125.35",
+    "@tamagui/font-inter": "^1.125.35",
+    "@tamagui/lucide-icons": "^1.125.35",
+    "@tamagui/shorthands": "^1.125.35",
+    "@tamagui/themes": "^1.125.35",
+    "tamagui": "^1.125.35",
+    "burnt": "^0.13.0",
+    "expo-constants": "^17.0.8",
+    "expo-linking": "^7.0.5",
+    "react-native-safe-area-context": "^5.3.0"
+  }
+}

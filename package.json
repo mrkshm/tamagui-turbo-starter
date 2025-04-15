@@ -1,0 +1,31 @@
+{
+  "name": "turbobook",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Monorepo for Bentobook",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev-web": "pnpm --filter ./apps/web dev",
+    "dev-ios": "pnpm --filter ./apps/mobile start -- --ios",
+    "run-ios": "pnpm --filter ./apps/mobile exec expo run:ios",
+    "run-android": "pnpm --filter ./apps/mobile exec expo run:android"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.1",
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "prettier": "^3.5.3"
+  }
+}

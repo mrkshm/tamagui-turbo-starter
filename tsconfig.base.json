@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@bbook/app": ["./packages/app"],
+      "@bbook/ui": ["./packages/ui"],
+      "@bbook/config": ["./packages/config"],
+      "@bbook/i18n": ["./packages/i18n"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
