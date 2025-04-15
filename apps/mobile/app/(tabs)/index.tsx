@@ -5,10 +5,10 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { HelloWorld } from '@bbook/app';
-// import { useTranslation } from '@bbook/i18n';
+import { useTranslation } from '@bbook/i18n';
 
 export default function HomeScreen() {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
