@@ -2,7 +2,7 @@
 
 An opinionated starter template for Tamagui in a monorepo with Turbo. Expo 53 for mobile, Tanstack Router for web.
 
-Featuring Tanstack Query, Tanstack Form, Valtio, Paraglide, Valibot, all that good stuff.
+Featuring Tanstack Query, Tanstack Form, Valtio, i18n, Valibot, all that good stuff.
 
 ## Getting Started
 
@@ -17,6 +17,9 @@ This is still a work in progress, not ready in any way for anything really. But 
 - `packages/ui` — Shared Tamagui UI components
 - `packages/app` — Shared app logic, providers, hooks
 - `packages/config` — Tamagui config, tokens, themes
+- `packages/i18n` — i18n config
+- `packages/data` — QueryClient, API hooks, API route definitions
+- `packages/stores` — Valtio stores
 
 ## Features
 
@@ -46,9 +49,9 @@ pnpm run-ios
 ## TODO / Roadmap
 
 - [x] Make both apps boot without error
-- [ ] Add i18n
+- [x] Add i18n
 - [ ] QueryClient setup
-- [ ] Add example Valtio store
+- [x] Add example Valtio store
 - [ ] Add example API hooks
 - [ ] Add Login Screens
 - [ ] Add theme toggle with persistence

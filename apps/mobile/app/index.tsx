@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
-import { HelloWorld } from '@bbook/app';
 import { useTranslation } from '@bbook/i18n';
+import { TestCounter } from '@bbook/app';
 export default function Index() {
   const { t } = useTranslation();
   return (
@@ -12,7 +12,8 @@ export default function Index() {
       }}
     >
       <Text>{t('welcome')}</Text>
-      <HelloWorld />
+      <Text>Hello again</Text>
+      <TestCounter />
     </View>
   );
 }
