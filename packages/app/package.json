@@ -11,14 +11,16 @@
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "peerDependencies": {
-    "typescript": "^5.8.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-native": "0.79.0"
+    "react-native": "0.79.0",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@bbook/ui": "workspace:*",
     "@bbook/config": "workspace:*",
+    "@bbook/ui": "workspace:*",
+    "@bbook/stores": "workspace:*",
+    "@bbook/data": "workspace:*",
     "@react-navigation/native": "^7.0.18",
     "@tamagui/animations-react-native": "^1.125.35",
     "@tamagui/colors": "^1.125.35",
@@ -26,10 +28,12 @@
     "@tamagui/lucide-icons": "^1.125.35",
     "@tamagui/shorthands": "^1.125.35",
     "@tamagui/themes": "^1.125.35",
-    "tamagui": "^1.125.35",
+    "@tanstack/react-form": "^1.4.0",
     "burnt": "^0.13.0",
     "expo-constants": "^17.0.8",
     "expo-linking": "^7.0.5",
-    "react-native-safe-area-context": "^5.3.0"
+    "react-native-safe-area-context": "^5.3.0",
+    "tamagui": "^1.125.35",
+    "valtio": "^2.1.4"
   }
 }

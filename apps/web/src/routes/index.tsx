@@ -3,14 +3,15 @@ import logo from '../logo.svg';
 import '../App.css';
 import { Button } from '@bbook/ui';
 import { HelloWorld } from '@bbook/app/components/HelloWorld';
-// import { useTranslation } from '@bbook/i18n';
+import { useTranslation } from '@bbook/i18n';
+import { TestCounter } from '@bbook/app/components/TestCounter';
 
 export const Route = createFileRoute('/')({
   component: App,
 });
 
 function App() {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="App">
       <header className="App-header">
@@ -27,7 +28,8 @@ function App() {
           Tamagui Button from UI Package
         </Button>
         <HelloWorld />
-        <p>Welcome!</p>
+        <p>{t('welcome')}</p>
+        <TestCounter />
         <Link to="/second">GO SECOND</Link>
         <a
           className="App-link"
