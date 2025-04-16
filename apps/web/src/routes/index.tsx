@@ -28,7 +28,7 @@ function App() {
           Tamagui Button from UI Package
         </Button>
         <HelloWorld />
-        <p>{t('welcome')}</p>
+        <p>{t('common:welcome')}</p>
         <TestCounter />
         <Link to="/second">GO SECOND</Link>
         <a

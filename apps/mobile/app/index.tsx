@@ -11,7 +11,7 @@ export default function Index() {
         alignItems: 'center',
       }}
     >
-      <Text>{t('welcome')}</Text>
+      <Text>{t('common:welcome')}</Text>
       <Text>Hello again</Text>
       <TestCounter />
     </View>

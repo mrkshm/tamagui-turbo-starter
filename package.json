@@ -15,7 +15,8 @@
     "dev-ios": "pnpm --filter ./apps/mobile start -- --ios",
     "run-ios": "pnpm --filter ./apps/mobile exec expo run:ios",
     "run-android": "pnpm --filter ./apps/mobile exec expo run:android",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate:i18n": "pnpm --filter @bbook/i18n generate:resources"
   },
   "workspaces": [
     "apps/*",

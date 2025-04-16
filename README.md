@@ -53,14 +53,40 @@ pnpm run-ios
 - [ ] QueryClient setup
 - [x] Add example Valtio store
 - [ ] Add example API hooks
-- [ ] Add Login Screens
 - [ ] Add theme toggle with persistence
+- [ ] Add Login Screens
 - [ ] Add CI/CD example
 - [ ] Write more docs
 
-## License
+## i18n
 
-MIT (eventually)
+This project currently uses [i18next](https://www.i18next.com/) with [react-i18next](https://react.i18next.com/). The translation function is wrapped so if you want to switch to another i18n library, you can do so by simply modifying the `packages/i18n/src/hooks.ts` file.
+
+Translations are expected to be namespaced in folders in the `packages/i18n/locales` directory. When a new namespace is added, resources need to be regenerated with the command `pnpm generate:i18n`.
+
+The script assumes one single namespace level (ie no folders inside folders), but keys can be nested of course.
+
+### Example:
+
+```
+locales/
+  common/
+    en.json
+    fr.json
+  profile/
+    en.json
+    fr.json
+```
+
+// Keys can be nested:
+
+```json
+{
+  "button": {
+    "save": "Save"
+  }
+}
+```
 
 ---
 

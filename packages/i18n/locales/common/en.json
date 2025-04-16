@@ -1,0 +1,11 @@
+{
+  "back": "Back",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "delete": "Delete",
+  "done": "Done",
+  "edit": "Edit",
+  "ok": "OK",
+  "save": "Save",
+  "welcome": "Welcome to Turbobook! (find me in packages/i18n/locales/common/en.json)"
+}
