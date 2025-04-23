@@ -10,6 +10,7 @@ module.exports = function (api) {
       ],
     ],
     plugins: [
+      // Add Tamagui babel plugin
       [
         '@tamagui/babel-plugin',
         {
@@ -19,8 +20,7 @@ module.exports = function (api) {
           disableExtraction: process.env.NODE_ENV === 'development',
         },
       ],
-
-      // NOTE: this is only necessary if you are using reanimated for animations
+      // Add React Native Reanimated plugin
       'react-native-reanimated/plugin',
     ],
   };

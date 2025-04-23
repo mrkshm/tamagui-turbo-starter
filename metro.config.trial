@@ -1,0 +1,24 @@
+// Root metro.config.js
+const { getDefaultConfig } = require('expo/metro-config');
+const path = require('path');
+
+const projectRoot = __dirname;
+
+/** @type {import('expo/metro-config').MetroConfig} */
+const config = getDefaultConfig(projectRoot, {
+  isCSSEnabled: true,
+});
+
+// Expo 49+ issue: default metro config needs to include "mjs"
+config.resolver.sourceExts.push('mjs');
+
+// Crucial fix: Move DevTools setup order
+config.resetCache = true;
+
+// Setup project roots for monorepo
+config.watchFolders = [
+  path.resolve(projectRoot, 'node_modules'),
+  path.resolve(projectRoot, 'packages'),
+];
+
+module.exports = config;

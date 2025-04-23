@@ -11,6 +11,9 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
+  // Get background color from Colors constants
+  const backgroundColor = Colors[colorScheme ?? 'light'].background;
+
   return (
     <Tabs
       screenOptions={{
@@ -22,22 +25,30 @@ export default function TabLayout() {
           ios: {
             // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
+            backgroundColor,
           },
-          default: {},
+          default: {
+            backgroundColor,
+          },
         }),
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="house.fill" color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="paperplane.fill" color={color} />
+          ),
         }}
       />
     </Tabs>

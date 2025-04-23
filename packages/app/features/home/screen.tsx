@@ -5,19 +5,24 @@ import {
   Paragraph,
   Separator,
   Sheet,
-  SwitchThemeButton,
   useToastController,
   XStack,
-  YStack
-} from '@bbook/ui'
-import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
-import { useState } from 'react'
-import { Platform } from 'react-native'
+  YStack,
+} from '@bbook/ui';
+import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
+import { useState } from 'react';
+import { Platform } from 'react-native';
 
 export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
-
   return (
-    <YStack flex={1} justifyContent='center' alignItems='center' gap="$8" padding="$4" background="$background">      
+    <YStack
+      flex={1}
+      justifyContent="center"
+      alignItems="center"
+      gap="$8"
+      padding="$4"
+      background="$background"
+    >
       <XStack
         position="absolute"
         width="100%"
@@ -27,15 +32,11 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
         flexWrap="wrap"
         $sm={{ position: 'relative', top: 0 }}
       >
-        {Platform.OS === 'web' && (
-          <>
-            <SwitchThemeButton />
-          </>
-        )}
+        {Platform.OS === 'web' && <></>}
       </XStack>
 
       <YStack gap="$4">
-        <H1 textAlign='center' color="$color12">
+        <H1 textAlign="center" color="$color12">
           Welcome to Tamagui.
         </H1>
         <Paragraph color="$color10" textAlign="center">
@@ -48,17 +49,16 @@ export function HomeScreen({ pagesMode = false }: { pagesMode?: boolean }) {
         <Separator />
       </YStack>
 
-
       <SheetDemo />
     </YStack>
-  )
+  );
 }
 
 function SheetDemo() {
-  const toast = useToastController()
+  const toast = useToastController();
 
-  const [open, setOpen] = useState(false)
-  const [position, setPosition] = useState(0)
+  const [open, setOpen] = useState(false);
+  const [position, setPosition] = useState(0);
 
   return (
     <>
@@ -85,10 +85,19 @@ function SheetDemo() {
           exitStyle={{ opacity: 0 }}
         />
         <Sheet.Handle bg="$color8" />
-        <Sheet.Frame alignItems="center" justifyContent="center" gap="$10" background="$color2">
+        <Sheet.Frame
+          alignItems="center"
+          justifyContent="center"
+          gap="$10"
+          background="$color2"
+        >
           <XStack gap="$2">
             <Paragraph textAlign="center">Made by</Paragraph>
-            <Anchor color="$blue10" href="https://twitter.com/natebirdman" target="_blank">
+            <Anchor
+              color="$blue10"
+              href="https://twitter.com/natebirdman"
+              target="_blank"
+            >
               @natebirdman,
             </Anchor>
             <Anchor
@@ -106,14 +115,14 @@ function SheetDemo() {
             circular
             icon={ChevronDown}
             onPress={() => {
-              setOpen(false)
+              setOpen(false);
               toast.show('Sheet closed!', {
                 message: 'Just showing how toast works...',
-              })
+              });
             }}
           />
         </Sheet.Frame>
       </Sheet>
     </>
-  )
+  );
 }

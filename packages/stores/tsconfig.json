@@ -3,7 +3,10 @@
   "include": ["src"],
   "compilerOptions": {
     "composite": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "paths": {
+      "@bbook/app": ["../app/src/index.ts"]
+    }
   },
-  "references": []
+  "references": [{ "path": "../app" }]
 }

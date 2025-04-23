@@ -48,7 +48,7 @@ pnpm run-ios
 
 ## TODO / Roadmap
 
-- [x] Make both apps boot without error
+- [x] Make both apps boot
 - [x] Add i18n
 - [ ] QueryClient setup
 - [x] Add example Valtio store

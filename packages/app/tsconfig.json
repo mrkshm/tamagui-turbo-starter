@@ -4,10 +4,13 @@
   "compilerOptions": {
     "composite": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
       "@app/*": ["./packages/app/*"],
-      "@bbook/ui/*": ["./packages/ui/*"]
+      "@bbook/ui/*": ["./packages/ui/*"],
+      "@bbook/app/*": ["../app/*"],
+      "@bbook/app": ["../app/index.ts"]
     }
   },
-  "references": []
+  "references": [{ "path": "../config" }, { "path": "../ui" }]
 }

@@ -1,36 +1,28 @@
-import { createInterFont } from '@tamagui/font-inter'
+import { createInterFont } from '@tamagui/font-inter';
+import { createFont } from 'tamagui';
 
-export const headingFont = createInterFont({
+export const headingFont = createFont({
+  family: 'Jura',
   size: {
-    6: 15,
-  },
-  transform: {
-    6: 'uppercase',
-    7: 'none',
+    1: 12,
+    2: 14,
+    3: 16,
+    4: 24,
+    5: 32,
+    6: 40,
+    7: 48,
   },
   weight: {
-    6: '400',
-    7: '700',
-  },
-  color: {
-    6: '$colorFocus',
-    7: '$color',
+    4: '400',
+    5: '700',
   },
   letterSpacing: {
-    5: 2,
-    6: 1,
-    7: 0,
-    8: -1,
-    9: -2,
-    10: -3,
-    12: -4,
-    14: -5,
-    15: -6,
+    2: -0.5,
+    3: -0.25,
+    4: 0,
+    5: 0.25,
   },
-  face: {
-    700: { normal: 'InterBold' },
-  },
-})
+});
 
 export const bodyFont = createInterFont(
   {
@@ -42,4 +34,4 @@ export const bodyFont = createInterFont(
     sizeSize: (size) => Math.round(size * 1.1),
     sizeLineHeight: (size) => Math.round(size * 1.1 + (size > 20 ? 10 : 10)),
   }
-)
+);

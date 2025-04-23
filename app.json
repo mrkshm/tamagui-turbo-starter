@@ -1,0 +1,8 @@
+{
+  "android": {
+    "package": "com.anonymous.turbobook"
+  },
+  "ios": {
+    "bundleIdentifier": "com.anonymous.turbobook"
+  }
+}

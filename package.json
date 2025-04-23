@@ -16,7 +16,9 @@
     "run-ios": "pnpm --filter ./apps/mobile exec expo run:ios",
     "run-android": "pnpm --filter ./apps/mobile exec expo run:android",
     "prepare": "husky",
-    "generate:i18n": "pnpm --filter @bbook/i18n generate:resources"
+    "generate:i18n": "pnpm --filter @bbook/i18n generate:resources",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "workspaces": [
     "apps/*",
@@ -28,11 +30,11 @@
   "packageManager": "pnpm@10.6.1",
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.24.0",
-    "eslint": "^9.24.0",
-    "eslint-config-expo": "^9.0.2",
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "eslint-config-expo": "^9.1.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
-    "turbo": "^2.5.0"
+    "turbo": "^2.5.1"
   }
 }

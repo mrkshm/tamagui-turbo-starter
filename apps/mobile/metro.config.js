@@ -2,6 +2,23 @@
 const { getDefaultConfig } = require('expo/metro-config');
 const path = require('path');
 
+// Add this to ensure React DevTools is initialized before ExceptionsManager
+const originalConsole = global.console;
+if (__DEV__) {
+  const noop = () => {};
+  global.console = {
+    ...originalConsole,
+    error: noop,
+    warn: noop,
+    info: noop,
+    debug: noop,
+    log: noop,
+  };
+  setTimeout(() => {
+    global.console = originalConsole;
+  }, 100);
+}
+
 const projectRoot = __dirname;
 const workspaceRoot = path.resolve(projectRoot, '../..');
 

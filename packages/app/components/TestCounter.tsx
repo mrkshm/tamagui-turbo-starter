@@ -6,9 +6,16 @@ export const TestCounter = () => {
   const snap = useSnapshot(testStore);
 
   return (
-    <Card elevate bordered padding="$4" width={200} alignItems="center">
+    <Card
+      elevate
+      bordered
+      padding="$4"
+      width="100%"
+      alignItems="center"
+      marginTop="$4"
+    >
       <Text fontSize={20} fontWeight="bold" marginBottom="$2">
-        Tamagui Counter
+        Tamagui Counter feat. Valtio
       </Text>
       <XStack alignItems="center" space>
         <Button size="$3" onPress={decrement} aria-label="Decrement">

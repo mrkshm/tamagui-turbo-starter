@@ -19,22 +19,24 @@
   },
   "dependencies": {
     "@bbook/config": "workspace:*",
-    "@tamagui/toast": "^1.125.35",
+    "@bbook/stores": "workspace:*",
+    "@tamagui/font-inter": "^1.126.4",
+    "@tamagui/lucide-icons": "^1.126.4",
+    "@tamagui/react-native-media-driver": "^1.126.4",
+    "@tamagui/shorthands": "^1.126.4",
+    "@tamagui/themes": "^1.126.4",
+    "@tamagui/toast": "^1.126.4",
     "expo-constants": "^17.0.8",
-    "tamagui": "^1.125.35",
-    "@tamagui/react-native-media-driver": "^1.125.35",
-    "@tamagui/shorthands": "^1.125.35",
-    "@tamagui/themes": "^1.125.35",
-    "@tamagui/font-inter": "^1.125.35",
-    "@tamagui/lucide-icons": "^1.125.35"
+    "tamagui": "^1.126.4"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.125.35"
+    "@tamagui/build": "^1.126.4"
   },
   "peerDependencies": {
-    "typescript": "^5.8.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-native": "0.79.0"
+    "react-native": "0.79.1",
+    "typescript": "^5.8.3",
+    "valtio": "^2.1.4"
   }
 }
