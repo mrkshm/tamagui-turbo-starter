@@ -12,11 +12,18 @@ import { Provider } from '@bbook/app/provider';
 import { config as tamaguiConfig } from '@bbook/ui';
 // @ts-ignore
 import { StyleSheet } from 'react-native-web';
+import { initializeStorage, initializeErrorTracking } from '@bbook/data';
+import { webStorageAdapter } from './lib/storage-adapter';
+import { webErrorAdapter } from './lib/error-adapter';
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
 import './styles.css';
 import reportWebVitals from './reportWebVitals.ts';
+
+// Initialize adapters
+initializeStorage(webStorageAdapter);
+initializeErrorTracking(webErrorAdapter);
 
 // Setup Tamagui styles
 if (typeof document !== 'undefined') {

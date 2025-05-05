@@ -1,9 +1,11 @@
 import { createContext } from 'react';
 import { TamaguiProvider, Theme } from 'tamagui';
 import { config } from '@bbook/config';
-import { useSnapshot } from 'valtio';
-import { userStore } from '@bbook/stores/src/userStore';
+import { useThemeStore } from '@bbook/stores/src/themeStore';
 
+// Types
+
+// ThemeName should match your config theme keys
 type ThemeName = keyof typeof config.themes;
 type ThemeContextType = {
   theme: ThemeName;
@@ -14,12 +16,11 @@ type ThemeProviderProps = { children: React.ReactNode };
 const ThemeContext = createContext<ThemeContextType>({ theme: 'light' });
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const snap = useSnapshot(userStore);
-  const theme = snap.theme as ThemeName;
-
-  const setTheme = (theme: ThemeName) => {
-    userStore.theme = theme;
-  };
+  // Cast theme for type safety
+  const theme = useThemeStore((s: { theme: string }) => s.theme) as ThemeName;
+  const setThemeStore = useThemeStore((s: { setTheme: (theme: string) => void }) => s.setTheme);
+  // Wrap setTheme to enforce ThemeName type
+  const setTheme = (t: ThemeName) => setThemeStore(String(t));
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -29,3 +30,5 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     </ThemeContext.Provider>
   );
 };
+
+export { ThemeContext };

@@ -1,17 +1,19 @@
 import React from 'react';
-import { Select, Text, XStack, Adapt, Sheet, YStack } from 'tamagui';
+import { Select, Text, XStack, Adapt, Sheet, YStack } from '@bbook/ui';
 import { themes } from '@bbook/config';
-import { userStore, ThemeKey } from '@bbook/stores/src/userStore';
-import { useSnapshot } from 'valtio';
+import { useThemeStore, ThemeKey } from '@bbook/stores/src/themeStore';
 
 export interface ThemeSwitcherProps {
   label?: string;
 }
 
+type ThemeName = keyof typeof themes;
+
 export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
   label = 'Theme',
 }) => {
-  const snap = useSnapshot(userStore);
+  const theme = useThemeStore((s: { theme: string }) => s.theme) as ThemeName;
+  const setTheme = useThemeStore((s: { setTheme: (theme: string) => void }) => s.setTheme);
   // Get theme options from the themes object
   const themeOptions = React.useMemo(() => {
     if (!themes || typeof themes !== 'object') return [];
@@ -31,12 +33,7 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
       <Text fontWeight="bold" marginBottom="$2">
         {label}
       </Text>
-      <Select
-        value={snap.theme}
-        onValueChange={(val) => {
-          userStore.theme = val as ThemeKey;
-        }}
-      >
+      <Select value={theme} onValueChange={(val) => setTheme(val as ThemeKey)}>
         <Select.Trigger>
           <Select.Value color="$textPrimary" placeholder="Select theme..." />
         </Select.Trigger>
@@ -58,8 +55,9 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
                   value={option.key}
                   index={i}
                   backgroundColor={
-                    snap.theme === option.key
-                      ? (themes[option.key]?.primary ?? '$backgroundStrong')
+                    theme === option.key
+                      ? (themes[option.key as ThemeName]?.primary ??
+                        '$backgroundStrong')
                       : '$backgroundStrong'
                   }
                   borderRadius={16}
@@ -76,8 +74,9 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
                     textAlign="center"
                     fontWeight="600"
                     color={
-                      snap.theme === option.key
-                        ? (themes[option.key]?.onPrimary ?? '$color')
+                      theme === option.key
+                        ? (themes[option.key as ThemeName]?.onPrimary ??
+                          '$color')
                         : '$color'
                     }
                   >

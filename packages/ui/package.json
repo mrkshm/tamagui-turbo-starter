@@ -20,6 +20,7 @@
   "dependencies": {
     "@bbook/config": "workspace:*",
     "@bbook/stores": "workspace:*",
+    "@bbook/utils": "workspace:*",
     "@tamagui/font-inter": "^1.126.4",
     "@tamagui/lucide-icons": "^1.126.4",
     "@tamagui/react-native-media-driver": "^1.126.4",
@@ -35,8 +36,7 @@
   "peerDependencies": {
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-native": "0.79.1",
-    "typescript": "^5.8.3",
-    "valtio": "^2.1.4"
+    "react-native": "0.79.2",
+    "typescript": "^5.8.3"
   }
 }

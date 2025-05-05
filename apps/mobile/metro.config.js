@@ -27,6 +27,17 @@ const config = getDefaultConfig(projectRoot, {
   isCSSEnabled: true,
 });
 
+// 1. Add resolver.extraNodeModules to ensure consistent resolution
+config.resolver.extraNodeModules = {
+  '@bbook/stores': path.resolve(workspaceRoot, 'packages/stores'),
+};
+
+// 2. Add resolver.alias for direct path mapping
+config.resolver.alias = {
+  ...config.resolver.alias,
+  '@bbook/stores': path.resolve(workspaceRoot, 'packages/stores'),
+};
+
 // Expo 49 issue: default metro config needs to include "mjs"
 // [https://github.com/expo/expo/issues/23180](https://github.com/expo/expo/issues/23180)
 config.resolver.sourceExts.push('mjs');

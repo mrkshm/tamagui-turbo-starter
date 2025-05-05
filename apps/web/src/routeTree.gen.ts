@@ -11,20 +11,27 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as SecondImport } from './routes/second'
 import { Route as IndexImport } from './routes/index'
+import { Route as MemberIndexImport } from './routes/member/index'
+import { Route as LandingIndexImport } from './routes/landing/index'
 
 // Create/Update Routes
-
-const SecondRoute = SecondImport.update({
-  id: '/second',
-  path: '/second',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MemberIndexRoute = MemberIndexImport.update({
+  id: '/member/',
+  path: '/member/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LandingIndexRoute = LandingIndexImport.update({
+  id: '/landing/',
+  path: '/landing/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/second': {
-      id: '/second'
-      path: '/second'
-      fullPath: '/second'
-      preLoaderRoute: typeof SecondImport
+    '/landing/': {
+      id: '/landing/'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/member/': {
+      id: '/member/'
+      path: '/member'
+      fullPath: '/member'
+      preLoaderRoute: typeof MemberIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/second': typeof SecondRoute
+  '/landing': typeof LandingIndexRoute
+  '/member': typeof MemberIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/second': typeof SecondRoute
+  '/landing': typeof LandingIndexRoute
+  '/member': typeof MemberIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/second': typeof SecondRoute
+  '/landing/': typeof LandingIndexRoute
+  '/member/': typeof MemberIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/second'
+  fullPaths: '/' | '/landing' | '/member'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/second'
-  id: '__root__' | '/' | '/second'
+  to: '/' | '/landing' | '/member'
+  id: '__root__' | '/' | '/landing/' | '/member/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  SecondRoute: typeof SecondRoute
+  LandingIndexRoute: typeof LandingIndexRoute
+  MemberIndexRoute: typeof MemberIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  SecondRoute: SecondRoute,
+  LandingIndexRoute: LandingIndexRoute,
+  MemberIndexRoute: MemberIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/second"
+        "/landing/",
+        "/member/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/second": {
-      "filePath": "second.tsx"
+    "/landing/": {
+      "filePath": "landing/index.tsx"
+    },
+    "/member/": {
+      "filePath": "member/index.tsx"
     }
   }
 }

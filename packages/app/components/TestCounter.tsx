@@ -1,9 +1,10 @@
-import { Button, XStack, YStack, Text, Card } from 'tamagui';
-import { useSnapshot } from 'valtio';
-import { testStore, increment, decrement } from '@bbook/stores/src/testStore';
+import { Button, XStack, YStack, Text, Card } from '@bbook/ui';
+import { useTestStore } from '@bbook/stores/src/testStore';
 
 export const TestCounter = () => {
-  const snap = useSnapshot(testStore);
+  const count = useTestStore((state) => state.count);
+  const increment = useTestStore((state) => state.increment);
+  const decrement = useTestStore((state) => state.decrement);
 
   return (
     <Card
@@ -15,14 +16,14 @@ export const TestCounter = () => {
       marginTop="$4"
     >
       <Text fontSize={20} fontWeight="bold" marginBottom="$2">
-        Tamagui Counter feat. Valtio
+        Tamagui Counter feat. Zustand
       </Text>
       <XStack alignItems="center" space>
         <Button size="$3" onPress={decrement} aria-label="Decrement">
           -
         </Button>
         <YStack alignItems="center" justifyContent="center" width={48}>
-          <Text fontSize={24}>{snap.count}</Text>
+          <Text fontSize={24}>{count}</Text>
         </YStack>
         <Button size="$3" onPress={increment} aria-label="Increment">
           +

@@ -15,6 +15,7 @@
     "@bbook/data": "workspace:*",
     "@bbook/i18n": "workspace:*",
     "@bbook/stores": "workspace:*",
+    "@bbook/utils": "workspace:*",
     "@bbook/ui": "workspace:*",
     "@fontsource/jura": "^5.2.5",
     "@tamagui/animations-react-native": "^1.126.4",
@@ -23,7 +24,6 @@
     "@tamagui/font-inter": "^1.126.4",
     "@tamagui/polyfill-dev": "^1.126.4",
     "@tanstack/react-form": "^1.4.0",
-    "@tanstack/react-query": "^5.74.3",
     "@tanstack/react-router": "^1.116",
     "@tanstack/react-router-devtools": "^1.116",
     "@tanstack/router-plugin": "^1.116",
@@ -32,8 +32,7 @@
     "react-dom": "^19.0.0",
     "react-native-web": "^0.20",
     "tamagui": "^1.126.4",
-    "valibot": "^1.0.0",
-    "valtio": "^2.1.4"
+    "valibot": "^1.0.0"
   },
   "devDependencies": {
     "@tamagui/vite-plugin": "^1.126.4",

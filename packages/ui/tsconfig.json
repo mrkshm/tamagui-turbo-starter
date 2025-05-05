@@ -5,5 +5,5 @@
     "composite": true,
     "jsx": "react-jsx"
   },
-  "references": []
+  "references": [{ "path": "../config" }]
 }

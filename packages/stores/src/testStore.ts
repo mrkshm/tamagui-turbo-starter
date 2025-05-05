@@ -1,16 +1,14 @@
-import { proxy } from 'valtio';
+import { create } from 'zustand';
 
 // A simple counter store for testing
-export const testStore = proxy<{ count: number }>({
+interface TestStore {
+  count: number;
+  increment: () => void;
+  decrement: () => void;
+}
+
+export const useTestStore = create<TestStore>((set) => ({
   count: 0,
-});
-
-// Example action to increment the counter
-export const increment = () => {
-  testStore.count += 1;
-};
-
-// Example action to decrement the counter
-export const decrement = () => {
-  testStore.count -= 1;
-};
+  increment: () => set((state) => ({ count: state.count + 1 })),
+  decrement: () => set((state) => ({ count: state.count - 1 })),
+}));
