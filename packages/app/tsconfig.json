@@ -12,5 +12,5 @@
       "@bbook/app": ["../app/index.ts"]
     }
   },
-  "references": [{ "path": "../config" }, { "path": "../ui" }]
+  "references": [{ "path": "../ui" }]
 }

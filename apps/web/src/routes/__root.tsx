@@ -3,7 +3,8 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { useAuthRedirect } from '../hooks/auth-redirect';
 
 function RootComponent() {
-  useAuthRedirect();
+  // Ignore login paths to prevent redirect race conditions
+  useAuthRedirect(['/landing/login']);
   return (
     <>
       <Outlet />

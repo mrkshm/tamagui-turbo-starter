@@ -18,10 +18,11 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@bbook/config": "workspace:*",
     "@bbook/data": "workspace:*",
     "@bbook/stores": "workspace:*",
     "@bbook/ui": "workspace:*",
+    "@bbook/utils": "workspace:*",
+    "@bbook/i18n": "workspace:*",
     "@react-navigation/native": "^7.1.6",
     "@tanstack/react-form": "^1.7.0",
     "burnt": "^0.13.0",

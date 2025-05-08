@@ -1,1 +1,1 @@
-export { useInteractionState } from './useInteractionState';
+export * from './useInteractionState';

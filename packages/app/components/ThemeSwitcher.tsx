@@ -1,6 +1,5 @@
 import React from 'react';
-import { Select, Text, XStack, Adapt, Sheet, YStack } from '@bbook/ui';
-import { themes } from '@bbook/config';
+import { Select, Text, XStack, Adapt, Sheet, YStack, themes } from '@bbook/ui';
 import { useThemeStore, ThemeKey } from '@bbook/stores/src/themeStore';
 
 export interface ThemeSwitcherProps {
@@ -12,8 +11,10 @@ type ThemeName = keyof typeof themes;
 export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
   label = 'Theme',
 }) => {
-  const theme = useThemeStore((s: { theme: string }) => s.theme) as ThemeName;
-  const setTheme = useThemeStore((s: { setTheme: (theme: string) => void }) => s.setTheme);
+  const theme = useThemeStore((s: { theme: ThemeKey }) => s.theme);
+  const setTheme = useThemeStore(
+    (s: { setTheme: (theme: ThemeKey) => void }) => s.setTheme
+  );
   // Get theme options from the themes object
   const themeOptions = React.useMemo(() => {
     if (!themes || typeof themes !== 'object') return [];

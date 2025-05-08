@@ -15,7 +15,6 @@
     "paths": {
       "@bbook/app": ["./packages/app"],
       "@bbook/ui": ["./packages/ui"],
-      "@bbook/config": ["./packages/config"],
       "@bbook/i18n": ["./packages/i18n"],
       "@bbook/stores": ["./packages/stores"],
       "@bbook/data": ["./packages/data"]

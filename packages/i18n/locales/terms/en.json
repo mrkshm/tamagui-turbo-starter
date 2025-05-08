@@ -1,0 +1,10 @@
+{
+  "title": "Terms and Conditions",
+  "content": [
+    "By signing up, you agree to our terms and conditions.",
+    "(You should put your full terms and conditions here, obviously)",
+    "(Please find it in packages/i18n/locales/terms/en.json)",
+    "For now, let's just say that",
+    "ALL UR BASE ARE BELONG TO US"
+  ]
+}

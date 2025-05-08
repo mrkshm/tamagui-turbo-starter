@@ -5,7 +5,10 @@
   "delete": "Delete",
   "done": "Done",
   "edit": "Edit",
+  "login": "Login",
+  "logout": "Logout",
   "ok": "OK",
   "save": "Save",
+  "sign_up": "Sign up",
   "welcome": "Welcome and bienvenue to Turbobook! (find me in packages/i18n/locales/common/en.json)"
 }

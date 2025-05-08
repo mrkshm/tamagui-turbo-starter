@@ -26,24 +26,38 @@ export const useLoginMutation = (options?: UseLoginMutationOptions) => {
 
   return useMutation({
     mutationFn: async (credentials: LoginPayload) => {
-      const result = await apiClient.post(
-        API_ENDPOINTS.AUTH.LOGIN.url,
-        LoginResponseSchema,
-        credentials
-      );
+      try {
+        const result = await apiClient.post(
+          API_ENDPOINTS.AUTH.LOGIN.url,
+          LoginResponseSchema,
+          credentials
+        );
 
-      if (!result.success) {
-        throw result.error;
+        if (!result.success) {
+          throw result.error;
+        }
+
+        // Store tokens
+        await tokenService.storeTokens(
+          result.data.access,
+          result.data.refresh,
+          'current_user' // Use consistent key for current user
+        );
+
+        return result.data;
+      } catch (error: any) {
+        // Check if this is an unverified email error (status 403 with email_verified: false)
+        if (error.status === 403 && error.data?.email_verified === false) {
+          // Create a custom error with additional metadata
+          const customError = new Error(error.data?.detail || 'Please verify your email address before logging in.');
+          (customError as any).isEmailVerificationError = true;
+          (customError as any).email = credentials.email;
+          throw customError;
+        }
+        
+        // Re-throw other errors
+        throw error;
       }
-
-      // Store tokens
-      await tokenService.storeTokens(
-        result.data.access,
-        result.data.refresh,
-        'current_user' // Use consistent key for current user
-      );
-
-      return result.data;
     },
     onSuccess: (data) => {
       // Log success for debugging
@@ -65,6 +79,7 @@ export const useLoginMutation = (options?: UseLoginMutationOptions) => {
       }
     },
     onError: (error) => {
+      console.error('Login mutation error:', error);
       // Log error
       errorTracker.captureException(
         error instanceof Error ? error : new Error(String(error))
@@ -86,7 +101,6 @@ type UseSignupMutationOptions = {
 };
 
 export const useSignupMutation = (options?: UseSignupMutationOptions) => {
-  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data: SignupPayload) => {
@@ -100,20 +114,12 @@ export const useSignupMutation = (options?: UseSignupMutationOptions) => {
         throw result.error;
       }
 
-      // Store tokens
-      await tokenService.storeTokens(
-        result.data.access,
-        result.data.refresh,
-        'current_user' // Use consistent key for current user
-      );
-
+      // No tokens to store anymore, just return the success message
       return result.data;
     },
     onSuccess: (data) => {
-      // Invalidate relevant queries
-      queryClient.invalidateQueries({ queryKey: ['currentUser'] });
-
-      // Call user-provided success handler
+      // No need to invalidate queries as we don't have tokens or user data yet
+      // Just call the user-provided success handler
       if (options?.onSuccess) {
         options.onSuccess(data);
       }
@@ -186,7 +192,7 @@ export const useLogoutMutation = () => {
 
       // Clear user data from cache
       queryClient.setQueryData(['currentUser'], null);
-      
+
       // Clear all queries from cache
       queryClient.clear();
     },

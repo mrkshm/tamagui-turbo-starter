@@ -14,6 +14,12 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as MemberIndexImport } from './routes/member/index'
 import { Route as LandingIndexImport } from './routes/landing/index'
+import { Route as AuthWaitingImport } from './routes/auth/waiting'
+import { Route as AuthVerifyImport } from './routes/auth/verify'
+import { Route as AuthSignupImport } from './routes/auth/signup'
+import { Route as AuthPasswordresetconfirmImport } from './routes/auth/password_reset_confirm'
+import { Route as AuthPasswordresetImport } from './routes/auth/password_reset'
+import { Route as AuthLoginImport } from './routes/auth/login'
 
 // Create/Update Routes
 
@@ -35,6 +41,42 @@ const LandingIndexRoute = LandingIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthWaitingRoute = AuthWaitingImport.update({
+  id: '/auth/waiting',
+  path: '/auth/waiting',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthVerifyRoute = AuthVerifyImport.update({
+  id: '/auth/verify',
+  path: '/auth/verify',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthSignupRoute = AuthSignupImport.update({
+  id: '/auth/signup',
+  path: '/auth/signup',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthPasswordresetconfirmRoute = AuthPasswordresetconfirmImport.update({
+  id: '/auth/password_reset_confirm',
+  path: '/auth/password_reset_confirm',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthPasswordresetRoute = AuthPasswordresetImport.update({
+  id: '/auth/password_reset',
+  path: '/auth/password_reset',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthLoginRoute = AuthLoginImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -44,6 +86,48 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/password_reset': {
+      id: '/auth/password_reset'
+      path: '/auth/password_reset'
+      fullPath: '/auth/password_reset'
+      preLoaderRoute: typeof AuthPasswordresetImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/password_reset_confirm': {
+      id: '/auth/password_reset_confirm'
+      path: '/auth/password_reset_confirm'
+      fullPath: '/auth/password_reset_confirm'
+      preLoaderRoute: typeof AuthPasswordresetconfirmImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/verify': {
+      id: '/auth/verify'
+      path: '/auth/verify'
+      fullPath: '/auth/verify'
+      preLoaderRoute: typeof AuthVerifyImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/waiting': {
+      id: '/auth/waiting'
+      path: '/auth/waiting'
+      fullPath: '/auth/waiting'
+      preLoaderRoute: typeof AuthWaitingImport
       parentRoute: typeof rootRoute
     }
     '/landing/': {
@@ -67,12 +151,24 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/password_reset': typeof AuthPasswordresetRoute
+  '/auth/password_reset_confirm': typeof AuthPasswordresetconfirmRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/auth/verify': typeof AuthVerifyRoute
+  '/auth/waiting': typeof AuthWaitingRoute
   '/landing': typeof LandingIndexRoute
   '/member': typeof MemberIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/password_reset': typeof AuthPasswordresetRoute
+  '/auth/password_reset_confirm': typeof AuthPasswordresetconfirmRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/auth/verify': typeof AuthVerifyRoute
+  '/auth/waiting': typeof AuthWaitingRoute
   '/landing': typeof LandingIndexRoute
   '/member': typeof MemberIndexRoute
 }
@@ -80,27 +176,73 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/password_reset': typeof AuthPasswordresetRoute
+  '/auth/password_reset_confirm': typeof AuthPasswordresetconfirmRoute
+  '/auth/signup': typeof AuthSignupRoute
+  '/auth/verify': typeof AuthVerifyRoute
+  '/auth/waiting': typeof AuthWaitingRoute
   '/landing/': typeof LandingIndexRoute
   '/member/': typeof MemberIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/landing' | '/member'
+  fullPaths:
+    | '/'
+    | '/auth/login'
+    | '/auth/password_reset'
+    | '/auth/password_reset_confirm'
+    | '/auth/signup'
+    | '/auth/verify'
+    | '/auth/waiting'
+    | '/landing'
+    | '/member'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/landing' | '/member'
-  id: '__root__' | '/' | '/landing/' | '/member/'
+  to:
+    | '/'
+    | '/auth/login'
+    | '/auth/password_reset'
+    | '/auth/password_reset_confirm'
+    | '/auth/signup'
+    | '/auth/verify'
+    | '/auth/waiting'
+    | '/landing'
+    | '/member'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth/login'
+    | '/auth/password_reset'
+    | '/auth/password_reset_confirm'
+    | '/auth/signup'
+    | '/auth/verify'
+    | '/auth/waiting'
+    | '/landing/'
+    | '/member/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthPasswordresetRoute: typeof AuthPasswordresetRoute
+  AuthPasswordresetconfirmRoute: typeof AuthPasswordresetconfirmRoute
+  AuthSignupRoute: typeof AuthSignupRoute
+  AuthVerifyRoute: typeof AuthVerifyRoute
+  AuthWaitingRoute: typeof AuthWaitingRoute
   LandingIndexRoute: typeof LandingIndexRoute
   MemberIndexRoute: typeof MemberIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthPasswordresetRoute: AuthPasswordresetRoute,
+  AuthPasswordresetconfirmRoute: AuthPasswordresetconfirmRoute,
+  AuthSignupRoute: AuthSignupRoute,
+  AuthVerifyRoute: AuthVerifyRoute,
+  AuthWaitingRoute: AuthWaitingRoute,
   LandingIndexRoute: LandingIndexRoute,
   MemberIndexRoute: MemberIndexRoute,
 }
@@ -116,12 +258,36 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/auth/login",
+        "/auth/password_reset",
+        "/auth/password_reset_confirm",
+        "/auth/signup",
+        "/auth/verify",
+        "/auth/waiting",
         "/landing/",
         "/member/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/auth/login": {
+      "filePath": "auth/login.tsx"
+    },
+    "/auth/password_reset": {
+      "filePath": "auth/password_reset.tsx"
+    },
+    "/auth/password_reset_confirm": {
+      "filePath": "auth/password_reset_confirm.tsx"
+    },
+    "/auth/signup": {
+      "filePath": "auth/signup.tsx"
+    },
+    "/auth/verify": {
+      "filePath": "auth/verify.tsx"
+    },
+    "/auth/waiting": {
+      "filePath": "auth/waiting.tsx"
     },
     "/landing/": {
       "filePath": "landing/index.tsx"

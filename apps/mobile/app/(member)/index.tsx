@@ -27,7 +27,7 @@ export default function MemberHome() {
             theme="red"
             onPress={() => {
               // Call logout function
-              logout();
+              logout.mutate();
             }}
           >
             Logout

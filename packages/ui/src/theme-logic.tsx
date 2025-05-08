@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import { TamaguiProvider, Theme } from 'tamagui';
-import { config } from '@bbook/config';
-import { useThemeStore } from '@bbook/stores/src/themeStore';
+import { config } from './config';
+import { useThemeStore, type ThemeKey } from '@bbook/stores/src/themeStore';
 
 // Types
 
@@ -16,11 +16,11 @@ type ThemeProviderProps = { children: React.ReactNode };
 const ThemeContext = createContext<ThemeContextType>({ theme: 'light' });
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  // Cast theme for type safety
-  const theme = useThemeStore((s: { theme: string }) => s.theme) as ThemeName;
-  const setThemeStore = useThemeStore((s: { setTheme: (theme: string) => void }) => s.setTheme);
-  // Wrap setTheme to enforce ThemeName type
-  const setTheme = (t: ThemeName) => setThemeStore(String(t));
+  const theme = useThemeStore((s: { theme: ThemeKey }) => s.theme);
+  const setThemeStore = useThemeStore(
+    (s: { setTheme: (theme: ThemeKey) => void }) => s.setTheme
+  );
+  const setTheme = (t: ThemeName) => setThemeStore(t);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

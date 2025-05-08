@@ -1,13 +1,14 @@
-import { useCurrentUser, useLoginMutation, useLogoutMutation, useSignupMutation } from '@bbook/data';
+import { useCurrentUser, useLoginMutation, useLogoutMutation, useSignupMutation, useResendVerificationMutation } from '@bbook/data';
 import { createContext, useContext, ReactNode } from 'react';
 
 interface AuthContextType {
   user: any | null;
   isLoading: boolean;
   isAuthenticated: boolean;
-  login: ReturnType<typeof useLoginMutation>['mutate'];
-  signup: ReturnType<typeof useSignupMutation>['mutate'];
-  logout: ReturnType<typeof useLogoutMutation>['mutate'];
+  login: ReturnType<typeof useLoginMutation>;
+  signup: ReturnType<typeof useSignupMutation>;
+  logout: ReturnType<typeof useLogoutMutation>;
+  resendVerification: ReturnType<typeof useResendVerificationMutation>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -17,14 +18,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const loginMutation = useLoginMutation();
   const signupMutation = useSignupMutation();
   const logoutMutation = useLogoutMutation();
+  const resendVerificationMutation = useResendVerificationMutation();
   
   const value: AuthContextType = {
     user,
     isLoading,
     isAuthenticated: !!user,
-    login: loginMutation.mutate,
-    signup: signupMutation.mutate,
-    logout: logoutMutation.mutate,
+    login: loginMutation,
+    signup: signupMutation,
+    logout: logoutMutation,
+    resendVerification: resendVerificationMutation,
   };
   
   return (

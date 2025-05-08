@@ -9,7 +9,7 @@ export default defineConfig({
     TanStackRouterVite({ autoCodeSplitting: true }),
     viteReact(),
     tamaguiPlugin({
-      config: '@bbook/config',
+      config: '@bbook/ui',
       components: ['tamagui'],
     }),
     tamaguiExtractPlugin({

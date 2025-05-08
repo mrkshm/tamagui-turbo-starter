@@ -1,9 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["**/*.ts", "**/*.tsx", "../config/src/tamagui.config.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "composite": true,
     "jsx": "react-jsx"
-  },
-  "references": [{ "path": "../config" }]
+  }
 }

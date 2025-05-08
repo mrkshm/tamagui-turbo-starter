@@ -7,7 +7,7 @@ import {
   ThemeProvider,
 } from '@bbook/ui';
 import { ToastViewport } from './ToastViewport';
-import { config } from '@bbook/config';
+import { config } from '@bbook/ui';
 import { QueryClientProvider, createQueryClient } from '@bbook/data';
 import { AuthProvider } from './auth-provider';
 

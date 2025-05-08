@@ -32,8 +32,7 @@ export const SignupPayloadSchema = v.pipe(
 export type SignupPayload = v.InferInput<typeof SignupPayloadSchema>;
 
 export const SignupResponseSchema = v.object({
-  access: v.string(),
-  refresh: v.string(),
+  detail: v.string(),
 });
 export type SignupResponse = v.InferInput<typeof SignupResponseSchema>;
 
@@ -58,5 +57,83 @@ export type TokenRefreshResponse = v.InferInput<
   typeof TokenRefreshResponseSchema
 >;
 
+export const VerifyRegistrationResponseSchema = v.object({
+  detail: v.string(),
+  access: v.string(),
+  refresh: v.string(),
+});
+export type VerifyRegistrationResponse = v.InferInput<
+  typeof VerifyRegistrationResponseSchema
+>;
+
+// Schema for login error responses when email is not verified
+export const LoginErrorResponseSchema = v.object({
+  detail: v.string(),
+  email_verified: v.boolean(),
+});
+export type LoginErrorResponse = v.InferInput<
+  typeof LoginErrorResponseSchema
+>;
+
+// Schema for resend verification email request
+export const ResendVerificationPayloadSchema = v.object({
+  email: v.pipe(v.string(), v.email()),
+});
+export type ResendVerificationPayload = v.InferInput<
+  typeof ResendVerificationPayloadSchema
+>;
+
+// Schema for resend verification email response
+export const ResendVerificationResponseSchema = v.object({
+  detail: v.string(),
+});
+export type ResendVerificationResponse = v.InferInput<
+  typeof ResendVerificationResponseSchema
+>;
+
 export const EmptyResponseSchema = v.object({});
 export type EmptyResponse = v.InferInput<typeof EmptyResponseSchema>;
+
+// Schema for password reset request
+export const PasswordResetRequestPayloadSchema = v.object({
+  email: v.pipe(v.string(), v.email()),
+});
+export type PasswordResetRequestPayload = v.InferInput<
+  typeof PasswordResetRequestPayloadSchema
+>;
+
+// Schema for password reset request response
+export const PasswordResetRequestResponseSchema = v.object({
+  detail: v.string(),
+});
+export type PasswordResetRequestResponse = v.InferInput<
+  typeof PasswordResetRequestResponseSchema
+>;
+
+// Schema for password reset confirmation
+export const PasswordResetConfirmPayloadSchema = v.pipe(
+  v.object({
+    token: v.string(),
+    password: v.string(),
+    password_confirm: v.string(),
+  }),
+  v.forward(
+    v.partialCheck(
+      [['password'], ['password_confirm']],
+      (input) => input.password === input.password_confirm,
+      'The two passwords do not match.'
+    ),
+    ['password_confirm']
+  )
+);
+export type PasswordResetConfirmPayload = v.InferInput<
+  typeof PasswordResetConfirmPayloadSchema
+>;
+
+// Schema for password reset confirmation response
+export const PasswordResetConfirmResponseSchema = v.object({
+  detail: v.string(),
+});
+export type PasswordResetConfirmResponse = v.InferInput<
+  typeof PasswordResetConfirmResponseSchema
+>;

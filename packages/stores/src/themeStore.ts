@@ -1,25 +1,32 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { isReactNative } from '@bbook/utils';
 
 export type ThemeKey = 'light' | 'dark';
 
-// Platform detection
-let isReactNative = false;
-try {
-  const { Platform } = require('react-native');
-  isReactNative = Platform.OS === 'ios' || Platform.OS === 'android';
-} catch {
-  isReactNative = false;
+const isThemeKey = (value: any): value is ThemeKey =>
+  value === 'light' || value === 'dark';
+
+function setThemeFromStorage(
+  storedTheme: string | null,
+  set: (v: { theme: ThemeKey }) => void
+) {
+  if (isThemeKey(storedTheme)) {
+    set({ theme: storedTheme });
+  } else {
+    set({ theme: 'light' }); // fallback
+  }
 }
 
+// Platform detection
 function getDefaultTheme(): ThemeKey {
   return 'light';
 }
 
 // Accept any string as theme, but only allow ThemeKey values for the UI (cast as needed)
 export interface ThemeStore {
-  theme: string;
-  setTheme: (theme: string) => void;
+  theme: ThemeKey;
+  setTheme: (theme: ThemeKey) => void;
   hydrate: () => Promise<void>;
 }
 
@@ -29,43 +36,30 @@ const createThemeStore = () => {
     theme: getDefaultTheme(),
     setTheme: (theme) => set({ theme }),
     hydrate: async () => {
-      if (isReactNative) {
+      if (isReactNative()) {
         try {
           const storedTheme = await AsyncStorage.getItem('theme');
-          if (storedTheme) {
-            set({ theme: storedTheme });
-          }
+          setThemeFromStorage(storedTheme, set);
         } catch (e) {
           console.log('Error loading theme from AsyncStorage:', e);
         }
       } else if (typeof window !== 'undefined' && window.localStorage) {
         const storedTheme = window.localStorage.getItem('theme');
-        if (storedTheme) {
-          set({ theme: storedTheme });
-        }
+        setThemeFromStorage(storedTheme, set);
       }
     },
   }));
 };
 
-// Use global singleton pattern for React Native
-const getGlobalStore = () => {
-  const globalAny = global as any;
-  if (!globalAny.__THEME_STORE__) {
-    globalAny.__THEME_STORE__ = createThemeStore();
-  }
-  return globalAny.__THEME_STORE__;
-};
-
-// Export the singleton store
-export const useThemeStore = getGlobalStore();
+// Export the theme store directly as a module-level singleton
+export const useThemeStore = createThemeStore();
 
 // Hydrate on import
 useThemeStore.getState().hydrate();
 
 // Persist theme changes to storage
 useThemeStore.subscribe((state: ThemeStore) => {
-  if (isReactNative) {
+  if (isReactNative()) {
     AsyncStorage.setItem('theme', state.theme).catch((e: unknown) => {
       console.log('Error persisting theme to AsyncStorage:', e);
     });

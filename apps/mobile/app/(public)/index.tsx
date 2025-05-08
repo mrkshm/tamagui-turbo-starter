@@ -1,15 +1,14 @@
 import { useTranslation } from '@bbook/i18n';
 import { TestCounter } from '@bbook/app';
-import { Text, YStack, Button } from '@bbook/ui';
+import { Text, YStack } from '@bbook/ui';
 import { HelloWorld } from '@bbook/app';
 import { SafeAreaView } from 'react-native';
-import { useAuth } from '@bbook/app/provider/auth-provider';
 import { useTheme } from '@bbook/ui';
+import { Link } from 'expo-router';
 
 export default function Index() {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { login, isLoading } = useAuth();
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: theme.background?.val }}>
@@ -30,19 +29,10 @@ export default function Index() {
         >
           This text should have style...
         </Text>
-        <Button
-          size="$6"
-          theme="blue"
-          onPress={() => login({
-            email: 'john@example.com',
-            password: 'password',
-          })}
-          disabled={isLoading}
-        >
-          {isLoading ? 'Logging in...' : 'Login'}
-        </Button>
         <TestCounter />
         <HelloWorld />
+        <Link href="/login">Login</Link>
+        <Link href="/signup">Sign Up</Link>
       </YStack>
     </SafeAreaView>
   );

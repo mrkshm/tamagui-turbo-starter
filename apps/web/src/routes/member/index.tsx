@@ -17,7 +17,7 @@ function RouteComponent() {
         size="$6"
         theme="red"
         marginTop="$4"
-        onPress={() => logout()}
+        onPress={() => logout.mutate()}
         disabled={isLoading}
       >
         {isLoading ? 'Logging out...' : 'Logout'}

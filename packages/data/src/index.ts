@@ -16,3 +16,6 @@ export * from './endpoints';
 // Export React Query and hooks
 export * from './query';
 export * from './hooks/use-auth-query';
+export * from './hooks/use-verify-registration';
+export * from './hooks/use-resend-verification';
+export * from './hooks/use-password-reset';
