@@ -1,6 +1,6 @@
 import { HTTP_METHODS } from '../constants/constants';
 import { Endpoint } from './index';
-import { User } from '../schemas/user';
+import { User, ProfilePayload } from '../schemas/user';
 
 // Define any user-specific payload types here or import from schemas
 export interface CheckUsernamePayload {
@@ -11,23 +11,8 @@ export interface CheckUsernameResponse {
   available: boolean;
 }
 
-export interface ChangeLanguagePayload {
-  locale: string;
-}
-
-export interface ChangeThemePayload {
-  theme: string;
-}
-
-export interface ProfilePayload {
-  name?: string;
-  bio?: string;
-  email?: string;
-  // Add other profile fields as needed
-}
-
 export interface ChangeAvatarPayload {
-  avatar: FormData; // For file uploads
+  avatar: FormData;
 }
 
 export const userEndpoints = {
@@ -46,24 +31,8 @@ export const userEndpoints = {
     responseType: {} as CheckUsernameResponse,
   } as Endpoint<CheckUsernamePayload, CheckUsernameResponse>,
 
-  CHANGE_LANGUAGE: {
-    url: '/profile/locale',
-    method: HTTP_METHODS.PATCH,
-    requiresAuth: true,
-    requestType: {} as ChangeLanguagePayload,
-    responseType: {} as User,
-  } as Endpoint<ChangeLanguagePayload, User>,
-
-  CHANGE_THEME: {
-    url: '/profile/theme',
-    method: HTTP_METHODS.PATCH,
-    requiresAuth: true,
-    requestType: {} as ChangeThemePayload,
-    responseType: {} as User,
-  } as Endpoint<ChangeThemePayload, User>,
-
   UPDATE_PROFILE: {
-    url: '/profile',
+    url: '/users/me',
     method: HTTP_METHODS.PATCH,
     requiresAuth: true,
     requestType: {} as ProfilePayload,
@@ -71,7 +40,7 @@ export const userEndpoints = {
   } as Endpoint<ProfilePayload, User>,
 
   CHANGE_AVATAR: {
-    url: '/profile/avatar',
+    url: '/users/avatar',
     method: HTTP_METHODS.PATCH,
     requiresAuth: true,
     requestType: {} as ChangeAvatarPayload,
@@ -79,7 +48,7 @@ export const userEndpoints = {
   } as Endpoint<ChangeAvatarPayload, User>,
 
   DELETE_AVATAR: {
-    url: '/profile/avatar',
+    url: '/users/avatar',
     method: HTTP_METHODS.DELETE,
     requiresAuth: true,
     responseType: {} as User,

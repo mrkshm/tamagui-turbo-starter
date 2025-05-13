@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FormCard, H1, Text, View } from '@bbook/ui';
 import { useTranslation } from '@bbook/i18n';
 
-export const Route = createFileRoute('/auth/password_reset_confirm')({  
+export const Route = createFileRoute('/auth/password-reset-confirm')({  
   component: RouteComponent,
 });
 

@@ -10,6 +10,10 @@ export const userSchema = v.object({
   about: v.optional(v.string()),
   avatar_path: v.optional(v.nullable(v.string())),
   notification_preferences: v.optional(v.object({})),
+  preferred_language: v.string(),
+  preferred_theme: v.string(),
+  finished_onboarding: v.boolean(),
+  email_verified: v.boolean(),
   created_at: v.optional(v.string()),
 });
 export type User = v.InferInput<typeof userSchema>;
@@ -71,9 +75,7 @@ export const LoginErrorResponseSchema = v.object({
   detail: v.string(),
   email_verified: v.boolean(),
 });
-export type LoginErrorResponse = v.InferInput<
-  typeof LoginErrorResponseSchema
->;
+export type LoginErrorResponse = v.InferInput<typeof LoginErrorResponseSchema>;
 
 // Schema for resend verification email request
 export const ResendVerificationPayloadSchema = v.object({
@@ -137,3 +139,13 @@ export const PasswordResetConfirmResponseSchema = v.object({
 export type PasswordResetConfirmResponse = v.InferInput<
   typeof PasswordResetConfirmResponseSchema
 >;
+
+export const ProfilePayloadSchema = v.object({
+  first_name: v.optional(v.pipe(v.string(), v.maxLength(50), v.trim())),
+  last_name: v.optional(v.pipe(v.string(), v.maxLength(50), v.trim())),
+  location: v.optional(v.pipe(v.string(), v.maxLength(100), v.trim())),
+  about: v.optional(v.pipe(v.string(), v.maxLength(5000), v.trim())),
+  preferred_language: v.optional(v.pipe(v.string(), v.maxLength(20), v.trim())),
+  preferred_theme: v.optional(v.pipe(v.string(), v.maxLength(20), v.trim())),
+});
+export type ProfilePayload = v.InferInput<typeof ProfilePayloadSchema>;

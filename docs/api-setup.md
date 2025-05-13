@@ -66,6 +66,20 @@ export const authEndpoints = {
     requestType: {} as LoginPayload,
     responseType: {} as LoginResponse,
   } as Endpoint<LoginPayload, LoginResponse>,
+  PASSWORD_RESET_REQUEST: {
+    url: '/auth/password_reset/request',
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {} as PasswordResetRequestPayload,
+    responseType: {} as PasswordResetRequestResponse,
+  },
+  PASSWORD_RESET_CONFIRM: {
+    url: '/auth/password_reset/confirm',
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {} as PasswordResetConfirmPayload,
+    responseType: {} as PasswordResetConfirmResponse,
+  },
 };
 ```
 
@@ -109,6 +123,42 @@ export const LoginResponseSchema = v.object({
   refresh: v.string(),
 });
 export type LoginResponse = v.InferInput<typeof LoginResponseSchema>;
+
+// Password reset request payload schema
+export const PasswordResetRequestPayloadSchema = v.object({
+  email: v.pipe(v.string(), v.email()),
+});
+export type PasswordResetRequestPayload = v.InferInput<
+  typeof PasswordResetRequestPayloadSchema
+>;
+
+// Password reset request response schema
+export const PasswordResetRequestResponseSchema = v.object({
+  success: v.boolean(),
+  message: v.string(),
+});
+export type PasswordResetRequestResponse = v.InferInput<
+  typeof PasswordResetRequestResponseSchema
+>;
+
+// Password reset confirm payload schema
+export const PasswordResetConfirmPayloadSchema = v.object({
+  token: v.string(),
+  password: v.string(),
+  password_confirm: v.string(),
+});
+export type PasswordResetConfirmPayload = v.InferInput<
+  typeof PasswordResetConfirmPayloadSchema
+>;
+
+// Password reset confirm response schema
+export const PasswordResetConfirmResponseSchema = v.object({
+  success: v.boolean(),
+  message: v.string(),
+});
+export type PasswordResetConfirmResponse = v.InferInput<
+  typeof PasswordResetConfirmResponseSchema
+>;
 ```
 
 ### 3. API Client
@@ -131,15 +181,21 @@ export const apiClient = {
   async get(url: string, schema: any, options?: RequestOptions) {
     return fetchWithValidation('GET', url, schema, undefined, options);
   },
-  
+
   async post(url: string, schema: any, data: any, options?: RequestOptions) {
     return fetchWithValidation('POST', url, schema, data, options);
   },
-  
+
   // Other methods (PUT, DELETE, etc.)
 };
 
-async function fetchWithValidation(method: string, url: string, schema: any, data?: any, options?: RequestOptions) {
+async function fetchWithValidation(
+  method: string,
+  url: string,
+  schema: any,
+  data?: any,
+  options?: RequestOptions
+) {
   try {
     // Make the API request
     const response = await fetch(`${BASE_URL}${url}`, {
@@ -150,23 +206,23 @@ async function fetchWithValidation(method: string, url: string, schema: any, dat
       },
       body: data ? JSON.stringify(data) : undefined,
     });
-    
+
     // Handle non-2xx responses
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
+
     // Parse the response
     const responseData = await response.json();
-    
+
     // Skip validation if requested
     if (options?.skipValidation) {
       return { success: true, data: responseData };
     }
-    
+
     // Validate the response against the schema
     const result = safeParse(schema, responseData);
-    
+
     if (!result.success) {
       return {
         success: false,
@@ -174,14 +230,14 @@ async function fetchWithValidation(method: string, url: string, schema: any, dat
         validationErrors: result.issues,
       };
     }
-    
+
     return { success: true, data: result.output };
   } catch (error) {
     // Track errors
     errorTracker.captureException(
       error instanceof Error ? error : new Error(String(error))
     );
-    
+
     return { success: false, error };
   }
 }
@@ -207,11 +263,11 @@ export function useUserProfile(userId: string) {
         `${API_ENDPOINTS.USER.GET_PROFILE.url}/${userId}`,
         userSchema
       );
-      
+
       if (!result.success) {
         throw result.error;
       }
-      
+
       return result.data;
     },
   });
@@ -220,7 +276,7 @@ export function useUserProfile(userId: string) {
 // Example of a mutation hook
 export function useUpdateProfile() {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: async (data: UpdateProfilePayload) => {
       const result = await apiClient.patch(
@@ -228,11 +284,11 @@ export function useUpdateProfile() {
         UpdateProfileResponseSchema,
         data
       );
-      
+
       if (!result.success) {
         throw result.error;
       }
-      
+
       return result.data;
     },
     onSuccess: (data, variables) => {
@@ -287,11 +343,8 @@ function useUser(id: number) {
     queryKey: ['user', id],
     queryFn: async () => {
       // Type-safe API call
-      const result = await apiClient.get(
-        `/users/${id}`,
-        UserSchema
-      );
-      
+      const result = await apiClient.get(`/users/${id}`, UserSchema);
+
       return result.data; // Typed as User
     },
   });

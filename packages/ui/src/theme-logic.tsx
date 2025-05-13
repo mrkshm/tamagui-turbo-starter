@@ -1,7 +1,8 @@
 import { createContext } from 'react';
 import { TamaguiProvider, Theme } from 'tamagui';
 import { config } from './config';
-import { useThemeStore, type ThemeKey } from '@bbook/stores/src/themeStore';
+import { useThemeStore } from '@bbook/stores';
+import { ThemeKey } from '@bbook/stores';
 
 // Types
 

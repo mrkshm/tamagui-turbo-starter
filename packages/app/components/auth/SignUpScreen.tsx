@@ -78,9 +78,7 @@ export function SignUpScreen({
       >
         <H1>{t('auth:signup_title')}</H1>
         <View flexDirection="column" gap="$3" marginTop="$4">
-          <View
-          // Use View instead of form for cross-platform compatibility
-          >
+          <View>
             <View flexDirection="column" gap="$5">
               <form.Field
                 name="email"
@@ -208,23 +206,25 @@ export function SignUpScreen({
 
               <View marginTop="$2" alignItems="center">
                 <View marginBottom="$2" alignItems="center">
-                  <Trans
-                    i18nKey="auth:accept_terms"
-                    components={[
-                      <Text
-                        color="$blue10"
-                        cursor="pointer"
-                        onPress={() => {
-                          if (onNavigateToTerms) {
-                            onNavigateToTerms();
-                          } else {
-                            // Fallback if no callback is provided
-                            console.log('Navigate to terms and conditions');
-                          }
-                        }}
-                      />,
-                    ]}
-                  />
+                  <Text textAlign="center">
+                    <Trans
+                      i18nKey="auth:accept_terms"
+                      components={[
+                        <Text
+                          color="$blue10"
+                          cursor="pointer"
+                          onPress={() => {
+                            if (onNavigateToTerms) {
+                              onNavigateToTerms();
+                            } else {
+                              // Fallback if no callback is provided
+                              <Text>No link supplied </Text>;
+                            }
+                          }}
+                        />,
+                      ]}
+                    />
+                  </Text>
                 </View>
                 <CButton
                   disabled={

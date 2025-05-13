@@ -1,8 +1,15 @@
-import { useCurrentUser, useLoginMutation, useLogoutMutation, useSignupMutation, useResendVerificationMutation } from '@bbook/data';
+import { 
+  useCurrentUser, 
+  useLoginMutation, 
+  useLogoutMutation, 
+  useSignupMutation, 
+  useResendVerificationMutation,
+  User 
+} from '@bbook/data';
 import { createContext, useContext, ReactNode } from 'react';
 
 interface AuthContextType {
-  user: any | null;
+  user: User | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   login: ReturnType<typeof useLoginMutation>;

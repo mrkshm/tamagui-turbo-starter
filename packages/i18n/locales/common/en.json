@@ -1,10 +1,12 @@
 {
   "back": "Back",
   "cancel": "Cancel",
+  "close": "Close",
   "confirm": "Confirm",
   "delete": "Delete",
   "done": "Done",
   "edit": "Edit",
+  "loading": "Loading",
   "login": "Login",
   "logout": "Logout",
   "ok": "OK",

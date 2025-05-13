@@ -6,6 +6,8 @@
   "email_required": "Please enter your email",
   "have_account_link": "Login",
   "have_account_question": "Already have an account?",
+  "header_title": "Sign In / Sign Up",
+  "header_back_title": "Landing",
   "login_failed": "There was an error logging you in. Please try again.",
   "login_title": "Login to your account",
   "no_account_link": "Sign up",

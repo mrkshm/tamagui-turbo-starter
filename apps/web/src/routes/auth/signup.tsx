@@ -1,7 +1,7 @@
 import { useRouter, createFileRoute } from '@tanstack/react-router';
 import { View } from '@bbook/ui';
 import { SignUpScreen } from '@bbook/app/components/auth/SignUpScreen';
-import { useState } from 'react';
+import { useInteractionState } from '@bbook/utils';
 import { TermsDialog } from '../../components/TermsDialog';
 
 export const Route = createFileRoute('/auth/signup')({
@@ -10,7 +10,7 @@ export const Route = createFileRoute('/auth/signup')({
 
 function RouteComponent() {
   const router = useRouter();
-  const [termsOpen, setTermsOpen] = useState(false);
+  const termsDialog = useInteractionState();
 
   const handleSignupSuccess = (response: any) => {
     console.log(
@@ -32,7 +32,7 @@ function RouteComponent() {
 
   const handleNavigateToTerms = () => {
     console.log('Opening terms and conditions dialog');
-    setTermsOpen(true);
+    termsDialog.onIn();
   };
 
   return (
@@ -49,7 +49,12 @@ function RouteComponent() {
       />
 
       {/* Terms and Conditions Dialog */}
-      <TermsDialog open={termsOpen} onOpenChange={setTermsOpen} />
+      <TermsDialog
+        open={termsDialog.state}
+        onOpenChange={(open) => {
+          if (!open) termsDialog.onOut();
+        }}
+      />
     </View>
   );
 }

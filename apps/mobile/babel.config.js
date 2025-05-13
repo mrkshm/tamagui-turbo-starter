@@ -14,8 +14,8 @@ module.exports = function (api) {
       [
         '@tamagui/babel-plugin',
         {
-          components: ['tamagui'],
-          config: '../../packages/config/src/tamagui.config.ts',
+          components: ['tamagui', '@tamagui/lucide-icons'],
+          config: '../../packages/ui/src/config/tamagui.config.ts',
           logTimings: true,
           disableExtraction: process.env.NODE_ENV === 'development',
         },

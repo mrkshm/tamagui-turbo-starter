@@ -51,4 +51,16 @@ config.resolver.extraNodeModules = new Proxy({}, {
   get: (target, name) => path.join(workspaceRoot, 'node_modules', name)
 });
 
+// SVG Configuration - Set up proper transformer
+const { transformer, resolver } = config;
+
+config.transformer = {
+  ...transformer,
+  babelTransformerPath: require.resolve('react-native-svg-transformer'),
+};
+
+// Configure SVG extensions properly
+config.resolver.assetExts = resolver.assetExts.filter(ext => ext !== 'svg');
+config.resolver.sourceExts = [...resolver.sourceExts, 'svg'];
+
 module.exports = config;

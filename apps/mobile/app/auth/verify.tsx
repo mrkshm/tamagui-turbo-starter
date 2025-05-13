@@ -5,6 +5,10 @@ import { useVerifyRegistrationMutation, useResendVerificationMutation } from '@b
 import { VerificationStatus } from '@bbook/app/components/auth/VerificationStatus';
 import { useEffect, useState } from 'react';
 
+/**
+ * This route handles deep links for email verification.
+ * It extracts the token from the URL and processes the verification.
+ */
 export default function Verify() {
   const router = useRouter();
   const { token } = useLocalSearchParams<{ token: string }>();

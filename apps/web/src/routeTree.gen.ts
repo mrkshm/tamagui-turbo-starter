@@ -17,9 +17,10 @@ import { Route as LandingIndexImport } from './routes/landing/index'
 import { Route as AuthWaitingImport } from './routes/auth/waiting'
 import { Route as AuthVerifyImport } from './routes/auth/verify'
 import { Route as AuthSignupImport } from './routes/auth/signup'
-import { Route as AuthPasswordresetconfirmImport } from './routes/auth/password_reset_confirm'
-import { Route as AuthPasswordresetImport } from './routes/auth/password_reset'
+import { Route as AuthPasswordResetConfirmImport } from './routes/auth/password-reset-confirm'
+import { Route as AuthPasswordResetImport } from './routes/auth/password-reset'
 import { Route as AuthLoginImport } from './routes/auth/login'
+import { Route as MemberProfileIndexImport } from './routes/member/profile/index'
 
 // Create/Update Routes
 
@@ -59,21 +60,27 @@ const AuthSignupRoute = AuthSignupImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthPasswordresetconfirmRoute = AuthPasswordresetconfirmImport.update({
-  id: '/auth/password_reset_confirm',
-  path: '/auth/password_reset_confirm',
+const AuthPasswordResetConfirmRoute = AuthPasswordResetConfirmImport.update({
+  id: '/auth/password-reset-confirm',
+  path: '/auth/password-reset-confirm',
   getParentRoute: () => rootRoute,
 } as any)
 
-const AuthPasswordresetRoute = AuthPasswordresetImport.update({
-  id: '/auth/password_reset',
-  path: '/auth/password_reset',
+const AuthPasswordResetRoute = AuthPasswordResetImport.update({
+  id: '/auth/password-reset',
+  path: '/auth/password-reset',
   getParentRoute: () => rootRoute,
 } as any)
 
 const AuthLoginRoute = AuthLoginImport.update({
   id: '/auth/login',
   path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MemberProfileIndexRoute = MemberProfileIndexImport.update({
+  id: '/member/profile/',
+  path: '/member/profile/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,18 +102,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginImport
       parentRoute: typeof rootRoute
     }
-    '/auth/password_reset': {
-      id: '/auth/password_reset'
-      path: '/auth/password_reset'
-      fullPath: '/auth/password_reset'
-      preLoaderRoute: typeof AuthPasswordresetImport
+    '/auth/password-reset': {
+      id: '/auth/password-reset'
+      path: '/auth/password-reset'
+      fullPath: '/auth/password-reset'
+      preLoaderRoute: typeof AuthPasswordResetImport
       parentRoute: typeof rootRoute
     }
-    '/auth/password_reset_confirm': {
-      id: '/auth/password_reset_confirm'
-      path: '/auth/password_reset_confirm'
-      fullPath: '/auth/password_reset_confirm'
-      preLoaderRoute: typeof AuthPasswordresetconfirmImport
+    '/auth/password-reset-confirm': {
+      id: '/auth/password-reset-confirm'
+      path: '/auth/password-reset-confirm'
+      fullPath: '/auth/password-reset-confirm'
+      preLoaderRoute: typeof AuthPasswordResetConfirmImport
       parentRoute: typeof rootRoute
     }
     '/auth/signup': {
@@ -144,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberIndexImport
       parentRoute: typeof rootRoute
     }
+    '/member/profile/': {
+      id: '/member/profile/'
+      path: '/member/profile'
+      fullPath: '/member/profile'
+      preLoaderRoute: typeof MemberProfileIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -152,38 +166,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
-  '/auth/password_reset': typeof AuthPasswordresetRoute
-  '/auth/password_reset_confirm': typeof AuthPasswordresetconfirmRoute
+  '/auth/password-reset': typeof AuthPasswordResetRoute
+  '/auth/password-reset-confirm': typeof AuthPasswordResetConfirmRoute
   '/auth/signup': typeof AuthSignupRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/auth/waiting': typeof AuthWaitingRoute
   '/landing': typeof LandingIndexRoute
   '/member': typeof MemberIndexRoute
+  '/member/profile': typeof MemberProfileIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
-  '/auth/password_reset': typeof AuthPasswordresetRoute
-  '/auth/password_reset_confirm': typeof AuthPasswordresetconfirmRoute
+  '/auth/password-reset': typeof AuthPasswordResetRoute
+  '/auth/password-reset-confirm': typeof AuthPasswordResetConfirmRoute
   '/auth/signup': typeof AuthSignupRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/auth/waiting': typeof AuthWaitingRoute
   '/landing': typeof LandingIndexRoute
   '/member': typeof MemberIndexRoute
+  '/member/profile': typeof MemberProfileIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
-  '/auth/password_reset': typeof AuthPasswordresetRoute
-  '/auth/password_reset_confirm': typeof AuthPasswordresetconfirmRoute
+  '/auth/password-reset': typeof AuthPasswordResetRoute
+  '/auth/password-reset-confirm': typeof AuthPasswordResetConfirmRoute
   '/auth/signup': typeof AuthSignupRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/auth/waiting': typeof AuthWaitingRoute
   '/landing/': typeof LandingIndexRoute
   '/member/': typeof MemberIndexRoute
+  '/member/profile/': typeof MemberProfileIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -191,60 +208,65 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth/login'
-    | '/auth/password_reset'
-    | '/auth/password_reset_confirm'
+    | '/auth/password-reset'
+    | '/auth/password-reset-confirm'
     | '/auth/signup'
     | '/auth/verify'
     | '/auth/waiting'
     | '/landing'
     | '/member'
+    | '/member/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth/login'
-    | '/auth/password_reset'
-    | '/auth/password_reset_confirm'
+    | '/auth/password-reset'
+    | '/auth/password-reset-confirm'
     | '/auth/signup'
     | '/auth/verify'
     | '/auth/waiting'
     | '/landing'
     | '/member'
+    | '/member/profile'
   id:
     | '__root__'
     | '/'
     | '/auth/login'
-    | '/auth/password_reset'
-    | '/auth/password_reset_confirm'
+    | '/auth/password-reset'
+    | '/auth/password-reset-confirm'
     | '/auth/signup'
     | '/auth/verify'
     | '/auth/waiting'
     | '/landing/'
     | '/member/'
+    | '/member/profile/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthLoginRoute: typeof AuthLoginRoute
-  AuthPasswordresetRoute: typeof AuthPasswordresetRoute
-  AuthPasswordresetconfirmRoute: typeof AuthPasswordresetconfirmRoute
+  AuthPasswordResetRoute: typeof AuthPasswordResetRoute
+  AuthPasswordResetConfirmRoute: typeof AuthPasswordResetConfirmRoute
   AuthSignupRoute: typeof AuthSignupRoute
   AuthVerifyRoute: typeof AuthVerifyRoute
   AuthWaitingRoute: typeof AuthWaitingRoute
   LandingIndexRoute: typeof LandingIndexRoute
   MemberIndexRoute: typeof MemberIndexRoute
+  MemberProfileIndexRoute: typeof MemberProfileIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthLoginRoute: AuthLoginRoute,
-  AuthPasswordresetRoute: AuthPasswordresetRoute,
-  AuthPasswordresetconfirmRoute: AuthPasswordresetconfirmRoute,
+  AuthPasswordResetRoute: AuthPasswordResetRoute,
+  AuthPasswordResetConfirmRoute: AuthPasswordResetConfirmRoute,
   AuthSignupRoute: AuthSignupRoute,
   AuthVerifyRoute: AuthVerifyRoute,
   AuthWaitingRoute: AuthWaitingRoute,
   LandingIndexRoute: LandingIndexRoute,
   MemberIndexRoute: MemberIndexRoute,
+  MemberProfileIndexRoute: MemberProfileIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -259,13 +281,14 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/auth/login",
-        "/auth/password_reset",
-        "/auth/password_reset_confirm",
+        "/auth/password-reset",
+        "/auth/password-reset-confirm",
         "/auth/signup",
         "/auth/verify",
         "/auth/waiting",
         "/landing/",
-        "/member/"
+        "/member/",
+        "/member/profile/"
       ]
     },
     "/": {
@@ -274,11 +297,11 @@ export const routeTree = rootRoute
     "/auth/login": {
       "filePath": "auth/login.tsx"
     },
-    "/auth/password_reset": {
-      "filePath": "auth/password_reset.tsx"
+    "/auth/password-reset": {
+      "filePath": "auth/password-reset.tsx"
     },
-    "/auth/password_reset_confirm": {
-      "filePath": "auth/password_reset_confirm.tsx"
+    "/auth/password-reset-confirm": {
+      "filePath": "auth/password-reset-confirm.tsx"
     },
     "/auth/signup": {
       "filePath": "auth/signup.tsx"
@@ -294,6 +317,9 @@ export const routeTree = rootRoute
     },
     "/member/": {
       "filePath": "member/index.tsx"
+    },
+    "/member/profile/": {
+      "filePath": "member/profile/index.tsx"
     }
   }
 }

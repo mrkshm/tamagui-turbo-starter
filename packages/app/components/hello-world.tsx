@@ -1,7 +1,6 @@
 import { YStack } from '@bbook/ui';
 import { Text as TamaguiText } from '@bbook/ui';
 import { ScrollView } from 'react-native';
-import { ThemeSwitcher } from './ThemeSwitcher';
 
 export function HelloWorld() {
   return (
@@ -19,8 +18,6 @@ export function HelloWorld() {
         >
           If you see this, the App Package is working!
         </TamaguiText>
-
-        <ThemeSwitcher label="Theme" />
       </YStack>
     </ScrollView>
   );

@@ -4,7 +4,8 @@ import { TokenRefreshResponseSchema } from '../schemas/user';
 import { errorTracker } from './error-tracking';
 import { safeParse } from 'valibot';
 import { LogLevel } from '../constants/errors';
-import { BASE_URL } from '../constants/config';
+import { API_BASE_URL } from '../constants/config';
+import { authEndpoints } from '../endpoints/auth';
 
 export interface TokenService {
   getValidToken: (userId: string) => Promise<string | null>;
@@ -29,12 +30,14 @@ const isTokenExpired = (token: string): boolean => {
 
 async function makeRequest(url: string, token: string) {
   try {
-    const response = await fetch(`${BASE_URL}${url}`, {
+    const response = await fetch(`${API_BASE_URL}${url}`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        refresh: token,
+      }),
     });
 
     if (!response.ok) {
@@ -88,7 +91,7 @@ export const tokenService: TokenService = {
     if (!currentToken.success || !currentToken.token) return false;
 
     const refreshResult = await makeRequest(
-      '/auth/refresh',
+      authEndpoints.REFRESH_TOKEN.url,
       currentToken.token
     );
 
@@ -122,18 +125,20 @@ export const tokenService: TokenService = {
     console.log(`Removing tokens for user: ${userId}`);
     try {
       // Log the keys we're trying to remove for debugging
-      console.log(`Removing tokens with keys: jwt_${userId}_access and jwt_${userId}_refresh`);
-      
+      console.log(
+        `Removing tokens with keys: jwt_${userId}_access and jwt_${userId}_refresh`
+      );
+
       await removeJWT(`${userId}_access`);
       await removeJWT(`${userId}_refresh`);
-      
+
       // Also try with 'current_user' as the key since that's what we use in login
       if (userId !== 'current_user') {
         console.log('Also removing tokens for current_user');
         await removeJWT('current_user_access');
         await removeJWT('current_user_refresh');
       }
-      
+
       console.log('Tokens removed successfully');
       return Promise.resolve();
     } catch (error) {

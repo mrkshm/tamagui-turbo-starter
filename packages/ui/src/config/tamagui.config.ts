@@ -18,7 +18,19 @@ export const config = createTamagui({
   texts: {
     H1: {
       fontFamily: '$heading',
+      fontSize: '$7',
+      letterSpacing: -0.5,
+      fontWeight: '700',
+    },
+    H2: {
+      fontFamily: '$heading',
       fontSize: '$6',
+      letterSpacing: -0.5,
+      fontWeight: '700',
+    },
+    H3: {
+      fontFamily: '$heading',
+      fontSize: '$5',
       letterSpacing: -0.5,
       fontWeight: '700',
     },

@@ -4,7 +4,7 @@ import { PasswordReset } from '@bbook/app/components/auth/PasswordReset';
 import { PasswordResetSuccess } from '@bbook/app/components/auth/PasswordResetSuccess';
 import { useState } from 'react';
 
-export const Route = createFileRoute('/auth/password_reset')({
+export const Route = createFileRoute('/auth/password-reset')({
   component: RouteComponent,
 });
 

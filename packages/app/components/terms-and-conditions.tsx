@@ -19,3 +19,5 @@ export function TermsAndConditions() {
     </ScrollView>
   );
 }
+
+export default TermsAndConditions;

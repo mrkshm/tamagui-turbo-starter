@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select, Text, XStack, Adapt, Sheet, YStack, themes } from '@bbook/ui';
-import { useThemeStore, ThemeKey } from '@bbook/stores/src/themeStore';
+import { useThemeStore, ThemeKey } from '@bbook/stores';
+import { useThemeSync } from '@bbook/stores';
 
 export interface ThemeSwitcherProps {
   label?: string;
@@ -8,13 +9,13 @@ export interface ThemeSwitcherProps {
 
 type ThemeName = keyof typeof themes;
 
-export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
-  label = 'Theme',
+// Create a separate component for the theme switcher UI
+// This prevents the useThemeSync hook from being called on every keystroke
+const ThemeSwitcherUI = React.memo(({ label, theme, setTheme }: { 
+  label: string; 
+  theme: ThemeKey; 
+  setTheme: (theme: ThemeKey) => void 
 }) => {
-  const theme = useThemeStore((s: { theme: ThemeKey }) => s.theme);
-  const setTheme = useThemeStore(
-    (s: { setTheme: (theme: ThemeKey) => void }) => s.setTheme
-  );
   // Get theme options from the themes object
   const themeOptions = React.useMemo(() => {
     if (!themes || typeof themes !== 'object') return [];
@@ -38,12 +39,14 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
         <Select.Trigger>
           <Select.Value color="$textPrimary" placeholder="Select theme..." />
         </Select.Trigger>
-        <Adapt when="maxMd" platform="touch">
+        <Adapt when="sm" platform="touch">
           <Sheet snapPoints={[25, 100]} modal dismissOnSnapToBottom>
             <Sheet.Frame padding="$4">
-              <Adapt.Contents />
+              <Sheet.ScrollView>
+                <Adapt.Contents />
+              </Sheet.ScrollView>
             </Sheet.Frame>
-            <Sheet.Overlay opacity={0.3} />
+            <Sheet.Overlay />
           </Sheet>
         </Adapt>
         <Select.Content>
@@ -91,5 +94,40 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
         </Select.Content>
       </Select>
     </XStack>
+  );
+});
+
+// This component initializes theme sync without re-rendering on keystrokes
+const ThemeSyncInitializer = React.memo(() => {
+  // Initialize the theme sync with backend
+  // This is necessary, do not delete it even if linter complains
+  useThemeSync();
+  return null;
+});
+
+// This is the main component that handles the theme sync
+export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = (props) => {
+  const theme = useThemeStore((s: { theme: ThemeKey }) => s.theme);
+  const setTheme = useThemeStore(
+    (s: { setTheme: (theme: ThemeKey) => void }) => s.setTheme
+  );
+
+  // For debugging purposes
+  React.useEffect(() => {
+    console.log('ThemeSwitcher mounted, current theme:', theme);
+  }, [theme]);
+  
+  return (
+    <>
+      {/* This component only renders once and won't re-render on keystrokes */}
+      <ThemeSyncInitializer />
+      
+      {/* UI component is memoized to prevent re-renders */}
+      <ThemeSwitcherUI 
+        label={props.label || 'Theme'} 
+        theme={theme} 
+        setTheme={setTheme} 
+      />
+    </>
   );
 };

@@ -10,7 +10,8 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.bentobook"
+      "bundleIdentifier": "com.anonymous.bentobook",
+      "associatedDomains": ["applinks:turbobook.example.com"]
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +19,26 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.bentobook"
+      "package": "com.anonymous.bentobook",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "turbobook.example.com",
+              "pathPrefix": "/auth/verify"
+            },
+            {
+              "scheme": "https",
+              "host": "turbobook.example.com",
+              "pathPrefix": "/auth/password-reset-confirm"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "bundler": "metro",

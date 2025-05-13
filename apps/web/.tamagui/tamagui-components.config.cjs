@@ -33,9 +33,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../node_modules/.pnpm/aria-hidden@1.2.4/node_modules/aria-hidden/dist/es5/index.js
+// ../../node_modules/.pnpm/aria-hidden@1.2.6/node_modules/aria-hidden/dist/es5/index.js
 var require_es5 = __commonJS({
-  "../../node_modules/.pnpm/aria-hidden@1.2.4/node_modules/aria-hidden/dist/es5/index.js"(exports2) {
+  "../../node_modules/.pnpm/aria-hidden@1.2.6/node_modules/aria-hidden/dist/es5/index.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.suppressOthers = exports2.supportsInert = exports2.inertOthers = exports2.hideOthers = void 0;
@@ -155,7 +155,7 @@ var require_es5 = __commonJS({
           return null;
         };
       }
-      targets.push.apply(targets, Array.from(activeParentNode.querySelectorAll("[aria-live]")));
+      targets.push.apply(targets, Array.from(activeParentNode.querySelectorAll("[aria-live], script")));
       return applyAttributeToOthers2(targets, activeParentNode, markerName, "aria-hidden");
     }, "hideOthers");
     exports2.hideOthers = hideOthers2;
@@ -1389,9 +1389,9 @@ var require_es53 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/medium.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/medium.js
 var require_medium2 = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/medium.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/medium.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.effectCar = void 0;
@@ -1400,9 +1400,9 @@ var require_medium2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/UI.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/UI.js
 var require_UI = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/UI.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/UI.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.RemoveScroll = void 0;
@@ -1421,14 +1421,14 @@ var require_UI = __commonJS({
         onWheelCapture: nothing,
         onTouchMoveCapture: nothing
       }), callbacks = _a[0], setCallbacks = _a[1];
-      var forwardProps = props.forwardProps, children = props.children, className = props.className, removeScrollBar = props.removeScrollBar, enabled = props.enabled, shards = props.shards, sideCar = props.sideCar, noIsolation = props.noIsolation, inert = props.inert, allowPinchZoom = props.allowPinchZoom, _b = props.as, Container = _b === void 0 ? "div" : _b, gapMode = props.gapMode, rest = tslib_1.__rest(props, ["forwardProps", "children", "className", "removeScrollBar", "enabled", "shards", "sideCar", "noIsolation", "inert", "allowPinchZoom", "as", "gapMode"]);
+      var forwardProps = props.forwardProps, children = props.children, className = props.className, removeScrollBar = props.removeScrollBar, enabled = props.enabled, shards = props.shards, sideCar = props.sideCar, noRelative = props.noRelative, noIsolation = props.noIsolation, inert = props.inert, allowPinchZoom = props.allowPinchZoom, _b = props.as, Container = _b === void 0 ? "div" : _b, gapMode = props.gapMode, rest = tslib_1.__rest(props, ["forwardProps", "children", "className", "removeScrollBar", "enabled", "shards", "sideCar", "noRelative", "noIsolation", "inert", "allowPinchZoom", "as", "gapMode"]);
       var SideCar = sideCar;
       var containerRef = (0, use_callback_ref_1.useMergeRefs)([ref, parentRef]);
       var containerProps = tslib_1.__assign(tslib_1.__assign({}, rest), callbacks);
       return React78.createElement(
         React78.Fragment,
         null,
-        enabled && React78.createElement(SideCar, { sideCar: medium_1.effectCar, removeScrollBar, shards, noIsolation, inert, setCallbacks, allowPinchZoom: !!allowPinchZoom, lockRef: ref, gapMode }),
+        enabled && React78.createElement(SideCar, { sideCar: medium_1.effectCar, removeScrollBar, shards, noRelative, noIsolation, inert, setCallbacks, allowPinchZoom: !!allowPinchZoom, lockRef: ref, gapMode }),
         forwardProps ? React78.cloneElement(React78.Children.only(children), tslib_1.__assign(tslib_1.__assign({}, containerProps), { ref: containerRef })) : React78.createElement(Container, tslib_1.__assign({}, containerProps, { className, ref: containerRef }), children)
       );
     });
@@ -1716,9 +1716,9 @@ var require_es56 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/aggresiveCapture.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/aggresiveCapture.js
 var require_aggresiveCapture = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/aggresiveCapture.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/aggresiveCapture.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.nonPassive = void 0;
@@ -1742,9 +1742,9 @@ var require_aggresiveCapture = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/handleScroll.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/handleScroll.js
 var require_handleScroll = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/handleScroll.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/handleScroll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.handleScroll = exports2.locationCouldBeScrolled = void 0;
@@ -1830,11 +1830,7 @@ var require_handleScroll = __commonJS({
             availableScrollTop += position;
           }
         }
-        if (target instanceof ShadowRoot) {
-          target = target.host;
-        } else {
-          target = target.parentNode;
-        }
+        target = target.parentNode.host || target.parentNode;
       } while (
         // portaled content
         !targetInLock && target !== document.body || // self content
@@ -1851,9 +1847,9 @@ var require_handleScroll = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/SideEffect.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/SideEffect.js
 var require_SideEffect = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/SideEffect.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/SideEffect.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.RemoveScrollSideCar = exports2.getDeltaXY = exports2.getTouchXY = void 0;
@@ -2014,7 +2010,7 @@ var require_SideEffect = __commonJS({
         React78.Fragment,
         null,
         inert ? React78.createElement(Style, { styles: generateStyle(id) }) : null,
-        removeScrollBar ? React78.createElement(react_remove_scroll_bar_1.RemoveScrollBar, { gapMode: props.gapMode }) : null
+        removeScrollBar ? React78.createElement(react_remove_scroll_bar_1.RemoveScrollBar, { noRelative: props.noRelative, gapMode: props.gapMode }) : null
       );
     }
     __name(RemoveScrollSideCar, "RemoveScrollSideCar");
@@ -2034,9 +2030,9 @@ var require_SideEffect = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/sidecar.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/sidecar.js
 var require_sidecar = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/sidecar.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/sidecar.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var use_sidecar_1 = require_es53();
@@ -2046,9 +2042,9 @@ var require_sidecar = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/Combination.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/Combination.js
 var require_Combination = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/Combination.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/Combination.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
@@ -2063,9 +2059,9 @@ var require_Combination = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/index.js
+// ../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/index.js
 var require_es57 = __commonJS({
-  "../../node_modules/.pnpm/react-remove-scroll@2.6.3_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/index.js"(exports2) {
+  "../../node_modules/.pnpm/react-remove-scroll@2.7.0_@types+react@19.1.3_react@19.0.0/node_modules/react-remove-scroll/dist/es5/index.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.RemoveScroll = void 0;
@@ -8213,7 +8209,7 @@ var require_View = __commonJS({
       pointerEvents: true
     });
     var pickProps = /* @__PURE__ */ __name((props) => (0, _pick.default)(props, forwardPropsList), "pickProps");
-    var View13 = /* @__PURE__ */ React78.forwardRef((props, forwardedRef) => {
+    var View12 = /* @__PURE__ */ React78.forwardRef((props, forwardedRef) => {
       var hrefAttrs = props.hrefAttrs, onLayout = props.onLayout, onMoveShouldSetResponder = props.onMoveShouldSetResponder, onMoveShouldSetResponderCapture = props.onMoveShouldSetResponderCapture, onResponderEnd = props.onResponderEnd, onResponderGrant = props.onResponderGrant, onResponderMove = props.onResponderMove, onResponderReject = props.onResponderReject, onResponderRelease = props.onResponderRelease, onResponderStart = props.onResponderStart, onResponderTerminate = props.onResponderTerminate, onResponderTerminationRequest = props.onResponderTerminationRequest, onScrollShouldSetResponder = props.onScrollShouldSetResponder, onScrollShouldSetResponderCapture = props.onScrollShouldSetResponderCapture, onSelectionChangeShouldSetResponder = props.onSelectionChangeShouldSetResponder, onSelectionChangeShouldSetResponderCapture = props.onSelectionChangeShouldSetResponderCapture, onStartShouldSetResponder = props.onStartShouldSetResponder, onStartShouldSetResponderCapture = props.onStartShouldSetResponderCapture, rest = (0, _objectWithoutPropertiesLoose2.default)(props, _excluded);
       if (process.env.NODE_ENV !== "production") {
         React78.Children.toArray(props.children).forEach((item) => {
@@ -8273,7 +8269,7 @@ var require_View = __commonJS({
         writingDirection
       });
     });
-    View13.displayName = "View";
+    View12.displayName = "View";
     var styles = _StyleSheet.default.create({
       view$raw: {
         alignContent: "flex-start",
@@ -8298,7 +8294,7 @@ var require_View = __commonJS({
         display: "inline-flex"
       }
     });
-    var _default = exports2.default = View13;
+    var _default = exports2.default = View12;
     module2.exports = exports2.default;
   }
 });
@@ -23238,7 +23234,7 @@ var require_dist = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/index.mjs
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/index.mjs
 var esm_exports = {};
 __export(esm_exports, {
   ACTIONS: () => ACTIONS,
@@ -23283,8 +23279,8 @@ __export(esm_exports, {
   CheckboxIndicatorFrame: () => CheckboxIndicatorFrame,
   CheckboxStyledContext: () => CheckboxStyledContext,
   Circle: () => Circle,
-  ComponentContext: () => import_core60.ComponentContext,
-  Configuration: () => import_core60.Configuration,
+  ComponentContext: () => import_core58.ComponentContext,
+  Configuration: () => import_core58.Configuration,
   Dialog: () => Dialog,
   DialogClose: () => DialogClose,
   DialogContent: () => DialogContent,
@@ -23298,7 +23294,7 @@ __export(esm_exports, {
   DialogWarningProvider: () => DialogWarningProvider,
   EnsureFlexed: () => EnsureFlexed,
   Fieldset: () => Fieldset,
-  FontLanguage: () => import_core60.FontLanguage,
+  FontLanguage: () => import_core58.FontLanguage,
   Footer: () => Footer,
   Form: () => Form2,
   FormFrame: () => FormFrame,
@@ -23393,10 +23389,10 @@ __export(esm_exports, {
   SliderTrackActive: () => SliderTrackActive,
   SliderTrackActiveFrame: () => SliderTrackActiveFrame,
   SliderTrackFrame: () => SliderTrackFrame,
-  Spacer: () => import_core60.Spacer,
+  Spacer: () => import_core58.Spacer,
   Spinner: () => Spinner,
   Square: () => Square,
-  Stack: () => import_core60.Stack,
+  Stack: () => import_core58.Stack,
   StyleObjectIdentifier: () => StyleObjectIdentifier,
   StyleObjectProperty: () => StyleObjectProperty,
   StyleObjectPseudo: () => StyleObjectPseudo,
@@ -23413,7 +23409,7 @@ __export(esm_exports, {
   Text: () => Text4,
   TextArea: () => TextArea,
   TextAreaFrame: () => TextAreaFrame,
-  Theme: () => import_core60.Theme,
+  Theme: () => import_core58.Theme,
   ThemeableStack: () => ThemeableStack,
   Thumb: () => Thumb,
   ToggleGroup: () => ToggleGroup,
@@ -23422,8 +23418,8 @@ __export(esm_exports, {
   TooltipSimple: () => TooltipSimple,
   Track: () => Track,
   USE_NATIVE_PORTAL: () => USE_NATIVE_PORTAL,
-  Unspaced: () => import_core60.Unspaced,
-  View: () => import_core60.View,
+  Unspaced: () => import_core58.Unspaced,
+  View: () => import_core58.View,
   VisuallyHidden: () => VisuallyHidden,
   XGroup: () => XGroup,
   XStack: () => XStack,
@@ -23441,11 +23437,11 @@ __export(esm_exports, {
   createAlertDialogScope: () => createAlertDialogScope,
   createAvatarScope: () => createAvatarScope,
   createCheckbox: () => createCheckbox,
-  createComponent: () => import_core60.createComponent,
+  createComponent: () => import_core58.createComponent,
   createContext: () => createContext7,
   createContextScope: () => createContextScope,
   createDialogScope: () => createDialogScope,
-  createFont: () => import_core60.createFont,
+  createFont: () => import_core58.createFont,
   createMedia: () => createMedia,
   createProgressScope: () => createProgressScope,
   createRadioGroup: () => createRadioGroup,
@@ -23455,70 +23451,70 @@ __export(esm_exports, {
   createSelectScope: () => createSelectScope,
   createSheet: () => createSheet,
   createSheetScope: () => createSheetScope,
-  createShorthands: () => import_core60.createShorthands,
-  createStyledContext: () => import_core60.createStyledContext,
+  createShorthands: () => import_core58.createShorthands,
+  createStyledContext: () => import_core58.createStyledContext,
   createSwitch: () => createSwitch,
   createTabs: () => createTabs,
   createTamagui: () => createTamagui,
-  createTheme: () => import_core60.createTheme,
-  createTokens: () => import_core60.createTokens,
-  createVariable: () => import_core60.createVariable,
+  createTheme: () => import_core58.createTheme,
+  createTokens: () => import_core58.createTokens,
+  createVariable: () => import_core58.createVariable,
   debounce: () => debounce,
   defaultStyles: () => defaultStyles,
   fullscreenStyle: () => fullscreenStyle,
-  getCSSStylesAtomic: () => import_core60.getCSSStylesAtomic,
-  getConfig: () => import_core60.getConfig,
+  getCSSStylesAtomic: () => import_core58.getCSSStylesAtomic,
+  getConfig: () => import_core58.getConfig,
   getFontSize: () => getFontSize,
   getFontSizeToken: () => getFontSizeToken,
   getFontSizeVariable: () => getFontSizeVariable,
-  getMedia: () => import_core60.getMedia,
+  getMedia: () => import_core58.getMedia,
   getNativeSheet: () => getNativeSheet,
   getShapeSize: () => getShapeSize,
-  getThemes: () => import_core60.getThemes,
-  getToken: () => import_core60.getToken,
-  getTokenValue: () => import_core60.getTokenValue,
-  getTokens: () => import_core60.getTokens,
-  getVariable: () => import_core60.getVariable,
-  getVariableName: () => import_core60.getVariableName,
-  getVariableValue: () => import_core60.getVariableValue,
-  insertFont: () => import_core60.insertFont,
-  isChrome: () => import_core60.isChrome,
-  isClient: () => import_core60.isClient,
+  getThemes: () => import_core58.getThemes,
+  getToken: () => import_core58.getToken,
+  getTokenValue: () => import_core58.getTokenValue,
+  getTokens: () => import_core58.getTokens,
+  getVariable: () => import_core58.getVariable,
+  getVariableName: () => import_core58.getVariableName,
+  getVariableValue: () => import_core58.getVariableValue,
+  insertFont: () => import_core58.insertFont,
+  isChrome: () => import_core58.isChrome,
+  isClient: () => import_core58.isClient,
   isPresent: () => isPresent,
-  isServer: () => import_core60.isServer,
+  isServer: () => import_core58.isServer,
   isServerSide: () => isServerSide,
-  isTamaguiComponent: () => import_core60.isTamaguiComponent,
-  isTamaguiElement: () => import_core60.isTamaguiElement,
-  isTouchable: () => import_core60.isTouchable,
-  isVariable: () => import_core60.isVariable,
-  isWeb: () => import_core60.isWeb,
-  isWebTouchable: () => import_core60.isWebTouchable,
-  matchMedia: () => import_core60.matchMedia,
-  mediaObjectToString: () => import_core60.mediaObjectToString,
-  mediaQueryConfig: () => import_core60.mediaQueryConfig,
-  mediaState: () => import_core60.mediaState,
+  isTamaguiComponent: () => import_core58.isTamaguiComponent,
+  isTamaguiElement: () => import_core58.isTamaguiElement,
+  isTouchable: () => import_core58.isTouchable,
+  isVariable: () => import_core58.isVariable,
+  isWeb: () => import_core58.isWeb,
+  isWebTouchable: () => import_core58.isWebTouchable,
+  matchMedia: () => import_core58.matchMedia,
+  mediaObjectToString: () => import_core58.mediaObjectToString,
+  mediaQueryConfig: () => import_core58.mediaQueryConfig,
+  mediaState: () => import_core58.mediaState,
   mutateThemes: () => mutateThemes,
   portalListeners: () => portalListeners,
   prevent: () => prevent,
   replaceTheme: () => replaceTheme,
   resolveViewZIndex: () => resolveViewZIndex,
-  setConfig: () => import_core60.setConfig,
+  setConfig: () => import_core58.setConfig,
   setRef: () => setRef,
-  setupDev: () => import_core60.setupDev,
+  setupDev: () => import_core58.setupDev,
   setupNativeSheet: () => setupNativeSheet,
   setupPopper: () => setupPopper,
-  setupReactNative: () => import_core60.setupReactNative,
+  setupReactNative: () => import_core58.setupReactNative,
   shouldRenderNativePlatform: () => shouldRenderNativePlatform,
   simpleHash: () => simpleHash,
-  spacedChildren: () => import_core60.spacedChildren,
+  spacedChildren: () => import_core58.spacedChildren,
   stylePropsAll: () => stylePropsAll,
   stylePropsText: () => stylePropsText,
   stylePropsTextOnly: () => stylePropsTextOnly,
   stylePropsTransform: () => stylePropsTransform,
   stylePropsUnitless: () => stylePropsUnitless,
   stylePropsView: () => stylePropsView,
-  styled: () => import_core60.styled,
-  themeable: () => import_core60.themeable,
+  styled: () => import_core58.styled,
+  themeable: () => import_core58.themeable,
   themeableVariants: () => themeableVariants,
   tokenCategories: () => tokenCategories,
   updateTheme: () => updateTheme,
@@ -23526,52 +23522,52 @@ __export(esm_exports, {
   useAdaptIsActive: () => useAdaptIsActive,
   useButton: () => useButton,
   useComposedRefs: () => useComposedRefs,
-  useConfiguration: () => import_core60.useConfiguration,
+  useConfiguration: () => import_core58.useConfiguration,
   useControllableState: () => useControllableState,
   useCurrentColor: () => useCurrentColor,
   useDebounce: () => useDebounce,
   useDebounceValue: () => useDebounceValue,
-  useDidFinishSSR: () => import_core60.useDidFinishSSR,
-  useEvent: () => import_core60.useEvent,
+  useDidFinishSSR: () => import_core58.useDidFinishSSR,
+  useEvent: () => import_core58.useEvent,
   useFloatingContext: () => useFloatingContext,
   useForceUpdate: () => useForceUpdate,
   useFormContext: () => useFormContext,
-  useGet: () => import_core60.useGet,
+  useGet: () => import_core58.useGet,
   useGetThemedIcon: () => useGetThemedIcon,
   useGroupItem: () => useGroupItem,
   useInputProps: () => useInputProps,
   useIsPresent: () => useIsPresent,
-  useIsTouchDevice: () => import_core60.useIsTouchDevice,
-  useIsomorphicLayoutEffect: () => import_core60.useIsomorphicLayoutEffect,
+  useIsTouchDevice: () => import_core58.useIsTouchDevice,
+  useIsomorphicLayoutEffect: () => import_core58.useIsomorphicLayoutEffect,
   useLabelContext: () => useLabelContext,
   useListItem: () => useListItem,
-  useMedia: () => import_core60.useMedia,
+  useMedia: () => import_core58.useMedia,
   usePopoverContext: () => usePopoverContext,
   usePopperContext: () => usePopperContext,
   usePortal: () => usePortal,
   usePresence: () => usePresence,
-  useProps: () => import_core60.useProps,
-  usePropsAndStyle: () => import_core60.usePropsAndStyle,
+  useProps: () => import_core58.useProps,
+  usePropsAndStyle: () => import_core58.usePropsAndStyle,
   useSelectContext: () => useSelectContext,
   useSelectItemParentContext: () => useSelectItemParentContext,
   useSheet: () => useSheet,
   useSheetController: () => useSheetController,
   useSheetOffscreenSize: () => useSheetOffscreenSize,
   useSheetOpenState: () => useSheetOpenState,
-  useStyle: () => import_core60.useStyle,
+  useStyle: () => import_core58.useStyle,
   useTabsContext: () => useTabsContext,
-  useTheme: () => import_core60.useTheme,
-  useThemeName: () => import_core60.useThemeName,
+  useTheme: () => import_core58.useTheme,
+  useThemeName: () => import_core58.useThemeName,
   useWindowDimensions: () => useWindowDimensions,
   validPseudoKeys: () => validPseudoKeys,
   validStyles: () => validStyles,
-  variableToString: () => import_core60.variableToString,
-  withStaticProperties: () => import_core60.withStaticProperties,
+  variableToString: () => import_core58.variableToString,
+  withStaticProperties: () => import_core58.withStaticProperties,
   wrapChildrenInText: () => wrapChildrenInText
 });
 module.exports = __toCommonJS(esm_exports);
 
-// ../../node_modules/.pnpm/@tamagui+use-force-update@1.126.8_react@19.0.0/node_modules/@tamagui/use-force-update/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-force-update@1.126.13_react@19.0.0/node_modules/@tamagui/use-force-update/dist/esm/index.mjs
 var import_react = __toESM(require("react"), 1);
 var isServerSide = typeof window > "u";
 var idFn = /* @__PURE__ */ __name(() => {
@@ -23581,14 +23577,14 @@ function useForceUpdate() {
 }
 __name(useForceUpdate, "useForceUpdate");
 
-// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/AnimatePresence.mjs
+// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/AnimatePresence.mjs
 var import_react4 = require("react");
 
-// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/LayoutGroupContext.mjs
+// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/LayoutGroupContext.mjs
 var import_react2 = __toESM(require("react"), 1);
 var LayoutGroupContext = import_react2.default.createContext({});
 
-// ../../node_modules/.pnpm/@tamagui+use-constant@1.126.8_react@19.0.0/node_modules/@tamagui/use-constant/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-constant@1.126.13_react@19.0.0/node_modules/@tamagui/use-constant/dist/esm/index.mjs
 var React3 = __toESM(require("react"), 1);
 function useConstant(fn) {
   if (typeof document > "u") return React3.useMemo(() => fn(), []);
@@ -23599,7 +23595,7 @@ function useConstant(fn) {
 }
 __name(useConstant, "useConstant");
 
-// ../../node_modules/.pnpm/@tamagui+use-presence@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/use-presence/dist/esm/PresenceContext.mjs
+// ../../node_modules/.pnpm/@tamagui+use-presence@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/use-presence/dist/esm/PresenceContext.mjs
 var React4 = __toESM(require("react"), 1);
 var import_jsx_runtime = require("react/jsx-runtime");
 var PresenceContext = React4.createContext(null);
@@ -23608,7 +23604,7 @@ var ResetPresence = /* @__PURE__ */ __name((props) => /* @__PURE__ */ (0, import
   children: props.children
 }), "ResetPresence");
 
-// ../../node_modules/.pnpm/@tamagui+use-presence@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/use-presence/dist/esm/usePresence.mjs
+// ../../node_modules/.pnpm/@tamagui+use-presence@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/use-presence/dist/esm/usePresence.mjs
 var React5 = __toESM(require("react"), 1);
 function usePresence() {
   const context2 = React5.useContext(PresenceContext);
@@ -23631,7 +23627,7 @@ function isPresent(context2) {
 }
 __name(isPresent, "isPresent");
 
-// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/PresenceChild.mjs
+// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/PresenceChild.mjs
 var React6 = __toESM(require("react"), 1);
 var import_react3 = require("react");
 var import_jsx_runtime2 = require("react/jsx-runtime");
@@ -23684,7 +23680,7 @@ function newChildrenMap() {
 }
 __name(newChildrenMap, "newChildrenMap");
 
-// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/AnimatePresence.mjs
+// ../../node_modules/.pnpm/@tamagui+animate-presence@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate-presence/dist/esm/AnimatePresence.mjs
 var import_jsx_runtime3 = require("react/jsx-runtime");
 var getChildKey = /* @__PURE__ */ __name((child) => child.key || "", "getChildKey");
 function updateChildLookup(children, allChildren) {
@@ -23773,7 +23769,7 @@ var AnimatePresence = /* @__PURE__ */ __name(({
 }, "AnimatePresence");
 AnimatePresence.displayName = "AnimatePresence";
 
-// ../../node_modules/.pnpm/@tamagui+simple-hash@1.126.8/node_modules/@tamagui/simple-hash/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+simple-hash@1.126.13/node_modules/@tamagui/simple-hash/dist/esm/index.mjs
 var cache = /* @__PURE__ */ new Map();
 var cacheSize = 0;
 var simpleHash = /* @__PURE__ */ __name((strIn, hashMin = 10) => {
@@ -23812,13 +23808,13 @@ function isValidCSSCharCode(code) {
 }
 __name(isValidCSSCharCode, "isValidCSSCharCode");
 
-// ../../node_modules/.pnpm/@tamagui+helpers@1.126.8_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/clamp.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers@1.126.13_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/clamp.mjs
 function clamp(value, [min2, max2]) {
   return Math.min(max2, Math.max(min2, value));
 }
 __name(clamp, "clamp");
 
-// ../../node_modules/.pnpm/@tamagui+helpers@1.126.8_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/composeEventHandlers.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers@1.126.13_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/composeEventHandlers.mjs
 function composeEventHandlers(og, next, {
   checkDefaultPrevented = true
 } = {}) {
@@ -23829,7 +23825,7 @@ function composeEventHandlers(og, next, {
 }
 __name(composeEventHandlers, "composeEventHandlers");
 
-// ../../node_modules/.pnpm/@tamagui+helpers@1.126.8_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/concatClassName.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers@1.126.13_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/concatClassName.mjs
 function concatClassName(_cn) {
   const args = arguments, usedPrefixes = [];
   let final = "";
@@ -23880,14 +23876,14 @@ var pseudoInvert = {
   disabled: "disabledStyle"
 };
 
-// ../../node_modules/.pnpm/@tamagui+helpers@1.126.8_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/types.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers@1.126.13_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/types.mjs
 var StyleObjectProperty = 0;
 var StyleObjectValue = 1;
 var StyleObjectIdentifier = 2;
 var StyleObjectPseudo = 3;
 var StyleObjectRules = 4;
 
-// ../../node_modules/.pnpm/@tamagui+constants@1.126.8_react@19.0.0/node_modules/@tamagui/constants/dist/esm/constants.mjs
+// ../../node_modules/.pnpm/@tamagui+constants@1.126.13_react@19.0.0/node_modules/@tamagui/constants/dist/esm/constants.mjs
 var import_react5 = require("react");
 var isWeb = true;
 var isWindowDefined = typeof window < "u";
@@ -23901,7 +23897,7 @@ var isAndroid = false;
 var isIos = process.env.TEST_NATIVE_PLATFORM === "ios";
 var currentPlatform = "web";
 
-// ../../node_modules/.pnpm/@tamagui+helpers@1.126.8_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/shouldRenderNativePlatform.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers@1.126.13_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/shouldRenderNativePlatform.mjs
 var ALL_PLATFORMS = ["web", "android", "ios"];
 function shouldRenderNativePlatform(nativeProp) {
   if (!nativeProp) return null;
@@ -23916,7 +23912,7 @@ function resolvePlatformNames(nativeProp) {
 }
 __name(resolvePlatformNames, "resolvePlatformNames");
 
-// ../../node_modules/.pnpm/@tamagui+helpers@1.126.8_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/validStyleProps.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers@1.126.13_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/validStyleProps.mjs
 var textColors = {
   color: true,
   textDecorationColor: true,
@@ -24232,7 +24228,7 @@ var validPseudoKeys = {
 };
 var validStyles = stylePropsView;
 
-// ../../node_modules/.pnpm/@tamagui+helpers@1.126.8_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/withStaticProperties.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers@1.126.13_react@19.0.0/node_modules/@tamagui/helpers/dist/esm/withStaticProperties.mjs
 var import_react6 = __toESM(require("react"), 1);
 var Decorated = Symbol();
 var withStaticProperties = /* @__PURE__ */ __name((component, staticProps) => {
@@ -24254,7 +24250,7 @@ var withStaticProperties = /* @__PURE__ */ __name((component, staticProps) => {
   return Object.assign(next, staticProps), next[Decorated] = true, next;
 }, "withStaticProperties");
 
-// ../../node_modules/.pnpm/@tamagui+use-event@1.126.8_react@19.0.0/node_modules/@tamagui/use-event/dist/esm/useGet.mjs
+// ../../node_modules/.pnpm/@tamagui+use-event@1.126.13_react@19.0.0/node_modules/@tamagui/use-event/dist/esm/useGet.mjs
 var React8 = __toESM(require("react"), 1);
 function useGet(currentValue, initialValue2, forwardToFunction) {
   const curRef = React8.useRef(initialValue2 ?? currentValue);
@@ -24264,7 +24260,7 @@ function useGet(currentValue, initialValue2, forwardToFunction) {
 }
 __name(useGet, "useGet");
 
-// ../../node_modules/.pnpm/@tamagui+use-event@1.126.8_react@19.0.0/node_modules/@tamagui/use-event/dist/esm/useEvent.mjs
+// ../../node_modules/.pnpm/@tamagui+use-event@1.126.13_react@19.0.0/node_modules/@tamagui/use-event/dist/esm/useEvent.mjs
 function useEvent(callback) {
   return useGet(callback, defaultValue, true);
 }
@@ -24273,16 +24269,16 @@ var defaultValue = /* @__PURE__ */ __name(() => {
   throw new Error("Cannot call an event handler while rendering.");
 }, "defaultValue");
 
-// ../../node_modules/.pnpm/@tamagui+use-controllable-state@1.126.8_react@19.0.0/node_modules/@tamagui/use-controllable-state/dist/esm/useControllableState.mjs
+// ../../node_modules/.pnpm/@tamagui+use-controllable-state@1.126.13_react@19.0.0/node_modules/@tamagui/use-controllable-state/dist/esm/useControllableState.mjs
 var React9 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+start-transition@1.126.8/node_modules/@tamagui/start-transition/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+start-transition@1.126.13/node_modules/@tamagui/start-transition/dist/esm/index.mjs
 var import_react7 = require("react");
 var startTransition = /* @__PURE__ */ __name((callback) => {
   (0, import_react7.startTransition)(callback);
 }, "startTransition");
 
-// ../../node_modules/.pnpm/@tamagui+use-controllable-state@1.126.8_react@19.0.0/node_modules/@tamagui/use-controllable-state/dist/esm/useControllableState.mjs
+// ../../node_modules/.pnpm/@tamagui+use-controllable-state@1.126.13_react@19.0.0/node_modules/@tamagui/use-controllable-state/dist/esm/useControllableState.mjs
 var emptyCallbackFn = /* @__PURE__ */ __name((_) => _(), "emptyCallbackFn");
 function useControllableState({
   prop,
@@ -24314,7 +24310,7 @@ __name(useControllableState, "useControllableState");
 var idFn2 = /* @__PURE__ */ __name(() => {
 }, "idFn");
 
-// ../../node_modules/.pnpm/@tamagui+collapsible@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_ef9407a503bd81a69b956147cc8ce8c9/node_modules/@tamagui/collapsible/dist/esm/Collapsible.mjs
+// ../../node_modules/.pnpm/@tamagui+collapsible@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_de44f32374f9e58feb1ee96bd568b2f7/node_modules/@tamagui/collapsible/dist/esm/Collapsible.mjs
 var import_web = require("@tamagui/core");
 var React10 = __toESM(require("react"), 1);
 var import_jsx_runtime4 = require("react/jsx-runtime");
@@ -24410,7 +24406,7 @@ var Collapsible = withStaticProperties(_Collapsible, {
   Content: CollapsibleContent
 });
 
-// ../../node_modules/.pnpm/@tamagui+compose-refs@1.126.8_react@19.0.0/node_modules/@tamagui/compose-refs/dist/esm/compose-refs.mjs
+// ../../node_modules/.pnpm/@tamagui+compose-refs@1.126.13_react@19.0.0/node_modules/@tamagui/compose-refs/dist/esm/compose-refs.mjs
 var React11 = __toESM(require("react"), 1);
 function setRef(ref, value) {
   typeof ref == "function" ? ref(value) : ref && (ref.current = value);
@@ -24425,7 +24421,7 @@ function useComposedRefs(...refs) {
 }
 __name(useComposedRefs, "useComposedRefs");
 
-// ../../node_modules/.pnpm/@tamagui+collection@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+c_df888c69d16fc1389a3b15b8a10a04a2/node_modules/@tamagui/collection/dist/esm/Collection.mjs
+// ../../node_modules/.pnpm/@tamagui+collection@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_fb79c656003a60b183e3944d46169d1e/node_modules/@tamagui/collection/dist/esm/Collection.mjs
 var import_core = require("@tamagui/core");
 var import_react8 = __toESM(require("react"), 1);
 var import_jsx_runtime5 = require("react/jsx-runtime");
@@ -24497,10 +24493,10 @@ function createCollection(name) {
 }
 __name(createCollection, "createCollection");
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/Stacks.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/Stacks.mjs
 var import_core3 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/getElevation.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/getElevation.mjs
 var import_core2 = require("@tamagui/core");
 var getElevation = /* @__PURE__ */ __name((size4, extras) => {
   if (!size4) return;
@@ -24533,7 +24529,7 @@ var getSizedElevation = /* @__PURE__ */ __name((val, {
   };
 }, "getSizedElevation");
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/Stacks.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/Stacks.mjs
 var fullscreenStyle = {
   position: "absolute",
   top: 0,
@@ -24575,10 +24571,10 @@ var ZStack = (0, import_core3.styled)(YStack, {
 });
 ZStack.displayName = "ZStack";
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/SizableStack.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/SizableStack.mjs
 var import_core4 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+get-token@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/get-token/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+get-token@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/get-token/dist/esm/index.mjs
 var import_web2 = require("@tamagui/core");
 var defaultOptions = {
   shift: 0,
@@ -24609,7 +24605,7 @@ var stepTokenUpOrDown = /* @__PURE__ */ __name((type, current, options = default
 }, "stepTokenUpOrDown");
 var getTokenRelative = stepTokenUpOrDown;
 
-// ../../node_modules/.pnpm/@tamagui+get-button-sized@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/get-button-sized/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+get-button-sized@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/get-button-sized/dist/esm/index.mjs
 var getButtonSized = /* @__PURE__ */ __name((val, {
   tokens,
   props
@@ -24628,7 +24624,7 @@ var getButtonSized = /* @__PURE__ */ __name((val, {
   };
 }, "getButtonSized");
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/variants.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/variants.mjs
 var elevate = {
   true: /* @__PURE__ */ __name((_, extras) => getElevation(extras.props.size, extras), "true")
 };
@@ -24727,7 +24723,7 @@ var focusTheme = {
   false: {}
 };
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/SizableStack.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/SizableStack.mjs
 var SizableStack = (0, import_core4.styled)(XStack, {
   name: "SizableStack",
   variants: {
@@ -24752,7 +24748,7 @@ var SizableStack = (0, import_core4.styled)(XStack, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/ThemeableStack.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/ThemeableStack.mjs
 var import_core5 = require("@tamagui/core");
 var chromelessStyle = {
   backgroundColor: "transparent",
@@ -24795,11 +24791,11 @@ var ThemeableStack = (0, import_core5.styled)(YStack, {
   variants: themeableVariants
 });
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ab05c1b4505d16ca4c13c28250701ec3/node_modules/@tamagui/stacks/dist/esm/NestingContext.mjs
+// ../../node_modules/.pnpm/@tamagui+stacks@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_4bdb14324e3f51aa232713d710cf47b3/node_modules/@tamagui/stacks/dist/esm/NestingContext.mjs
 var import_react9 = __toESM(require("react"), 1);
 var ButtonNestingContext = import_react9.default.createContext(false);
 
-// ../../node_modules/.pnpm/@tamagui+get-font-sized@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@bab_94edd59b793bdba237d5dacca3e22ca4/node_modules/@tamagui/get-font-sized/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+get-font-sized@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@ba_78eeba268a6ae6b853da3932acd35239/node_modules/@tamagui/get-font-sized/dist/esm/index.mjs
 var import_core6 = require("@tamagui/core");
 var getFontSized = /* @__PURE__ */ __name((sizeTokenIn = "$true", {
   font,
@@ -24827,7 +24823,7 @@ function getDefaultSizeToken(font) {
 }
 __name(getDefaultSizeToken, "getDefaultSizeToken");
 
-// ../../node_modules/.pnpm/@tamagui+text@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._f60d3f1d3132bf2f426a62767e175296/node_modules/@tamagui/text/dist/esm/SizableText.mjs
+// ../../node_modules/.pnpm/@tamagui+text@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_0a434c721bd66413471e89e3f6d971bc/node_modules/@tamagui/text/dist/esm/SizableText.mjs
 var import_web3 = require("@tamagui/core");
 var SizableText = (0, import_web3.styled)(import_web3.Text, {
   name: "SizableText",
@@ -24852,7 +24848,7 @@ SizableText.staticConfig.variants.fontFamily = {
   }, "...")
 };
 
-// ../../node_modules/.pnpm/@tamagui+text@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._f60d3f1d3132bf2f426a62767e175296/node_modules/@tamagui/text/dist/esm/Paragraph.mjs
+// ../../node_modules/.pnpm/@tamagui+text@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_0a434c721bd66413471e89e3f6d971bc/node_modules/@tamagui/text/dist/esm/Paragraph.mjs
 var import_web4 = require("@tamagui/core");
 var Paragraph = (0, import_web4.styled)(SizableText, {
   name: "Paragraph",
@@ -24863,7 +24859,7 @@ var Paragraph = (0, import_web4.styled)(SizableText, {
   whiteSpace: "normal"
 });
 
-// ../../node_modules/.pnpm/@tamagui+text@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._f60d3f1d3132bf2f426a62767e175296/node_modules/@tamagui/text/dist/esm/Headings.mjs
+// ../../node_modules/.pnpm/@tamagui+text@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_0a434c721bd66413471e89e3f6d971bc/node_modules/@tamagui/text/dist/esm/Headings.mjs
 var import_web5 = require("@tamagui/core");
 var Heading = (0, import_web5.styled)(Paragraph, {
   tag: "span",
@@ -24958,7 +24954,7 @@ var H6 = (0, import_web5.styled)(Heading, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+text@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._f60d3f1d3132bf2f426a62767e175296/node_modules/@tamagui/text/dist/esm/wrapChildrenInText.mjs
+// ../../node_modules/.pnpm/@tamagui+text@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_0a434c721bd66413471e89e3f6d971bc/node_modules/@tamagui/text/dist/esm/wrapChildrenInText.mjs
 var import_react10 = __toESM(require("react"), 1);
 var import_jsx_runtime6 = require("react/jsx-runtime");
 function wrapChildrenInText(TextComponent, propsIn, extraProps) {
@@ -24991,7 +24987,7 @@ function wrapChildrenInText(TextComponent, propsIn, extraProps) {
 }
 __name(wrapChildrenInText, "wrapChildrenInText");
 
-// ../../node_modules/.pnpm/@tamagui+use-direction@1.126.8_react@19.0.0/node_modules/@tamagui/use-direction/dist/esm/useDirection.mjs
+// ../../node_modules/.pnpm/@tamagui+use-direction@1.126.13_react@19.0.0/node_modules/@tamagui/use-direction/dist/esm/useDirection.mjs
 var React15 = __toESM(require("react"), 1);
 var import_jsx_runtime7 = require("react/jsx-runtime");
 var DirectionContext = React15.createContext(void 0);
@@ -25001,7 +24997,7 @@ function useDirection(localDir) {
 }
 __name(useDirection, "useDirection");
 
-// ../../node_modules/.pnpm/@tamagui+accordion@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_fb5ae7ccc2df7c5bf82442e9f07d5430/node_modules/@tamagui/accordion/dist/esm/Accordion.mjs
+// ../../node_modules/.pnpm/@tamagui+accordion@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+c_5ad150a49d07f254671b6e3db87331bd/node_modules/@tamagui/accordion/dist/esm/Accordion.mjs
 var import_web6 = require("@tamagui/core");
 var React16 = __toESM(require("react"), 1);
 var import_jsx_runtime8 = require("react/jsx-runtime");
@@ -25307,15 +25303,15 @@ var Accordion = withStaticProperties(AccordionComponent, {
   HeightAnimator
 });
 
-// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.8/node_modules/@tamagui/z-index-stack/dist/esm/useStackedZIndex.mjs
+// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.13/node_modules/@tamagui/z-index-stack/dist/esm/useStackedZIndex.mjs
 var import_react12 = require("react");
 
-// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.8/node_modules/@tamagui/z-index-stack/dist/esm/context.mjs
+// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.13/node_modules/@tamagui/z-index-stack/dist/esm/context.mjs
 var import_react11 = require("react");
 var ZIndexStackContext = (0, import_react11.createContext)(1);
 var ZIndexHardcodedContext = (0, import_react11.createContext)(void 0);
 
-// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.8/node_modules/@tamagui/z-index-stack/dist/esm/useStackedZIndex.mjs
+// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.13/node_modules/@tamagui/z-index-stack/dist/esm/useStackedZIndex.mjs
 var ZIndicesByContext = {};
 var CurrentPortalZIndices = {};
 var useStackedZIndex = /* @__PURE__ */ __name((props) => {
@@ -25358,7 +25354,7 @@ var useStackedZIndex = /* @__PURE__ */ __name((props) => {
   }
 }, "useStackedZIndex");
 
-// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.8/node_modules/@tamagui/z-index-stack/dist/esm/StackZIndex.mjs
+// ../../node_modules/.pnpm/@tamagui+z-index-stack@1.126.13/node_modules/@tamagui/z-index-stack/dist/esm/StackZIndex.mjs
 var import_react13 = require("react");
 var import_jsx_runtime9 = require("react/jsx-runtime");
 var StackZIndexContext = /* @__PURE__ */ __name(({
@@ -25376,19 +25372,19 @@ var StackZIndexContext = /* @__PURE__ */ __name(({
   })), content;
 }, "StackZIndexContext");
 
-// ../../node_modules/.pnpm/@tamagui+adapt@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_910a167b86afeaa92ce94d49db67bcd0/node_modules/@tamagui/adapt/dist/esm/Adapt.mjs
+// ../../node_modules/.pnpm/@tamagui+adapt@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0080d01b987870eb31ca3e109234af9c/node_modules/@tamagui/adapt/dist/esm/Adapt.mjs
 var import_core7 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+polyfill-dev@1.126.8/node_modules/@tamagui/polyfill-dev/index.js
+// ../../node_modules/.pnpm/@tamagui+polyfill-dev@1.126.13/node_modules/@tamagui/polyfill-dev/index.js
 if (typeof globalThis["__DEV__"] === "undefined") {
   globalThis["__DEV__"] = process.env.NODE_ENV === "development";
 }
 
-// ../../node_modules/.pnpm/@tamagui+portal@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0f29d49cb70262dff8138663dff17754/node_modules/@tamagui/portal/dist/esm/Portal.mjs
+// ../../node_modules/.pnpm/@tamagui+portal@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_341424751156407b5ad8955b06bcdc91/node_modules/@tamagui/portal/dist/esm/Portal.mjs
 var React17 = __toESM(require("react"), 1);
 var import_react_dom = require("react-dom");
 
-// ../../node_modules/.pnpm/@tamagui+portal@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0f29d49cb70262dff8138663dff17754/node_modules/@tamagui/portal/dist/esm/helpers.mjs
+// ../../node_modules/.pnpm/@tamagui+portal@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_341424751156407b5ad8955b06bcdc91/node_modules/@tamagui/portal/dist/esm/helpers.mjs
 var import_web7 = require("@tamagui/core");
 var getStackedZIndexProps = /* @__PURE__ */ __name((propsIn) => ({
   stackZIndex: propsIn.stackZIndex,
@@ -25396,7 +25392,7 @@ var getStackedZIndexProps = /* @__PURE__ */ __name((propsIn) => ({
 }), "getStackedZIndexProps");
 var resolveViewZIndex = /* @__PURE__ */ __name((zIndex) => typeof zIndex > "u" || zIndex === "unset" ? void 0 : typeof zIndex == "number" ? zIndex : (0, import_web7.getTokenValue)(zIndex, "zIndex"), "resolveViewZIndex");
 
-// ../../node_modules/.pnpm/@tamagui+portal@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0f29d49cb70262dff8138663dff17754/node_modules/@tamagui/portal/dist/esm/Portal.mjs
+// ../../node_modules/.pnpm/@tamagui+portal@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_341424751156407b5ad8955b06bcdc91/node_modules/@tamagui/portal/dist/esm/Portal.mjs
 var import_jsx_runtime10 = require("react/jsx-runtime");
 var Portal = React17.memo((propsIn) => {
   if (isServer) return null;
@@ -25419,16 +25415,16 @@ var Portal = React17.memo((propsIn) => {
   }), host);
 });
 
-// ../../node_modules/.pnpm/@tamagui+portal@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0f29d49cb70262dff8138663dff17754/node_modules/@tamagui/portal/dist/esm/GorhomPortal.mjs
+// ../../node_modules/.pnpm/@tamagui+portal@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_341424751156407b5ad8955b06bcdc91/node_modules/@tamagui/portal/dist/esm/GorhomPortal.mjs
 var import_react14 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+portal@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0f29d49cb70262dff8138663dff17754/node_modules/@tamagui/portal/dist/esm/constants.mjs
+// ../../node_modules/.pnpm/@tamagui+portal@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_341424751156407b5ad8955b06bcdc91/node_modules/@tamagui/portal/dist/esm/constants.mjs
 var IS_FABRIC = typeof global < "u" && !!(global._IS_FABRIC ?? global.nativeFabricUIManager);
 var USE_NATIVE_PORTAL = process.env.TAMAGUI_USE_NATIVE_PORTAL && process.env.TAMAGUI_USE_NATIVE_PORTAL !== "false" ? true : !isAndroid && !IS_FABRIC;
 var allPortalHosts = /* @__PURE__ */ new Map();
 var portalListeners = {};
 
-// ../../node_modules/.pnpm/@tamagui+portal@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0f29d49cb70262dff8138663dff17754/node_modules/@tamagui/portal/dist/esm/GorhomPortal.mjs
+// ../../node_modules/.pnpm/@tamagui+portal@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_341424751156407b5ad8955b06bcdc91/node_modules/@tamagui/portal/dist/esm/GorhomPortal.mjs
 var import_jsx_runtime11 = require("react/jsx-runtime");
 var ACTIONS = /* @__PURE__ */ ((ACTIONS2) => (ACTIONS2[ACTIONS2.REGISTER_HOST = 0] = "REGISTER_HOST", ACTIONS2[ACTIONS2.DEREGISTER_HOST = 1] = "DEREGISTER_HOST", ACTIONS2[ACTIONS2.ADD_UPDATE_PORTAL = 2] = "ADD_UPDATE_PORTAL", ACTIONS2[ACTIONS2.REMOVE_PORTAL = 3] = "REMOVE_PORTAL", ACTIONS2))(ACTIONS || {});
 var INITIAL_STATE = {};
@@ -25587,7 +25583,7 @@ function PortalHostNonNative(props) {
 }
 __name(PortalHostNonNative, "PortalHostNonNative");
 
-// ../../node_modules/.pnpm/@tamagui+portal@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0f29d49cb70262dff8138663dff17754/node_modules/@tamagui/portal/dist/esm/GorhomPortalItem.mjs
+// ../../node_modules/.pnpm/@tamagui+portal@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_341424751156407b5ad8955b06bcdc91/node_modules/@tamagui/portal/dist/esm/GorhomPortalItem.mjs
 var import_react15 = require("react");
 var import_react_dom2 = require("react-dom");
 var GorhomPortalItem = /* @__PURE__ */ __name((props) => {
@@ -25604,7 +25600,7 @@ var GorhomPortalItem = /* @__PURE__ */ __name((props) => {
   }, [node]), node ? (0, import_react_dom2.createPortal)(props.children, node) : null;
 }, "GorhomPortalItem");
 
-// ../../node_modules/.pnpm/@tamagui+adapt@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_910a167b86afeaa92ce94d49db67bcd0/node_modules/@tamagui/adapt/dist/esm/Adapt.mjs
+// ../../node_modules/.pnpm/@tamagui+adapt@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_0080d01b987870eb31ca3e109234af9c/node_modules/@tamagui/adapt/dist/esm/Adapt.mjs
 var import_react16 = __toESM(require("react"), 1);
 var import_jsx_runtime12 = require("react/jsx-runtime");
 var CurrentAdaptContextScope = (0, import_react16.createContext)("");
@@ -25729,10 +25725,10 @@ var useAdaptIsActive = /* @__PURE__ */ __name((scope) => {
   return useAdaptIsActiveGiven(props);
 }, "useAdaptIsActive");
 
-// ../../node_modules/.pnpm/@tamagui+alert-dialog@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-_e86bec63a3e165acbcf7c366bad055a0/node_modules/@tamagui/alert-dialog/dist/esm/AlertDialog.mjs
+// ../../node_modules/.pnpm/@tamagui+alert-dialog@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react_9f7b68a979e070942b6721e0107f0af7/node_modules/@tamagui/alert-dialog/dist/esm/AlertDialog.mjs
 var import_core14 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+create-context@1.126.8_react@19.0.0/node_modules/@tamagui/create-context/dist/esm/create-context.mjs
+// ../../node_modules/.pnpm/@tamagui+create-context@1.126.13_react@19.0.0/node_modules/@tamagui/create-context/dist/esm/create-context.mjs
 var React20 = __toESM(require("react"), 1);
 var import_jsx_runtime13 = require("react/jsx-runtime");
 function createContext7(rootComponentName, defaultContext) {
@@ -25830,14 +25826,14 @@ function composeContextScopes(...scopes) {
 }
 __name(composeContextScopes, "composeContextScopes");
 
-// ../../node_modules/.pnpm/@tamagui+aria-hidden@1.126.8_react@19.0.0/node_modules/@tamagui/aria-hidden/dist/esm/AriaHidden.mjs
+// ../../node_modules/.pnpm/@tamagui+aria-hidden@1.126.13_react@19.0.0/node_modules/@tamagui/aria-hidden/dist/esm/AriaHidden.mjs
 var import_aria_hidden = __toESM(require_es5(), 1);
 var hideOthers = import_aria_hidden.hideOthers;
 
-// ../../node_modules/.pnpm/@tamagui+dialog@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_061fbe1caa45b127551efde9b9d2ac01/node_modules/@tamagui/dialog/dist/esm/Dialog.mjs
+// ../../node_modules/.pnpm/@tamagui+dialog@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_f12d59accc1d306deb2e8779c38eba30/node_modules/@tamagui/dialog/dist/esm/Dialog.mjs
 var import_core13 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+use-callback-ref@1.126.8/node_modules/@tamagui/use-callback-ref/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-callback-ref@1.126.13/node_modules/@tamagui/use-callback-ref/dist/esm/index.mjs
 var React21 = __toESM(require("react"), 1);
 function useCallbackRef(callback) {
   const callbackRef = React21.useRef(callback);
@@ -25847,7 +25843,7 @@ function useCallbackRef(callback) {
 }
 __name(useCallbackRef, "useCallbackRef");
 
-// ../../node_modules/.pnpm/@tamagui+use-escape-keydown@1.126.8/node_modules/@tamagui/use-escape-keydown/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-escape-keydown@1.126.13/node_modules/@tamagui/use-escape-keydown/dist/esm/index.mjs
 var import_react17 = __toESM(require("react"), 1);
 function useEscapeKeydown(onEscapeKeyDownProp, ownerDocument = globalThis?.document) {
   const onEscapeKeyDown = useCallbackRef(onEscapeKeyDownProp);
@@ -25862,7 +25858,7 @@ function useEscapeKeydown(onEscapeKeyDownProp, ownerDocument = globalThis?.docum
 }
 __name(useEscapeKeydown, "useEscapeKeydown");
 
-// ../../node_modules/.pnpm/@tamagui+dismissable@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_77b8463d97ed870a8b08a9e4789fb5d2/node_modules/@tamagui/dismissable/dist/esm/Dismissable.mjs
+// ../../node_modules/.pnpm/@tamagui+dismissable@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_a735f1882f38b20404095b312dac46f2/node_modules/@tamagui/dismissable/dist/esm/Dismissable.mjs
 var React23 = __toESM(require("react"), 1);
 var ReactDOM = __toESM(require("react-dom"), 1);
 var import_jsx_runtime14 = require("react/jsx-runtime");
@@ -26017,7 +26013,7 @@ function handleAndDispatchCustomEvent(name, handler, detail, {
 }
 __name(handleAndDispatchCustomEvent, "handleAndDispatchCustomEvent");
 
-// ../../node_modules/.pnpm/@tamagui+focus-scope@1.126.8_react@19.0.0/node_modules/@tamagui/focus-scope/dist/esm/FocusScope.mjs
+// ../../node_modules/.pnpm/@tamagui+focus-scope@1.126.13_react@19.0.0/node_modules/@tamagui/focus-scope/dist/esm/FocusScope.mjs
 var React24 = __toESM(require("react"), 1);
 var import_jsx_runtime15 = require("react/jsx-runtime");
 var AUTOFOCUS_ON_MOUNT = "focusScope.autoFocusOnMount";
@@ -26204,7 +26200,7 @@ function removeLinks(items) {
 }
 __name(removeLinks, "removeLinks");
 
-// ../../node_modules/.pnpm/@tamagui+remove-scroll@1.126.8_@types+react@19.1.3_react@19.0.0/node_modules/@tamagui/remove-scroll/dist/esm/RemoveScroll.mjs
+// ../../node_modules/.pnpm/@tamagui+remove-scroll@1.126.13_@types+react@19.1.3_react@19.0.0/node_modules/@tamagui/remove-scroll/dist/esm/RemoveScroll.mjs
 var import_react18 = __toESM(require("react"), 1);
 var import_react_remove_scroll = __toESM(require_es57(), 1);
 var import_jsx_runtime16 = require("react/jsx-runtime");
@@ -26213,18 +26209,18 @@ var RemoveScroll = import_react18.default.memo((props) => props.children ? /* @_
 }) : null);
 var classNames = import_react_remove_scroll.RemoveScroll.classNames;
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/Sheet.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/Sheet.mjs
 var import_core11 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/constants.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/constants.mjs
 var SHEET_NAME = "Sheet";
 var SHEET_HANDLE_NAME = "SheetHandle";
 var SHEET_OVERLAY_NAME = "SheetOverlay";
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/createSheet.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/createSheet.mjs
 var import_core10 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+use-did-finish-ssr@1.126.8_react@19.0.0/node_modules/@tamagui/use-did-finish-ssr/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-did-finish-ssr@1.126.13_react@19.0.0/node_modules/@tamagui/use-did-finish-ssr/dist/esm/index.mjs
 var React26 = __toESM(require("react"), 1);
 function useDidFinishSSR(value) {
   return React26.useSyncExternalStore(subscribe, () => value ?? true, () => false);
@@ -26233,27 +26229,27 @@ __name(useDidFinishSSR, "useDidFinishSSR");
 var subscribe = /* @__PURE__ */ __name(() => () => {
 }, "subscribe");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/createSheet.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/createSheet.mjs
 var import_react24 = require("react");
 var import_react_native_web3 = __toESM(require_cjs(), 1);
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/SheetContext.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/SheetContext.mjs
 var [createSheetContext, createSheetScope] = createContextScope(SHEET_NAME);
 var [SheetProvider, useSheetContext] = createSheetContext(SHEET_NAME, {});
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/SheetImplementationCustom.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/SheetImplementationCustom.mjs
 var import_core9 = require("@tamagui/core");
 var import_react22 = __toESM(require("react"), 1);
 var import_react_native_web = __toESM(require_cjs(), 1);
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/contexts.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/contexts.mjs
 var import_react19 = __toESM(require("react"), 1);
 var ParentSheetContext = import_react19.default.createContext({
   zIndex: 1e5
 });
 var SheetInsideSheetContext = import_react19.default.createContext(null);
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/helpers.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/helpers.mjs
 function resisted(y, minY, maxOverflow = 25) {
   if (y >= minY) return y;
   const pastBoundary = minY - y, resistedDistance = Math.sqrt(pastBoundary) * 2;
@@ -26261,7 +26257,7 @@ function resisted(y, minY, maxOverflow = 25) {
 }
 __name(resisted, "resisted");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/useSheetController.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/useSheetController.mjs
 var import_react20 = __toESM(require("react"), 1);
 var useSheetController = /* @__PURE__ */ __name(() => {
   const controller = import_react20.default.useContext(SheetControllerContext), isHidden2 = controller?.hidden, isShowingNonSheet = isHidden2 && controller?.open;
@@ -26274,7 +26270,7 @@ var useSheetController = /* @__PURE__ */ __name(() => {
 }, "useSheetController");
 var SheetControllerContext = import_react20.default.createContext(null);
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/useSheetOpenState.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/useSheetOpenState.mjs
 var useSheetOpenState = /* @__PURE__ */ __name((props) => {
   const {
     isHidden: isHidden2,
@@ -26296,7 +26292,7 @@ var useSheetOpenState = /* @__PURE__ */ __name((props) => {
   };
 }, "useSheetOpenState");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/useSheetProviderProps.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/useSheetProviderProps.mjs
 var import_react21 = __toESM(require("react"), 1);
 var import_core8 = require("@tamagui/core");
 function useSheetProviderProps(props, state, options = {}) {
@@ -26371,7 +26367,7 @@ function useSheetProviderProps(props, state, options = {}) {
 }
 __name(useSheetProviderProps, "useSheetProviderProps");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/SheetImplementationCustom.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/SheetImplementationCustom.mjs
 var import_jsx_runtime17 = require("react/jsx-runtime");
 var hiddenSize = 10000.1;
 var sheetHiddenStyleSheet = null;
@@ -26651,10 +26647,10 @@ function getYPositions(mode, point, screenSize, frameSize) {
 }
 __name(getYPositions, "getYPositions");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/SheetScrollView.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/SheetScrollView.mjs
 var import_react23 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+scroll-view@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_1779decddc1a96579277374bd413c023/node_modules/@tamagui/scroll-view/dist/esm/ScrollView.mjs
+// ../../node_modules/.pnpm/@tamagui+scroll-view@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_a38aa4615696092939cf90945a6a66c2/node_modules/@tamagui/scroll-view/dist/esm/ScrollView.mjs
 var import_web8 = require("@tamagui/core");
 var import_react_native_web2 = __toESM(require_cjs(), 1);
 var ScrollView = (0, import_web8.styled)(import_react_native_web2.ScrollView, {
@@ -26671,7 +26667,7 @@ var ScrollView = (0, import_web8.styled)(import_react_native_web2.ScrollView, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/SheetScrollView.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/SheetScrollView.mjs
 var import_jsx_runtime18 = require("react/jsx-runtime");
 var SHEET_SCROLL_VIEW_NAME = "SheetScrollView";
 var SheetScrollView = import_react23.default.forwardRef(({
@@ -26729,7 +26725,7 @@ var SheetScrollView = import_react23.default.forwardRef(({
   });
 });
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/useSheetOffscreenSize.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/useSheetOffscreenSize.mjs
 var useSheetOffscreenSize = /* @__PURE__ */ __name(({
   snapPoints,
   position,
@@ -26752,7 +26748,7 @@ var useSheetOffscreenSize = /* @__PURE__ */ __name(({
   return Number.isNaN(offscreenSize) ? 0 : offscreenSize;
 }, "useSheetOffscreenSize");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/createSheet.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/createSheet.mjs
 var import_jsx_runtime19 = require("react/jsx-runtime");
 function createSheet({
   Handle: Handle2,
@@ -26869,7 +26865,7 @@ function createSheet({
 }
 __name(createSheet, "createSheet");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/Sheet.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/Sheet.mjs
 var Handle = (0, import_core11.styled)(XStack, {
   name: SHEET_HANDLE_NAME,
   variants: {
@@ -26954,10 +26950,10 @@ var Sheet = createSheet({
 var SheetOverlayFrame = Overlay;
 var SheetHandleFrame = Handle;
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/useSheet.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/useSheet.mjs
 var useSheet = /* @__PURE__ */ __name(() => useSheetContext("", void 0), "useSheet");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/SheetController.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/SheetController.mjs
 var import_react25 = __toESM(require("react"), 1);
 var import_core12 = require("@tamagui/core");
 var import_jsx_runtime20 = require("react/jsx-runtime");
@@ -26978,7 +26974,7 @@ var SheetController = /* @__PURE__ */ __name(({
   });
 }, "SheetController");
 
-// ../../node_modules/.pnpm/@tamagui+sheet@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@_d39a75fc24199a36d32099d475d28050/node_modules/@tamagui/sheet/dist/esm/nativeSheet.mjs
+// ../../node_modules/.pnpm/@tamagui+sheet@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_68cbb4b99790cdad777c26512fb78ee3/node_modules/@tamagui/sheet/dist/esm/nativeSheet.mjs
 var import_react26 = require("react");
 var import_react_native_web4 = __toESM(require_cjs(), 1);
 var import_jsx_runtime21 = require("react/jsx-runtime");
@@ -27039,7 +27035,7 @@ __name(setupNativeSheet, "setupNativeSheet");
 var emptyFn = /* @__PURE__ */ __name(() => {
 }, "emptyFn");
 
-// ../../node_modules/.pnpm/@tamagui+dialog@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_061fbe1caa45b127551efde9b9d2ac01/node_modules/@tamagui/dialog/dist/esm/Dialog.mjs
+// ../../node_modules/.pnpm/@tamagui+dialog@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_f12d59accc1d306deb2e8779c38eba30/node_modules/@tamagui/dialog/dist/esm/Dialog.mjs
 var React33 = __toESM(require("react"), 1);
 var import_jsx_runtime22 = require("react/jsx-runtime");
 var DIALOG_NAME = "Dialog";
@@ -27515,7 +27511,7 @@ var DialogSheetController = /* @__PURE__ */ __name((props) => {
   });
 }, "DialogSheetController");
 
-// ../../node_modules/.pnpm/@tamagui+alert-dialog@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-_e86bec63a3e165acbcf7c366bad055a0/node_modules/@tamagui/alert-dialog/dist/esm/AlertDialog.mjs
+// ../../node_modules/.pnpm/@tamagui+alert-dialog@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react_9f7b68a979e070942b6721e0107f0af7/node_modules/@tamagui/alert-dialog/dist/esm/AlertDialog.mjs
 var React34 = __toESM(require("react"), 1);
 var import_jsx_runtime23 = require("react/jsx-runtime");
 var ROOT_NAME = "AlertDialog";
@@ -27707,10 +27703,10 @@ var AlertDialog = withStaticProperties(AlertDialogInner, {
 });
 AlertDialog.displayName = ROOT_NAME;
 
-// ../../node_modules/.pnpm/@tamagui+avatar@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_06f55a6c3efd03539278373d44a11c0d/node_modules/@tamagui/avatar/dist/esm/Avatar.mjs
-var import_core18 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+avatar@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_07a92c9be4ed97e95c7136467f5c7a5f/node_modules/@tamagui/avatar/dist/esm/Avatar.mjs
+var import_core16 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+image@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_769b826990adfb79cf0e2c36202f310c/node_modules/@tamagui/image/dist/esm/Image.mjs
+// ../../node_modules/.pnpm/@tamagui+image@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_ce5f9fd8627895f97d24285f4eb63047/node_modules/@tamagui/image/dist/esm/Image.mjs
 var import_react27 = __toESM(require("react"), 1);
 var import_core15 = require("@tamagui/core");
 var import_react_native_web5 = __toESM(require_cjs(), 1);
@@ -27761,10 +27757,10 @@ Image.prefetchWithMetadata = import_react_native_web5.Image.prefetchWithMetadata
 Image.abortPrefetch = import_react_native_web5.Image.abortPrefetch;
 Image.queryCache = import_react_native_web5.Image.queryCache;
 
-// ../../node_modules/.pnpm/@tamagui+shapes@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_2430696d88c226380292a90cfc5e222e/node_modules/@tamagui/shapes/dist/esm/Square.mjs
+// ../../node_modules/.pnpm/@tamagui+shapes@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_9c3a723a64b62064450e09b68b7729fc/node_modules/@tamagui/shapes/dist/esm/Square.mjs
 var import_web9 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+shapes@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_2430696d88c226380292a90cfc5e222e/node_modules/@tamagui/shapes/dist/esm/getShapeSize.mjs
+// ../../node_modules/.pnpm/@tamagui+shapes@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_9c3a723a64b62064450e09b68b7729fc/node_modules/@tamagui/shapes/dist/esm/getShapeSize.mjs
 var getShapeSize = /* @__PURE__ */ __name((size4, {
   tokens
 }) => {
@@ -27779,7 +27775,7 @@ var getShapeSize = /* @__PURE__ */ __name((size4, {
   };
 }, "getShapeSize");
 
-// ../../node_modules/.pnpm/@tamagui+shapes@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_2430696d88c226380292a90cfc5e222e/node_modules/@tamagui/shapes/dist/esm/Square.mjs
+// ../../node_modules/.pnpm/@tamagui+shapes@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_9c3a723a64b62064450e09b68b7729fc/node_modules/@tamagui/shapes/dist/esm/Square.mjs
 var Square = (0, import_web9.styled)(ThemeableStack, {
   name: "Square",
   alignItems: "center",
@@ -27792,92 +27788,14 @@ var Square = (0, import_web9.styled)(ThemeableStack, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+shapes@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_2430696d88c226380292a90cfc5e222e/node_modules/@tamagui/shapes/dist/esm/Circle.mjs
+// ../../node_modules/.pnpm/@tamagui+shapes@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_9c3a723a64b62064450e09b68b7729fc/node_modules/@tamagui/shapes/dist/esm/Circle.mjs
 var import_web10 = require("@tamagui/core");
 var Circle = (0, import_web10.styled)(Square, {
   name: "Circle",
   circular: true
 });
 
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_955b47b34797faeaefc4afa398756b84/node_modules/@tamagui/stacks/dist/esm/Stacks.mjs
-var import_core17 = require("@tamagui/core");
-
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_955b47b34797faeaefc4afa398756b84/node_modules/@tamagui/stacks/dist/esm/getElevation.mjs
-var import_core16 = require("@tamagui/core");
-var getElevation2 = /* @__PURE__ */ __name((size4, extras) => {
-  if (!size4) return;
-  const {
-    tokens
-  } = extras, token = tokens.size[size4], sizeNum = (0, import_core16.isVariable)(token) ? +token.val : size4;
-  return getSizedElevation2(sizeNum, extras);
-}, "getElevation");
-var getSizedElevation2 = /* @__PURE__ */ __name((val, {
-  theme,
-  tokens
-}) => {
-  let num = 0;
-  if (val === true) {
-    const val2 = (0, import_core16.getVariableValue)(tokens.size.true);
-    typeof val2 == "number" ? num = val2 : num = 10;
-  } else num = +val;
-  if (num === 0) return;
-  const [height, shadowRadius] = [Math.round(num / 4 + 1), Math.round(num / 2 + 2)];
-  return {
-    shadowColor: theme.shadowColor,
-    shadowRadius,
-    shadowOffset: {
-      height,
-      width: 0
-    },
-    ...import_core16.isAndroid ? {
-      elevationAndroid: 2 * height
-    } : {}
-  };
-}, "getSizedElevation");
-
-// ../../node_modules/.pnpm/@tamagui+stacks@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_955b47b34797faeaefc4afa398756b84/node_modules/@tamagui/stacks/dist/esm/Stacks.mjs
-var fullscreenStyle2 = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0
-};
-var getInset2 = /* @__PURE__ */ __name((val) => val && typeof val == "object" ? val : {
-  top: val,
-  left: val,
-  bottom: val,
-  right: val
-}, "getInset");
-var variants2 = {
-  fullscreen: {
-    true: fullscreenStyle2
-  },
-  elevation: {
-    "...size": getElevation2,
-    ":number": getElevation2
-  },
-  inset: getInset2
-};
-var YStack2 = (0, import_core17.styled)(import_core17.View, {
-  flexDirection: "column",
-  variants: variants2
-});
-YStack2.displayName = "YStack";
-var XStack2 = (0, import_core17.styled)(import_core17.View, {
-  flexDirection: "row",
-  variants: variants2
-});
-XStack2.displayName = "XStack";
-var ZStack2 = (0, import_core17.styled)(YStack2, {
-  position: "relative"
-}, {
-  neverFlatten: true,
-  isZStack: true
-});
-ZStack2.displayName = "ZStack";
-
-// ../../node_modules/.pnpm/@tamagui+avatar@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_06f55a6c3efd03539278373d44a11c0d/node_modules/@tamagui/avatar/dist/esm/Avatar.mjs
+// ../../node_modules/.pnpm/@tamagui+avatar@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_07a92c9be4ed97e95c7136467f5c7a5f/node_modules/@tamagui/avatar/dist/esm/Avatar.mjs
 var React36 = __toESM(require("react"), 1);
 var import_jsx_runtime25 = require("react/jsx-runtime");
 var AVATAR_NAME = "Avatar";
@@ -27891,18 +27809,18 @@ var AvatarImage = React36.forwardRef((props, forwardedRef) => {
     onLoadingStatusChange = /* @__PURE__ */ __name(() => {
     }, "onLoadingStatusChange"),
     ...imageProps
-  } = props, context2 = useAvatarContext(IMAGE_NAME, __scopeAvatar), [status, setStatus] = React36.useState("idle"), shapeSize = (0, import_core18.getVariableValue)(getShapeSize(
+  } = props, context2 = useAvatarContext(IMAGE_NAME, __scopeAvatar), [status, setStatus] = React36.useState("idle"), shapeSize = (0, import_core16.getVariableValue)(getShapeSize(
     context2.size,
     // @ts-expect-error
     {
-      tokens: (0, import_core18.getTokens)()
+      tokens: (0, import_core16.getTokens)()
     }
   )?.width);
   return React36.useEffect(() => {
     setStatus("idle");
   }, [JSON.stringify(src)]), React36.useEffect(() => {
     onLoadingStatusChange(status), context2.onImageLoadingStatusChange(status);
-  }, [status]), /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(YStack2, {
+  }, [status]), /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(YStack, {
     fullscreen: true,
     zIndex: 1,
     children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Image, {
@@ -27925,7 +27843,7 @@ var AvatarImage = React36.forwardRef((props, forwardedRef) => {
 });
 AvatarImage.displayName = IMAGE_NAME;
 var FALLBACK_NAME = "AvatarFallback";
-var AvatarFallbackFrame = (0, import_core18.styled)(YStack2, {
+var AvatarFallbackFrame = (0, import_core16.styled)(YStack, {
   name: FALLBACK_NAME,
   position: "absolute",
   fullscreen: true,
@@ -27948,7 +27866,7 @@ var AvatarFallback = AvatarFallbackFrame.extractable(React36.forwardRef((props, 
   }) : null;
 }));
 AvatarFallback.displayName = FALLBACK_NAME;
-var AvatarFrame = (0, import_core18.styled)(Square, {
+var AvatarFrame = (0, import_core16.styled)(Square, {
   name: AVATAR_NAME,
   position: "relative",
   overflow: "hidden"
@@ -27976,21 +27894,21 @@ var Avatar = withStaticProperties(React36.forwardRef((props, forwardedRef) => {
 });
 Avatar.displayName = AVATAR_NAME;
 
-// ../../node_modules/.pnpm/@tamagui+font-size@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_5d4b827b653fe6be085ff97bf1d926d7/node_modules/@tamagui/font-size/dist/esm/getFontSize.mjs
-var import_core19 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+font-size@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+c_03a788ffd7575f7ccd724ea21631b31e/node_modules/@tamagui/font-size/dist/esm/getFontSize.mjs
+var import_core17 = require("@tamagui/core");
 var getFontSize = /* @__PURE__ */ __name((inSize, opts) => {
   const res = getFontSizeVariable(inSize, opts);
-  return (0, import_core19.isVariable)(res) ? +res.val : res ? +res : 16;
+  return (0, import_core17.isVariable)(res) ? +res.val : res ? +res : 16;
 }, "getFontSize");
 var getFontSizeVariable = /* @__PURE__ */ __name((inSize, opts) => {
   const token = getFontSizeToken(inSize, opts);
   if (!token) return inSize;
-  const conf = (0, import_core19.getConfig)();
+  const conf = (0, import_core17.getConfig)();
   return conf.fontsParsed[opts?.font || conf.defaultFontToken]?.size[token];
 }, "getFontSizeVariable");
 var getFontSizeToken = /* @__PURE__ */ __name((inSize, opts) => {
   if (typeof inSize == "number") return null;
-  const relativeSize = opts?.relativeSize || 0, conf = (0, import_core19.getConfig)(), fontSize = conf.fontsParsed[opts?.font || conf.defaultFontToken]?.size || // fallback to size tokens
+  const relativeSize = opts?.relativeSize || 0, conf = (0, import_core17.getConfig)(), fontSize = conf.fontsParsed[opts?.font || conf.defaultFontToken]?.size || // fallback to size tokens
   conf.tokensParsed.size, size4 = (inSize === "$true" && !("$true" in fontSize) ? "$4" : inSize) ?? ("$true" in fontSize ? "$true" : "$4"), sizeTokens = Object.keys(fontSize);
   let foundIndex = sizeTokens.indexOf(size4);
   foundIndex === -1 && size4.endsWith(".5") && (foundIndex = sizeTokens.indexOf(size4.replace(".5", ""))), process.env.NODE_ENV === "development" && foundIndex === -1 && console.warn("No font size found", size4, opts, "in size tokens", sizeTokens);
@@ -27998,17 +27916,17 @@ var getFontSizeToken = /* @__PURE__ */ __name((inSize, opts) => {
   return sizeTokens[tokenIndex] ?? size4;
 }, "getFontSizeToken");
 
-// ../../node_modules/.pnpm/@tamagui+helpers-tamagui@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/helpers-tamagui/dist/esm/prevent.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers-tamagui@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/helpers-tamagui/dist/esm/prevent.mjs
 var prevent = /* @__PURE__ */ __name((e) => [e.preventDefault(), e.stopPropagation()], "prevent");
 
-// ../../node_modules/.pnpm/@tamagui+helpers-tamagui@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/helpers-tamagui/dist/esm/useCurrentColor.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers-tamagui@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/helpers-tamagui/dist/esm/useCurrentColor.mjs
 var import_web11 = require("@tamagui/core");
 var useCurrentColor = /* @__PURE__ */ __name((colorProp) => {
   const theme = (0, import_web11.useTheme)();
   return colorProp ? (0, import_web11.getVariable)(colorProp) : theme[colorProp]?.get() || theme.color?.get();
 }, "useCurrentColor");
 
-// ../../node_modules/.pnpm/@tamagui+helpers-tamagui@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/helpers-tamagui/dist/esm/useGetThemedIcon.mjs
+// ../../node_modules/.pnpm/@tamagui+helpers-tamagui@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/helpers-tamagui/dist/esm/useGetThemedIcon.mjs
 var import_react28 = __toESM(require("react"), 1);
 var useGetThemedIcon = /* @__PURE__ */ __name((props) => {
   const color = useCurrentColor(props.color);
@@ -28020,7 +27938,7 @@ var useGetThemedIcon = /* @__PURE__ */ __name((props) => {
   }) : import_react28.default.createElement(el, props));
 }, "useGetThemedIcon");
 
-// ../../node_modules/.pnpm/@tamagui+button@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_7921342b282a9430f2e670eddc09c2ba/node_modules/@tamagui/button/dist/esm/Button.mjs
+// ../../node_modules/.pnpm/@tamagui+button@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_ba8b57f42e425fa39c260b0dd8431ec7/node_modules/@tamagui/button/dist/esm/Button.mjs
 var import_web12 = require("@tamagui/core");
 var import_react29 = require("react");
 var import_jsx_runtime26 = require("react/jsx-runtime");
@@ -28235,7 +28153,7 @@ function useButton({
 }
 __name(useButton, "useButton");
 
-// ../../node_modules/.pnpm/@tamagui+card@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._d3d0f0c0b2500902415f9f9903cdddc4/node_modules/@tamagui/card/dist/esm/Card.mjs
+// ../../node_modules/.pnpm/@tamagui+card@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_2d9cda46df4c47a08896af1f067ed712/node_modules/@tamagui/card/dist/esm/Card.mjs
 var import_web13 = require("@tamagui/core");
 var CardContext = (0, import_web13.createStyledContext)({
   size: "$true"
@@ -28325,19 +28243,19 @@ var Card = (0, import_web13.withStaticProperties)(CardFrame, {
   Background: CardBackground
 });
 
-// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_0da6da6c00449a9f3341e4250fe188b9/node_modules/@tamagui/checkbox/dist/esm/Checkbox.mjs
-var import_core21 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_84987d040b5eb99453297ce530341abc/node_modules/@tamagui/checkbox/dist/esm/Checkbox.mjs
+var import_core19 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_0da6da6c00449a9f3341e4250fe188b9/node_modules/@tamagui/checkbox/dist/esm/CheckboxStyledContext.mjs
-var import_core20 = require("@tamagui/core");
-var CheckboxStyledContext = (0, import_core20.createStyledContext)({
+// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_84987d040b5eb99453297ce530341abc/node_modules/@tamagui/checkbox/dist/esm/CheckboxStyledContext.mjs
+var import_core18 = require("@tamagui/core");
+var CheckboxStyledContext = (0, import_core18.createStyledContext)({
   size: "$true",
   scaleIcon: 1
 });
 
-// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_0da6da6c00449a9f3341e4250fe188b9/node_modules/@tamagui/checkbox/dist/esm/Checkbox.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_84987d040b5eb99453297ce530341abc/node_modules/@tamagui/checkbox/dist/esm/Checkbox.mjs
 var INDICATOR_NAME = "CheckboxIndicator";
-var CheckboxIndicatorFrame = (0, import_core21.styled)(ThemeableStack, {
+var CheckboxIndicatorFrame = (0, import_core19.styled)(ThemeableStack, {
   // use Checkbox for easier themes
   name: INDICATOR_NAME,
   context: CheckboxStyledContext,
@@ -28351,7 +28269,7 @@ var CheckboxIndicatorFrame = (0, import_core21.styled)(ThemeableStack, {
   }
 });
 var CHECKBOX_NAME = "Checkbox";
-var CheckboxFrame = (0, import_core21.styled)(ThemeableStack, {
+var CheckboxFrame = (0, import_core19.styled)(ThemeableStack, {
   name: CHECKBOX_NAME,
   tag: "button",
   context: CheckboxStyledContext,
@@ -28399,7 +28317,7 @@ var CheckboxFrame = (0, import_core21.styled)(ThemeableStack, {
     },
     size: {
       "...size": /* @__PURE__ */ __name((val) => ({
-        borderRadius: (0, import_core21.getVariableValue)(getSize(val)) / 8
+        borderRadius: (0, import_core19.getVariableValue)(getSize(val)) / 8
       }), "...size")
     }
   },
@@ -28408,16 +28326,16 @@ var CheckboxFrame = (0, import_core21.styled)(ThemeableStack, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_0da6da6c00449a9f3341e4250fe188b9/node_modules/@tamagui/checkbox/dist/esm/createCheckbox.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_84987d040b5eb99453297ce530341abc/node_modules/@tamagui/checkbox/dist/esm/createCheckbox.mjs
 var import_react32 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+focusable@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/focusable/dist/esm/registerFocusable.mjs
+// ../../node_modules/.pnpm/@tamagui+focusable@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/focusable/dist/esm/registerFocusable.mjs
 var registerFocusable = /* @__PURE__ */ __name((id, input) => () => {
 }, "registerFocusable");
 var focusFocusable = /* @__PURE__ */ __name((id) => {
 }, "focusFocusable");
 
-// ../../node_modules/.pnpm/@tamagui+focusable@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/focusable/dist/esm/focusableInputHOC.mjs
+// ../../node_modules/.pnpm/@tamagui+focusable@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/focusable/dist/esm/focusableInputHOC.mjs
 var import_web14 = require("@tamagui/core");
 var import_react30 = __toESM(require("react"), 1);
 function useFocusable({
@@ -28453,7 +28371,7 @@ function useFocusable({
 }
 __name(useFocusable, "useFocusable");
 
-// ../../node_modules/.pnpm/@tamagui+label@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_c1aef2fdecc821cd7aeea7f4fafd5f21/node_modules/@tamagui/label/dist/esm/Label.mjs
+// ../../node_modules/.pnpm/@tamagui+label@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_3a1a0f2f6cf52becc8e3bf31bb4e69b4/node_modules/@tamagui/label/dist/esm/Label.mjs
 var import_web15 = require("@tamagui/core");
 var React39 = __toESM(require("react"), 1);
 var import_jsx_runtime27 = require("react/jsx-runtime");
@@ -28548,10 +28466,10 @@ var useLabelContext = /* @__PURE__ */ __name((element) => {
   }, [element, controlRef]), context2.id;
 }, "useLabelContext");
 
-// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@_f5492acc6ae48c4cd999a5e2c689ae94/node_modules/@tamagui/checkbox-headless/dist/esm/useCheckbox.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__027aa8067043e0431c40f6b46a32b6e4/node_modules/@tamagui/checkbox-headless/dist/esm/useCheckbox.mjs
 var import_react31 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+use-previous@1.126.8/node_modules/@tamagui/use-previous/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-previous@1.126.13/node_modules/@tamagui/use-previous/dist/esm/index.mjs
 var React40 = __toESM(require("react"), 1);
 function usePrevious(value) {
   const ref = React40.useRef({
@@ -28562,10 +28480,10 @@ function usePrevious(value) {
 }
 __name(usePrevious, "usePrevious");
 
-// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@_f5492acc6ae48c4cd999a5e2c689ae94/node_modules/@tamagui/checkbox-headless/dist/esm/BubbleInput.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__027aa8067043e0431c40f6b46a32b6e4/node_modules/@tamagui/checkbox-headless/dist/esm/BubbleInput.mjs
 var React41 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@_f5492acc6ae48c4cd999a5e2c689ae94/node_modules/@tamagui/checkbox-headless/dist/esm/utils.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__027aa8067043e0431c40f6b46a32b6e4/node_modules/@tamagui/checkbox-headless/dist/esm/utils.mjs
 function isIndeterminate(checked) {
   return checked === "indeterminate";
 }
@@ -28575,7 +28493,7 @@ function getState4(checked) {
 }
 __name(getState4, "getState");
 
-// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@_f5492acc6ae48c4cd999a5e2c689ae94/node_modules/@tamagui/checkbox-headless/dist/esm/BubbleInput.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__027aa8067043e0431c40f6b46a32b6e4/node_modules/@tamagui/checkbox-headless/dist/esm/BubbleInput.mjs
 var import_jsx_runtime28 = require("react/jsx-runtime");
 var BubbleInput = /* @__PURE__ */ __name((props) => {
   const {
@@ -28616,7 +28534,7 @@ var BubbleInput = /* @__PURE__ */ __name((props) => {
   });
 }, "BubbleInput");
 
-// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@_f5492acc6ae48c4cd999a5e2c689ae94/node_modules/@tamagui/checkbox-headless/dist/esm/useCheckbox.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__027aa8067043e0431c40f6b46a32b6e4/node_modules/@tamagui/checkbox-headless/dist/esm/useCheckbox.mjs
 var import_jsx_runtime29 = require("react/jsx-runtime");
 function useCheckbox(props, [checked, setChecked], ref) {
   const {
@@ -28663,8 +28581,8 @@ function useCheckbox(props, [checked, setChecked], ref) {
 }
 __name(useCheckbox, "useCheckbox");
 
-// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_0da6da6c00449a9f3341e4250fe188b9/node_modules/@tamagui/checkbox/dist/esm/createCheckbox.mjs
-var import_core22 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_84987d040b5eb99453297ce530341abc/node_modules/@tamagui/checkbox/dist/esm/createCheckbox.mjs
+var import_core20 = require("@tamagui/core");
 var import_jsx_runtime30 = require("react/jsx-runtime");
 var CheckboxContext = import_react32.default.createContext({
   checked: false,
@@ -28691,9 +28609,9 @@ function createCheckbox(createProps) {
       native,
       unstyled = false,
       ...props
-    } = _props, propsActive = (0, import_core22.useProps)(props), styledContext = import_react32.default.useContext(CheckboxStyledContext);
+    } = _props, propsActive = (0, import_core20.useProps)(props), styledContext = import_react32.default.useContext(CheckboxStyledContext);
     let adjustedSize = 0, size4 = 0;
-    unstyled || (adjustedSize = (0, import_core22.getVariableValue)(getSize(propsActive.size ?? styledContext?.size ?? "$true", {
+    unstyled || (adjustedSize = (0, import_core20.getVariableValue)(getSize(propsActive.size ?? styledContext?.size ?? "$true", {
       shift: sizeAdjust
     })), size4 = scaleSize ? Math.round(adjustedSize * scaleSize) : adjustedSize);
     const [checked = false, setChecked] = useControllableState({
@@ -28710,7 +28628,7 @@ function createCheckbox(createProps) {
       [checked, setChecked],
       forwardedRef
     );
-    if ((0, import_core22.shouldRenderNativePlatform)(native) === "web") return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("input", {
+    if ((0, import_core20.shouldRenderNativePlatform)(native) === "web") return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("input", {
       type: "checkbox",
       defaultChecked: isIndeterminate(checked) ? false : checked,
       tabIndex: -1,
@@ -28763,7 +28681,7 @@ function createCheckbox(createProps) {
     } = props, styledContext = import_react32.default.useContext(CheckboxStyledContext);
     let children = childrenProp;
     if (!unstyled) {
-      const iconSize = (typeof styledContext.size == "number" ? styledContext.size * 0.65 : getFontSize(styledContext.size)) * styledContext.scaleIcon, theme = (0, import_core22.useTheme)(), getThemedIcon = useGetThemedIcon({
+      const iconSize = (typeof styledContext.size == "number" ? styledContext.size * 0.65 : getFontSize(styledContext.size)) * styledContext.scaleIcon, theme = (0, import_core20.useTheme)(), getThemedIcon = useGetThemedIcon({
         size: iconSize,
         color: theme.color
       });
@@ -28777,30 +28695,30 @@ function createCheckbox(createProps) {
       children
     }) : null;
   });
-  return (0, import_core22.withStaticProperties)(FrameComponent, {
+  return (0, import_core20.withStaticProperties)(FrameComponent, {
     Indicator: IndicatorComponent
   });
 }
 __name(createCheckbox, "createCheckbox");
 
-// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_0da6da6c00449a9f3341e4250fe188b9/node_modules/@tamagui/checkbox/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+checkbox@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_84987d040b5eb99453297ce530341abc/node_modules/@tamagui/checkbox/dist/esm/index.mjs
 var Checkbox = createCheckbox({
   Frame: CheckboxFrame,
   Indicator: CheckboxIndicatorFrame
 });
 
-// ../../node_modules/.pnpm/@tamagui+form@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._77ac651e6847b52962b673c675c9532a/node_modules/@tamagui/form/dist/esm/Form.mjs
-var import_core23 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+form@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_99c28e49bcd5e63a0d244d662704fbad/node_modules/@tamagui/form/dist/esm/Form.mjs
+var import_core21 = require("@tamagui/core");
 var import_jsx_runtime31 = require("react/jsx-runtime");
 var FORM_NAME = "Form";
-var FormFrame = (0, import_core23.styled)(import_core23.Stack, {
+var FormFrame = (0, import_core21.styled)(import_core21.Stack, {
   name: FORM_NAME,
   tag: "form"
 });
 var [createFormContext] = createContextScope(FORM_NAME);
 var [FormProvider, useFormContext] = createFormContext(FORM_NAME);
 var TRIGGER_NAME4 = "FormTrigger";
-var FormTriggerFrame = (0, import_core23.styled)(import_core23.View, {
+var FormTriggerFrame = (0, import_core21.styled)(import_core21.View, {
   name: TRIGGER_NAME4
 });
 var FormTrigger = FormTriggerFrame.styleable((props, forwardedRef) => {
@@ -28835,12 +28753,12 @@ var Form2 = withStaticProperties(FormComponent, {
   Trigger: FormTrigger
 });
 
-// ../../node_modules/.pnpm/@tamagui+group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_a31b1fbde0c999056a02b31518aba98d/node_modules/@tamagui/group/dist/esm/Group.mjs
-var import_core24 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_af4ff0dda70178347abfaf5c75f0dec9/node_modules/@tamagui/group/dist/esm/Group.mjs
+var import_core22 = require("@tamagui/core");
 var import_react33 = __toESM(require("react"), 1);
 var import_react_native_web6 = __toESM(require_cjs(), 1);
 
-// ../../node_modules/.pnpm/@tamagui+group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_a31b1fbde0c999056a02b31518aba98d/node_modules/@tamagui/group/dist/esm/useIndexedChildren.mjs
+// ../../node_modules/.pnpm/@tamagui+group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_af4ff0dda70178347abfaf5c75f0dec9/node_modules/@tamagui/group/dist/esm/useIndexedChildren.mjs
 var React44 = __toESM(require("react"), 1);
 var import_jsx_runtime32 = require("react/jsx-runtime");
 var MaxIndexContext = React44.createContext([]);
@@ -28880,12 +28798,12 @@ function parseIndexPath(indexPathString) {
 }
 __name(parseIndexPath, "parseIndexPath");
 
-// ../../node_modules/.pnpm/@tamagui+group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_a31b1fbde0c999056a02b31518aba98d/node_modules/@tamagui/group/dist/esm/Group.mjs
+// ../../node_modules/.pnpm/@tamagui+group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_af4ff0dda70178347abfaf5c75f0dec9/node_modules/@tamagui/group/dist/esm/Group.mjs
 var import_jsx_runtime33 = require("react/jsx-runtime");
 var GROUP_NAME = "Group";
 var [createGroupContext, createGroupScope] = createContextScope(GROUP_NAME);
 var [GroupProvider, useGroupContext] = createGroupContext(GROUP_NAME);
-var GroupFrame = (0, import_core24.styled)(ThemeableStack, {
+var GroupFrame = (0, import_core22.styled)(ThemeableStack, {
   name: "GroupFrame",
   variants: {
     unstyled: {
@@ -28905,7 +28823,7 @@ var GroupFrame = (0, import_core24.styled)(ThemeableStack, {
 });
 function createGroup(verticalDefault) {
   return withStaticProperties(GroupFrame.styleable((props, ref) => {
-    const activeProps = (0, import_core24.useProps)(props), {
+    const activeProps = (0, import_core22.useProps)(props), {
       __scopeGroup,
       children: childrenProp,
       space,
@@ -28922,7 +28840,7 @@ function createGroup(verticalDefault) {
       ...restProps
     } = activeProps, vertical = orientation === "vertical", [itemChildrenCount, setItemChildrenCount] = useControllableState({
       defaultProp: forceUseItem ? 1 : 0
-    }), isUsingItems = itemChildrenCount > 0, radius = borderRadius ?? (size4 ? (0, import_core24.getVariableValue)((0, import_core24.getTokens)().radius[size4]) - 1 : void 0), disablePassBorderRadius = disablePassBorderRadiusProp ?? !(radius !== void 0), childrenArray = import_react33.default.Children.toArray(childrenProp), children = isUsingItems ? import_react33.default.Children.toArray(childrenProp).filter(import_react33.default.isValidElement) : childrenArray.map((child, i) => {
+    }), isUsingItems = itemChildrenCount > 0, radius = borderRadius ?? (size4 ? (0, import_core22.getVariableValue)((0, import_core22.getTokens)().radius[size4]) - 1 : void 0), disablePassBorderRadius = disablePassBorderRadiusProp ?? !(radius !== void 0), childrenArray = import_react33.default.Children.toArray(childrenProp), children = isUsingItems ? import_react33.default.Children.toArray(childrenProp).filter(import_react33.default.isValidElement) : childrenArray.map((child, i) => {
       if (!import_react33.default.isValidElement(child) || child.type === import_react33.default.Fragment) return child;
       const disabled = child.props.disabled ?? disabledProp, isFirst = i === 0, isLast = i === childrenArray.length - 1, radiusStyles = disablePassBorderRadius === true ? null : getBorderRadius({
         isFirst,
@@ -28935,7 +28853,7 @@ function createGroup(verticalDefault) {
         ...radiusStyles
       };
       return cloneElementWithPropOrder(child, props2);
-    }), indexedChildren = useIndexedChildren((0, import_core24.spacedChildren)({
+    }), indexedChildren = useIndexedChildren((0, import_core22.spacedChildren)({
       direction: spaceDirection,
       separator,
       space,
@@ -29037,62 +28955,62 @@ var cloneElementWithPropOrder = /* @__PURE__ */ __name((child, props) => import_
   ...props
 }), "cloneElementWithPropOrder");
 
-// ../../node_modules/.pnpm/@tamagui+react-native-media-driver@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@_7b6b4a80e45430fd0a78792608dc9a4c/node_modules/@tamagui/react-native-media-driver/dist/esm/createMedia.mjs
+// ../../node_modules/.pnpm/@tamagui+react-native-media-driver@1.126.13_react-dom@19.0.0_react@19.0.0__react-native_99ac27f3fb752e1fefd01887190c029d/node_modules/@tamagui/react-native-media-driver/dist/esm/createMedia.mjs
 var import_web16 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+react-native-media-driver@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@_7b6b4a80e45430fd0a78792608dc9a4c/node_modules/@tamagui/react-native-media-driver/dist/esm/matchMedia.mjs
+// ../../node_modules/.pnpm/@tamagui+react-native-media-driver@1.126.13_react-dom@19.0.0_react@19.0.0__react-native_99ac27f3fb752e1fefd01887190c029d/node_modules/@tamagui/react-native-media-driver/dist/esm/matchMedia.mjs
 var matchMedia = globalThis.matchMedia;
 
-// ../../node_modules/.pnpm/@tamagui+react-native-media-driver@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@_7b6b4a80e45430fd0a78792608dc9a4c/node_modules/@tamagui/react-native-media-driver/dist/esm/createMedia.mjs
+// ../../node_modules/.pnpm/@tamagui+react-native-media-driver@1.126.13_react-dom@19.0.0_react@19.0.0__react-native_99ac27f3fb752e1fefd01887190c029d/node_modules/@tamagui/react-native-media-driver/dist/esm/createMedia.mjs
 function createMedia(media) {
   return (0, import_web16.setupMatchMedia)(matchMedia), media;
 }
 __name(createMedia, "createMedia");
 
-// ../../node_modules/.pnpm/@tamagui+elements@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_8771f9585cbd1bc565188c02a9570fec/node_modules/@tamagui/elements/dist/esm/index.mjs
-var import_core25 = require("@tamagui/core");
-var Section = (0, import_core25.styled)(import_core25.View, {
+// ../../node_modules/.pnpm/@tamagui+elements@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_6330692d7d4a3a346d443f9197e3d875/node_modules/@tamagui/elements/dist/esm/index.mjs
+var import_core23 = require("@tamagui/core");
+var Section = (0, import_core23.styled)(import_core23.View, {
   name: "Section",
   tag: "section",
   flexDirection: "column",
   accessibilityRole: "summary"
 });
-var Article = (0, import_core25.styled)(import_core25.View, {
+var Article = (0, import_core23.styled)(import_core23.View, {
   name: "Article",
   tag: "article",
   flexDirection: "column"
 });
-var Main = (0, import_core25.styled)(import_core25.View, {
+var Main = (0, import_core23.styled)(import_core23.View, {
   name: "Main",
   tag: "main",
   flexDirection: "column"
 });
-var Header = (0, import_core25.styled)(import_core25.View, {
+var Header = (0, import_core23.styled)(import_core23.View, {
   name: "Header",
   tag: "header",
   accessibilityRole: "header",
   flexDirection: "column"
 });
-var Aside = (0, import_core25.styled)(import_core25.View, {
+var Aside = (0, import_core23.styled)(import_core23.View, {
   name: "Aside",
   tag: "aside",
   flexDirection: "column"
   // accessibilityRole: 'complementary',
 });
-var Footer = (0, import_core25.styled)(import_core25.View, {
+var Footer = (0, import_core23.styled)(import_core23.View, {
   name: "Footer",
   tag: "footer",
   flexDirection: "column"
   // accessibilityRole: 'contentinfo',
 });
-var Nav = (0, import_core25.styled)(import_core25.View, {
+var Nav = (0, import_core23.styled)(import_core23.View, {
   name: "Nav",
   tag: "nav",
   flexDirection: "column"
   // accessibilityRole: 'navigation',
 });
 
-// ../../node_modules/.pnpm/@tamagui+list-item@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_9d5e14073cba595abea4f38c72ee6786/node_modules/@tamagui/list-item/dist/esm/ListItem.mjs
+// ../../node_modules/.pnpm/@tamagui+list-item@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+c_0753cf77357748ed5d083d7d6ff69aef/node_modules/@tamagui/list-item/dist/esm/ListItem.mjs
 var import_web17 = require("@tamagui/core");
 var import_jsx_runtime34 = require("react/jsx-runtime");
 var NAME2 = "ListItem";
@@ -29283,7 +29201,7 @@ var ListItem2 = withStaticProperties(ListItemComponent, {
   Subtitle: ListItemSubtitle
 });
 
-// ../../node_modules/.pnpm/@tamagui+animate@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate/dist/esm/Animate.mjs
+// ../../node_modules/.pnpm/@tamagui+animate@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/animate/dist/esm/Animate.mjs
 var import_jsx_runtime35 = require("react/jsx-runtime");
 function Animate({
   children,
@@ -29309,8 +29227,8 @@ function Animate({
 }
 __name(Animate, "Animate");
 
-// ../../node_modules/.pnpm/@tamagui+popover@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_61a328151d3637e04e6e41d9737033be/node_modules/@tamagui/popover/dist/esm/Popover.mjs
-var import_core28 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+popover@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nati_f25f5098ae466729f99c1fee667e9180/node_modules/@tamagui/popover/dist/esm/Popover.mjs
+var import_core26 = require("@tamagui/core");
 
 // ../../node_modules/.pnpm/@floating-ui+utils@0.2.9/node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
 var min = Math.min;
@@ -31124,16 +31042,16 @@ var arrow3 = /* @__PURE__ */ __name((options, deps) => ({
   options: [options, deps]
 }), "arrow");
 
-// ../../node_modules/.pnpm/@tamagui+floating@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_9b82e030b4547f7c6323ea07426faca9/node_modules/@tamagui/floating/dist/esm/useFloating.mjs
+// ../../node_modules/.pnpm/@tamagui+floating@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_05e565cfff2d0fa327039507a0e054de/node_modules/@tamagui/floating/dist/esm/useFloating.mjs
 var import_react35 = __toESM(require("react"), 1);
 var FloatingOverrideContext = import_react35.default.createContext(null);
 var useFloating2 = /* @__PURE__ */ __name((props) => (import_react35.default.useContext(FloatingOverrideContext) || useFloating)?.(props), "useFloating");
 
-// ../../node_modules/.pnpm/@tamagui+popper@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_4095d77a35d13723c4a932cd6dd74162/node_modules/@tamagui/popper/dist/esm/Popper.mjs
-var import_core27 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+popper@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_33a2f95812d5964b1dca5536ca9bf898/node_modules/@tamagui/popper/dist/esm/Popper.mjs
+var import_core25 = require("@tamagui/core");
 var React48 = __toESM(require("react"), 1);
 var import_jsx_runtime36 = require("react/jsx-runtime");
-var PopperContext = (0, import_core27.createStyledContext)({});
+var PopperContext = (0, import_core25.createStyledContext)({});
 var {
   useStyledContext: usePopperContext,
   Provider: PopperProvider
@@ -31229,11 +31147,11 @@ var PopperAnchor = YStack.extractable(React48.forwardRef(function(props, forward
     ref: composedRefs,
     ...anchorProps
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_core27.View, {
+  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_core25.View, {
     ...getReferenceProps ? getReferenceProps(stackProps) : stackProps
   });
 }));
-var PopperContentFrame = (0, import_core27.styled)(ThemeableStack, {
+var PopperContentFrame = (0, import_core25.styled)(ThemeableStack, {
   name: "PopperContent",
   variants: {
     unstyled: {
@@ -31296,7 +31214,7 @@ var PopperContent = React48.forwardRef(function(props, forwardedRef) {
     style,
     ...floatingProps
   } = getFloatingProps ? getFloatingProps(frameProps) : frameProps;
-  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_core27.Stack, {
+  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_core25.Stack, {
     ...floatingProps,
     children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(PopperContentFrame, {
       "data-placement": placement,
@@ -31308,7 +31226,7 @@ var PopperContent = React48.forwardRef(function(props, forwardedRef) {
     }, "popper-content-frame")
   });
 });
-var PopperArrowFrame = (0, import_core27.styled)(YStack, {
+var PopperArrowFrame = (0, import_core25.styled)(YStack, {
   name: "PopperArrow",
   variants: {
     unstyled: {
@@ -31323,7 +31241,7 @@ var PopperArrowFrame = (0, import_core27.styled)(YStack, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var PopperArrowOuterFrame = (0, import_core27.styled)(YStack, {
+var PopperArrowOuterFrame = (0, import_core25.styled)(YStack, {
   name: "PopperArrowOuter",
   variants: {
     unstyled: {
@@ -31351,12 +31269,12 @@ var PopperArrow = PopperArrowFrame.styleable(function(propsIn, forwardedRef) {
   const {
     __scopePopper,
     ...rest
-  } = propsIn, props = (0, import_core27.useProps)(rest), {
+  } = propsIn, props = (0, import_core25.useProps)(rest), {
     offset: offset4,
     size: sizeProp,
     borderWidth = 0,
     ...arrowProps
-  } = props, context2 = usePopperContext(__scopePopper), sizeVal = typeof sizeProp == "number" ? sizeProp : (0, import_core27.getVariableValue)(getSpace(sizeProp ?? context2.size, {
+  } = props, context2 = usePopperContext(__scopePopper), sizeVal = typeof sizeProp == "number" ? sizeProp : (0, import_core25.getVariableValue)(getSpace(sizeProp ?? context2.size, {
     shift: -2,
     bounds: [2]
   })), size4 = Math.max(0, +sizeVal), {
@@ -31403,11 +31321,11 @@ var PopperArrow = PopperArrowFrame.styleable(function(propsIn, forwardedRef) {
   });
 });
 
-// ../../node_modules/.pnpm/@tamagui+popover@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_61a328151d3637e04e6e41d9737033be/node_modules/@tamagui/popover/dist/esm/Popover.mjs
+// ../../node_modules/.pnpm/@tamagui+popover@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nati_f25f5098ae466729f99c1fee667e9180/node_modules/@tamagui/popover/dist/esm/Popover.mjs
 var React52 = __toESM(require("react"), 1);
 var import_react_native_web7 = __toESM(require_cjs(), 1);
 
-// ../../node_modules/.pnpm/@tamagui+popover@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_61a328151d3637e04e6e41d9737033be/node_modules/@tamagui/popover/dist/esm/useFloatingContext.mjs
+// ../../node_modules/.pnpm/@tamagui+popover@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nati_f25f5098ae466729f99c1fee667e9180/node_modules/@tamagui/popover/dist/esm/useFloatingContext.mjs
 var import_react37 = __toESM(require("react"), 1);
 
 // ../../node_modules/.pnpm/@floating-ui+react@0.27.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@floating-ui/react/dist/floating-ui.react.mjs
@@ -31443,11 +31361,11 @@ function isSafari() {
   return /apple/i.test(navigator.vendor);
 }
 __name(isSafari, "isSafari");
-function isAndroid4() {
+function isAndroid3() {
   const re = /android/i;
   return re.test(getPlatform()) || re.test(getUserAgent());
 }
-__name(isAndroid4, "isAndroid");
+__name(isAndroid3, "isAndroid");
 function isMac() {
   return getPlatform().toLowerCase().startsWith("mac") && !navigator.maxTouchPoints;
 }
@@ -31609,7 +31527,7 @@ function isVirtualClick(event) {
   if (event.mozInputSource === 0 && event.isTrusted) {
     return true;
   }
-  if (isAndroid4() && event.pointerType) {
+  if (isAndroid3() && event.pointerType) {
     return event.type === "click" && event.buttons === 1;
   }
   return event.detail === 0 && !event.pointerType;
@@ -31617,7 +31535,7 @@ function isVirtualClick(event) {
 __name(isVirtualClick, "isVirtualClick");
 function isVirtualPointerEvent(event) {
   if (isJSDOM()) return false;
-  return !isAndroid4() && event.width === 0 && event.height === 0 || isAndroid4() && event.width === 1 && event.height === 1 && event.pressure === 0 && event.detail === 0 && event.pointerType === "mouse" || // iOS VoiceOver returns 0.333• for width/height.
+  return !isAndroid3() && event.width === 0 && event.height === 0 || isAndroid3() && event.width === 1 && event.height === 1 && event.pressure === 0 && event.detail === 0 && event.pointerType === "mouse" || // iOS VoiceOver returns 0.333• for width/height.
   event.width < 1 && event.height < 1 && event.pressure === 0 && event.detail === 0 && event.pointerType === "touch";
 }
 __name(isVirtualPointerEvent, "isVirtualPointerEvent");
@@ -35228,7 +35146,7 @@ function safePolygon(options) {
 }
 __name(safePolygon, "safePolygon");
 
-// ../../node_modules/.pnpm/@tamagui+popover@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_61a328151d3637e04e6e41d9737033be/node_modules/@tamagui/popover/dist/esm/useFloatingContext.mjs
+// ../../node_modules/.pnpm/@tamagui+popover@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nati_f25f5098ae466729f99c1fee667e9180/node_modules/@tamagui/popover/dist/esm/useFloatingContext.mjs
 var useFloatingContext = /* @__PURE__ */ __name(({
   open,
   setOpen,
@@ -35272,10 +35190,10 @@ var useFloatingContext = /* @__PURE__ */ __name(({
   };
 }, [open, setOpen, disable, disableFocus, hoverable]), "useFloatingContext");
 
-// ../../node_modules/.pnpm/@tamagui+popover@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_61a328151d3637e04e6e41d9737033be/node_modules/@tamagui/popover/dist/esm/Popover.mjs
+// ../../node_modules/.pnpm/@tamagui+popover@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nati_f25f5098ae466729f99c1fee667e9180/node_modules/@tamagui/popover/dist/esm/Popover.mjs
 var import_jsx_runtime38 = require("react/jsx-runtime");
 var POPOVER_SCOPE = "PopoverScope";
-var PopoverContext = (0, import_core28.createStyledContext)({});
+var PopoverContext = (0, import_core26.createStyledContext)({});
 var usePopoverContext = PopoverContext.useStyledContext;
 var PopoverAnchor = React52.forwardRef(function(props, forwardedRef) {
   const {
@@ -35297,7 +35215,7 @@ var PopoverTrigger = React52.forwardRef(function(props, forwardedRef) {
     ...rest
   } = props, context2 = usePopoverContext(__scopePopover), anchorTo = context2.anchorTo, composedTriggerRef = useComposedRefs(forwardedRef, context2.triggerRef);
   if (!props.children) return null;
-  const trigger = /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(import_core28.View, {
+  const trigger = /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(import_core26.View, {
     "aria-expanded": context2.open,
     "data-state": getState5(context2.open),
     ...rest,
@@ -35337,7 +35255,7 @@ var PopoverContent = PopperContentFrame.extractable(React52.forwardRef(function(
   }, [context2.open]), !context2.keepChildrenMounted && isFullyHidden ? null : /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(PopoverContentPortal, {
     __scopePopover,
     zIndex,
-    children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(import_core28.Stack, {
+    children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(import_core26.Stack, {
       pointerEvents: context2.open ? contentImplProps.pointerEvents ?? "auto" : "none",
       children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(PopoverContentImpl, {
         ...contentImplProps,
@@ -35380,7 +35298,7 @@ __name(PopoverRepropagateContext, "PopoverRepropagateContext");
 function PopoverContentPortal(props) {
   const {
     __scopePopover
-  } = props, zIndex = props.zIndex, context2 = usePopoverContext(__scopePopover), popperContext = usePopperContext(__scopePopover || POPOVER_SCOPE), themeName = (0, import_core28.useThemeName)(), adaptContext = useAdaptContext();
+  } = props, zIndex = props.zIndex, context2 = usePopoverContext(__scopePopover), popperContext = usePopperContext(__scopePopover || POPOVER_SCOPE), themeName = (0, import_core26.useThemeName)(), adaptContext = useAdaptContext();
   let contents = props.children;
   return (import_react_native_web7.Platform.OS === "android" || import_react_native_web7.Platform.OS === "ios") && (contents = /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(PopoverRepropagateContext, {
     scope: __scopePopover || POPOVER_SCOPE,
@@ -35391,7 +35309,7 @@ function PopoverContentPortal(props) {
   })), /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Portal, {
     stackZIndex: true,
     zIndex,
-    children: /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(import_core28.Theme, {
+    children: /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(import_core26.Theme, {
       forceClassName: true,
       name: themeName,
       children: [!!context2.open && !context2.breakpointActive && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(YStack, {
@@ -35538,7 +35456,7 @@ var PopoverInner = React52.forwardRef(function(props, forwardedRef) {
     onChange: /* @__PURE__ */ __name((val) => {
       onOpenChange?.(val, viaRef.current);
     }, "onChange")
-  }), handleOpenChange = (0, import_core28.useEvent)((val, via) => {
+  }), handleOpenChange = (0, import_core26.useEvent)((val, via) => {
     viaRef.current = via, setOpen(val);
   }), isAdapted = useAdaptIsActive(), floatingContext = useFloatingContext({
     open,
@@ -35546,7 +35464,7 @@ var PopoverInner = React52.forwardRef(function(props, forwardedRef) {
     disable: isAdapted,
     hoverable,
     disableFocus
-  }), [anchorTo, setAnchorToRaw] = React52.useState(), setAnchorTo = (0, import_core28.createShallowSetState)(setAnchorToRaw);
+  }), [anchorTo, setAnchorToRaw] = React52.useState(), setAnchorTo = (0, import_core26.createShallowSetState)(setAnchorToRaw);
   React52.useImperativeHandle(forwardedRef, () => ({
     anchorTo: setAnchorTo,
     toggle: /* @__PURE__ */ __name(() => setOpen((prev) => !prev), "toggle"),
@@ -35561,7 +35479,7 @@ var PopoverInner = React52.forwardRef(function(props, forwardedRef) {
     open,
     breakpointActive: isAdapted,
     onOpenChange: handleOpenChange,
-    onOpenToggle: (0, import_core28.useEvent)(() => {
+    onOpenToggle: (0, import_core26.useEvent)(() => {
       open && isAdapted || setOpen(!open);
     }),
     hasCustomAnchor,
@@ -35597,7 +35515,7 @@ var PopoverSheetController = /* @__PURE__ */ __name(({
   __scopePopover,
   ...props
 }) => {
-  const context2 = usePopoverContext(__scopePopover), showSheet = useShowPopoverSheet(context2), breakpointActive = context2.breakpointActive, getShowSheet = (0, import_core28.useGet)(showSheet);
+  const context2 = usePopoverContext(__scopePopover), showSheet = useShowPopoverSheet(context2), breakpointActive = context2.breakpointActive, getShowSheet = (0, import_core26.useGet)(showSheet);
   return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(SheetController, {
     onOpenChange: /* @__PURE__ */ __name((val) => {
       getShowSheet() && props.onOpenChange?.(val);
@@ -35612,15 +35530,15 @@ var useShowPopoverSheet = /* @__PURE__ */ __name((context2) => {
   return context2.open === false ? false : isAdapted;
 }, "useShowPopoverSheet");
 
-// ../../node_modules/.pnpm/@tamagui+progress@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+cor_1f54939eda1941e34096545885e5a9e6/node_modules/@tamagui/progress/dist/esm/Progress.mjs
-var import_core29 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+progress@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_9c3bf508a02121337dbe9d25681f4f93/node_modules/@tamagui/progress/dist/esm/Progress.mjs
+var import_core27 = require("@tamagui/core");
 var React53 = __toESM(require("react"), 1);
 var import_jsx_runtime39 = require("react/jsx-runtime");
 var PROGRESS_NAME = "Progress";
 var [createProgressContext, createProgressScope] = createContextScope(PROGRESS_NAME);
 var [ProgressProvider, useProgressContext] = createProgressContext(PROGRESS_NAME);
 var INDICATOR_NAME2 = "ProgressIndicator";
-var ProgressIndicatorFrame = (0, import_core29.styled)(ThemeableStack, {
+var ProgressIndicatorFrame = (0, import_core27.styled)(ThemeableStack, {
   name: INDICATOR_NAME2,
   variants: {
     unstyled: {
@@ -35677,7 +35595,7 @@ function isValidValueNumber(value, max2) {
 }
 __name(isValidValueNumber, "isValidValueNumber");
 var DEFAULT_MAX = 100;
-var ProgressFrame = (0, import_core29.styled)(ThemeableStack, {
+var ProgressFrame = (0, import_core27.styled)(ThemeableStack, {
   name: "Progress",
   variants: {
     unstyled: {
@@ -35689,10 +35607,10 @@ var ProgressFrame = (0, import_core29.styled)(ThemeableStack, {
     },
     size: {
       "...size": /* @__PURE__ */ __name((val) => {
-        const size4 = Math.round((0, import_core29.getVariableValue)(getSize(val)) * 0.25);
+        const size4 = Math.round((0, import_core27.getVariableValue)(getSize(val)) * 0.25);
         return {
           height: size4,
-          minWidth: (0, import_core29.getVariableValue)(size4) * 20,
+          minWidth: (0, import_core27.getVariableValue)(size4) * 20,
           width: "100%"
         };
       }, "...size")
@@ -35740,10 +35658,10 @@ var Progress = withStaticProperties(ProgressFrame.styleable(function(props, forw
   Indicator: ProgressIndicator
 });
 
-// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_146f44d53a87d31128a544d0022df4e1/node_modules/@tamagui/radio-group/dist/esm/RadioGroup.mjs
-var import_core30 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_ae8f12658b56a23ed6bd93e556efad1a/node_modules/@tamagui/radio-group/dist/esm/RadioGroup.mjs
+var import_core28 = require("@tamagui/core");
 var RADIO_GROUP_ITEM_NAME = "RadioGroupItem";
-var RadioGroupItemFrame = (0, import_core30.styled)(ThemeableStack, {
+var RadioGroupItemFrame = (0, import_core28.styled)(ThemeableStack, {
   name: RADIO_GROUP_ITEM_NAME,
   tag: "button",
   variants: {
@@ -35798,7 +35716,7 @@ var RadioGroupItemFrame = (0, import_core30.styled)(ThemeableStack, {
       "...size": /* @__PURE__ */ __name((value, {
         props
       }) => {
-        const size4 = Math.floor((0, import_core30.getVariableValue)(getSize(value)) * (props.scaleSize ?? 0.5));
+        const size4 = Math.floor((0, import_core28.getVariableValue)(getSize(value)) * (props.scaleSize ?? 0.5));
         return {
           width: size4,
           height: size4
@@ -35811,7 +35729,7 @@ var RadioGroupItemFrame = (0, import_core30.styled)(ThemeableStack, {
   }
 });
 var RADIO_GROUP_INDICATOR_NAME = "RadioGroupIndicator";
-var RadioGroupIndicatorFrame = (0, import_core30.styled)(ThemeableStack, {
+var RadioGroupIndicatorFrame = (0, import_core28.styled)(ThemeableStack, {
   name: RADIO_GROUP_INDICATOR_NAME,
   variants: {
     unstyled: {
@@ -35829,7 +35747,7 @@ var RadioGroupIndicatorFrame = (0, import_core30.styled)(ThemeableStack, {
   }
 });
 var RADIO_GROUP_NAME = "RadioGroup";
-var RadioGroupFrame = (0, import_core30.styled)(ThemeableStack, {
+var RadioGroupFrame = (0, import_core28.styled)(ThemeableStack, {
   name: RADIO_GROUP_NAME,
   variants: {
     orientation: {
@@ -35845,14 +35763,14 @@ var RadioGroupFrame = (0, import_core30.styled)(ThemeableStack, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_146f44d53a87d31128a544d0022df4e1/node_modules/@tamagui/radio-group/dist/esm/createRadioGroup.mjs
+// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_ae8f12658b56a23ed6bd93e556efad1a/node_modules/@tamagui/radio-group/dist/esm/createRadioGroup.mjs
 var import_react41 = __toESM(require("react"), 1);
-var import_core32 = require("@tamagui/core");
+var import_core30 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@bab_475a60414ca80f8507dde6210e197a27/node_modules/@tamagui/radio-headless/dist/esm/useRadioGroup.mjs
+// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@ba_446c1902c0f57cb9789addd86fc95c92/node_modules/@tamagui/radio-headless/dist/esm/useRadioGroup.mjs
 var import_react40 = require("react");
 
-// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@bab_475a60414ca80f8507dde6210e197a27/node_modules/@tamagui/radio-headless/dist/esm/BubbleInput.mjs
+// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@ba_446c1902c0f57cb9789addd86fc95c92/node_modules/@tamagui/radio-headless/dist/esm/BubbleInput.mjs
 var import_react39 = __toESM(require("react"), 1);
 var import_jsx_runtime40 = require("react/jsx-runtime");
 var BubbleInput2 = /* @__PURE__ */ __name((props) => {
@@ -35895,13 +35813,13 @@ var BubbleInput2 = /* @__PURE__ */ __name((props) => {
   });
 }, "BubbleInput");
 
-// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@bab_475a60414ca80f8507dde6210e197a27/node_modules/@tamagui/radio-headless/dist/esm/utils.mjs
+// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@ba_446c1902c0f57cb9789addd86fc95c92/node_modules/@tamagui/radio-headless/dist/esm/utils.mjs
 function getState6(checked) {
   return checked ? "checked" : "unchecked";
 }
 __name(getState6, "getState");
 
-// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@bab_475a60414ca80f8507dde6210e197a27/node_modules/@tamagui/radio-headless/dist/esm/useRadioGroup.mjs
+// ../../node_modules/.pnpm/@tamagui+radio-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@ba_446c1902c0f57cb9789addd86fc95c92/node_modules/@tamagui/radio-headless/dist/esm/useRadioGroup.mjs
 var import_jsx_runtime41 = require("react/jsx-runtime");
 function useRadioGroup(params) {
   const {
@@ -36047,8 +35965,8 @@ function useRadioGroupItemIndicator(params) {
 }
 __name(useRadioGroupItemIndicator, "useRadioGroupItemIndicator");
 
-// ../../node_modules/.pnpm/@tamagui+roving-focus@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_29808224b10e74f7b2b627d7700ff919/node_modules/@tamagui/roving-focus/dist/esm/RovingFocusGroup.mjs
-var import_core31 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+roving-focus@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babe_23445221fb9b0857386ec3955bc00c69/node_modules/@tamagui/roving-focus/dist/esm/RovingFocusGroup.mjs
+var import_core29 = require("@tamagui/core");
 var React55 = __toESM(require("react"), 1);
 var import_jsx_runtime42 = require("react/jsx-runtime");
 var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
@@ -36071,7 +35989,7 @@ var RovingFocusGroupImpl = React55.forwardRef((props, forwardedRef) => {
     prop: currentTabStopIdProp,
     defaultProp: defaultCurrentTabStopId ?? null,
     onChange: onCurrentTabStopIdChange
-  }), [isTabbingBackOut, setIsTabbingBackOut] = React55.useState(false), handleEntryFocus = (0, import_core31.useEvent)(onEntryFocus), getItems = useCollection2(__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT), isClickFocusRef = React55.useRef(false), [focusableItemsCount, setFocusableItemsCount] = React55.useState(0);
+  }), [isTabbingBackOut, setIsTabbingBackOut] = React55.useState(false), handleEntryFocus = (0, import_core29.useEvent)(onEntryFocus), getItems = useCollection2(__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT), isClickFocusRef = React55.useRef(false), [focusableItemsCount, setFocusableItemsCount] = React55.useState(0);
   return React55.useEffect(() => {
     const node = ref.current;
     if (node) return node.addEventListener(ENTRY_FOCUS, handleEntryFocus), () => node.removeEventListener(ENTRY_FOCUS, handleEntryFocus);
@@ -36085,7 +36003,7 @@ var RovingFocusGroupImpl = React55.forwardRef((props, forwardedRef) => {
     onItemShiftTab: React55.useCallback(() => setIsTabbingBackOut(true), []),
     onFocusableItemAdd: React55.useCallback(() => setFocusableItemsCount((prevCount) => prevCount + 1), []),
     onFocusableItemRemove: React55.useCallback(() => setFocusableItemsCount((prevCount) => prevCount - 1), []),
-    children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_core31.Stack, {
+    children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_core29.Stack, {
       tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
       "data-orientation": orientation,
       ...groupProps,
@@ -36130,7 +36048,7 @@ var RovingFocusGroupItem = React55.forwardRef((props, forwardedRef) => {
     id,
     focusable: focusable2,
     active,
-    children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_core31.Stack, {
+    children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_core29.Stack, {
       tabIndex: isCurrentTabStop ? 0 : -1,
       "data-orientation": context2.orientation,
       ...itemProps,
@@ -36169,7 +36087,7 @@ var [Collection2, useCollection2] = createCollection(GROUP_NAME2);
 var {
   Provider: RovingFocusProvider,
   useStyledContext: useRovingFocusContext
-} = (0, import_core31.createStyledContext)();
+} = (0, import_core29.createStyledContext)();
 var ROVING_FOCUS_GROUP_CONTEXT = "RovingFocusGroupContext";
 var RovingFocusGroup = withStaticProperties(React55.forwardRef((props, forwardedRef) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Collection2.Provider, {
   __scopeCollection: props.__scopeRovingFocusGroup || ROVING_FOCUS_GROUP_CONTEXT,
@@ -36213,7 +36131,7 @@ function wrapArray(array, startIndex) {
 }
 __name(wrapArray, "wrapArray");
 
-// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_146f44d53a87d31128a544d0022df4e1/node_modules/@tamagui/radio-group/dist/esm/createRadioGroup.mjs
+// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_ae8f12658b56a23ed6bd93e556efad1a/node_modules/@tamagui/radio-group/dist/esm/createRadioGroup.mjs
 var import_jsx_runtime43 = require("react/jsx-runtime");
 var ensureContext2 = /* @__PURE__ */ __name((x) => {
   x.context || (x.context = RadioGroupContext);
@@ -36297,7 +36215,7 @@ function createRadioGroup(createProps) {
     });
     return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(RadioGroupItemContext.Provider, {
       value: providerValue,
-      children: import_core32.isWeb && native ? bubbleInput : /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(import_jsx_runtime43.Fragment, {
+      children: import_core30.isWeb && native ? bubbleInput : /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(import_jsx_runtime43.Fragment, {
         children: [/* @__PURE__ */ (0, import_jsx_runtime43.jsx)(RovingFocusGroup.Item, {
           ...rovingFocusGroupAttrs,
           children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(RadioGroupItemFrame, {
@@ -36329,7 +36247,7 @@ function createRadioGroup(createProps) {
     }) : null;
   });
   RadioIndicator.displayName = "RadioIndicator";
-  const RadioGroup2 = (0, import_core32.withStaticProperties)(RadioGroupImp, {
+  const RadioGroup2 = (0, import_core30.withStaticProperties)(RadioGroupImp, {
     Item: RadioGroupItemImp,
     Indicator: RadioIndicator
   });
@@ -36337,26 +36255,26 @@ function createRadioGroup(createProps) {
 }
 __name(createRadioGroup, "createRadioGroup");
 
-// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_146f44d53a87d31128a544d0022df4e1/node_modules/@tamagui/radio-group/dist/esm/RadioGroupStyledContext.mjs
-var import_core33 = require("@tamagui/core");
-var RadioGroupStyledContext = (0, import_core33.createStyledContext)({
+// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_ae8f12658b56a23ed6bd93e556efad1a/node_modules/@tamagui/radio-group/dist/esm/RadioGroupStyledContext.mjs
+var import_core31 = require("@tamagui/core");
+var RadioGroupStyledContext = (0, import_core31.createStyledContext)({
   size: "$true",
   scaleIcon: 1
 });
 
-// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+_146f44d53a87d31128a544d0022df4e1/node_modules/@tamagui/radio-group/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+radio-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_ae8f12658b56a23ed6bd93e556efad1a/node_modules/@tamagui/radio-group/dist/esm/index.mjs
 var RadioGroup = createRadioGroup({
   Frame: RadioGroupFrame,
   Indicator: RadioGroupIndicatorFrame,
   Item: RadioGroupItemFrame
 });
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/Select.mjs
-var import_core40 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/Select.mjs
+var import_core38 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+separator@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+co_2ec69c3b64c14b7623fdaddcc17c6247/node_modules/@tamagui/separator/dist/esm/Separator.mjs
-var import_core34 = require("@tamagui/core");
-var Separator = (0, import_core34.styled)(import_core34.Stack, {
+// ../../node_modules/.pnpm/@tamagui+separator@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+c_828452c68f9664ca8124dbde703948e6/node_modules/@tamagui/separator/dist/esm/Separator.mjs
+var import_core32 = require("@tamagui/core");
+var Separator = (0, import_core32.styled)(import_core32.Stack, {
   name: "Separator",
   borderColor: "$borderColor",
   flexShrink: 0,
@@ -36385,7 +36303,7 @@ var Separator = (0, import_core34.styled)(import_core34.Stack, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+use-debounce@1.126.8_react@19.0.0/node_modules/@tamagui/use-debounce/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-debounce@1.126.13_react@19.0.0/node_modules/@tamagui/use-debounce/dist/esm/index.mjs
 var React57 = __toESM(require("react"), 1);
 function debounce(func, wait, leading) {
   let timeout, isCancelled = false;
@@ -36425,15 +36343,15 @@ function useDebounceValue(val, amt = 0) {
 }
 __name(useDebounceValue, "useDebounceValue");
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/Select.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/Select.mjs
 var React64 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/constants.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/constants.mjs
 var SELECT_NAME = "Select";
 var SCROLL_ARROW_THRESHOLD = 8;
 var VIEWPORT_NAME = "SelectViewport";
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/context.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/context.mjs
 var import_jsx_runtime44 = require("react/jsx-runtime");
 var [createSelectContext, createSelectScope] = createContextScope(SELECT_NAME);
 var [SelectProvider, useSelectContext] = createSelectContext(SELECT_NAME);
@@ -36455,17 +36373,17 @@ var ForwardSelectContext = /* @__PURE__ */ __name(({
   })
 }), "ForwardSelectContext");
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectContent.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectContent.mjs
 var import_react42 = __toESM(require("react"), 1);
-var import_core35 = require("@tamagui/core");
+var import_core33 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/useSelectBreakpointActive.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/useSelectBreakpointActive.mjs
 var useShowSelectSheet = /* @__PURE__ */ __name((context2) => {
   const breakpointActive = useAdaptIsActive();
   return context2.open === false ? false : breakpointActive;
 }, "useShowSelectSheet");
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectContent.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectContent.mjs
 var import_jsx_runtime45 = require("react/jsx-runtime");
 var CONTENT_NAME4 = "SelectContent";
 var SelectContent = /* @__PURE__ */ __name(({
@@ -36474,11 +36392,11 @@ var SelectContent = /* @__PURE__ */ __name(({
   zIndex = 1e3,
   ...focusScopeProps
 }) => {
-  const context2 = useSelectContext(CONTENT_NAME4, __scopeSelect), itemParentContext = useSelectItemParentContext(CONTENT_NAME4, __scopeSelect), themeName = (0, import_core35.useThemeName)(), showSheet = useShowSelectSheet(context2), contents = /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(import_core35.Theme, {
+  const context2 = useSelectContext(CONTENT_NAME4, __scopeSelect), itemParentContext = useSelectItemParentContext(CONTENT_NAME4, __scopeSelect), themeName = (0, import_core33.useThemeName)(), showSheet = useShowSelectSheet(context2), contents = /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(import_core33.Theme, {
     forceClassName: true,
     name: themeName,
     children
-  }), touch = (0, import_core35.useIsTouchDevice)(), overlayStyle = import_react42.default.useMemo(() => ({
+  }), touch = (0, import_core33.useIsTouchDevice)(), overlayStyle = import_react42.default.useMemo(() => ({
     zIndex,
     pointerEvents: context2.open ? "auto" : "none"
   }), [context2.open]);
@@ -36501,8 +36419,8 @@ var SelectContent = /* @__PURE__ */ __name(({
   });
 }, "SelectContent");
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectImpl.mjs
-var import_core36 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectImpl.mjs
+var import_core34 = require("@tamagui/core");
 var React59 = __toESM(require("react"), 1);
 var import_react_dom5 = require("react-dom");
 var import_jsx_runtime46 = require("react/jsx-runtime");
@@ -36521,7 +36439,7 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
   } = selectContext, {
     setOpen,
     setSelectedIndex
-  } = selectItemParentContext, [scrollTop, setScrollTop] = React59.useState(0), touch = (0, import_core36.useIsTouchDevice)(), listItemsRef = React59.useRef([]), overflowRef = React59.useRef(null), upArrowRef = React59.useRef(null), downArrowRef = React59.useRef(null), allowSelectRef = React59.useRef(false), allowMouseUpRef = React59.useRef(true), selectTimeoutRef = React59.useRef(), state = React59.useRef({
+  } = selectItemParentContext, [scrollTop, setScrollTop] = React59.useState(0), touch = (0, import_core34.useIsTouchDevice)(), listItemsRef = React59.useRef([]), overflowRef = React59.useRef(null), upArrowRef = React59.useRef(null), downArrowRef = React59.useRef(null), allowSelectRef = React59.useRef(false), allowMouseUpRef = React59.useRef(true), selectTimeoutRef = React59.useRef(), state = React59.useRef({
     isMouseOutside: false,
     isTyping: false
   }), [controlledScrolling, setControlledScrolling] = React59.useState(false), [fallback, setFallback] = React59.useState(false), [innerOffset, setInnerOffset] = React59.useState(0), [blockSelection, setBlockSelection] = React59.useState(false), floatingStyle = React59.useRef({});
@@ -36577,7 +36495,7 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
     })]
   }), floatingRef = refs.floating, showUpArrow = open && scrollTop > SCROLL_ARROW_THRESHOLD, showDownArrow = open && floatingRef.current && scrollTop < floatingRef.current.scrollHeight - floatingRef.current.clientHeight - SCROLL_ARROW_THRESHOLD, isScrollable = showDownArrow || showUpArrow;
   useIsomorphicLayoutEffect(() => (window.addEventListener("resize", update), open && update(), () => window.removeEventListener("resize", update)), [update, open]);
-  const onMatch = (0, import_core36.useEvent)((index3) => (open ? setActiveIndex : setSelectedIndex)(index3)), interactionsProps = [useClick(context2, {
+  const onMatch = (0, import_core34.useEvent)((index3) => (open ? setActiveIndex : setSelectedIndex)(index3)), interactionsProps = [useClick(context2, {
     event: "mousedown",
     keyboardHandlers: false
   }), useDismiss(context2, {
@@ -36711,7 +36629,7 @@ var SelectInlineImpl = /* @__PURE__ */ __name((props) => {
   });
 }, "SelectInlineImpl");
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectItem.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectItem.mjs
 var React60 = __toESM(require("react"), 1);
 var import_jsx_runtime47 = require("react/jsx-runtime");
 var ITEM_NAME3 = "SelectItem";
@@ -36825,12 +36743,12 @@ var SelectItem = ListItemFrame.styleable(function(props, forwardedRef) {
   disableTheme: true
 });
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectItemText.mjs
-var import_core37 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectItemText.mjs
+var import_core35 = require("@tamagui/core");
 var React61 = __toESM(require("react"), 1);
 var import_jsx_runtime48 = require("react/jsx-runtime");
 var ITEM_TEXT_NAME = "SelectItemText";
-var SelectItemTextFrame = (0, import_core37.styled)(SizableText, {
+var SelectItemTextFrame = (0, import_core35.styled)(SizableText, {
   name: ITEM_TEXT_NAME,
   variants: {
     unstyled: {
@@ -36868,7 +36786,7 @@ var SelectItemText = SelectItemTextFrame.styleable(function(props, forwardedRef)
   });
 });
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectScrollButton.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectScrollButton.mjs
 var React62 = __toESM(require("react"), 1);
 var import_react_dom6 = require("react-dom");
 var import_jsx_runtime49 = require("react/jsx-runtime");
@@ -36956,12 +36874,12 @@ var SelectScrollButtonImpl = React62.memo(React62.forwardRef((props, forwardedRe
   });
 }));
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectTrigger.mjs
-var import_core38 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectTrigger.mjs
+var import_core36 = require("@tamagui/core");
 var React63 = __toESM(require("react"), 1);
 var import_jsx_runtime50 = require("react/jsx-runtime");
 var TRIGGER_NAME5 = "SelectTrigger";
-var isPointerCoarse = import_core38.isWeb && import_core38.isClient ? window.matchMedia("(pointer:coarse)").matches : true;
+var isPointerCoarse = import_core36.isWeb && import_core36.isClient ? window.matchMedia("(pointer:coarse)").matches : true;
 var SelectTrigger = React63.forwardRef(function(props, forwardedRef) {
   const {
     __scopeSelect,
@@ -37015,10 +36933,10 @@ var SelectTrigger = React63.forwardRef(function(props, forwardedRef) {
   });
 });
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/SelectViewport.mjs
-var import_core39 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/SelectViewport.mjs
+var import_core37 = require("@tamagui/core");
 var import_jsx_runtime51 = require("react/jsx-runtime");
-var SelectViewportFrame = (0, import_core39.styled)(ThemeableStack, {
+var SelectViewportFrame = (0, import_core37.styled)(ThemeableStack, {
   name: VIEWPORT_NAME,
   variants: {
     unstyled: {
@@ -37112,10 +37030,10 @@ var selectViewportCSS = `
 }
 `;
 
-// ../../node_modules/.pnpm/@tamagui+select@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native_3a5d819cb6841b9c00144f5a61674184/node_modules/@tamagui/select/dist/esm/Select.mjs
+// ../../node_modules/.pnpm/@tamagui+select@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_3a66bc2dea0a2c2cefe518a8f079cb8c/node_modules/@tamagui/select/dist/esm/Select.mjs
 var import_jsx_runtime52 = require("react/jsx-runtime");
 var VALUE_NAME = "SelectValue";
-var SelectValueFrame = (0, import_core40.styled)(SizableText, {
+var SelectValueFrame = (0, import_core38.styled)(SizableText, {
   name: VALUE_NAME,
   userSelect: "none"
 });
@@ -37149,7 +37067,7 @@ function unwrapSelectItem(selectValueChildren) {
   });
 }
 __name(unwrapSelectItem, "unwrapSelectItem");
-var SelectIcon = (0, import_core40.styled)(XStack, {
+var SelectIcon = (0, import_core38.styled)(XStack, {
   name: "SelectIcon",
   // @ts-ignore
   "aria-hidden": true,
@@ -37158,7 +37076,7 @@ var SelectIcon = (0, import_core40.styled)(XStack, {
   })
 });
 var ITEM_INDICATOR_NAME = "SelectItemIndicator";
-var SelectItemIndicatorFrame = (0, import_core40.styled)(XStack, {
+var SelectItemIndicatorFrame = (0, import_core38.styled)(XStack, {
   name: ITEM_TEXT_NAME
 });
 var SelectItemIndicator = React64.forwardRef((props, forwardedRef) => {
@@ -37175,11 +37093,11 @@ var SelectItemIndicator = React64.forwardRef((props, forwardedRef) => {
 SelectItemIndicator.displayName = ITEM_INDICATOR_NAME;
 var GROUP_NAME3 = "SelectGroup";
 var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME3);
-var SelectGroupFrame = (0, import_core40.styled)(YStack, {
+var SelectGroupFrame = (0, import_core38.styled)(YStack, {
   name: GROUP_NAME3,
   width: "100%"
 });
-var NativeSelectTextFrame = (0, import_core40.styled)(SizableText, {
+var NativeSelectTextFrame = (0, import_core38.styled)(SizableText, {
   tag: "select",
   backgroundColor: "$background",
   borderColor: "$borderColor",
@@ -37187,7 +37105,7 @@ var NativeSelectTextFrame = (0, import_core40.styled)(SizableText, {
     backgroundColor: "$backgroundHover"
   }
 });
-var NativeSelectFrame = (0, import_core40.styled)(ThemeableStack, {
+var NativeSelectFrame = (0, import_core38.styled)(ThemeableStack, {
   name: "NativeSelect",
   bordered: true,
   userSelect: "none",
@@ -37198,7 +37116,7 @@ var NativeSelectFrame = (0, import_core40.styled)(ThemeableStack, {
       "...size": /* @__PURE__ */ __name((val, extras) => {
         const {
           tokens
-        } = extras, paddingHorizontal = (0, import_core40.getVariableValue)(tokens.space[val]);
+        } = extras, paddingHorizontal = (0, import_core38.getVariableValue)(tokens.space[val]);
         return {
           borderRadius: tokens.radius[val] ?? val,
           minHeight: tokens.size[val],
@@ -37267,11 +37185,11 @@ var SelectLabel = React64.forwardRef((props, forwardedRef) => {
   });
 });
 SelectLabel.displayName = LABEL_NAME;
-var SelectSeparator = (0, import_core40.styled)(Separator, {
+var SelectSeparator = (0, import_core38.styled)(Separator, {
   name: "SelectSeparator"
 });
 var SelectSheetController = /* @__PURE__ */ __name((props) => {
-  const context2 = useSelectContext("SelectSheetController", props.__scopeSelect), showSheet = useShowSelectSheet(context2), isAdapted = useAdaptIsActive(), getShowSheet = (0, import_core40.useGet)(showSheet);
+  const context2 = useSelectContext("SelectSheetController", props.__scopeSelect), showSheet = useShowSelectSheet(context2), isAdapted = useAdaptIsActive(), getShowSheet = (0, import_core38.useGet)(showSheet);
   return /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(SheetController, {
     onOpenChange: /* @__PURE__ */ __name((val) => {
       getShowSheet() && props.onOpenChange(val);
@@ -37370,7 +37288,7 @@ function SelectInner(props) {
     onChange: React64.useCallback((val) => {
       setValue(val), emitValue(val);
     }, []),
-    onActiveChange: (0, import_core40.useEvent)((...args) => {
+    onActiveChange: (0, import_core38.useEvent)((...args) => {
       onActiveChange?.(...args);
     }),
     setSelectedIndex,
@@ -37414,14 +37332,14 @@ function SelectInner(props) {
 }
 __name(SelectInner, "SelectInner");
 
-// ../../node_modules/.pnpm/@tamagui+slider@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_1931fdb1eccd76665eac8bc7bd860e3a/node_modules/@tamagui/slider/dist/esm/Slider.mjs
-var import_core43 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+slider@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_539b4216fd5a24df36e2d31912915f52/node_modules/@tamagui/slider/dist/esm/Slider.mjs
+var import_core41 = require("@tamagui/core");
 var React66 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+slider@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_1931fdb1eccd76665eac8bc7bd860e3a/node_modules/@tamagui/slider/dist/esm/constants.mjs
-var import_core41 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+slider@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_539b4216fd5a24df36e2d31912915f52/node_modules/@tamagui/slider/dist/esm/constants.mjs
+var import_core39 = require("@tamagui/core");
 var SLIDER_NAME = "Slider";
-var SliderContext = (0, import_core41.createStyledContext)({
+var SliderContext = (0, import_core39.createStyledContext)({
   size: "$true",
   min: 0,
   max: 100,
@@ -37434,7 +37352,7 @@ var {
 var {
   Provider: SliderOrientationProvider,
   useStyledContext: useSliderOrientationContext
-} = (0, import_core41.createStyledContext)({
+} = (0, import_core39.createStyledContext)({
   startEdge: "left",
   endEdge: "right",
   sizeProp: "width",
@@ -37448,7 +37366,7 @@ var BACK_KEYS = {
   rtl: ["ArrowDown", "Home", "ArrowRight", "PageDown"]
 };
 
-// ../../node_modules/.pnpm/@tamagui+slider@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_1931fdb1eccd76665eac8bc7bd860e3a/node_modules/@tamagui/slider/dist/esm/helpers.mjs
+// ../../node_modules/.pnpm/@tamagui+slider@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_539b4216fd5a24df36e2d31912915f52/node_modules/@tamagui/slider/dist/esm/helpers.mjs
 function getNextSortedValues(prevValues = [], nextValue, atIndex) {
   const nextValues = [...prevValues];
   return nextValues[atIndex] = nextValue, nextValues.sort((a, b) => a - b);
@@ -37504,11 +37422,11 @@ function roundValue(value, decimalCount) {
 }
 __name(roundValue, "roundValue");
 
-// ../../node_modules/.pnpm/@tamagui+slider@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_1931fdb1eccd76665eac8bc7bd860e3a/node_modules/@tamagui/slider/dist/esm/SliderImpl.mjs
-var import_core42 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+slider@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_539b4216fd5a24df36e2d31912915f52/node_modules/@tamagui/slider/dist/esm/SliderImpl.mjs
+var import_core40 = require("@tamagui/core");
 var React65 = __toESM(require("react"), 1);
 var import_jsx_runtime53 = require("react/jsx-runtime");
-var SliderFrame = (0, import_core42.styled)(YStack, {
+var SliderFrame = (0, import_core40.styled)(YStack, {
   position: "relative",
   variants: {
     orientation: {
@@ -37517,7 +37435,7 @@ var SliderFrame = (0, import_core42.styled)(YStack, {
     },
     size: /* @__PURE__ */ __name((val, extras) => {
       if (!val) return;
-      const orientation = extras.props.orientation, size4 = Math.round((0, import_core42.getVariableValue)(getSize(val)) / 6);
+      const orientation = extras.props.orientation, size4 = Math.round((0, import_core40.getVariableValue)(getSize(val)) / 6);
       return orientation === "horizontal" ? {
         height: size4,
         borderRadius: size4,
@@ -37570,7 +37488,7 @@ var SliderImpl = React65.forwardRef((props, forwardedRef) => {
   });
 });
 
-// ../../node_modules/.pnpm/@tamagui+slider@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_1931fdb1eccd76665eac8bc7bd860e3a/node_modules/@tamagui/slider/dist/esm/Slider.mjs
+// ../../node_modules/.pnpm/@tamagui+slider@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_539b4216fd5a24df36e2d31912915f52/node_modules/@tamagui/slider/dist/esm/Slider.mjs
 var import_jsx_runtime54 = require("react/jsx-runtime");
 var activeSliderMeasureListeners = /* @__PURE__ */ new Set();
 isWeb && isClient && (process.env.TAMAGUI_DISABLE_SLIDER_INTERVAL || setInterval?.(
@@ -37593,7 +37511,7 @@ var SliderHorizontal = React66.forwardRef((props, forwardedRef) => {
   } = props, direction = useDirection(dir), isDirectionLTR = direction === "ltr", sliderRef = React66.useRef(null), [state, setState_] = React66.useState(() => ({
     size: 0,
     offset: 0
-  })), setState = (0, import_core43.createShallowSetState)(setState_);
+  })), setState = (0, import_core41.createShallowSetState)(setState_);
   function getValueFromPointer(pointerPosition) {
     const input = [0, state.size];
     return linearScale(input, isDirectionLTR ? [min2, max2] : [max2, min2])(pointerPosition);
@@ -37685,7 +37603,7 @@ var SliderVertical = React66.forwardRef((props, forwardedRef) => {
   } = props, [state, setState_] = React66.useState(() => ({
     size: 0,
     offset: 0
-  })), setState = (0, import_core43.createShallowSetState)(setState_), sliderRef = React66.useRef(null);
+  })), setState = (0, import_core41.createShallowSetState)(setState_), sliderRef = React66.useRef(null);
   function getValueFromPointer(pointerPosition) {
     const input = [0, state.size];
     return linearScale(input, [max2, min2])(pointerPosition);
@@ -37734,7 +37652,7 @@ var SliderVertical = React66.forwardRef((props, forwardedRef) => {
   });
 });
 var TRACK_NAME = "SliderTrack";
-var SliderTrackFrame = (0, import_core43.styled)(SliderFrame, {
+var SliderTrackFrame = (0, import_core41.styled)(SliderFrame, {
   name: "SliderTrack",
   variants: {
     unstyled: {
@@ -37768,7 +37686,7 @@ var SliderTrack = React66.forwardRef((props, forwardedRef) => {
 });
 SliderTrack.displayName = TRACK_NAME;
 var RANGE_NAME = "SliderTrackActive";
-var SliderTrackActiveFrame = (0, import_core43.styled)(SliderFrame, {
+var SliderTrackActiveFrame = (0, import_core41.styled)(SliderFrame, {
   name: "SliderTrackActive",
   backgroundColor: "$background",
   position: "absolute",
@@ -37799,7 +37717,7 @@ var SliderTrackActive = React66.forwardRef((props, forwardedRef) => {
 });
 SliderTrackActive.displayName = RANGE_NAME;
 var getThumbSize = /* @__PURE__ */ __name((val) => {
-  const tokens = (0, import_core43.getTokens)(), size4 = typeof val == "number" ? val : getSize(tokens.size[val], {
+  const tokens = (0, import_core41.getTokens)(), size4 = typeof val == "number" ? val : getSize(tokens.size[val], {
     shift: -1
   });
   return {
@@ -37809,7 +37727,7 @@ var getThumbSize = /* @__PURE__ */ __name((val) => {
     minHeight: size4
   };
 }, "getThumbSize");
-var SliderThumbFrame = (0, import_core43.styled)(ThemeableStack, {
+var SliderThumbFrame = (0, import_core41.styled)(ThemeableStack, {
   name: "SliderThumb",
   variants: {
     size: {
@@ -37838,7 +37756,7 @@ var SliderThumb = SliderThumbFrame.styleable(function(props, forwardedRef) {
     circular: circular2,
     size: sizeProp,
     ...thumbProps
-  } = props, context2 = useSliderContext(__scopeSlider), orientation = useSliderOrientationContext(__scopeSlider), [thumb, setThumb] = React66.useState(null), composedRefs = useComposedRefs(forwardedRef, setThumb), value = context2.values[index3], percent = value === void 0 ? 0 : convertValueToPercentage(value, context2.min, context2.max), label = getLabel(index3, context2.values.length), sizeIn = sizeProp ?? context2.size ?? "$true", [size4, setSize] = React66.useState(() => (0, import_core43.getVariableValue)(getThumbSize(sizeIn).width)), thumbInBoundsOffset = size4 ? getThumbInBoundsOffset(size4, percent, orientation.direction) : 0;
+  } = props, context2 = useSliderContext(__scopeSlider), orientation = useSliderOrientationContext(__scopeSlider), [thumb, setThumb] = React66.useState(null), composedRefs = useComposedRefs(forwardedRef, setThumb), value = context2.values[index3], percent = value === void 0 ? 0 : convertValueToPercentage(value, context2.min, context2.max), label = getLabel(index3, context2.values.length), sizeIn = sizeProp ?? context2.size ?? "$true", [size4, setSize] = React66.useState(() => (0, import_core41.getVariableValue)(getThumbSize(sizeIn).width)), thumbInBoundsOffset = size4 ? getThumbInBoundsOffset(size4, percent, orientation.direction) : 0;
   React66.useEffect(() => {
     if (thumb) return context2.thumbs.set(thumb, index3), () => {
       context2.thumbs.delete(thumb);
@@ -37998,10 +37916,10 @@ var Track = SliderTrack;
 var Range = SliderTrackActive;
 var Thumb = SliderThumb;
 
-// ../../node_modules/.pnpm/@tamagui+switch@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_102fe8110cb2be1ff46bbf1abaccd965/node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
-var import_core46 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+switch@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_ff69cabd841fb2a3d51ebec017105254/node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
+var import_core44 = require("@tamagui/core");
 
-// ../../node_modules/.pnpm/@tamagui+switch-headless@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@ba_c24d75a35fb9d8705fe34e4fdf9bb1a6/node_modules/@tamagui/switch-headless/dist/esm/useSwitch.mjs
+// ../../node_modules/.pnpm/@tamagui+switch-headless@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@b_00be9892a6e20b4413bd877798146bdd/node_modules/@tamagui/switch-headless/dist/esm/useSwitch.mjs
 var React67 = __toESM(require("react"), 1);
 var import_jsx_runtime55 = require("react/jsx-runtime");
 function getState7(checked) {
@@ -38084,20 +38002,20 @@ function useSwitch(props, [checked, setChecked], ref) {
 }
 __name(useSwitch, "useSwitch");
 
-// ../../node_modules/.pnpm/@tamagui+switch@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_102fe8110cb2be1ff46bbf1abaccd965/node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
+// ../../node_modules/.pnpm/@tamagui+switch@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_ff69cabd841fb2a3d51ebec017105254/node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
 var React68 = __toESM(require("react"), 1);
 var import_react_native_web8 = __toESM(require_cjs(), 1);
 
-// ../../node_modules/.pnpm/@tamagui+switch@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_102fe8110cb2be1ff46bbf1abaccd965/node_modules/@tamagui/switch/dist/esm/StyledContext.mjs
-var import_core44 = require("@tamagui/core");
-var SwitchStyledContext = (0, import_core44.createStyledContext)({
+// ../../node_modules/.pnpm/@tamagui+switch@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_ff69cabd841fb2a3d51ebec017105254/node_modules/@tamagui/switch/dist/esm/StyledContext.mjs
+var import_core42 = require("@tamagui/core");
+var SwitchStyledContext = (0, import_core42.createStyledContext)({
   size: void 0,
   unstyled: process.env.TAMAGUI_HEADLESS === "1"
 });
 
-// ../../node_modules/.pnpm/@tamagui+switch@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_102fe8110cb2be1ff46bbf1abaccd965/node_modules/@tamagui/switch/dist/esm/Switch.mjs
-var import_core45 = require("@tamagui/core");
-var SwitchThumb = (0, import_core45.styled)(ThemeableStack, {
+// ../../node_modules/.pnpm/@tamagui+switch@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_ff69cabd841fb2a3d51ebec017105254/node_modules/@tamagui/switch/dist/esm/Switch.mjs
+var import_core43 = require("@tamagui/core");
+var SwitchThumb = (0, import_core43.styled)(ThemeableStack, {
   name: "SwitchThumb",
   variants: {
     unstyled: {
@@ -38124,9 +38042,9 @@ var SwitchThumb = (0, import_core45.styled)(ThemeableStack, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var getSwitchHeight = /* @__PURE__ */ __name((val) => Math.round((0, import_core45.getVariableValue)(getSize(val)) * 0.65), "getSwitchHeight");
+var getSwitchHeight = /* @__PURE__ */ __name((val) => Math.round((0, import_core43.getVariableValue)(getSize(val)) * 0.65), "getSwitchHeight");
 var getSwitchWidth = /* @__PURE__ */ __name((val) => getSwitchHeight(val) * 2, "getSwitchWidth");
-var SwitchFrame = (0, import_core45.styled)(YStack, {
+var SwitchFrame = (0, import_core43.styled)(YStack, {
   name: "Switch",
   tag: "button",
   tabIndex: 0,
@@ -38163,7 +38081,7 @@ var SwitchFrame = (0, import_core45.styled)(YStack, {
   }
 });
 
-// ../../node_modules/.pnpm/@tamagui+switch@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_102fe8110cb2be1ff46bbf1abaccd965/node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
+// ../../node_modules/.pnpm/@tamagui+switch@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_ff69cabd841fb2a3d51ebec017105254/node_modules/@tamagui/switch/dist/esm/createSwitch.mjs
 var import_jsx_runtime56 = require("react/jsx-runtime");
 var SwitchContext = React68.createContext({
   checked: false,
@@ -38190,7 +38108,7 @@ function createSwitch(createProps) {
     } = context2, styledContext = SwitchStyledContext.useStyledContext(), {
       unstyled: unstyledContext,
       size: sizeContext
-    } = styledContext, unstyled = process.env.TAMAGUI_HEADLESS === "1" ? true : unstyledProp ?? unstyledContext ?? false, size4 = sizeProp ?? sizeContext ?? "$true", initialChecked = React68.useRef(checked).current, initialWidth = (0, import_core46.getVariableValue)(props.width, "size"), [thumbWidth, setThumbWidth] = React68.useState(typeof initialWidth == "number" ? initialWidth : 0), distance = frameWidth - thumbWidth, x = initialChecked ? checked ? 0 : -distance : checked ? distance : 0;
+    } = styledContext, unstyled = process.env.TAMAGUI_HEADLESS === "1" ? true : unstyledProp ?? unstyledContext ?? false, size4 = sizeProp ?? sizeContext ?? "$true", initialChecked = React68.useRef(checked).current, initialWidth = (0, import_core44.getVariableValue)(props.width, "size"), [thumbWidth, setThumbWidth] = React68.useState(typeof initialWidth == "number" ? initialWidth : 0), distance = frameWidth - thumbWidth, x = initialChecked ? checked ? 0 : -distance : checked ? distance : 0;
     return /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Thumb2, {
       ref: forwardedRef,
       unstyled,
@@ -38202,7 +38120,7 @@ function createSwitch(createProps) {
       },
       alignSelf: initialChecked ? "flex-end" : "flex-start",
       x,
-      onLayout: (0, import_core46.composeEventHandlers)(props.onLayout, (e) => {
+      onLayout: (0, import_core44.composeEventHandlers)(props.onLayout, (e) => {
         const next = e.nativeEvent.layout.width;
         next !== thumbWidth && setThumbWidth(next);
       }),
@@ -38225,10 +38143,10 @@ function createSwitch(createProps) {
       transition: true
     }), styledContext = React68.useContext(SwitchStyledContext.context);
     let estimatedInitialWidth = 0;
-    const estWidth = (0, import_core46.getVariableValue)((0, import_core46.getShorthandValue)(props, "width"), "size");
+    const estWidth = (0, import_core44.getVariableValue)((0, import_core44.getShorthandValue)(props, "width"), "size");
     if (estWidth) {
-      const estPad = (0, import_core46.getShorthandValue)(props, "paddingHorizontal") ?? (0, import_core46.getShorthandValue)(props, "padding") ?? 0, estLeftPad = (0, import_core46.getShorthandValue)(props, "paddingLeft") ?? estPad ?? 0, estRightPad = (0, import_core46.getShorthandValue)(props, "paddingRight") ?? estPad ?? 0;
-      estimatedInitialWidth = estWidth - (estLeftPad ? (0, import_core46.getVariableValue)(estLeftPad, "size") : 0) - (estRightPad ? (0, import_core46.getVariableValue)(estRightPad, "size") : 0);
+      const estPad = (0, import_core44.getShorthandValue)(props, "paddingHorizontal") ?? (0, import_core44.getShorthandValue)(props, "padding") ?? 0, estLeftPad = (0, import_core44.getShorthandValue)(props, "paddingLeft") ?? estPad ?? 0, estRightPad = (0, import_core44.getShorthandValue)(props, "paddingRight") ?? estPad ?? 0;
+      estimatedInitialWidth = estWidth - (estLeftPad ? (0, import_core44.getVariableValue)(estLeftPad, "size") : 0) - (estRightPad ? (0, import_core44.getVariableValue)(estRightPad, "size") : 0);
     }
     const [frameWidth, setFrameInnerWidth] = React68.useState(estimatedInitialWidth), {
       switchProps,
@@ -38239,7 +38157,7 @@ function createSwitch(createProps) {
       props,
       [checked, setChecked],
       forwardedRef
-    ), renderNative = (0, import_core46.shouldRenderNativePlatform)(native);
+    ), renderNative = (0, import_core44.shouldRenderNativePlatform)(native);
     if (renderNative === "android" || renderNative === "ios") return /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(import_react_native_web8.Switch, {
       value: checked,
       onValueChange: setChecked,
@@ -38258,7 +38176,7 @@ function createSwitch(createProps) {
       children: [/* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Frame2, {
         ref: switchRef,
         tag: "button",
-        ...import_core46.isWeb && {
+        ...import_core44.isWeb && {
           type: "button"
         },
         ...!unstyled && {
@@ -38282,7 +38200,7 @@ function createSwitch(createProps) {
   }, {
     disableTheme: true
   });
-  return (0, import_core46.withStaticProperties)(SwitchComponent, {
+  return (0, import_core44.withStaticProperties)(SwitchComponent, {
     Thumb: SwitchThumbComponent
   });
 }
@@ -38292,24 +38210,24 @@ var measureContainerStyle = {
   flex: 1
 };
 
-// ../../node_modules/.pnpm/@tamagui+switch@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@_102fe8110cb2be1ff46bbf1abaccd965/node_modules/@tamagui/switch/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+switch@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core_ff69cabd841fb2a3d51ebec017105254/node_modules/@tamagui/switch/dist/esm/index.mjs
 var Switch = createSwitch({
   Frame: SwitchFrame,
   Thumb: SwitchThumb
 });
 
-// ../../node_modules/.pnpm/@tamagui+tabs@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._a38463ae06059f055793ebdfd4e71967/node_modules/@tamagui/tabs/dist/esm/createTabs.mjs
+// ../../node_modules/.pnpm/@tamagui+tabs@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_e08c3dcbb5d527d7c207b057b6f204a5/node_modules/@tamagui/tabs/dist/esm/createTabs.mjs
 var import_web18 = require("@tamagui/core");
 var React69 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+tabs@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._a38463ae06059f055793ebdfd4e71967/node_modules/@tamagui/tabs/dist/esm/Tabs.mjs
-var import_core47 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+tabs@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_e08c3dcbb5d527d7c207b057b6f204a5/node_modules/@tamagui/tabs/dist/esm/Tabs.mjs
+var import_core45 = require("@tamagui/core");
 var TABS_NAME = "Tabs";
-var DefaultTabsFrame = (0, import_core47.styled)(SizableStack, {
+var DefaultTabsFrame = (0, import_core45.styled)(SizableStack, {
   name: TABS_NAME
 });
 var TRIGGER_NAME6 = "TabsTrigger";
-var DefaultTabsTabFrame = (0, import_core47.styled)(ThemeableStack, {
+var DefaultTabsTabFrame = (0, import_core45.styled)(ThemeableStack, {
   name: TRIGGER_NAME6,
   tag: "button",
   variants: {
@@ -38358,18 +38276,18 @@ var DefaultTabsTabFrame = (0, import_core47.styled)(ThemeableStack, {
   }
 });
 var CONTENT_NAME5 = "TabsContent";
-var DefaultTabsContentFrame = (0, import_core47.styled)(ThemeableStack, {
+var DefaultTabsContentFrame = (0, import_core45.styled)(ThemeableStack, {
   name: CONTENT_NAME5
 });
 
-// ../../node_modules/.pnpm/@tamagui+tabs@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._a38463ae06059f055793ebdfd4e71967/node_modules/@tamagui/tabs/dist/esm/StyledContext.mjs
-var import_core48 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+tabs@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_e08c3dcbb5d527d7c207b057b6f204a5/node_modules/@tamagui/tabs/dist/esm/StyledContext.mjs
+var import_core46 = require("@tamagui/core");
 var {
   Provider: TabsProvider,
   useStyledContext: useTabsContext
-} = (0, import_core48.createStyledContext)();
+} = (0, import_core46.createStyledContext)();
 
-// ../../node_modules/.pnpm/@tamagui+tabs@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._a38463ae06059f055793ebdfd4e71967/node_modules/@tamagui/tabs/dist/esm/createTabs.mjs
+// ../../node_modules/.pnpm/@tamagui+tabs@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_e08c3dcbb5d527d7c207b057b6f204a5/node_modules/@tamagui/tabs/dist/esm/createTabs.mjs
 var import_jsx_runtime57 = require("react/jsx-runtime");
 function createTabs(createProps) {
   const {
@@ -38562,14 +38480,14 @@ function makeContentId(baseId, value) {
 }
 __name(makeContentId, "makeContentId");
 
-// ../../node_modules/.pnpm/@tamagui+tabs@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7._a38463ae06059f055793ebdfd4e71967/node_modules/@tamagui/tabs/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+tabs@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel+core@7_e08c3dcbb5d527d7c207b057b6f204a5/node_modules/@tamagui/tabs/dist/esm/index.mjs
 var Tabs = createTabs({
   ContentFrame: DefaultTabsContentFrame,
   TabFrame: DefaultTabsTabFrame,
   TabsFrame: DefaultTabsFrame
 });
 
-// ../../node_modules/.pnpm/@tamagui+theme@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/_mutateTheme.mjs
+// ../../node_modules/.pnpm/@tamagui+theme@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/_mutateTheme.mjs
 var import_web19 = require("@tamagui/core");
 function mutateThemes({
   themes,
@@ -38674,7 +38592,7 @@ function updateStyle(id, rules) {
 }
 __name(updateStyle, "updateStyle");
 
-// ../../node_modules/.pnpm/@tamagui+theme@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/addTheme.mjs
+// ../../node_modules/.pnpm/@tamagui+theme@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/addTheme.mjs
 function addTheme(props) {
   return _mutateTheme({
     ...props,
@@ -38684,7 +38602,7 @@ function addTheme(props) {
 }
 __name(addTheme, "addTheme");
 
-// ../../node_modules/.pnpm/@tamagui+theme@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/updateTheme.mjs
+// ../../node_modules/.pnpm/@tamagui+theme@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/updateTheme.mjs
 function updateTheme({
   name,
   theme
@@ -38698,7 +38616,7 @@ function updateTheme({
 }
 __name(updateTheme, "updateTheme");
 
-// ../../node_modules/.pnpm/@tamagui+theme@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/replaceTheme.mjs
+// ../../node_modules/.pnpm/@tamagui+theme@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/theme/dist/esm/replaceTheme.mjs
 function replaceTheme({
   name,
   theme
@@ -38712,11 +38630,11 @@ function replaceTheme({
 }
 __name(replaceTheme, "replaceTheme");
 
-// ../../node_modules/.pnpm/@tamagui+toggle-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_1e1d75e58eeef9c5423498083777763a/node_modules/@tamagui/toggle-group/dist/esm/ToggleGroup.mjs
+// ../../node_modules/.pnpm/@tamagui+toggle-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babe_6c1752026ee9acb373243efd66ab4da7/node_modules/@tamagui/toggle-group/dist/esm/ToggleGroup.mjs
 var import_web21 = require("@tamagui/core");
 var import_react47 = __toESM(require("react"), 1);
 
-// ../../node_modules/.pnpm/@tamagui+toggle-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_1e1d75e58eeef9c5423498083777763a/node_modules/@tamagui/toggle-group/dist/esm/Toggle.mjs
+// ../../node_modules/.pnpm/@tamagui+toggle-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babe_6c1752026ee9acb373243efd66ab4da7/node_modules/@tamagui/toggle-group/dist/esm/Toggle.mjs
 var import_web20 = require("@tamagui/core");
 var React70 = __toESM(require("react"), 1);
 var import_jsx_runtime58 = require("react/jsx-runtime");
@@ -38813,7 +38731,7 @@ var Toggle = React70.forwardRef(function(props, forwardedRef) {
   });
 });
 
-// ../../node_modules/.pnpm/@tamagui+toggle-group@1.126.8_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babel_1e1d75e58eeef9c5423498083777763a/node_modules/@tamagui/toggle-group/dist/esm/ToggleGroup.mjs
+// ../../node_modules/.pnpm/@tamagui+toggle-group@1.126.13_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_@babe_6c1752026ee9acb373243efd66ab4da7/node_modules/@tamagui/toggle-group/dist/esm/ToggleGroup.mjs
 var import_jsx_runtime59 = require("react/jsx-runtime");
 var TOGGLE_GROUP_NAME = "ToggleGroup";
 var TOGGLE_GROUP_ITEM_NAME = "ToggleGroupItem";
@@ -39038,8 +38956,8 @@ var ToggleGroupImpl = ToggleGroupImplElementFrame.extractable(import_react47.def
   });
 }));
 
-// ../../node_modules/.pnpm/@tamagui+tooltip@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_bc90d914b5c95e537f56eab038641b50/node_modules/@tamagui/tooltip/dist/esm/Tooltip.mjs
-var import_core49 = require("@tamagui/core");
+// ../../node_modules/.pnpm/@tamagui+tooltip@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nati_c3ec71c9062cd224d4a3b6a6c27cbae6/node_modules/@tamagui/tooltip/dist/esm/Tooltip.mjs
+var import_core47 = require("@tamagui/core");
 var React72 = __toESM(require("react"), 1);
 var import_jsx_runtime60 = require("react/jsx-runtime");
 var TOOLTIP_SCOPE = "tooltip";
@@ -39114,7 +39032,7 @@ var TooltipComponent = React72.forwardRef(function(props, ref) {
     prop: openProp,
     defaultProp: false,
     onChange: onOpenChangeProp
-  }), id = props.groupId, onOpenChange = (0, import_core49.useEvent)((open2) => {
+  }), id = props.groupId, onOpenChange = (0, import_core47.useEvent)((open2) => {
     open2 && setCurrentId(id), setOpen(open2);
   });
   React72.useEffect(() => {
@@ -39211,7 +39129,7 @@ var Tooltip2 = withStaticProperties(TooltipComponent, {
 var voidFn = /* @__PURE__ */ __name(() => {
 }, "voidFn");
 
-// ../../node_modules/.pnpm/@tamagui+tooltip@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nativ_bc90d914b5c95e537f56eab038641b50/node_modules/@tamagui/tooltip/dist/esm/TooltipSimple.mjs
+// ../../node_modules/.pnpm/@tamagui+tooltip@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-nati_c3ec71c9062cd224d4a3b6a6c27cbae6/node_modules/@tamagui/tooltip/dist/esm/TooltipSimple.mjs
 var React73 = __toESM(require("react"), 1);
 var import_jsx_runtime61 = require("react/jsx-runtime");
 var TooltipSimple = React73.forwardRef(({
@@ -39277,7 +39195,7 @@ var TooltipSimple = React73.forwardRef(({
   }) : children;
 });
 
-// ../../node_modules/.pnpm/@tamagui+use-window-dimensions@1.126.8_react@19.0.0/node_modules/@tamagui/use-window-dimensions/dist/esm/index.mjs
+// ../../node_modules/.pnpm/@tamagui+use-window-dimensions@1.126.13_react@19.0.0/node_modules/@tamagui/use-window-dimensions/dist/esm/index.mjs
 var import_react49 = __toESM(require("react"), 1);
 var import_react_native_web9 = __toESM(require_cjs(), 1);
 var initialValue = {
@@ -39303,7 +39221,7 @@ function useWindowDimensions({
 }
 __name(useWindowDimensions, "useWindowDimensions");
 
-// ../../node_modules/.pnpm/@tamagui+visually-hidden@1.126.8_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/visually-hidden/dist/esm/VisuallyHidden.mjs
+// ../../node_modules/.pnpm/@tamagui+visually-hidden@1.126.13_react-dom@19.0.0_react@19.0.0__react@19.0.0/node_modules/@tamagui/visually-hidden/dist/esm/VisuallyHidden.mjs
 var import_web22 = require("@tamagui/core");
 var VisuallyHidden = (0, import_web22.styled)(import_web22.Text, {
   position: "absolute",
@@ -39338,10 +39256,10 @@ var VisuallyHidden = (0, import_web22.styled)(import_web22.Text, {
 });
 VisuallyHidden.isVisuallyHidden = true;
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/createTamagui.mjs
-var import_core50 = require("@tamagui/core");
-var createTamagui = process.env.NODE_ENV !== "development" ? import_core50.createTamagui : (conf) => {
-  const sizeTokenKeys = ["$true"], hasKeys = /* @__PURE__ */ __name((expectedKeys, obj) => expectedKeys.every((k) => typeof obj[k] < "u"), "hasKeys"), tamaguiConfig = (0, import_core50.createTamagui)(conf);
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/createTamagui.mjs
+var import_core48 = require("@tamagui/core");
+var createTamagui = process.env.NODE_ENV !== "development" ? import_core48.createTamagui : (conf) => {
+  const sizeTokenKeys = ["$true"], hasKeys = /* @__PURE__ */ __name((expectedKeys, obj) => expectedKeys.every((k) => typeof obj[k] < "u"), "hasKeys"), tamaguiConfig = (0, import_core48.createTamagui)(conf);
   for (const name of ["size", "space"]) {
     const tokenSet = tamaguiConfig.tokensParsed[name];
     if (!tokenSet) throw new Error(`Expected tokens for "${name}" in ${Object.keys(tamaguiConfig.tokensParsed).join(", ")}`);
@@ -39381,13 +39299,13 @@ Expected a subset of: ${expected.join(", ")}
   return tamaguiConfig;
 };
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/TamaguiProvider.mjs
-var import_core51 = require("@tamagui/core");
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/TamaguiProvider.mjs
+var import_core49 = require("@tamagui/core");
 var import_jsx_runtime62 = require("react/jsx-runtime");
 var TamaguiProvider = /* @__PURE__ */ __name(({
   children,
   ...props
-}) => /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(import_core51.TamaguiProvider, {
+}) => /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(import_core49.TamaguiProvider, {
   ...props,
   children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(ZIndexStackContext.Provider, {
     value: 1,
@@ -39398,11 +39316,11 @@ var TamaguiProvider = /* @__PURE__ */ __name(({
   })
 }), "TamaguiProvider");
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/Anchor.mjs
-var import_core52 = require("@tamagui/core");
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/Anchor.mjs
+var import_core50 = require("@tamagui/core");
 var import_react_native_web10 = __toESM(require_cjs(), 1);
 var import_jsx_runtime63 = require("react/jsx-runtime");
-var AnchorFrame = (0, import_core52.styled)(SizableText, {
+var AnchorFrame = (0, import_core50.styled)(SizableText, {
   name: "Anchor",
   tag: "a",
   accessibilityRole: "link"
@@ -39424,9 +39342,9 @@ var Anchor = AnchorFrame.styleable(({
   ref
 }));
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/EnsureFlexed.mjs
-var import_core53 = require("@tamagui/core");
-var EnsureFlexed = (0, import_core53.styled)(import_core53.Text, {
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/EnsureFlexed.mjs
+var import_core51 = require("@tamagui/core");
+var EnsureFlexed = (0, import_core51.styled)(import_core51.Text, {
   opacity: 0,
   lineHeight: 0,
   height: 0,
@@ -39437,9 +39355,9 @@ var EnsureFlexed = (0, import_core53.styled)(import_core53.Text, {
 });
 EnsureFlexed.isVisuallyHidden = true;
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/Fieldset.mjs
-var import_core54 = require("@tamagui/core");
-var Fieldset = (0, import_core54.styled)(YStack, {
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/Fieldset.mjs
+var import_core52 = require("@tamagui/core");
+var Fieldset = (0, import_core52.styled)(YStack, {
   name: "Fieldset",
   tag: "fieldset",
   variants: {
@@ -39452,20 +39370,20 @@ var Fieldset = (0, import_core54.styled)(YStack, {
   }
 });
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/Input.mjs
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/Input.mjs
 var import_react50 = __toESM(require("react"), 1);
-var import_core56 = require("@tamagui/core");
+var import_core54 = require("@tamagui/core");
 var import_react_native_web11 = __toESM(require_cjs(), 1);
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/helpers/inputHelpers.mjs
-var import_core55 = require("@tamagui/core");
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/helpers/inputHelpers.mjs
+var import_core53 = require("@tamagui/core");
 var inputSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
   if (extras.props.multiline || extras.props.numberOfLines > 1) return textAreaSizeVariant(val, extras);
   const buttonStyles = getButtonSized(val, extras), paddingHorizontal = getSpace(val, {
     shift: -1,
     bounds: [2]
   }), fontStyle = getFontSized(val, extras);
-  return !import_core55.isWeb && fontStyle && delete fontStyle.lineHeight, {
+  return !import_core53.isWeb && fontStyle && delete fontStyle.lineHeight, {
     ...fontStyle,
     ...buttonStyles,
     paddingHorizontal
@@ -39474,7 +39392,7 @@ var inputSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
 var textAreaSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
   const {
     props
-  } = extras, buttonStyles = getButtonSized(val, extras), fontStyle = getFontSized(val, extras), lines = props.rows ?? props.numberOfLines, height = typeof lines == "number" ? lines * (0, import_core55.getVariableValue)(fontStyle.lineHeight) : "auto", paddingVertical = getSpace(val, {
+  } = extras, buttonStyles = getButtonSized(val, extras), fontStyle = getFontSized(val, extras), lines = props.rows ?? props.numberOfLines, height = typeof lines == "number" ? lines * (0, import_core53.getVariableValue)(fontStyle.lineHeight) : "auto", paddingVertical = getSpace(val, {
     shift: -2,
     bounds: [2]
   }), paddingHorizontal = getSpace(val, {
@@ -39490,7 +39408,7 @@ var textAreaSizeVariant = /* @__PURE__ */ __name((val = "$true", extras) => {
   };
 }, "textAreaSizeVariant");
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/Input.mjs
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/Input.mjs
 var import_jsx_runtime64 = require("react/jsx-runtime");
 var defaultStyles = {
   size: "$true",
@@ -39519,7 +39437,7 @@ var defaultStyles = {
     outlineStyle: "solid"
   }
 };
-var InputFrame = (0, import_core56.styled)(import_react_native_web11.TextInput, {
+var InputFrame = (0, import_core54.styled)(import_react_native_web11.TextInput, {
   name: "Input",
   variants: {
     unstyled: {
@@ -39543,13 +39461,13 @@ var InputFrame = (0, import_core56.styled)(import_react_native_web11.TextInput, 
   }
 });
 var Input = InputFrame.styleable((propsIn, forwardedRef) => {
-  const ref = import_react50.default.useRef(null), composedRefs = (0, import_core56.useComposedRefs)(forwardedRef, ref), props = useInputProps(propsIn, composedRefs);
+  const ref = import_react50.default.useRef(null), composedRefs = (0, import_core54.useComposedRefs)(forwardedRef, ref), props = useInputProps(propsIn, composedRefs);
   return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(InputFrame, {
     ...props
   });
 });
 function useInputProps(props, ref) {
-  const theme = (0, import_core56.useTheme)(), focusableProps = useFocusable({
+  const theme = (0, import_core54.useTheme)(), focusableProps = useFocusable({
     props,
     ref,
     isInput: true
@@ -39567,19 +39485,19 @@ function useInputProps(props, ref) {
 }
 __name(useInputProps, "useInputProps");
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/Spinner.mjs
-var import_core57 = require("@tamagui/core");
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/Spinner.mjs
+var import_core55 = require("@tamagui/core");
 var React76 = __toESM(require("react"), 1);
 var import_react_native_web12 = __toESM(require_cjs(), 1);
 var import_jsx_runtime65 = require("react/jsx-runtime");
-var Spinner = YStack.extractable((0, import_core57.themeable)(React76.forwardRef((props, ref) => {
+var Spinner = YStack.extractable((0, import_core55.themeable)(React76.forwardRef((props, ref) => {
   const {
     size: size4,
     color: colorProp,
     ...stackProps
-  } = props, theme = (0, import_core57.useTheme)();
+  } = props, theme = (0, import_core55.useTheme)();
   let color = colorProp;
-  return color && color[0] === "$" && (color = (0, import_core57.variableToString)(theme[color])), /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(YStack, {
+  return color && color[0] === "$" && (color = (0, import_core55.variableToString)(theme[color])), /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(YStack, {
     ref,
     ...stackProps,
     children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(import_react_native_web12.ActivityIndicator, {
@@ -39591,11 +39509,11 @@ var Spinner = YStack.extractable((0, import_core57.themeable)(React76.forwardRef
   componentName: "Spinner"
 }));
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/TextArea.mjs
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/TextArea.mjs
 var import_react51 = __toESM(require("react"), 1);
-var import_core58 = require("@tamagui/core");
+var import_core56 = require("@tamagui/core");
 var import_jsx_runtime66 = require("react/jsx-runtime");
-var TextAreaFrame = (0, import_core58.styled)(InputFrame, {
+var TextAreaFrame = (0, import_core56.styled)(InputFrame, {
   name: "TextArea",
   multiline: true,
   // this attribute fixes firefox newline issue
@@ -39616,7 +39534,7 @@ var TextAreaFrame = (0, import_core58.styled)(InputFrame, {
   }
 });
 var TextArea = TextAreaFrame.styleable((propsIn, forwardedRef) => {
-  const ref = import_react51.default.useRef(null), composedRefs = (0, import_core58.useComposedRefs)(forwardedRef, ref), props = useInputProps(propsIn, composedRefs), linesProp = {
+  const ref = import_react51.default.useRef(null), composedRefs = (0, import_core56.useComposedRefs)(forwardedRef, ref), props = useInputProps(propsIn, composedRefs), linesProp = {
     // web uses rows now, but native not caught up :/
     [isWeb ? "rows" : "numberOfLines"]: propsIn.unstyled ? void 0 : 4
   };
@@ -39626,9 +39544,9 @@ var TextArea = TextAreaFrame.styleable((propsIn, forwardedRef) => {
   });
 });
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/views/Text.mjs
-var import_core59 = require("@tamagui/core");
-var Text4 = (0, import_core59.styled)(import_core59.Text, {
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/views/Text.mjs
+var import_core57 = require("@tamagui/core");
+var Text4 = (0, import_core57.styled)(import_core57.Text, {
   variants: {
     unstyled: {
       false: {
@@ -39641,8 +39559,8 @@ var Text4 = (0, import_core59.styled)(import_core59.Text, {
   }
 });
 
-// ../../node_modules/.pnpm/tamagui@1.126.8_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2__9cefaa6cde4687b9cc63874c6e3fc7e1/node_modules/tamagui/dist/esm/index.mjs
-var import_core60 = require("@tamagui/core");
+// ../../node_modules/.pnpm/tamagui@1.126.13_@types+react@19.1.3_react-dom@19.0.0_react@19.0.0__react-native@0.79.2_563e4ee082f5a27766a4c21c70cc2697/node_modules/tamagui/dist/esm/index.mjs
+var import_core58 = require("@tamagui/core");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ACTIONS,

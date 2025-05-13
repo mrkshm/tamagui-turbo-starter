@@ -12,6 +12,7 @@ import {
   PasswordResetRequestResponse,
   PasswordResetConfirmPayload,
   PasswordResetConfirmResponse,
+  TokenRefreshResponse,
 } from '../schemas/user';
 
 export const authEndpoints = {
@@ -53,10 +54,12 @@ export const authEndpoints = {
   } as Endpoint<never, undefined>,
 
   REFRESH_TOKEN: {
-    url: '/refresh_token/',
+    url: '/token/refresh',
     method: HTTP_METHODS.POST,
-    requiresAuth: true,
-  } as Endpoint<never, undefined>,
+    requiresAuth: false,
+    requestType: {} as { refresh: string },
+    responseType: {} as TokenRefreshResponse,
+  } as Endpoint<{ refresh: string }, TokenRefreshResponse>,
 
   PASSWORD_RESET_REQUEST: {
     url: '/auth/password-reset/request',

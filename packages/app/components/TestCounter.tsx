@@ -1,5 +1,5 @@
 import { Button, XStack, YStack, Text, Card } from '@bbook/ui';
-import { useTestStore } from '@bbook/stores/src/testStore';
+import { useTestStore } from '@bbook/stores';
 
 export const TestCounter = () => {
   const count = useTestStore((state) => state.count);

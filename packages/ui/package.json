@@ -15,28 +15,40 @@
   ],
   "scripts": {
     "build": "tamagui-build --skip-types",
-    "watch": "tamagui-build --skip-types --watch"
+    "watch": "tamagui-build --skip-types --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@bbook/stores": "workspace:*",
     "@bbook/utils": "workspace:*",
-    "@tamagui/animations-moti": "^1.126.9",
-    "@tamagui/animations-react-native": "^1.126.8",
-    "@tamagui/config": "^1.126.8",
-    "@tamagui/font-inter": "^1.126.8",
-    "@tamagui/get-font-sized": "^1.126.8",
-    "@tamagui/get-token": "^1.126.8",
-    "@tamagui/lucide-icons": "^1.126.8",
-    "@tamagui/react-native-media-driver": "^1.126.8",
-    "@tamagui/shorthands": "^1.126.8",
-    "@tamagui/themes": "^1.126.8",
-    "@tamagui/toast": "^1.126.8",
-    "@tamagui/web": "^1.126.8",
+    "@tamagui/animations-moti": "^1.126.12",
+    "@tamagui/animations-react-native": "^1.126.12",
+    "@tamagui/config": "^1.126.12",
+    "@tamagui/font-inter": "^1.126.12",
+    "@tamagui/get-font-sized": "^1.126.12",
+    "@tamagui/get-token": "^1.126.12",
+    "@tamagui/helpers": "^1.126.13",
+    "@tamagui/lucide-icons": "^1.126.12",
+    "@tamagui/react-native-media-driver": "^1.126.12",
+    "@tamagui/shorthands": "^1.126.12",
+    "@tamagui/themes": "^1.126.12",
+    "@tamagui/toast": "^1.126.12",
+    "@tamagui/web": "^1.126.12",
     "expo-constants": "^17.0.8",
-    "tamagui": "^1.126.8"
+    "react-native-svg": "^15.12.0",
+    "tamagui": "^1.126.12"
   },
   "devDependencies": {
-    "@tamagui/build": "^1.126.8"
+    "@tamagui/build": "^1.126.12",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jest": "^29.5.12",
+    "@vitest/coverage-v8": "^1.6.0",
+    "jsdom": "^24.0.0",
+    "vitest": "^1.6.0"
   },
   "peerDependencies": {
     "react": "19.0.0",

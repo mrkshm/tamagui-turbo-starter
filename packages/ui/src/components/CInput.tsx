@@ -80,7 +80,7 @@ export const CInput = forwardRef<any, CInputProps>(
         <Input size={size} width="100%" tabIndex={-1}>
           <Input.Label
             htmlFor={`input-${labelText.toLowerCase()}`}
-            mb="$1.5"
+            marginBottom="$1.5"
             tabIndex={-1}
           >
             {labelText}
@@ -102,15 +102,13 @@ export const CInput = forwardRef<any, CInputProps>(
               keyboardType={keyboardType}
               autoComplete={autoComplete}
               height={40}
-              color="#textPrimary"
+              color="$color12"
               fontSize="$4"
-              // onKeyDown removed - not compatible with Tamagui's Input.Area
-              // tabIndex removed as it's not compatible with Tamagui's Input.Area
             />
           </Input.Box>
           {/* Render errors if provided */}
           {normalizedErrors.length > 0 && (
-            <YStack mt="$1" gap={2}>
+            <YStack marginTop="$1" gap={2}>
               {normalizedErrors.map((error: string, i: number) => (
                 <Paragraph color="$error" size={size as FontSizeTokens} key={i}>
                   {error}

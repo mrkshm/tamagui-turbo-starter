@@ -34474,6 +34474,7 @@
     "ButtonIcon": "Function",
     "ButtonNestingContext": "Component",
     "ButtonText": "Component",
+    "CAvatar": "Function",
     "CButton": "Function",
     "CInput": "Component",
     "Card": "Component",
@@ -34527,6 +34528,7 @@
     "INITIAL_STATE": {},
     "IS_FABRIC": false,
     "Image": "Component",
+    "InlineEditable": "Function",
     "Input": "Component",
     "InputFrame": "Component",
     "Label": "Component",
@@ -38838,7 +38840,19 @@
       "texts": {
         "H1": {
           "fontFamily": "$heading",
+          "fontSize": "$7",
+          "letterSpacing": -0.5,
+          "fontWeight": "700"
+        },
+        "H2": {
+          "fontFamily": "$heading",
           "fontSize": "$6",
+          "letterSpacing": -0.5,
+          "fontWeight": "700"
+        },
+        "H3": {
+          "fontFamily": "$heading",
+          "fontSize": "$5",
           "letterSpacing": -0.5,
           "fontWeight": "700"
         },

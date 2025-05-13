@@ -6,6 +6,7 @@ import type {
   LoginResponse,
   SignupPayload,
   SignupResponse,
+  User,
 } from '../schemas/user';
 import {
   LoginResponseSchema,
@@ -214,8 +215,12 @@ export const useLogoutMutation = () => {
   });
 };
 
-export const useCurrentUser = () => {
-  return useQuery({
+export const useCurrentUser = (): {
+  data: User | null;
+  isLoading: boolean;
+  error: Error | null;
+} => {
+  const { data, isLoading, error } = useQuery<User | null>({
     queryKey: ['currentUser'],
     queryFn: async () => {
       console.log('Fetching current user data');
@@ -242,4 +247,10 @@ export const useCurrentUser = () => {
     staleTime: 5 * 60 * 1000, // 5 minutes
     retry: false, // Don't retry if token is invalid
   });
+
+  return {
+    data: data ?? null,
+    isLoading,
+    error: error as Error | null,
+  };
 };

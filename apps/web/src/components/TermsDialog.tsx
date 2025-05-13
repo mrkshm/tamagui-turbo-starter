@@ -1,4 +1,3 @@
-// Use a simple X text instead of icon since we don't have @tamagui/lucide-icons
 import {
   Adapt,
   Button,
@@ -8,7 +7,7 @@ import {
   YStack,
   Text,
 } from '@bbook/ui';
-import { TermsAndConditions } from '@bbook/app/components/TermsAndConditions';
+import { TermsAndConditions } from '@bbook/app/components/terms-and-conditions';
 import type { ReactNode } from 'react';
 
 type TermsDialogProps = {

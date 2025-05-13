@@ -10,7 +10,8 @@
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
-      "react-native": ["./node_modules/react-native-web"]
+      "react-native": ["./node_modules/react-native-web"],
+      "@bbook/*": ["../../packages/*/src"]
     },
     "allowJs": true,
     "skipLibCheck": true,

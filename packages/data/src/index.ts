@@ -19,3 +19,4 @@ export * from './hooks/use-auth-query';
 export * from './hooks/use-verify-registration';
 export * from './hooks/use-resend-verification';
 export * from './hooks/use-password-reset';
+export * from './hooks/use-update-user';
