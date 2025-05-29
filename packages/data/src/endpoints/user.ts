@@ -41,7 +41,7 @@ export const userEndpoints = {
 
   CHANGE_AVATAR: {
     url: '/users/avatar',
-    method: HTTP_METHODS.PATCH,
+    method: HTTP_METHODS.POST,
     requiresAuth: true,
     requestType: {} as ChangeAvatarPayload,
     responseType: {} as User,

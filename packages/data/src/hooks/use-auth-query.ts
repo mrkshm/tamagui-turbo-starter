@@ -219,8 +219,9 @@ export const useCurrentUser = (): {
   data: User | null;
   isLoading: boolean;
   error: Error | null;
+  refetch: () => Promise<User | null>;
 } => {
-  const { data, isLoading, error } = useQuery<User | null>({
+  const { data, isLoading, error, refetch } = useQuery<User | null>({
     queryKey: ['currentUser'],
     queryFn: async () => {
       console.log('Fetching current user data');
@@ -244,7 +245,7 @@ export const useCurrentUser = (): {
         return null;
       }
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 30 * 1000, // Reduced to 30 seconds to be more responsive to changes
     retry: false, // Don't retry if token is invalid
   });
 
@@ -252,5 +253,9 @@ export const useCurrentUser = (): {
     data: data ?? null,
     isLoading,
     error: error as Error | null,
+    refetch: async () => {
+      const result = await refetch();
+      return result.data ?? null;
+    },
   };
 };

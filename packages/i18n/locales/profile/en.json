@@ -1,0 +1,29 @@
+{
+  "profile": "Profile",
+  "fields": {
+    "first_name": {
+      "label": "First Name",
+      "placeholder": "Enter your first name"
+    },
+    "last_name": {
+      "label": "Last Name",
+      "placeholder": "Enter your last name"
+    },
+    "username": {
+      "label": "Username",
+      "placeholder": "Choose a username"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "your.email@example.com"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "City, Country"
+    },
+    "about": {
+      "label": "About",
+      "placeholder": "Tell us about yourself..."
+    }
+  }
+}

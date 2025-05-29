@@ -82,6 +82,8 @@ export function LoginScreen({
     <FormCard borderRadius="$0" minHeight="100vh" backgroundColor="$surface">
       <View
         flexDirection="column"
+        paddingVertical="$4"
+        paddingHorizontal="$2"
         alignItems="stretch"
         minWidth="100%"
         maxWidth="100%"
@@ -99,18 +101,26 @@ export function LoginScreen({
                 name="email"
                 validators={{
                   onChange: (field) => {
+                    // First check if the field is empty
+                    if (!field.value) {
+                      setEmailValid(false);
+                      return [t('auth:email_required')];
+                    }
+                    
+                    // Then check if it's a valid email
                     const result = v.safeParse(
                       v.pipe(v.string(), v.email(t('auth:email_invalid'))),
                       field.value
                     );
                     setEmailValid(result.success);
                     if (result.success) return;
-                    return result.issues?.map((issue) => issue.message);
+                    return [result.issues?.[0].message]; // Only return the first error
                   },
                 }}
               >
                 {(field) => (
                   <CInput
+                    id="login-email"
                     labelText={t('auth:email_label')}
                     size="$3"
                     focusOnMount={true}
@@ -126,6 +136,13 @@ export function LoginScreen({
                 name="password"
                 validators={{
                   onChange: (field) => {
+                    // First check if the field is empty
+                    if (!field.value) {
+                      setPasswordValid(false);
+                      return [t('auth:password_required')];
+                    }
+                    
+                    // Then check if it meets the minimum length
                     const result = v.safeParse(
                       v.pipe(
                         v.string(),
@@ -135,13 +152,14 @@ export function LoginScreen({
                     );
                     setPasswordValid(result.success);
                     if (result.success) return;
-                    return result.issues?.map((issue) => issue.message);
+                    return [result.issues?.[0].message]; // Only return the first error
                   },
                 }}
               >
                 {(field) => (
                   <>
                     <CInput
+                      id="login-password"
                       labelText={t('auth:password_label')}
                       size="$3"
                       onChangeText={field.handleChange}

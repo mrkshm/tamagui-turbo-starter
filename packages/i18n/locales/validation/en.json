@@ -1,0 +1,7 @@
+{
+  "max_length": "{{field}} must be {{max}} characters or less",
+  "min_length": "{{field}} must be at least {{min}} characters",
+  "required": "{{field}} is required",
+  "email": "Please enter a valid email address",
+  "password_strength": "Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters"
+}

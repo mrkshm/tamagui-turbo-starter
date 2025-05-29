@@ -7,7 +7,6 @@ import { HeaderBackground } from '@react-navigation/elements';
 import { Spinner } from '@bbook/ui';
 
 const ErrorText = Text;
-const LoadingText = Text;
 
 export default function MemberHome() {
   const { user, isLoading } = useAuth();

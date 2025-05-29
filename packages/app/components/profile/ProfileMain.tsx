@@ -7,12 +7,16 @@ import {
 import { useCallback, useState, useRef } from 'react';
 import { EditableField } from '@bbook/ui/src/components/EditableField';
 import { EditableTextArea } from '@bbook/ui/src/components/EditableTextArea';
-import { CAvatar, H3 } from '@bbook/ui';
+import { H3 } from '@bbook/ui';
 import { getInitialsForAvatar } from '@bbook/utils';
 import { User, useUpdateUserMutation } from '@bbook/data';
 import { ThemeSwitcher } from '../ThemeSwitcher';
+import { AvatarUploader } from '../avatar';
+import { useTranslation } from '@bbook/i18n';
 
 export function ProfileMain({ user }: { user: User }) {
+  const { t } = useTranslation();
+
   // All fields are managed by the useEditableFields hook
 
   // Define the field IDs in order for tab navigation
@@ -153,33 +157,10 @@ export function ProfileMain({ user }: { user: User }) {
     onError: (error) => {
       console.error('Failed to update profile:', error);
 
-      // Handle validation errors
       if (error instanceof Error) {
-        const errorMessage = error.message;
-
-        // Parse the validation error message to extract field-specific errors
-        if (errorMessage.includes('Invalid length')) {
-          // Extract field information from the error message
-          if (errorMessage.includes('Expected <=4')) {
-            // This is the first_name field with max length 4 (our test case)
-            setValidationErrors((prev) => ({
-              ...prev,
-              firstName: 'First name must be 4 characters or less',
-            }));
-          } else {
-            // Generic error handling if we can't determine the specific field
-            setValidationErrors((prev) => ({
-              ...prev,
-              general: errorMessage,
-            }));
-          }
-        } else {
-          // Generic error handling
-          setValidationErrors((prev) => ({
-            ...prev,
-            general: errorMessage,
-          }));
-        }
+        setValidationErrors({
+          general: error.message,
+        });
       }
     },
   });
@@ -280,21 +261,22 @@ export function ProfileMain({ user }: { user: User }) {
           marginVertical="$4"
           justifyContent="center"
         >
-          <CAvatar
+          <AvatarUploader
+            // Add a key prop that changes when the avatar path changes
+            // This forces a complete re-render of the component
+            key={`avatar-${user?.avatar_path || 'none'}`}
+            image={user?.avatar_path || undefined}
             size="lg"
             text={getInitialsForAvatar({
               firstName: user?.first_name,
               lastName: user?.last_name,
               displayName: user?.username,
             })}
+            circular
           />
           <H3>{user.username}</H3>
         </YStack>
         <YStack gap="$4" padding="$4" flex={1}>
-          <Text fontSize="$6" fontWeight="bold" marginBottom="$4">
-            Profile Information
-          </Text>
-
           {/* General validation error message */}
           {validationErrors.general && (
             <YStack
@@ -312,7 +294,7 @@ export function ProfileMain({ user }: { user: User }) {
           {/* First Name Field - Using enhanced hook features */}
           <YStack gap="$2" marginBottom="$4">
             <Text fontSize="$4" fontWeight="bold" color="$gray11">
-              First Name
+              {t('profile:fields.first_name.label')}
             </Text>
 
             <EditableField
@@ -337,14 +319,14 @@ export function ProfileMain({ user }: { user: User }) {
               onTabNavigation={handleFirstNameTabNavigation}
               showUndo={!!undoStates?.firstName?.showUndo}
               onUndo={handleFirstNameUndo}
-              placeholder="Enter your first name"
+              placeholder={t('profile:fields.first_name.placeholder')}
             />
           </YStack>
 
           {/* Last Name Field */}
           <YStack gap="$2" marginBottom="$4">
             <Text fontSize="$4" fontWeight="bold" color="$gray11">
-              Last Name
+              {t('profile:fields.last_name.label')}
             </Text>
             <EditableField
               fieldId="lastName"
@@ -367,14 +349,14 @@ export function ProfileMain({ user }: { user: User }) {
               onTabNavigation={handleLastNameTabNavigation}
               showUndo={!!undoStates?.lastName?.showUndo}
               onUndo={handleLastNameUndo}
-              placeholder="Enter your last name"
+              placeholder={t('profile:fields.last_name.placeholder')}
             />
           </YStack>
 
           {/* Location Field */}
           <YStack gap="$2" marginBottom="$4">
             <Text fontSize="$4" fontWeight="bold" color="$gray11">
-              Location
+              {t('profile:fields.location.label')}
             </Text>
             <EditableField
               fieldId="location"
@@ -397,14 +379,14 @@ export function ProfileMain({ user }: { user: User }) {
               onTabNavigation={handleLocationTabNavigation}
               showUndo={!!undoStates?.location?.showUndo}
               onUndo={handleLocationUndo}
-              placeholder="Enter your location"
+              placeholder={t('profile:fields.location.placeholder')}
             />
           </YStack>
 
           {/* About Field */}
           <YStack gap="$2" marginBottom="$4">
             <Text fontSize="$4" fontWeight="bold" color="$gray11">
-              About
+              {t('profile:fields.about.label')}
             </Text>
             <EditableTextArea
               fieldId="about"
@@ -427,7 +409,7 @@ export function ProfileMain({ user }: { user: User }) {
               onTabNavigation={handleAboutTabNavigation}
               showUndo={!!undoStates?.about?.showUndo}
               onUndo={handleAboutUndo}
-              placeholder="Tell us about yourself"
+              placeholder={t('profile:fields.about.placeholder')}
               height={150}
             />
           </YStack>

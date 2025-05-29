@@ -29,6 +29,7 @@ export interface CInputProps {
     | 'current-password'
     | 'new-password'
     | undefined;
+  id?: string; // Optional custom ID
 }
 
 export const CInput = forwardRef<any, CInputProps>(
@@ -44,6 +45,7 @@ export const CInput = forwardRef<any, CInputProps>(
       keyboardType,
       autoComplete,
       errors,
+      id,
     },
     ref
   ) => {
@@ -55,6 +57,9 @@ export const CInput = forwardRef<any, CInputProps>(
       : [];
     // Set default placeholder based on field type
     const defaultPlaceholder = secureTextEntry ? '••••••' : 'email@example.com';
+    
+    // Generate a unique ID if none is provided
+    const uniqueId = id || `input-${labelText.toLowerCase()}-${Math.random().toString(36).substring(2, 9)}`;
 
     // Create a ref for the input area
     const inputAreaRef = useRef<any>(null);
@@ -79,7 +84,7 @@ export const CInput = forwardRef<any, CInputProps>(
       <View flexDirection="column" width="100%" tabIndex={-1}>
         <Input size={size} width="100%" tabIndex={-1}>
           <Input.Label
-            htmlFor={`input-${labelText.toLowerCase()}`}
+            htmlFor={uniqueId}
             marginBottom="$1.5"
             tabIndex={-1}
           >
@@ -93,7 +98,7 @@ export const CInput = forwardRef<any, CInputProps>(
           >
             <Input.Area
               ref={inputAreaRef}
-              id={`input-${labelText.toLowerCase()}`}
+              id={uniqueId}
               placeholder={placeholder || defaultPlaceholder}
               autoFocus={focusOnMount}
               onChangeText={onChangeText}

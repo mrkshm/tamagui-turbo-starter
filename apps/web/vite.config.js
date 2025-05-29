@@ -31,6 +31,9 @@ export default defineConfig({
     esbuildOptions: {
       mainFields: ['module', 'main'],
       resolveExtensions: ['.web.js', '.js', '.ts', '.jsx', '.tsx'],
+      loader: {
+        '.js': 'jsx',
+      },
     },
   },
 });

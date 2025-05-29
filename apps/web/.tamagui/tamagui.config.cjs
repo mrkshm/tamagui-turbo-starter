@@ -6817,7 +6817,7 @@ var require_Platform = __commonJS({
     "use strict";
     exports2.__esModule = true;
     exports2.default = void 0;
-    var Platform7 = {
+    var Platform9 = {
       OS: "web",
       select: /* @__PURE__ */ __name((obj) => "web" in obj ? obj.web : obj.default, "select"),
       get isTesting() {
@@ -6827,7 +6827,7 @@ var require_Platform = __commonJS({
         return false;
       }
     };
-    var _default = exports2.default = Platform7;
+    var _default = exports2.default = Platform9;
     module2.exports = exports2.default;
   }
 });
@@ -7439,11 +7439,11 @@ var require_isSelectionValid = __commonJS({
     exports2.default = isSelectionValid;
     function isSelectionValid() {
       var selection = window.getSelection();
-      var string = selection.toString();
+      var string2 = selection.toString();
       var anchorNode = selection.anchorNode;
       var focusNode = selection.focusNode;
       var isTextNode = anchorNode && anchorNode.nodeType === window.Node.TEXT_NODE || focusNode && focusNode.nodeType === window.Node.TEXT_NODE;
-      return string.length >= 1 && string !== "\n" && isTextNode;
+      return string2.length >= 1 && string2 !== "\n" && isTextNode;
     }
     __name(isSelectionValid, "isSelectionValid");
     module2.exports = exports2.default;
@@ -13256,8 +13256,8 @@ var require_AnimatedInterpolation = __commonJS({
       checkPattern(outputRange);
       var outputRanges = outputRange[0].match(stringShapeRegex).map(() => []);
       outputRange.forEach((value) => {
-        value.match(stringShapeRegex).forEach((number, i) => {
-          outputRanges[i].push(+number);
+        value.match(stringShapeRegex).forEach((number2, i) => {
+          outputRanges[i].push(+number2);
         });
       });
       var interpolations = outputRange[0].match(stringShapeRegex).map((value, i) => {
@@ -16062,7 +16062,7 @@ var require_AnimatedValueXY = __commonJS({
       addListener(callback) {
         var id = String(_uniqueId++);
         var jointCallback = /* @__PURE__ */ __name((_ref) => {
-          var number = _ref.value;
+          var number2 = _ref.value;
           callback(this.__getValue());
         }, "jointCallback");
         this._listeners[id] = {
@@ -16505,7 +16505,7 @@ var require_AnimatedColor = __commonJS({
       addListener(callback) {
         var id = String(_uniqueId++);
         var jointCallback = /* @__PURE__ */ __name((_ref) => {
-          var number = _ref.value;
+          var number2 = _ref.value;
           callback(this.__getValue());
         }, "jointCallback");
         this._listeners[id] = {
@@ -21172,9 +21172,9 @@ var require_multiplyStyleLengthValue = __commonJS({
     }, "isNumeric");
     var multiplyStyleLengthValue = /* @__PURE__ */ __name((value, multiple) => {
       if (typeof value === "string") {
-        var number = parseFloat(value) * multiple;
+        var number2 = parseFloat(value) * multiple;
         var unit = getUnit(value);
-        return "" + number + unit;
+        return "" + number2 + unit;
       } else if (isNumeric(value)) {
         return value * multiple;
       }
@@ -21421,7 +21421,7 @@ var require_TextInput = __commonJS({
     }
     __name(isEventComposing, "isEventComposing");
     var focusTimeout = null;
-    var TextInput2 = /* @__PURE__ */ React89.forwardRef((props, forwardedRef) => {
+    var TextInput4 = /* @__PURE__ */ React89.forwardRef((props, forwardedRef) => {
       var _props$autoCapitalize = props.autoCapitalize, autoCapitalize = _props$autoCapitalize === void 0 ? "sentences" : _props$autoCapitalize, autoComplete = props.autoComplete, autoCompleteType = props.autoCompleteType, _props$autoCorrect = props.autoCorrect, autoCorrect = _props$autoCorrect === void 0 ? true : _props$autoCorrect, blurOnSubmit = props.blurOnSubmit, caretHidden = props.caretHidden, clearTextOnFocus = props.clearTextOnFocus, dir = props.dir, editable = props.editable, enterKeyHint = props.enterKeyHint, inputMode = props.inputMode, keyboardType = props.keyboardType, _props$multiline = props.multiline, multiline = _props$multiline === void 0 ? false : _props$multiline, numberOfLines = props.numberOfLines, onBlur = props.onBlur, onChange = props.onChange, onChangeText = props.onChangeText, onContentSizeChange = props.onContentSizeChange, onFocus = props.onFocus, onKeyPress = props.onKeyPress, onLayout = props.onLayout, onMoveShouldSetResponder = props.onMoveShouldSetResponder, onMoveShouldSetResponderCapture = props.onMoveShouldSetResponderCapture, onResponderEnd = props.onResponderEnd, onResponderGrant = props.onResponderGrant, onResponderMove = props.onResponderMove, onResponderReject = props.onResponderReject, onResponderRelease = props.onResponderRelease, onResponderStart = props.onResponderStart, onResponderTerminate = props.onResponderTerminate, onResponderTerminationRequest = props.onResponderTerminationRequest, onScrollShouldSetResponder = props.onScrollShouldSetResponder, onScrollShouldSetResponderCapture = props.onScrollShouldSetResponderCapture, onSelectionChange = props.onSelectionChange, onSelectionChangeShouldSetResponder = props.onSelectionChangeShouldSetResponder, onSelectionChangeShouldSetResponderCapture = props.onSelectionChangeShouldSetResponderCapture, onStartShouldSetResponder = props.onStartShouldSetResponder, onStartShouldSetResponderCapture = props.onStartShouldSetResponderCapture, onSubmitEditing = props.onSubmitEditing, placeholderTextColor = props.placeholderTextColor, _props$readOnly = props.readOnly, readOnly = _props$readOnly === void 0 ? false : _props$readOnly, returnKeyType = props.returnKeyType, rows = props.rows, _props$secureTextEntr = props.secureTextEntry, secureTextEntry = _props$secureTextEntr === void 0 ? false : _props$secureTextEntr, selection = props.selection, selectTextOnFocus = props.selectTextOnFocus, showSoftInputOnFocus = props.showSoftInputOnFocus, spellCheck = props.spellCheck;
       var type;
       var _inputMode;
@@ -21659,8 +21659,8 @@ var require_TextInput = __commonJS({
       });
       return element;
     });
-    TextInput2.displayName = "TextInput";
-    TextInput2.State = _TextInputState.default;
+    TextInput4.displayName = "TextInput";
+    TextInput4.State = _TextInputState.default;
     var styles = _StyleSheet.default.create({
       textinput$raw: {
         MozAppearance: "textfield",
@@ -21681,7 +21681,7 @@ var require_TextInput = __commonJS({
         caretColor: "transparent"
       }
     });
-    var _default = exports2.default = TextInput2;
+    var _default = exports2.default = TextInput4;
     module2.exports = exports2.default;
   }
 });
@@ -23255,7 +23255,7 @@ var require_merge_options = __commonJS({
     var isOptionObject = require_is_plain_obj();
     var { hasOwnProperty } = Object.prototype;
     var { propertyIsEnumerable } = Object;
-    var defineProperty = /* @__PURE__ */ __name((object, name2, value) => Object.defineProperty(object, name2, {
+    var defineProperty = /* @__PURE__ */ __name((object2, name2, value) => Object.defineProperty(object2, name2, {
       value,
       writable: true,
       enumerable: true,
@@ -23301,10 +23301,10 @@ var require_merge_options = __commonJS({
       return result;
     }
     __name(cloneArray, "cloneArray");
-    function cloneOptionObject(object) {
-      const result = Object.getPrototypeOf(object) === null ? /* @__PURE__ */ Object.create(null) : {};
-      getEnumerableOwnPropertyKeys(object).forEach((key) => {
-        defineProperty(result, key, clone(object[key]));
+    function cloneOptionObject(object2) {
+      const result = Object.getPrototypeOf(object2) === null ? /* @__PURE__ */ Object.create(null) : {};
+      getEnumerableOwnPropertyKeys(object2).forEach((key) => {
+        defineProperty(result, key, clone(object2[key]));
       });
       return result;
     }
@@ -23623,6 +23623,8 @@ __export(src_exports, {
   DialogTitle: () => DialogTitle,
   DialogTrigger: () => DialogTrigger,
   DialogWarningProvider: () => DialogWarningProvider,
+  EditableField: () => EditableField,
+  EditableTextArea: () => EditableTextArea,
   EnsureFlexed: () => EnsureFlexed,
   Fieldset: () => Fieldset,
   FontLanguage: () => import_core58.FontLanguage,
@@ -23743,6 +23745,7 @@ __export(src_exports, {
   Text: () => Text4,
   TextArea: () => TextArea,
   TextAreaFrame: () => TextAreaFrame,
+  TextAreaRenderer: () => TextAreaRenderer,
   Theme: () => import_core58.Theme,
   ThemeContext: () => ThemeContext,
   ThemeProvider: () => ThemeProvider,
@@ -35043,8 +35046,8 @@ function useTypeahead(context2, props) {
     }
   });
   const onKeyDown = useEffectEvent((event) => {
-    function getMatchingIndex(list, orderedList, string) {
-      const str = findMatchRef.current ? findMatchRef.current(orderedList, string) : orderedList.find((text) => (text == null ? void 0 : text.toLocaleLowerCase().indexOf(string.toLocaleLowerCase())) === 0);
+    function getMatchingIndex(list, orderedList, string2) {
+      const str = findMatchRef.current ? findMatchRef.current(orderedList, string2) : orderedList.find((text) => (text == null ? void 0 : text.toLocaleLowerCase().indexOf(string2.toLocaleLowerCase())) === 0);
       return str ? list.indexOf(str) : -1;
     }
     __name(getMatchingIndex, "getMatchingIndex");
@@ -42701,8 +42704,8 @@ var transformShorthands = {
 };
 function getValue2(input, isColor = false) {
   if (typeof input != "string") return [input];
-  const [_, number, after] = input.match(/([-0-9]+)(deg|%|px)/) ?? [];
-  return [+number, after];
+  const [_, number2, after] = input.match(/([-0-9]+)(deg|%|px)/) ?? [];
+  return [+number2, after];
 }
 __name(getValue2, "getValue");
 
@@ -45449,7 +45452,7 @@ var CustomToast = /* @__PURE__ */ __name(() => {
 }, "CustomToast");
 
 // ../../packages/ui/src/theme-logic.tsx
-var import_react59 = require("react");
+var import_react64 = require("react");
 
 // ../../node_modules/.pnpm/zustand@5.0.4_@types+react@19.1.3_react@19.0.0_use-sync-external-store@1.5.0_react@19.0.0_/node_modules/zustand/esm/vanilla.mjs
 var createStoreImpl = /* @__PURE__ */ __name((createState) => {
@@ -45515,11 +45518,863 @@ var import_react57 = require("react");
 // ../../packages/utils/src/hooks/useEditableFields.ts
 var import_react58 = require("react");
 
+// ../../packages/utils/src/hooks/useFieldNavigation.ts
+var import_react59 = require("react");
+
+// ../../packages/utils/src/hooks/useFieldHandlers.ts
+var import_react60 = require("react");
+
+// ../../packages/utils/src/hooks/useKeyboardHandling.ts
+var import_react61 = require("react");
+function useKeyboardHandling(handlers) {
+  return (0, import_react61.useCallback)(
+    (e) => {
+      switch (e.key) {
+        case "Enter":
+          e.preventDefault();
+          handlers.onEnter?.(e);
+          break;
+        case "Escape":
+          e.preventDefault();
+          handlers.onEscape?.(e);
+          break;
+        case "Tab":
+          if (handlers.onTab) {
+            e.preventDefault();
+            const direction = e.shiftKey ? "prev" : "next";
+            handlers.onTab(e, direction);
+          }
+          break;
+        case "ArrowUp":
+          if (handlers.onArrowUp) {
+            e.preventDefault();
+            handlers.onArrowUp(e);
+          }
+          break;
+        case "ArrowDown":
+          if (handlers.onArrowDown) {
+            e.preventDefault();
+            handlers.onArrowDown(e);
+          }
+          break;
+        case "ArrowLeft":
+          if (handlers.onArrowLeft) {
+            e.preventDefault();
+            handlers.onArrowLeft(e);
+          }
+          break;
+        case "ArrowRight":
+          if (handlers.onArrowRight) {
+            e.preventDefault();
+            handlers.onArrowRight(e);
+          }
+          break;
+        default:
+          break;
+      }
+    },
+    [handlers]
+  );
+}
+__name(useKeyboardHandling, "useKeyboardHandling");
+
 // ../../packages/utils/src/helpers/is-react-native.ts
 function isReactNative() {
   return typeof global === "object" && typeof global.__BUNDLE_START_TIME__ !== "undefined";
 }
 __name(isReactNative, "isReactNative");
+
+// ../../node_modules/valibot/dist/index.js
+var store;
+// @__NO_SIDE_EFFECTS__
+function getGlobalConfig(config2) {
+  return {
+    lang: config2?.lang ?? store?.lang,
+    message: config2?.message,
+    abortEarly: config2?.abortEarly ?? store?.abortEarly,
+    abortPipeEarly: config2?.abortPipeEarly ?? store?.abortPipeEarly
+  };
+}
+__name(getGlobalConfig, "getGlobalConfig");
+var store2;
+// @__NO_SIDE_EFFECTS__
+function getGlobalMessage(lang) {
+  return store2?.get(lang);
+}
+__name(getGlobalMessage, "getGlobalMessage");
+var store3;
+// @__NO_SIDE_EFFECTS__
+function getSchemaMessage(lang) {
+  return store3?.get(lang);
+}
+__name(getSchemaMessage, "getSchemaMessage");
+var store4;
+// @__NO_SIDE_EFFECTS__
+function getSpecificMessage(reference, lang) {
+  return store4?.get(reference)?.get(lang);
+}
+__name(getSpecificMessage, "getSpecificMessage");
+// @__NO_SIDE_EFFECTS__
+function _stringify(input) {
+  const type = typeof input;
+  if (type === "string") {
+    return `"${input}"`;
+  }
+  if (type === "number" || type === "bigint" || type === "boolean") {
+    return `${input}`;
+  }
+  if (type === "object" || type === "function") {
+    return (input && Object.getPrototypeOf(input)?.constructor?.name) ?? "null";
+  }
+  return type;
+}
+__name(_stringify, "_stringify");
+function _addIssue(context2, label, dataset, config2, other) {
+  const input = other && "input" in other ? other.input : dataset.value;
+  const expected = other?.expected ?? context2.expects ?? null;
+  const received = other?.received ?? /* @__PURE__ */ _stringify(input);
+  const issue = {
+    kind: context2.kind,
+    type: context2.type,
+    input,
+    expected,
+    received,
+    message: `Invalid ${label}: ${expected ? `Expected ${expected} but r` : "R"}eceived ${received}`,
+    requirement: context2.requirement,
+    path: other?.path,
+    issues: other?.issues,
+    lang: config2.lang,
+    abortEarly: config2.abortEarly,
+    abortPipeEarly: config2.abortPipeEarly
+  };
+  const isSchema = context2.kind === "schema";
+  const message2 = other?.message ?? context2.message ?? /* @__PURE__ */ getSpecificMessage(context2.reference, issue.lang) ?? (isSchema ? /* @__PURE__ */ getSchemaMessage(issue.lang) : null) ?? config2.message ?? /* @__PURE__ */ getGlobalMessage(issue.lang);
+  if (message2 !== void 0) {
+    issue.message = typeof message2 === "function" ? (
+      // @ts-expect-error
+      message2(issue)
+    ) : message2;
+  }
+  if (isSchema) {
+    dataset.typed = false;
+  }
+  if (dataset.issues) {
+    dataset.issues.push(issue);
+  } else {
+    dataset.issues = [issue];
+  }
+}
+__name(_addIssue, "_addIssue");
+// @__NO_SIDE_EFFECTS__
+function _getStandardProps(context2) {
+  return {
+    version: 1,
+    vendor: "valibot",
+    validate(value2) {
+      return context2["~run"]({ value: value2 }, /* @__PURE__ */ getGlobalConfig());
+    }
+  };
+}
+__name(_getStandardProps, "_getStandardProps");
+// @__NO_SIDE_EFFECTS__
+function _joinExpects(values2, separator) {
+  const list = [...new Set(values2)];
+  if (list.length > 1) {
+    return `(${list.join(` ${separator} `)})`;
+  }
+  return list[0] ?? "never";
+}
+__name(_joinExpects, "_joinExpects");
+var EMAIL_REGEX = /^[\w+-]+(?:\.[\w+-]+)*@[\da-z]+(?:[.-][\da-z]+)*\.[a-z]{2,}$/iu;
+var EMOJI_REGEX = (
+  // eslint-disable-next-line redos-detector/no-unsafe-regex, regexp/no-dupe-disjunctions -- false positives
+  new RegExp("^(?:[\\u{1F1E6}-\\u{1F1FF}]{2}|\\u{1F3F4}[\\u{E0061}-\\u{E007A}]{2}[\\u{E0030}-\\u{E0039}\\u{E0061}-\\u{E007A}]{1,3}\\u{E007F}|(?:\\p{Emoji}\\uFE0F\\u20E3?|\\p{Emoji_Modifier_Base}\\p{Emoji_Modifier}?|\\p{Emoji_Presentation})(?:\\u200D(?:\\p{Emoji}\\uFE0F\\u20E3?|\\p{Emoji_Modifier_Base}\\p{Emoji_Modifier}?|\\p{Emoji_Presentation}))*)+$", "u")
+);
+// @__NO_SIDE_EFFECTS__
+function email(message2) {
+  return {
+    kind: "validation",
+    type: "email",
+    reference: email,
+    expects: null,
+    async: false,
+    requirement: EMAIL_REGEX,
+    message: message2,
+    "~run"(dataset, config2) {
+      if (dataset.typed && !this.requirement.test(dataset.value)) {
+        _addIssue(this, "email", dataset, config2);
+      }
+      return dataset;
+    }
+  };
+}
+__name(email, "email");
+// @__NO_SIDE_EFFECTS__
+function maxLength(requirement, message2) {
+  return {
+    kind: "validation",
+    type: "max_length",
+    reference: maxLength,
+    async: false,
+    expects: `<=${requirement}`,
+    requirement,
+    message: message2,
+    "~run"(dataset, config2) {
+      if (dataset.typed && dataset.value.length > this.requirement) {
+        _addIssue(this, "length", dataset, config2, {
+          received: `${dataset.value.length}`
+        });
+      }
+      return dataset;
+    }
+  };
+}
+__name(maxLength, "maxLength");
+// @__NO_SIDE_EFFECTS__
+function _isPartiallyTyped(dataset, paths) {
+  if (dataset.issues) {
+    for (const path of paths) {
+      for (const issue of dataset.issues) {
+        let typed = false;
+        const bound = Math.min(path.length, issue.path?.length ?? 0);
+        for (let index3 = 0; index3 < bound; index3++) {
+          if (
+            // @ts-expect-error
+            path[index3] !== issue.path[index3].key && // @ts-expect-error
+            (path[index3] !== "$" || issue.path[index3].type !== "array")
+          ) {
+            typed = true;
+            break;
+          }
+        }
+        if (!typed) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+__name(_isPartiallyTyped, "_isPartiallyTyped");
+// @__NO_SIDE_EFFECTS__
+function partialCheck(paths, requirement, message2) {
+  return {
+    kind: "validation",
+    type: "partial_check",
+    reference: partialCheck,
+    async: false,
+    expects: null,
+    paths,
+    requirement,
+    message: message2,
+    "~run"(dataset, config2) {
+      if ((dataset.typed || /* @__PURE__ */ _isPartiallyTyped(dataset, paths)) && // @ts-expect-error
+      !this.requirement(dataset.value)) {
+        _addIssue(this, "input", dataset, config2);
+      }
+      return dataset;
+    }
+  };
+}
+__name(partialCheck, "partialCheck");
+// @__NO_SIDE_EFFECTS__
+function trim() {
+  return {
+    kind: "transformation",
+    type: "trim",
+    reference: trim,
+    async: false,
+    "~run"(dataset) {
+      dataset.value = dataset.value.trim();
+      return dataset;
+    }
+  };
+}
+__name(trim, "trim");
+// @__NO_SIDE_EFFECTS__
+function getFallback(schema, dataset, config2) {
+  return typeof schema.fallback === "function" ? (
+    // @ts-expect-error
+    schema.fallback(dataset, config2)
+  ) : (
+    // @ts-expect-error
+    schema.fallback
+  );
+}
+__name(getFallback, "getFallback");
+// @__NO_SIDE_EFFECTS__
+function forward(action, path) {
+  return {
+    ...action,
+    "~run"(dataset, config2) {
+      const prevIssues = dataset.issues && [...dataset.issues];
+      dataset = action["~run"](dataset, config2);
+      if (dataset.issues) {
+        for (const issue of dataset.issues) {
+          if (!prevIssues?.includes(issue)) {
+            let pathInput = dataset.value;
+            for (const key of path) {
+              const pathValue = pathInput[key];
+              const pathItem = {
+                type: "unknown",
+                origin: "value",
+                input: pathInput,
+                key,
+                value: pathValue
+              };
+              if (issue.path) {
+                issue.path.push(pathItem);
+              } else {
+                issue.path = [pathItem];
+              }
+              if (!pathValue) {
+                break;
+              }
+              pathInput = pathValue;
+            }
+          }
+        }
+      }
+      return dataset;
+    }
+  };
+}
+__name(forward, "forward");
+// @__NO_SIDE_EFFECTS__
+function getDefault(schema, dataset, config2) {
+  return typeof schema.default === "function" ? (
+    // @ts-expect-error
+    schema.default(dataset, config2)
+  ) : (
+    // @ts-expect-error
+    schema.default
+  );
+}
+__name(getDefault, "getDefault");
+// @__NO_SIDE_EFFECTS__
+function boolean(message2) {
+  return {
+    kind: "schema",
+    type: "boolean",
+    reference: boolean,
+    expects: "boolean",
+    async: false,
+    message: message2,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      if (typeof dataset.value === "boolean") {
+        dataset.typed = true;
+      } else {
+        _addIssue(this, "type", dataset, config2);
+      }
+      return dataset;
+    }
+  };
+}
+__name(boolean, "boolean");
+// @__NO_SIDE_EFFECTS__
+function nullable(wrapped, default_) {
+  return {
+    kind: "schema",
+    type: "nullable",
+    reference: nullable,
+    expects: `(${wrapped.expects} | null)`,
+    async: false,
+    wrapped,
+    default: default_,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      if (dataset.value === null) {
+        if (this.default !== void 0) {
+          dataset.value = /* @__PURE__ */ getDefault(this, dataset, config2);
+        }
+        if (dataset.value === null) {
+          dataset.typed = true;
+          return dataset;
+        }
+      }
+      return this.wrapped["~run"](dataset, config2);
+    }
+  };
+}
+__name(nullable, "nullable");
+// @__NO_SIDE_EFFECTS__
+function number(message2) {
+  return {
+    kind: "schema",
+    type: "number",
+    reference: number,
+    expects: "number",
+    async: false,
+    message: message2,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      if (typeof dataset.value === "number" && !isNaN(dataset.value)) {
+        dataset.typed = true;
+      } else {
+        _addIssue(this, "type", dataset, config2);
+      }
+      return dataset;
+    }
+  };
+}
+__name(number, "number");
+// @__NO_SIDE_EFFECTS__
+function object(entries2, message2) {
+  return {
+    kind: "schema",
+    type: "object",
+    reference: object,
+    expects: "Object",
+    async: false,
+    entries: entries2,
+    message: message2,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      const input = dataset.value;
+      if (input && typeof input === "object") {
+        dataset.typed = true;
+        dataset.value = {};
+        for (const key in this.entries) {
+          const valueSchema = this.entries[key];
+          if (key in input || (valueSchema.type === "exact_optional" || valueSchema.type === "optional" || valueSchema.type === "nullish") && // @ts-expect-error
+          valueSchema.default !== void 0) {
+            const value2 = key in input ? (
+              // @ts-expect-error
+              input[key]
+            ) : /* @__PURE__ */ getDefault(valueSchema);
+            const valueDataset = valueSchema["~run"]({ value: value2 }, config2);
+            if (valueDataset.issues) {
+              const pathItem = {
+                type: "object",
+                origin: "value",
+                input,
+                key,
+                value: value2
+              };
+              for (const issue of valueDataset.issues) {
+                if (issue.path) {
+                  issue.path.unshift(pathItem);
+                } else {
+                  issue.path = [pathItem];
+                }
+                dataset.issues?.push(issue);
+              }
+              if (!dataset.issues) {
+                dataset.issues = valueDataset.issues;
+              }
+              if (config2.abortEarly) {
+                dataset.typed = false;
+                break;
+              }
+            }
+            if (!valueDataset.typed) {
+              dataset.typed = false;
+            }
+            dataset.value[key] = valueDataset.value;
+          } else if (valueSchema.fallback !== void 0) {
+            dataset.value[key] = /* @__PURE__ */ getFallback(valueSchema);
+          } else if (valueSchema.type !== "exact_optional" && valueSchema.type !== "optional" && valueSchema.type !== "nullish") {
+            _addIssue(this, "key", dataset, config2, {
+              input: void 0,
+              expected: `"${key}"`,
+              path: [
+                {
+                  type: "object",
+                  origin: "key",
+                  input,
+                  key,
+                  // @ts-expect-error
+                  value: input[key]
+                }
+              ]
+            });
+            if (config2.abortEarly) {
+              break;
+            }
+          }
+        }
+      } else {
+        _addIssue(this, "type", dataset, config2);
+      }
+      return dataset;
+    }
+  };
+}
+__name(object, "object");
+// @__NO_SIDE_EFFECTS__
+function optional(wrapped, default_) {
+  return {
+    kind: "schema",
+    type: "optional",
+    reference: optional,
+    expects: `(${wrapped.expects} | undefined)`,
+    async: false,
+    wrapped,
+    default: default_,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      if (dataset.value === void 0) {
+        if (this.default !== void 0) {
+          dataset.value = /* @__PURE__ */ getDefault(this, dataset, config2);
+        }
+        if (dataset.value === void 0) {
+          dataset.typed = true;
+          return dataset;
+        }
+      }
+      return this.wrapped["~run"](dataset, config2);
+    }
+  };
+}
+__name(optional, "optional");
+// @__NO_SIDE_EFFECTS__
+function string(message2) {
+  return {
+    kind: "schema",
+    type: "string",
+    reference: string,
+    expects: "string",
+    async: false,
+    message: message2,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      if (typeof dataset.value === "string") {
+        dataset.typed = true;
+      } else {
+        _addIssue(this, "type", dataset, config2);
+      }
+      return dataset;
+    }
+  };
+}
+__name(string, "string");
+// @__NO_SIDE_EFFECTS__
+function _subIssues(datasets) {
+  let issues;
+  if (datasets) {
+    for (const dataset of datasets) {
+      if (issues) {
+        issues.push(...dataset.issues);
+      } else {
+        issues = dataset.issues;
+      }
+    }
+  }
+  return issues;
+}
+__name(_subIssues, "_subIssues");
+// @__NO_SIDE_EFFECTS__
+function union(options, message2) {
+  return {
+    kind: "schema",
+    type: "union",
+    reference: union,
+    expects: /* @__PURE__ */ _joinExpects(
+      options.map((option) => option.expects),
+      "|"
+    ),
+    async: false,
+    options,
+    message: message2,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      let validDataset;
+      let typedDatasets;
+      let untypedDatasets;
+      for (const schema of this.options) {
+        const optionDataset = schema["~run"]({ value: dataset.value }, config2);
+        if (optionDataset.typed) {
+          if (optionDataset.issues) {
+            if (typedDatasets) {
+              typedDatasets.push(optionDataset);
+            } else {
+              typedDatasets = [optionDataset];
+            }
+          } else {
+            validDataset = optionDataset;
+            break;
+          }
+        } else {
+          if (untypedDatasets) {
+            untypedDatasets.push(optionDataset);
+          } else {
+            untypedDatasets = [optionDataset];
+          }
+        }
+      }
+      if (validDataset) {
+        return validDataset;
+      }
+      if (typedDatasets) {
+        if (typedDatasets.length === 1) {
+          return typedDatasets[0];
+        }
+        _addIssue(this, "type", dataset, config2, {
+          issues: /* @__PURE__ */ _subIssues(typedDatasets)
+        });
+        dataset.typed = true;
+      } else if (untypedDatasets?.length === 1) {
+        return untypedDatasets[0];
+      } else {
+        _addIssue(this, "type", dataset, config2, {
+          issues: /* @__PURE__ */ _subIssues(untypedDatasets)
+        });
+      }
+      return dataset;
+    }
+  };
+}
+__name(union, "union");
+// @__NO_SIDE_EFFECTS__
+function pipe(...pipe2) {
+  return {
+    ...pipe2[0],
+    pipe: pipe2,
+    get "~standard"() {
+      return /* @__PURE__ */ _getStandardProps(this);
+    },
+    "~run"(dataset, config2) {
+      for (const item of pipe2) {
+        if (item.kind !== "metadata") {
+          if (dataset.issues && (item.kind === "schema" || item.kind === "transformation")) {
+            dataset.typed = false;
+            break;
+          }
+          if (!dataset.issues || !config2.abortEarly && !config2.abortPipeEarly) {
+            dataset = item["~run"](dataset, config2);
+          }
+        }
+      }
+      return dataset;
+    }
+  };
+}
+__name(pipe, "pipe");
+
+// ../../packages/data/src/schemas/user.ts
+var userSchema = object({
+  id: union([string(), number()]),
+  email: string(),
+  first_name: optional(string()),
+  last_name: optional(string()),
+  username: optional(string()),
+  location: optional(string()),
+  about: optional(string()),
+  avatar_path: optional(nullable(string())),
+  notification_preferences: optional(object({})),
+  preferred_language: string(),
+  preferred_theme: string(),
+  finished_onboarding: boolean(),
+  email_verified: boolean(),
+  created_at: optional(string())
+});
+var SignupPayloadSchema = pipe(
+  object({
+    email: pipe(string(), email()),
+    password: string(),
+    password_confirm: string()
+  }),
+  forward(
+    partialCheck(
+      [["password"], ["password_confirm"]],
+      (input) => input.password === input.password_confirm,
+      "The two passwords do not match."
+    ),
+    ["password_confirm"]
+  )
+);
+var SignupResponseSchema = object({
+  detail: string()
+});
+var LoginPayloadSchema = object({
+  email: pipe(string(), email()),
+  password: string()
+});
+var LoginResponseSchema = object({
+  email: string(),
+  access: string(),
+  refresh: string()
+});
+var TokenRefreshResponseSchema = object({
+  access: string(),
+  refresh: string()
+});
+var VerifyRegistrationResponseSchema = object({
+  detail: string(),
+  access: string(),
+  refresh: string()
+});
+var LoginErrorResponseSchema = object({
+  detail: string(),
+  email_verified: boolean()
+});
+var ResendVerificationPayloadSchema = object({
+  email: pipe(string(), email())
+});
+var ResendVerificationResponseSchema = object({
+  detail: string()
+});
+var EmptyResponseSchema = object({});
+var PasswordResetRequestPayloadSchema = object({
+  email: pipe(string(), email())
+});
+var PasswordResetRequestResponseSchema = object({
+  detail: string()
+});
+var PasswordResetConfirmPayloadSchema = pipe(
+  object({
+    token: string(),
+    password: string(),
+    password_confirm: string()
+  }),
+  forward(
+    partialCheck(
+      [["password"], ["password_confirm"]],
+      (input) => input.password === input.password_confirm,
+      "The two passwords do not match."
+    ),
+    ["password_confirm"]
+  )
+);
+var PasswordResetConfirmResponseSchema = object({
+  detail: string()
+});
+var ProfilePayloadSchema = object({
+  first_name: optional(pipe(string(), maxLength(50), trim())),
+  last_name: optional(pipe(string(), maxLength(50), trim())),
+  location: optional(pipe(string(), maxLength(100), trim())),
+  about: optional(pipe(string(), maxLength(5e3), trim())),
+  preferred_language: optional(pipe(string(), maxLength(20), trim())),
+  preferred_theme: optional(pipe(string(), maxLength(20), trim()))
+});
+
+// ../../packages/data/src/constants/config.ts
+var BASE_URL = "http://localhost:8000";
+var API_BASE_URL = `${BASE_URL}/api/v1`;
+
+// ../../packages/data/src/constants/constants.ts
+var HTTP_METHODS = {
+  GET: "GET",
+  POST: "POST",
+  PUT: "PUT",
+  PATCH: "PATCH",
+  DELETE: "DELETE"
+};
+
+// ../../packages/data/src/endpoints/auth.ts
+var authEndpoints = {
+  SIGNUP: {
+    url: "/auth/register",
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {},
+    responseType: {}
+  },
+  VERIFY_REGISTRATION: {
+    url: "/auth/verify-registration",
+    method: HTTP_METHODS.GET,
+    requiresAuth: false,
+    responseType: {}
+  },
+  RESEND_VERIFICATION: {
+    url: "/auth/resend-verification",
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {},
+    responseType: {}
+  },
+  LOGIN: {
+    url: "/token/pair",
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {},
+    responseType: {}
+  },
+  LOGOUT: {
+    url: "/auth/logout/",
+    method: HTTP_METHODS.POST,
+    requiresAuth: true
+  },
+  REFRESH_TOKEN: {
+    url: "/token/refresh",
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {},
+    responseType: {}
+  },
+  PASSWORD_RESET_REQUEST: {
+    url: "/auth/password-reset/request",
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {},
+    responseType: {}
+  },
+  PASSWORD_RESET_CONFIRM: {
+    url: "/auth/password-reset/confirm",
+    method: HTTP_METHODS.POST,
+    requiresAuth: false,
+    requestType: {},
+    responseType: {}
+  }
+};
+
+// ../../packages/data/src/endpoints/user.ts
+var userEndpoints = {
+  GET_PROFILE_FOR_USER: {
+    url: "/users/me",
+    method: HTTP_METHODS.GET,
+    requiresAuth: true,
+    responseType: {}
+  },
+  CHECK_USERNAME: {
+    url: "/usernames/verify",
+    method: HTTP_METHODS.POST,
+    requiresAuth: true,
+    requestType: {},
+    responseType: {}
+  },
+  UPDATE_PROFILE: {
+    url: "/users/me",
+    method: HTTP_METHODS.PATCH,
+    requiresAuth: true,
+    requestType: {},
+    responseType: {}
+  },
+  CHANGE_AVATAR: {
+    url: "/users/avatar",
+    method: HTTP_METHODS.POST,
+    requiresAuth: true,
+    requestType: {},
+    responseType: {}
+  },
+  DELETE_AVATAR: {
+    url: "/users/avatar",
+    method: HTTP_METHODS.DELETE,
+    requiresAuth: true,
+    responseType: {}
+  }
+};
+
+// ../../packages/data/src/hooks/use-update-user.ts
+var import_react62 = require("react");
+
+// ../../packages/data/src/hooks/use-upload-progress.ts
+var import_react63 = require("react");
 
 // ../../packages/stores/src/theme-store.ts
 var isThemeKey = /* @__PURE__ */ __name((value) => value === "light" || value === "dark", "isThemeKey");
@@ -45536,9 +46391,12 @@ function getDefaultTheme() {
 }
 __name(getDefaultTheme, "getDefaultTheme");
 var createThemeStore = /* @__PURE__ */ __name(() => {
-  return create((set) => ({
+  return create((set, get) => ({
     theme: getDefaultTheme(),
-    setTheme: /* @__PURE__ */ __name((theme) => set({ theme }), "setTheme"),
+    setTheme: /* @__PURE__ */ __name((theme) => {
+      set({ theme });
+      get().syncWithBackend(theme);
+    }, "setTheme"),
     hydrate: /* @__PURE__ */ __name(async () => {
       if (isReactNative()) {
         try {
@@ -45551,7 +46409,9 @@ var createThemeStore = /* @__PURE__ */ __name(() => {
         const storedTheme = window.localStorage.getItem("theme");
         setThemeFromStorage(storedTheme, set);
       }
-    }, "hydrate")
+    }, "hydrate"),
+    syncWithBackend: /* @__PURE__ */ __name(() => {
+    }, "syncWithBackend")
   }));
 }, "createThemeStore");
 var useThemeStore = createThemeStore();
@@ -45577,7 +46437,7 @@ var useUserStore = create((set) => ({
 
 // ../../packages/ui/src/theme-logic.tsx
 var import_jsx_runtime76 = require("react/jsx-runtime");
-var ThemeContext = (0, import_react59.createContext)({ theme: "light" });
+var ThemeContext = (0, import_react64.createContext)({ theme: "light" });
 var ThemeProvider = /* @__PURE__ */ __name(({ children }) => {
   const theme = useThemeStore((s) => s.theme);
   const setThemeStore = useThemeStore(
@@ -45588,7 +46448,7 @@ var ThemeProvider = /* @__PURE__ */ __name(({ children }) => {
 }, "ThemeProvider");
 
 // ../../packages/ui/src/components/parts/inputParts.tsx
-var import_react60 = require("react");
+var import_react65 = require("react");
 
 // ../../packages/ui/src/utils/tamagui-token-checker.ts
 function tamaguiTokenChecker(val, tokens3, fallback = "$2") {
@@ -45666,7 +46526,7 @@ var InputGroupImpl = InputGroupFrame.styleable(
   // @ts-expect-error Tamagui .styleable expects (props, ref)
   (props, ref) => {
     const { children, ...rest } = props;
-    const [focused, setFocused] = (0, import_react60.useState)(false);
+    const [focused, setFocused] = (0, import_react65.useState)(false);
     return /* @__PURE__ */ (0, import_jsx_runtime77.jsx)(FocusContext.Provider, { focused, setFocused, children: /* @__PURE__ */ (0, import_jsx_runtime77.jsx)(
       InputGroupFrame,
       {
@@ -45854,10 +46714,10 @@ var Input2 = (0, import_core58.withStaticProperties)(InputContainerFrame, {
   XGroup: (0, import_core58.withStaticProperties)(InputXGroup, { Item: XGroup.Item })
 });
 
-// ../../packages/ui/src/components/c-input.tsx
-var import_react61 = require("react");
+// ../../packages/ui/src/components/CInput.tsx
+var import_react66 = require("react");
 var import_jsx_runtime78 = require("react/jsx-runtime");
-var CInput = (0, import_react61.forwardRef)(
+var CInput = (0, import_react66.forwardRef)(
   ({
     labelText = "Label",
     size: size6,
@@ -45872,8 +46732,8 @@ var CInput = (0, import_react61.forwardRef)(
   }, ref) => {
     const normalizedErrors = errors ? Array.isArray(errors) ? errors : [errors] : [];
     const defaultPlaceholder = secureTextEntry ? "\u2022\u2022\u2022\u2022\u2022\u2022" : "email@example.com";
-    const inputAreaRef = (0, import_react61.useRef)(null);
-    (0, import_react61.useImperativeHandle)(ref, () => ({
+    const inputAreaRef = (0, import_react66.useRef)(null);
+    (0, import_react66.useImperativeHandle)(ref, () => ({
       focus: /* @__PURE__ */ __name(() => {
         if (inputAreaRef.current?.focus) {
           inputAreaRef.current.focus();
@@ -45892,7 +46752,7 @@ var CInput = (0, import_react61.forwardRef)(
         Input2.Label,
         {
           htmlFor: `input-${labelText.toLowerCase()}`,
-          mb: "$1.5",
+          marginBottom: "$1.5",
           tabIndex: -1,
           children: labelText
         }
@@ -45917,18 +46777,18 @@ var CInput = (0, import_react61.forwardRef)(
               keyboardType,
               autoComplete,
               height: 40,
-              color: "#textPrimary",
+              color: "$color12",
               fontSize: "$4"
             }
           )
         }
       ),
-      normalizedErrors.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime78.jsx)(YStack, { mt: "$1", gap: 2, children: normalizedErrors.map((error2, i) => /* @__PURE__ */ (0, import_jsx_runtime78.jsx)(Paragraph, { color: "$error", size: size6, children: error2 }, i)) })
+      normalizedErrors.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime78.jsx)(YStack, { marginTop: "$1", gap: 2, children: normalizedErrors.map((error2, i) => /* @__PURE__ */ (0, import_jsx_runtime78.jsx)(Paragraph, { color: "$error", size: size6, children: error2 }, i)) })
     ] }) });
   }
 );
 
-// ../../packages/ui/src/components/c-button.tsx
+// ../../packages/ui/src/components/CButton.tsx
 var import_jsx_runtime79 = require("react/jsx-runtime");
 var sizeConfigs = {
   sm: {
@@ -45990,6 +46850,19 @@ var variantConfigs = {
     pressStyle: {
       backgroundColor: "$backgroundActive"
     }
+  },
+  destructive: {
+    backgroundColor: "$warning",
+    color: "$onWarning",
+    // Add specific hover styles for destructive variant
+    hoverStyle: {
+      backgroundColor: "$warning",
+      opacity: 0.9
+    },
+    pressStyle: {
+      backgroundColor: "$warning",
+      opacity: 0.8
+    }
   }
 };
 function CButton({
@@ -46025,7 +46898,6 @@ function CButton({
       marginLeft,
       marginRight,
       margin,
-      padding: 0,
       opacity: disabled ? 0.5 : 1,
       hoverStyle: {
         ...variantConfig.hoverStyle,
@@ -46044,24 +46916,27 @@ function CButton({
           width: "100%",
           gap: "$2",
           height: "100%",
-          children: loading ? /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(Spinner, { size: "small", color: variantConfig.color }) : /* @__PURE__ */ (0, import_jsx_runtime79.jsxs)(import_jsx_runtime79.Fragment, { children: [
-            icon && iconPosition === "left" && icon,
-            /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(
-              Button2.Text,
-              {
-                flex: 1,
-                textAlign: "center",
-                alignSelf: "center",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100%",
-                display: "flex",
-                fontSize: sizeConfig.fontSize,
-                children
-              }
-            ),
-            icon && iconPosition === "right" && icon
-          ] })
+          children: loading ? /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(Spinner, { size: "small", color: variantConfig.color }) : /* @__PURE__ */ (0, import_jsx_runtime79.jsxs)(
+            import_core58.View,
+            {
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "$2",
+              children: [
+                icon && iconPosition === "left" && icon,
+                /* @__PURE__ */ (0, import_jsx_runtime79.jsx)(
+                  Button2.Text,
+                  {
+                    height: "100%",
+                    fontSize: sizeConfig.fontSize,
+                    children
+                  }
+                ),
+                icon && iconPosition === "right" && icon
+              ]
+            }
+          )
         }
       )
     }
@@ -46102,8 +46977,14 @@ var Hide = /* @__PURE__ */ __name(({
   return children;
 }, "Hide");
 
-// ../../packages/ui/src/components/c-avatar.tsx
-var import_react62 = require("react");
+// ../../packages/ui/src/components/CAvatar.tsx
+var import_react67 = require("react");
+
+// ../../packages/ui/src/config/constants.ts
+var API_BASE_URL2 = "http://localhost:8000/api/v1";
+var AVATAR_URL_PATTERN = `${API_BASE_URL2}/avatars`;
+
+// ../../packages/ui/src/components/CAvatar.tsx
 var import_jsx_runtime80 = require("react/jsx-runtime");
 var sizeMap = {
   sm: "$4",
@@ -46120,13 +47001,49 @@ var CAvatar = /* @__PURE__ */ __name(({
   image,
   text = "UK",
   circular: circular2 = true,
+  onImageLoadError,
   ...props
 }) => {
-  const fallbackText = (0, import_react62.useMemo)(() => {
+  const fallbackText = (0, import_react67.useMemo)(() => {
     return text.substring(0, 2).toUpperCase();
   }, [text]);
+  console.log("CAvatar received props:", {
+    size: size6,
+    image,
+    text,
+    circular: circular2,
+    onImageLoadError: !!onImageLoadError,
+    allProps: { ...props }
+  });
+  console.log("CAvatar derived values:", {
+    fallbackText,
+    sizeValue: sizeMap[size6],
+    fontSizeValue: fontSizeMap[size6]
+  });
+  let imageUrl = image;
+  if (image) {
+    if (image.startsWith("http://") || image.startsWith("https://")) {
+      imageUrl = image;
+    } else if (image.startsWith("/")) {
+      const cleanPath = image.startsWith("/") ? image.substring(1) : image;
+      imageUrl = `${AVATAR_URL_PATTERN}/${cleanPath}`;
+    } else {
+      imageUrl = `${AVATAR_URL_PATTERN}/${image}`;
+    }
+  }
+  console.log("CAvatar processed image URL:", imageUrl);
   return /* @__PURE__ */ (0, import_jsx_runtime80.jsxs)(Avatar, { size: sizeMap[size6], circular: circular2, ...props, children: [
-    image ? /* @__PURE__ */ (0, import_jsx_runtime80.jsx)(Avatar.Image, { src: image }) : null,
+    imageUrl ? /* @__PURE__ */ (0, import_jsx_runtime80.jsx)(
+      Avatar.Image,
+      {
+        src: imageUrl,
+        alt: fallbackText,
+        onError: () => {
+          console.log("Image failed to load in CAvatar:", imageUrl);
+          onImageLoadError?.();
+        }
+      }
+    ) : null,
     /* @__PURE__ */ (0, import_jsx_runtime80.jsx)(
       Avatar.Fallback,
       {
@@ -46141,7 +47058,7 @@ var CAvatar = /* @__PURE__ */ __name(({
 }, "CAvatar");
 
 // ../../packages/ui/src/components/InlineEditable.tsx
-var import_react63 = require("react");
+var import_react68 = require("react");
 var import_react_native2 = __toESM(require_cjs(), 1);
 var import_jsx_runtime81 = require("react/jsx-runtime");
 var InlineEditable = /* @__PURE__ */ __name(({
@@ -46162,34 +47079,26 @@ var InlineEditable = /* @__PURE__ */ __name(({
   renderDisplay,
   renderInput
 }) => {
-  const handleInputChange = (0, import_react63.useCallback)(
+  const handleInputChange = (0, import_react68.useCallback)(
     (text) => {
       onChange(text);
     },
     [onChange]
   );
-  const handleSave = (0, import_react63.useCallback)(() => {
+  const handleSave = (0, import_react68.useCallback)(() => {
     if (disabled) return;
     console.log("InlineEditable handleSave called");
     onEditEnd();
   }, [disabled, onEditEnd]);
-  const handleCancel = (0, import_react63.useCallback)(() => {
+  const handleCancel = (0, import_react68.useCallback)(() => {
     console.log("InlineEditable handleCancel called");
     onEditEnd();
   }, [onEditEnd]);
-  const handleKeyDown = (0, import_react63.useCallback)(
-    (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        handleSave();
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        handleCancel();
-      }
-    },
-    [handleSave, handleCancel]
-  );
-  const handleDisplayClick = (0, import_react63.useCallback)(() => {
+  const handleKeyDown = useKeyboardHandling({
+    onEnter: handleSave,
+    onEscape: handleCancel
+  });
+  const handleDisplayClick = (0, import_react68.useCallback)(() => {
     if (disabled) return;
     console.log("InlineEditable handleDisplayClick called");
     const result = onEditStart?.(void 0, id);
@@ -46199,48 +47108,61 @@ var InlineEditable = /* @__PURE__ */ __name(({
       return;
     }
   }, [disabled, id, onEditStart]);
-  const defaultRenderDisplay = (0, import_react63.useCallback)(
-    ({ value: value2, onEdit, showUndo: showUndo2, onUndo: onUndo2 }) => /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)(
-      import_core58.Stack,
-      {
-        onPress: () => {
-          onEdit();
-        },
-        flexDirection: "row",
-        alignItems: "center",
-        flex: 1,
-        cursor: disabled ? "not-allowed" : "pointer",
-        opacity: disabled ? 0.7 : 1,
-        children: [
-          /* @__PURE__ */ (0, import_jsx_runtime81.jsx)(
-            Text4,
-            {
-              flex: 1,
-              numberOfLines: 1,
-              ellipsizeMode: "tail",
-              color: disabled ? "$color9" : "$color12",
-              children: value2 || placeholder
-            }
-          ),
-          showUndo2 && onUndo2 && !disabled && /* @__PURE__ */ (0, import_jsx_runtime81.jsx)(
-            Text4,
-            {
-              color: "$blue10",
-              marginLeft: "$2",
-              onPress: (e) => {
-                e.stopPropagation();
-                onUndo2();
-              },
-              children: "Undo"
-            }
-          )
-        ]
-      }
-    ),
+  const defaultRenderDisplay = (0, import_react68.useCallback)(
+    ({ value: value2, onEdit, showUndo: showUndo2, onUndo: onUndo2 }) => {
+      console.log("InlineEditable defaultRenderDisplay:", {
+        showUndo: showUndo2,
+        hasUndoHandler: !!onUndo2
+      });
+      return /* @__PURE__ */ (0, import_jsx_runtime81.jsxs)(
+        import_core58.Stack,
+        {
+          onPress: () => {
+            onEdit();
+          },
+          flexDirection: "row",
+          alignItems: "center",
+          flex: 1,
+          cursor: disabled ? "not-allowed" : "pointer",
+          opacity: disabled ? 0.7 : 1,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime81.jsx)(
+              Text4,
+              {
+                flex: 1,
+                numberOfLines: 1,
+                ellipsizeMode: "tail",
+                color: disabled ? "$color9" : "$color12",
+                children: value2 || placeholder
+              }
+            ),
+            showUndo2 && onUndo2 && !disabled && /* @__PURE__ */ (0, import_jsx_runtime81.jsx)(
+              Text4,
+              {
+                color: "$blue10",
+                marginLeft: "$2",
+                onPress: (e) => {
+                  e.stopPropagation();
+                  onUndo2();
+                },
+                children: "Undo"
+              }
+            )
+          ]
+        }
+      );
+    },
     [disabled, placeholder]
   );
-  const defaultRenderInput = (0, import_react63.useCallback)(
-    ({ value: value2, onChange: onChange2, onKeyDown, autoFocus, onSubmitEditing, onBlur }) => {
+  const defaultRenderInput = (0, import_react68.useCallback)(
+    ({
+      value: value2,
+      onChange: onChange2,
+      onKeyDown,
+      autoFocus,
+      onSubmitEditing,
+      onBlur
+    }) => {
       const platformProps = import_react_native2.Platform.OS === "web" ? { onKeyDown } : { onSubmitEditing };
       return /* @__PURE__ */ (0, import_jsx_runtime81.jsx)(
         Input2.Area,
@@ -46266,6 +47188,12 @@ var InlineEditable = /* @__PURE__ */ __name(({
     },
     [disabled, placeholder]
   );
+  console.log("InlineEditable props:", {
+    value,
+    isEditing,
+    showUndo,
+    hasUndoHandler: !!onUndo
+  });
   const displayContent = renderDisplay ? renderDisplay({
     value,
     onEdit: handleDisplayClick,
@@ -46316,6 +47244,391 @@ var InlineEditable = /* @__PURE__ */ __name(({
   ] });
 }, "InlineEditable");
 InlineEditable.displayName = "InlineEditable";
+
+// ../../packages/ui/src/components/EditableField.tsx
+var import_react69 = require("react");
+var import_react_native3 = __toESM(require_cjs(), 1);
+var import_jsx_runtime82 = (
+  // If we have custom children, wrap them in a pressable container
+  require("react/jsx-runtime")
+);
+function EditableField({
+  fieldId,
+  value,
+  onChange,
+  isEditing,
+  handleEditStart,
+  handleEditEnd,
+  onCancel,
+  editingField,
+  errorMessage,
+  activeColor = "$purple5",
+  inactiveColor = "$gray5",
+  placeholder = "Type something...",
+  height = 100,
+  tabIndex,
+  onTabNavigation,
+  showUndo = false,
+  onUndo,
+  children
+}) {
+  const handleContainerClick = /* @__PURE__ */ __name((e) => {
+    e.stopPropagation();
+    if (editingField !== null && editingField !== fieldId) {
+      console.log(`Container clicked, canceling edit of ${editingField}`);
+      handleEditEnd();
+      return;
+    }
+    if (editingField === null) {
+      console.log(`Container clicked, starting to edit ${fieldId}`);
+      handleEditStart(fieldId);
+    }
+  }, "handleContainerClick");
+  const handleFieldEditStart = /* @__PURE__ */ __name(() => {
+    console.log(
+      `Edit start for ${fieldId}, current editingField:`,
+      editingField
+    );
+    if (editingField !== null && editingField !== fieldId) {
+      console.log(
+        `Canceling edit of ${editingField} before editing ${fieldId}`
+      );
+      handleEditEnd();
+      return false;
+    }
+    if (editingField === null) {
+      console.log(`No field being edited, starting to edit ${fieldId}`);
+      return handleEditStart(fieldId);
+    }
+    return true;
+  }, "handleFieldEditStart");
+  const handleFieldClick = /* @__PURE__ */ __name((e) => {
+    e.stopPropagation();
+    if (editingField !== null && editingField !== fieldId) {
+      console.log(`Field clicked, canceling edit of ${editingField}`);
+      handleEditEnd();
+      return;
+    }
+    if (editingField === null) {
+      console.log(
+        `No field being edited, starting to edit ${fieldId} from click`
+      );
+      handleEditStart(fieldId);
+    }
+  }, "handleFieldClick");
+  console.log(`EditableField ${fieldId} render:`, {
+    showUndo,
+    hasUndoHandler: !!onUndo,
+    isEditing,
+    editingField,
+    value,
+    valueType: typeof value,
+    valueLength: value?.length
+  });
+  console.log(`DEBUG EditableField ${fieldId}: Undo state check:`, {
+    showUndo,
+    hasUndoHandler: !!onUndo,
+    shouldShowUndoButton: showUndo && !!onUndo
+  });
+  const keyboardHandlers = useKeyboardHandling({
+    onEnter: /* @__PURE__ */ __name((e) => {
+      e.preventDefault();
+      handleEditEnd();
+    }, "onEnter"),
+    onEscape: /* @__PURE__ */ __name((e) => {
+      e.preventDefault();
+      if (onCancel) {
+        onCancel();
+      } else {
+        handleEditEnd();
+      }
+    }, "onEscape"),
+    onTab: /* @__PURE__ */ __name((e, direction) => {
+      e.preventDefault();
+      if (onTabNavigation) {
+        onTabNavigation(direction);
+      } else {
+        handleEditEnd();
+      }
+    }, "onTab")
+  });
+  const handleKeyDown = (0, import_react69.useCallback)(
+    (e) => {
+      console.log(`KeyDown event in field ${fieldId}, key:`, e.key);
+      keyboardHandlers(e);
+    },
+    [fieldId, keyboardHandlers]
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime82.jsxs)(YStack, { gap: "$1", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(
+      XStack,
+      {
+        height,
+        backgroundColor: isEditing ? activeColor : inactiveColor,
+        borderRadius: "$2",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "$4",
+        onPress: handleContainerClick,
+        pressStyle: { opacity: 0.8 },
+        borderColor: errorMessage ? "$red9" : "transparent",
+        borderWidth: errorMessage ? 1 : 0,
+        children: children ? /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(
+          XStack,
+          {
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            onPress: handleFieldClick,
+            children
+          }
+        ) : /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(
+          InlineEditable,
+          {
+            value,
+            onChange,
+            isEditing,
+            onEditStart: handleFieldEditStart,
+            onEditEnd: handleEditEnd,
+            placeholder,
+            showUndo,
+            onUndo,
+            id: `${fieldId}-inline-editable`,
+            renderInput: ({
+              value: value2,
+              onChange: onChange2,
+              autoFocus,
+              onSubmitEditing
+            }) => {
+              const inputRef = (0, import_react69.useRef)(null);
+              if (import_react_native3.Platform.OS === "web") {
+                return /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(
+                  "div",
+                  {
+                    style: { flex: 1, display: "flex" },
+                    tabIndex: tabIndex || 0,
+                    children: /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(
+                      "input",
+                      {
+                        type: "text",
+                        value: value2,
+                        onChange: (e) => onChange2(e.target.value),
+                        autoFocus,
+                        style: {
+                          flex: 1,
+                          border: "none",
+                          outline: "none",
+                          padding: 0,
+                          backgroundColor: "transparent",
+                          fontSize: "inherit",
+                          fontFamily: "inherit",
+                          color: "inherit"
+                        },
+                        placeholder,
+                        onKeyDown: handleKeyDown,
+                        onBlur: void 0
+                      }
+                    )
+                  }
+                );
+              }
+              return /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(
+                import_react_native3.TextInput,
+                {
+                  ref: inputRef,
+                  value: value2,
+                  onChangeText: onChange2,
+                  autoFocus,
+                  style: {
+                    flex: 1,
+                    padding: 0,
+                    color: "inherit"
+                  },
+                  placeholder,
+                  onSubmitEditing: () => {
+                    console.log(`Submit editing in field ${fieldId}`);
+                    handleEditEnd();
+                    if (onSubmitEditing) onSubmitEditing();
+                  },
+                  onKeyPress: (e) => {
+                    if (e.nativeEvent.key === "Escape") {
+                      console.log(
+                        `Escape pressed in field ${fieldId}, canceling edit (RN) - DIRECT HANDLING`
+                      );
+                      if (onCancel) {
+                        onCancel();
+                      } else {
+                        handleEditEnd();
+                      }
+                      return;
+                    }
+                  },
+                  onBlur: void 0
+                }
+              );
+            }
+          }
+        )
+      }
+    ),
+    errorMessage && isEditing && /* @__PURE__ */ (0, import_jsx_runtime82.jsxs)(XStack, { gap: "$2", alignItems: "center", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(Text4, { color: "$red10", fontSize: "$2", flex: 1, children: errorMessage }),
+      /* @__PURE__ */ (0, import_jsx_runtime82.jsx)(
+        Text4,
+        {
+          color: "$blue10",
+          fontSize: "$2",
+          fontWeight: "bold",
+          onPress: () => {
+            if (onCancel) onCancel();
+          },
+          pressStyle: { opacity: 0.7 },
+          children: "Cancel"
+        }
+      )
+    ] })
+  ] });
+}
+__name(EditableField, "EditableField");
+
+// ../../packages/ui/src/components/TextAreaRenderer.tsx
+var import_react70 = require("react");
+var import_react_native4 = __toESM(require_cjs(), 1);
+var import_jsx_runtime83 = require("react/jsx-runtime");
+var TextAreaRenderer = /* @__PURE__ */ __name(({
+  value,
+  onChange,
+  onKeyDown,
+  autoFocus = true,
+  onSubmitEditing,
+  // onBlur is received but not used directly - we handle blur through save/cancel buttons
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  onBlur,
+  onCancel,
+  placeholder = "Enter text...",
+  minHeight = 150,
+  maxHeight
+}) => {
+  const textAreaRef = (0, import_react70.useRef)(null);
+  const handleSave = (0, import_react70.useCallback)(() => {
+    console.log("TextAreaRenderer: Save button clicked");
+    onSubmitEditing?.();
+  }, [onSubmitEditing]);
+  const handleCancel = (0, import_react70.useCallback)(() => {
+    console.log("TextAreaRenderer: Cancel button clicked");
+    onCancel?.();
+  }, [onCancel]);
+  const handleKeyDownWrapper = (0, import_react70.useCallback)(
+    (e) => {
+      if (onKeyDown) {
+        onKeyDown(e);
+      }
+    },
+    [onKeyDown]
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime83.jsxs)(YStack, { width: "100%", children: [
+    import_react_native4.Platform.OS === "web" ? /* @__PURE__ */ (0, import_jsx_runtime83.jsx)(
+      "textarea",
+      {
+        value,
+        onChange: (e) => onChange(e.target.value),
+        onKeyDown: handleKeyDownWrapper,
+        autoFocus,
+        placeholder,
+        style: {
+          width: "100%",
+          minHeight,
+          maxHeight,
+          padding: 8,
+          borderRadius: 4,
+          borderColor: "transparent",
+          backgroundColor: "transparent",
+          fontFamily: "inherit",
+          fontSize: "inherit",
+          resize: "vertical",
+          outline: "none"
+        }
+      }
+    ) : /* @__PURE__ */ (0, import_jsx_runtime83.jsx)(
+      TextArea,
+      {
+        ref: textAreaRef,
+        value,
+        onChangeText: onChange,
+        autoFocus,
+        placeholder,
+        minHeight: "%4",
+        maxHeight,
+        padding: "$2",
+        borderColor: "transparent",
+        backgroundColor: "transparent",
+        onSubmitEditing
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime83.jsxs)(XStack, { justifyContent: "flex-end", gap: "$2", marginTop: "$2", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime83.jsx)(Button2, { size: "$2", variant: "outlined", onPress: handleCancel, chromeless: true, children: "Cancel" }),
+      /* @__PURE__ */ (0, import_jsx_runtime83.jsx)(Button2, { size: "$2", theme: "blue", onPress: handleSave, children: "Save" })
+    ] })
+  ] });
+}, "TextAreaRenderer");
+
+// ../../packages/ui/src/components/EditableTextArea.tsx
+var import_react71 = require("react");
+var import_jsx_runtime84 = require("react/jsx-runtime");
+function EditableTextArea(props) {
+  const {
+    value,
+    onChange,
+    isEditing,
+    handleEditStart,
+    handleEditEnd,
+    onCancel,
+    placeholder,
+    height = 150
+  } = props;
+  const customRenderer = (0, import_react71.useCallback)(
+    ({
+      value: value2,
+      onChange: onChange2,
+      onKeyDown,
+      autoFocus,
+      onSubmitEditing
+    }) => {
+      return /* @__PURE__ */ (0, import_jsx_runtime84.jsx)(
+        TextAreaRenderer,
+        {
+          value: value2,
+          onChange: onChange2,
+          onKeyDown,
+          autoFocus,
+          onSubmitEditing,
+          onCancel,
+          placeholder
+        }
+      );
+    },
+    [onCancel, placeholder, height]
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime84.jsx)(
+    EditableField,
+    {
+      ...props,
+      children: isEditing && /* @__PURE__ */ (0, import_jsx_runtime84.jsx)(
+        InlineEditable,
+        {
+          value,
+          onChange,
+          isEditing,
+          onEditStart: (_, id) => id ? handleEditStart(id) : false,
+          onEditEnd: handleEditEnd,
+          placeholder,
+          renderInput: customRenderer
+        }
+      )
+    }
+  );
+}
+__name(EditableTextArea, "EditableTextArea");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ACTIONS,
@@ -46377,6 +47690,8 @@ InlineEditable.displayName = "InlineEditable";
   DialogTitle,
   DialogTrigger,
   DialogWarningProvider,
+  EditableField,
+  EditableTextArea,
   EnsureFlexed,
   Fieldset,
   FontLanguage,
@@ -46497,6 +47812,7 @@ InlineEditable.displayName = "InlineEditable";
   Text,
   TextArea,
   TextAreaFrame,
+  TextAreaRenderer,
   Theme,
   ThemeContext,
   ThemeProvider,

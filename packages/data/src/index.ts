@@ -20,3 +20,6 @@ export * from './hooks/use-verify-registration';
 export * from './hooks/use-resend-verification';
 export * from './hooks/use-password-reset';
 export * from './hooks/use-update-user';
+export * from './hooks/use-update-avatar';
+export * from './hooks/use-avatar-url';
+export * from './hooks/use-upload-progress';

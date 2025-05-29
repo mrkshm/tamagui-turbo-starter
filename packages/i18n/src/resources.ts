@@ -2,12 +2,18 @@
 import auth_en from '../locales/auth/en.json';
 import common_en from '../locales/common/en.json';
 import common_fr from '../locales/common/fr.json';
+import nav_en from '../locales/nav/en.json';
+import profile_en from '../locales/profile/en.json';
 import terms_en from '../locales/terms/en.json';
+import validation_en from '../locales/validation/en.json';
 const resources: any = {};
 resources['en'] = {
   'auth': auth_en,
   'common': common_en,
+  'nav': nav_en,
+  'profile': profile_en,
   'terms': terms_en,
+  'validation': validation_en,
 };
 resources['fr'] = {
   'common': common_fr,

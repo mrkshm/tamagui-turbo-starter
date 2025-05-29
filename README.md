@@ -69,7 +69,7 @@ You can customize these endpoint URLs in the endpoint definition files.
 
 ### Comes With an Optional Backend Companion
 
-While this starter works with any backend that implements the required endpoints, it's adapted to work with the [Django Ninja API Starter](https://github.com/mrkshm/django-ninja-api-starter).
+While this starter works with any backend that implements the required endpoints, it's designed to work with the [Django Ninja API Starter](https://github.com/mrkshm/django-ninja-api-starter).
 
 The Django Ninja API Starter provides:
 
@@ -132,10 +132,13 @@ pnpm run-ios
 - [x] Add modular API endpoint structure
 - [x] Implement JWT-based authentication system
 - [x] Add platform-specific storage adapters
-- [x] Create comprehensive documentation
-- [ ] Add theme toggle with persistence
-- [ ] Add Login Screens
+- [x] Create basic documentation
+- [x] Add theme toggle with persistence
+- [x] Add Login Screens
+- [ ] Add Profile Screen
+- [ ] Add Contacts Screen
 - [ ] Add CI/CD example
+- [ ] Clean up console logs etc
 - [ ] Write more docs
 
 ## i18n

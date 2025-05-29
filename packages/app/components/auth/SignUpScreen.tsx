@@ -68,6 +68,8 @@ export function SignUpScreen({
       <View
         flexDirection="column"
         alignItems="stretch"
+        paddingVertical="$4"
+        paddingHorizontal="$2"
         minWidth="100%"
         maxWidth="100%"
         gap="$4"
@@ -84,23 +86,27 @@ export function SignUpScreen({
                 name="email"
                 validators={{
                   onChange: (field) => {
+                    // First check if the field is empty
+                    if (!field.value) {
+                      setEmailValid(false);
+                      return [t('auth:email_required')];
+                    }
+
+                    // Then check if it's a valid email
                     const result = v.safeParse(
-                      v.pipe(
-                        v.string(),
-                        v.nonEmpty(t('auth:email_required')),
-                        v.email(t('auth:email_invalid'))
-                      ),
+                      v.pipe(v.string(), v.email(t('auth:email_invalid'))),
                       field.value
                     );
                     setEmailValid(result.success);
                     if (result.success) return;
-                    return result.issues?.map((issue) => issue.message);
+                    return [result.issues?.[0].message]; // Only return the first error
                   },
                 }}
               >
                 {(field) => (
                   <>
                     <CInput
+                      id="signup-email"
                       labelText={t('auth:email_label')}
                       size="$3"
                       focusOnMount={true}
@@ -122,23 +128,30 @@ export function SignUpScreen({
                 name="password"
                 validators={{
                   onChange: (field) => {
+                    // First check if the field is empty
+                    if (!field.value) {
+                      setPasswordValid(false);
+                      return [t('auth:password_required')];
+                    }
+
+                    // Then check if it meets the minimum length
                     const result = v.safeParse(
                       v.pipe(
                         v.string(),
-                        v.nonEmpty(t('auth:password_required')),
                         v.minLength(6, t('auth:password_invalid'))
                       ),
                       field.value
                     );
                     setPasswordValid(result.success);
                     if (result.success) return;
-                    return result.issues?.map((issue) => issue.message);
+                    return [result.issues?.[0].message]; // Only return the first error
                   },
                 }}
               >
                 {(field) => (
                   <>
                     <CInput
+                      id="signup-password"
                       labelText={t('auth:password_label')}
                       size="$3"
                       onChangeText={field.handleChange}
@@ -180,6 +193,7 @@ export function SignUpScreen({
                 {(field) => (
                   <>
                     <CInput
+                      id="signup-password-confirm"
                       labelText={t('auth:password_confirm_label')}
                       size="$3"
                       onChangeText={field.handleChange}
@@ -240,7 +254,7 @@ export function SignUpScreen({
                   onPress={() => form.handleSubmit()}
                   width={200}
                 >
-                  {t('common:signup')}
+                  {t('common:sign_up')}
                 </CButton>
                 <Text
                   fontSize={'$3'}

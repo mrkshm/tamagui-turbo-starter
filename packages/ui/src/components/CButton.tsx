@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 export type CustomButtonProps = {
   children: ReactNode;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'destructive';
   disabled?: boolean;
   loading?: boolean;
   onPress?: () => void;
@@ -82,6 +82,19 @@ const variantConfigs = {
       backgroundColor: '$backgroundActive',
     },
   },
+  destructive: {
+    backgroundColor: '$warning',
+    color: '$onWarning',
+    // Add specific hover styles for destructive variant
+    hoverStyle: {
+      backgroundColor: '$warning',
+      opacity: 0.9,
+    },
+    pressStyle: {
+      backgroundColor: '$warning',
+      opacity: 0.8,
+    },
+  },
 };
 
 /**
@@ -124,7 +137,6 @@ export function CButton({
       marginLeft={marginLeft}
       marginRight={marginRight}
       margin={margin}
-      padding={0} // Important for proper centering
       opacity={disabled ? 0.5 : 1}
       // Apply variant-specific hover styles
       hoverStyle={{
@@ -147,22 +159,25 @@ export function CButton({
         {loading ? (
           <Spinner size="small" color={variantConfig.color} />
         ) : (
-          <>
+          <View
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            gap="$2"
+          >
             {icon && iconPosition === 'left' && icon}
             <TamaguiButton.Text
-              flex={1}
-              textAlign="center"
-              alignSelf="center"
-              justifyContent="center"
-              alignItems="center"
+              // textAlign="center"
+              // alignSelf="center"
+              // justifyContent="center"
+              // alignItems="center"
               height="100%"
-              display="flex"
               fontSize={sizeConfig.fontSize}
             >
               {children}
             </TamaguiButton.Text>
             {icon && iconPosition === 'right' && icon}
-          </>
+          </View>
         )}
       </View>
     </TamaguiButton>

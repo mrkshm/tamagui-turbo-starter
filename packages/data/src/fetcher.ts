@@ -228,12 +228,13 @@ export const apiClient = {
     fetcher<T>(url, schema, {
       method: HTTP_METHODS.POST,
       body: options?.skipStringify ? (data as BodyInit) : JSON.stringify(data),
-      headers: {
-        'Content-Type': options?.skipStringify
-          ? 'multipart/form-data'
-          : 'application/json',
-        ...options?.headers,
-      },
+      headers:
+        data instanceof FormData
+          ? options?.headers // Let the browser set the correct boundary
+          : {
+              'Content-Type': 'application/json',
+              ...options?.headers,
+            },
       ...options,
     }),
 

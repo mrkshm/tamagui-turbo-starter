@@ -1,7 +1,8 @@
 import { Avatar as TamaguiAvatar, Text } from 'tamagui';
 import { useMemo } from 'react';
+import { AVATAR_URL_PATTERN } from '../config/constants';
 
-type AvatarSize = 'sm' | 'md' | 'lg';
+export type AvatarSize = 'sm' | 'md' | 'lg';
 
 type AvatarProps = {
   /**
@@ -23,6 +24,10 @@ type AvatarProps = {
    * @default true
    */
   circular?: boolean;
+  /**
+   * Callback when image fails to load
+   */
+  onImageLoadError?: () => void;
 };
 
 // Size mapping to Tamagui size tokens
@@ -44,6 +49,7 @@ export const CAvatar = ({
   image,
   text = 'UK',
   circular = true,
+  onImageLoadError,
   ...props
 }: AvatarProps) => {
   // Get the first two characters for the fallback text
@@ -51,9 +57,56 @@ export const CAvatar = ({
     return text.substring(0, 2).toUpperCase();
   }, [text]);
 
+  // Comprehensive logging of all props and derived values
+  console.log('CAvatar received props:', {
+    size,
+    image,
+    text,
+    circular,
+    onImageLoadError: !!onImageLoadError,
+    allProps: { ...props }
+  });
+  
+  console.log('CAvatar derived values:', {
+    fallbackText,
+    sizeValue: sizeMap[size],
+    fontSizeValue: fontSizeMap[size]
+  });
+
+  // Handle different types of image URLs
+  let imageUrl = image;
+
+  if (image) {
+    // Case 1: It's already a full URL (e.g., pre-signed URL from R2)
+    if (image.startsWith('http://') || image.startsWith('https://')) {
+      imageUrl = image;
+    }
+    // Case 2: It's a user ID or path that should use the avatar endpoint
+    else if (image.startsWith('/')) {
+      // Remove leading slash if present
+      const cleanPath = image.startsWith('/') ? image.substring(1) : image;
+      imageUrl = `${AVATAR_URL_PATTERN}/${cleanPath}`;
+    }
+    // Case 3: It's a simple ID or filename
+    else {
+      imageUrl = `${AVATAR_URL_PATTERN}/${image}`;
+    }
+  }
+
+  console.log('CAvatar processed image URL:', imageUrl);
+
   return (
     <TamaguiAvatar size={sizeMap[size]} circular={circular} {...props}>
-      {image ? <TamaguiAvatar.Image src={image} /> : null}
+      {imageUrl ? (
+        <TamaguiAvatar.Image
+          src={imageUrl}
+          alt={fallbackText}
+          onError={() => {
+            console.log('Image failed to load in CAvatar:', imageUrl);
+            onImageLoadError?.();
+          }}
+        />
+      ) : null}
       <TamaguiAvatar.Fallback
         backgroundColor="$secondary"
         flex={1}
