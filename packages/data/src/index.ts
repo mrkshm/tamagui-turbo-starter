@@ -23,3 +23,5 @@ export * from './hooks/use-update-user';
 export * from './hooks/use-update-avatar';
 export * from './hooks/use-avatar-url';
 export * from './hooks/use-upload-progress';
+export * from './hooks/use-check-username';
+export * from './hooks/use-update-username';

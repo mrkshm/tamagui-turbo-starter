@@ -1,68 +1,122 @@
-import { YStack, Text, Stack, FormCard } from '@bbook/ui';
+import { YStack, Text, Stack, FormCard, XStack, Spinner } from '@bbook/ui';
 import {
   useEditableFields,
   useFieldNavigation,
   useFieldHandlers,
 } from '@bbook/utils';
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
+import { TextInput } from 'react-native';
 import { EditableField } from '@bbook/ui/src/components/EditableField';
 import { EditableTextArea } from '@bbook/ui/src/components/EditableTextArea';
 import { H3 } from '@bbook/ui';
 import { getInitialsForAvatar } from '@bbook/utils';
-import { User, useUpdateUserMutation } from '@bbook/data';
+import { User, useUpdateUserMutation, useUsernameCheck, useUpdateUsernameMutation } from '@bbook/data';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import { AvatarUploader } from '../avatar';
 import { useTranslation } from '@bbook/i18n';
 
 export function ProfileMain({ user }: { user: User }) {
   const { t } = useTranslation();
+  
+  // Username availability check with built-in debouncing
+  const { isChecking, isAvailable, checkUsername } = useUsernameCheck(500);
+  const [canSaveUsername, setCanSaveUsername] = useState(true);
+  
+  // State for validation errors
+  const [validationErrors, setValidationErrors] = useState<
+    Record<string, string | undefined>
+  >({});
+  
+  // Update canSaveUsername whenever isAvailable changes
+  useEffect(() => {
+    // If we're not checking and have a result, update canSaveUsername
+    if (!isChecking && isAvailable !== null) {
+      setCanSaveUsername(isAvailable);
+    }
+  }, [isChecking, isAvailable]);
+  
+
 
   // All fields are managed by the useEditableFields hook
 
   // Define the field IDs in order for tab navigation
-  const fieldIds = ['firstName', 'lastName', 'location', 'about'];
+  const fieldIds = ['username', 'firstName', 'lastName', 'location', 'about'];
 
   // Use our custom hook to manage editable fields with navigation support
   // Setup initial values for fields managed by the enhanced hook
   // Use useRef to store the initial values and prevent them from updating on every user change
   const initialValuesRef = useRef({
+    username: user.username || '',
     firstName: user.first_name || '',
     lastName: user.last_name || '',
     about: user.about || '',
     location: user.location || '',
   });
 
-  // Define save handler for fields
+  // Custom save handler that delegates to different mutations based on field
   const handleSaveField = async (fieldId: string, value: string) => {
     try {
-      // Create update data object based on field ID
-      let updateData = {};
+      let updatedUser: User | null = null;
 
-      switch (fieldId) {
-        case 'firstName':
-          updateData = { first_name: value };
-          break;
-        case 'lastName':
-          updateData = { last_name: value };
-          break;
-        case 'about':
-          updateData = { about: value };
-          break;
-        case 'location':
-          updateData = { location: value };
-          break;
-        default:
-          console.warn(`Unknown field ID: ${fieldId}`);
+      // Special handling for username field
+      if (fieldId === 'username') {
+        // Check if username is available before saving
+        if (!canSaveUsername) {
+          console.error('Cannot save username - username is not available');
+          setValidationErrors({
+            username: 'Username is not available'
+          });
           return;
+        }
+        
+        try {
+          // Use the dedicated username update endpoint
+          updatedUser = await updateUsername.mutateAsync(value);
+          // End editing after successful save
+          originalHandleEditEnd();
+        } catch (error) {
+          console.error('Error updating username:', error);
+          setValidationErrors({
+            username: 'Failed to update username'
+          });
+          return;
+        }
+      } else {
+        // For all other fields, use the general update endpoint
+        // Create update data object based on field ID
+        let updateData = {};
+  
+        switch (fieldId) {
+          case 'firstName':
+            updateData = { first_name: value };
+            break;
+          case 'lastName':
+            updateData = { last_name: value };
+            break;
+          case 'about':
+            updateData = { about: value };
+            break;
+          case 'location':
+            updateData = { location: value };
+            break;
+          default:
+            console.warn(`Unknown field ID: ${fieldId}`);
+            return;
+        }
+  
+        updatedUser = await updateUser.mutateAsync(updateData);
       }
-
-      const updatedUser = await updateUser.mutateAsync(updateData);
 
       // After successful save, update the initialValues to the new value
       // This is crucial for the undo functionality to work correctly
       if (updatedUser) {
         // Update the corresponding field in initialValues
         switch (fieldId) {
+          case 'username':
+            if (updatedUser.username !== undefined) {
+              initialValuesRef.current.username = updatedUser.username;
+            }
+            break;
           case 'firstName':
             if (updatedUser.first_name !== undefined) {
               initialValuesRef.current.firstName = updatedUser.first_name;
@@ -101,15 +155,30 @@ export function ProfileMain({ user }: { user: User }) {
     undoStates,
     navigateToField,
     fieldValues, // Use fieldValues from the hook
-  } = useEditableFields(['firstName', 'lastName', 'about', 'location'], {
-    initialValues: {
-      firstName: user.first_name || '',
-      lastName: user.last_name || '',
-      about: user.about || '',
-      location: user.location || '',
-    },
-    onSave: handleSaveField,
-  });
+  } = useEditableFields(
+    ['username', 'firstName', 'lastName', 'about', 'location'],
+    {
+      initialValues: {
+        username: user.username || '',
+        firstName: user.first_name || '',
+        lastName: user.last_name || '',
+        about: user.about || '',
+        location: user.location || '',
+      },
+      onSave: handleSaveField,
+    }
+  );
+
+  // Reset validation errors when the user starts editing the username field
+  useEffect(() => {
+    if (isEditing && isEditing('username')) {
+      // Clear any username-specific validation errors
+      setValidationErrors(prev => ({
+        ...prev,
+        username: undefined
+      }));
+    }
+  }, [isEditing]);
 
   // Use the new useFieldNavigation hook to create all navigation functions at once
   const navigationFunctions = useFieldNavigation(navigateToField, fieldIds);
@@ -122,7 +191,36 @@ export function ProfileMain({ user }: { user: User }) {
     about: handleAboutTabNavigation,
   } = navigationFunctions;
 
-  // Use the field handlers hook for all fields
+  // For username field, we don't want to use the regular saveField function
+  // Instead, we'll create a custom handler that doesn't do anything
+  const noopSave = useCallback(() => Promise.resolve(), []);
+  
+  // Use the field handlers hook for username with a noop save function
+  const { handleUndo: handleUsernameUndo } = useFieldHandlers(
+    'username', 
+    undoStates, 
+    noopSave, // Use noopSave instead of saveField
+    originalHandleEditEnd
+  );
+  
+  // Custom cancel handler for username that resets validation state
+  const handleUsernameCancel = useCallback(() => {
+    // Reset username validation state
+    setCanSaveUsername(true);
+    setValidationErrors(prev => ({
+      ...prev,
+      username: undefined
+    }));
+    
+    // Restore original value by setting it back to the user's current username
+    if (updateFieldValue && user) {
+      updateFieldValue('username', user.username || '');
+    }
+    
+    // End editing without saving
+    originalHandleEditEnd();
+  }, [updateFieldValue, user, originalHandleEditEnd, setValidationErrors, setCanSaveUsername]);
+
   const {
     handleUndo: handleFirstNameUndo,
     handleCancel: handleFirstNameCancel,
@@ -142,12 +240,23 @@ export function ProfileMain({ user }: { user: User }) {
   const { handleUndo: handleAboutUndo, handleCancel: handleAboutCancel } =
     useFieldHandlers('about', undoStates, saveField, originalHandleEditEnd);
 
-  // State for validation errors
-  const [validationErrors, setValidationErrors] = useState<
-    Record<string, string | undefined>
-  >({});
+  // Initialize the username update mutation
+  const updateUsername = useUpdateUsernameMutation({
+    onSuccess: () => {
+      // Clear validation errors on success
+      setValidationErrors({});
+    },
+    onError: (error) => {
+      console.error('Failed to update username:', error);
+      if (error instanceof Error) {
+        setValidationErrors({
+          username: error.message,
+        });
+      }
+    },
+  });
 
-  // Initialize the update user mutation
+  // Initialize the general update user mutation
   const updateUser = useUpdateUserMutation({
     onSuccess: (updatedUser) => {
       console.log('Profile updated successfully:', updatedUser);
@@ -172,6 +281,10 @@ export function ProfileMain({ user }: { user: User }) {
       // If specificFields is provided, only save those fields
       // Otherwise, save all fields that have changed
       const fieldsToSave = specificFields || {
+        username:
+          fieldValues?.username !== user.username
+            ? fieldValues?.username
+            : undefined,
         first_name:
           fieldValues?.firstName !== user.first_name
             ? fieldValues?.firstName
@@ -274,7 +387,112 @@ export function ProfileMain({ user }: { user: User }) {
             })}
             circular
           />
-          <H3>{user.username}</H3>
+          {/* Username - Custom implementation for cross-platform compatibility */}
+          <YStack 
+            onPress={(e) => {
+              e.stopPropagation();
+              if (!isEditing('username')) {
+                handleEditStart('username');
+              }
+            }}
+            backgroundColor={isEditing('username') ? "$blue5" : "transparent"}
+            paddingHorizontal="$4"
+            paddingVertical="$2"
+            borderRadius="$4"
+          >
+            {isEditing('username') ? (
+              <XStack width="100%" alignItems="center" gap="$2" flexDirection="column">
+                <XStack width="100%" alignItems="center" gap="$2">
+                  <TextInput
+                    value={fieldValues?.username || ''}
+                    onChangeText={(value: string) => {
+                      updateFieldValue && updateFieldValue('username', value);
+                      // Check username availability when typing
+                      // Don't check if the username hasn't changed from the user's current username
+                      if (value === user.username) {
+                        setCanSaveUsername(true);
+                        return;
+                      }
+                      checkUsername(value);
+                    }}
+                    autoFocus
+                    style={{
+                      flex: 1,
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      color: isAvailable === false ? '$red11' : '$blue11',
+                      padding: 8,
+                    }}
+                    placeholder={t('profile:fields.username.placeholder') || 'Username'}
+                    onSubmitEditing={() => {
+                      if (canSaveUsername) {
+                        // Use the dedicated username save handler
+                        handleSaveField('username', fieldValues?.username || '');
+                        // Don't call originalHandleEditEnd() here, it will be called by handleSaveField
+                      }
+                    }}
+                  />
+                  {isChecking && <Spinner size="small" color="$blue10" />}
+                  {!isChecking && isAvailable === false && (
+                    <Text color="$red11" fontSize="$3">✗</Text>
+                  )}
+                  {!isChecking && isAvailable === true && (
+                    <Text color="$green11" fontSize="$3">✓</Text>
+                  )}
+                </XStack>
+                {!isChecking && isAvailable === false && (
+                  <Text color="$red11" fontSize="$2" textAlign="center">
+                    {t('profile:fields.username.taken') || 'Username already taken'}
+                  </Text>
+                )}
+                {validationErrors.username && (
+                  <Text color="$red11" fontSize="$2" textAlign="center">
+                    {validationErrors.username}
+                  </Text>
+                )}
+                <XStack gap="$2">
+                  {!!undoStates?.username?.showUndo && (
+                    <Text 
+                      color="$blue11" 
+                      fontWeight="bold"
+                      onPress={handleUsernameUndo}
+                      pressStyle={{ opacity: 0.7 }}
+                    >
+                      Undo
+                    </Text>
+                  )}
+                  <Text 
+                    color="$blue11" 
+                    fontWeight="bold"
+                    onPress={() => {
+                      // Use our custom cancel handler that properly resets everything
+                      handleUsernameCancel();
+                    }}
+                    pressStyle={{ opacity: 0.7 }}
+                  >
+                    Cancel
+                  </Text>
+                  <Text 
+                    color="$blue11" 
+                    fontWeight="bold"
+                    onPress={() => {
+                      if (canSaveUsername) {
+                        // Use the dedicated username save handler
+                        handleSaveField('username', fieldValues?.username || '');
+                        // handleSaveField will call originalHandleEditEnd() after successful save
+                      }
+                    }}
+                    pressStyle={{ opacity: 0.7 }}
+                  >
+                    Save
+                  </Text>
+                </XStack>
+              </XStack>
+            ) : (
+              <H3 textAlign="center">{user.username}</H3>
+            )}
+          </YStack>
         </YStack>
         <YStack gap="$4" padding="$4" flex={1}>
           {/* General validation error message */}

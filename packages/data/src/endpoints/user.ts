@@ -11,6 +11,10 @@ export interface CheckUsernameResponse {
   available: boolean;
 }
 
+export interface UpdateUsernamePayload {
+  username: string;
+}
+
 export interface ChangeAvatarPayload {
   avatar: FormData;
 }
@@ -24,12 +28,20 @@ export const userEndpoints = {
   } as Endpoint<undefined, User>,
 
   CHECK_USERNAME: {
-    url: '/usernames/verify',
-    method: HTTP_METHODS.POST,
-    requiresAuth: true,
+    url: '/users/check_username',
+    method: HTTP_METHODS.GET,
+    requiresAuth: false,
     requestType: {} as CheckUsernamePayload,
     responseType: {} as CheckUsernameResponse,
   } as Endpoint<CheckUsernamePayload, CheckUsernameResponse>,
+
+  UPDATE_USERNAME: {
+    url: '/users/username',
+    method: HTTP_METHODS.PATCH,
+    requiresAuth: true,
+    requestType: {} as UpdateUsernamePayload,
+    responseType: {} as User,
+  } as Endpoint<UpdateUsernamePayload, User>,
 
   UPDATE_PROFILE: {
     url: '/users/me',

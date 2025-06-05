@@ -4,7 +4,6 @@ export * from './useAvatarUpload';
 export { AvatarWithUrl } from './AvatarWithUrl';
 
 // Platform-specific exports
-// The build system will automatically choose the right implementation
-// based on the platform (.web.tsx or .native.tsx)
-import { AvatarUploader as AvatarUploaderImpl } from './AvatarUploader.web';
-export { AvatarUploaderImpl as AvatarUploader };
+// We need to use the correct extension-less import pattern
+// so the build system can choose the right implementation
+export { AvatarUploader } from './AvatarUploader';

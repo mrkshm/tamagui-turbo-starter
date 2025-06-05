@@ -6,6 +6,9 @@ export const userSchema = v.object({
   first_name: v.optional(v.string()),
   last_name: v.optional(v.string()),
   username: v.optional(v.string()),
+  slug: v.optional(v.string()),
+  org_name: v.optional(v.string()),
+  org_slug: v.optional(v.string()),
   location: v.optional(v.string()),
   about: v.optional(v.string()),
   avatar_path: v.optional(v.nullable(v.string())),
@@ -140,7 +143,19 @@ export type PasswordResetConfirmResponse = v.InferInput<
   typeof PasswordResetConfirmResponseSchema
 >;
 
+// Schema for username updates - only requires the username field
+export const UpdateUsernameSchema = v.object({
+  username: v.pipe(v.string(), v.minLength(3), v.maxLength(30), v.trim()),
+});
+export type UpdateUsernamePayload = v.InferInput<typeof UpdateUsernameSchema>;
+
+// Since the API now returns the full user object for username updates,
+// we can use the same schema as the user schema
+export const UpdateUsernameResponseSchema = userSchema;
+export type UpdateUsernameResponse = User;
+
 export const ProfilePayloadSchema = v.object({
+  username: v.optional(v.pipe(v.string(), v.maxLength(30), v.trim())),
   first_name: v.optional(v.pipe(v.string(), v.maxLength(50), v.trim())),
   last_name: v.optional(v.pipe(v.string(), v.maxLength(50), v.trim())),
   location: v.optional(v.pipe(v.string(), v.maxLength(100), v.trim())),
