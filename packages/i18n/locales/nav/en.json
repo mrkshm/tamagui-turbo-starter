@@ -1,4 +1,8 @@
 {
+  "contacts": "Contacts",
+  "dashboard": "Dashboard",
   "profile": "Profile",
-  "profile_and_settings": "Profile & Settings"
+  "profile_and_settings": "Profile & Settings",
+  "login": "Login",
+  "register": "Register"
 }

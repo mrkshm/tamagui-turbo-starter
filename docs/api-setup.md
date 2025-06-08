@@ -351,6 +351,82 @@ function useUser(id: number) {
 }
 ```
 
+## Working with Validation Responses
+
+The API client automatically wraps all responses in a standard format and handles validation. Here's what you need to know:
+
+### Response Format
+
+All API responses follow this structure:
+
+```typescript
+interface ApiResponse<T> {
+  success: boolean;
+  data: T | null;
+  error?: Error;
+  validationErrors?: any[];
+}
+
+// Example success response
+const successResponse = {
+  success: true,
+  data: { /* validated data */ },
+};
+
+// Example error response
+const errorResponse = {
+  success: false,
+  data: null,
+  error: new Error('Error message'),
+  validationErrors: [/* validation issues */],
+};
+```
+
+### Handling Responses in Hooks
+
+When creating custom hooks, handle both success and error cases:
+
+```typescript
+function useContact(slug: string) {
+  return useQuery({
+    queryKey: ['contact', slug],
+    queryFn: async () => {
+      const result = await apiClient.get<Contact>(
+        `/contacts/${slug}`,
+        contactSchema
+      );
+
+      if (!result.success) {
+        // Handle validation or network errors
+        throw result.error || new Error('Failed to load contact');
+      }
+
+
+      return result.data;
+    },
+  });
+}
+```
+
+### Validation Errors
+
+When validation fails, the response will include detailed error information:
+
+```typescript
+{
+  success: false,
+  data: null,
+  error: new Error('Validation failed'),
+  validationErrors: [
+    {
+      path: ['fieldName'],
+      message: 'Invalid value',
+      // ...other validation details
+    }
+  ]
+}
+```
+
 ## Best Practices
 
 ### 1. Endpoint Organization

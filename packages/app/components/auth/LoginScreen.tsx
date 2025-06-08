@@ -124,6 +124,7 @@ export function LoginScreen({
                     labelText={t('auth:email_label')}
                     size="$3"
                     focusOnMount={true}
+                    value={field.state.value}
                     onChangeText={field.handleChange}
                     keyboardType="email-address"
                     autoComplete="email"
@@ -162,6 +163,7 @@ export function LoginScreen({
                       id="login-password"
                       labelText={t('auth:password_label')}
                       size="$3"
+                      value={field.state.value}
                       onChangeText={field.handleChange}
                       secureTextEntry={true}
                       autoComplete="password"

@@ -5,10 +5,11 @@ import { ScrollView, Text, YStack } from '@bbook/ui';
 import { useTheme } from '@bbook/ui';
 import { HeaderBackground } from '@react-navigation/elements';
 import { Spinner } from '@bbook/ui';
-
-const ErrorText = Text;
+import { useTranslation } from '@bbook/i18n';
+import { UserNotFound } from '@bbook/app/components/errors/UserNotFound';
 
 export default function MemberHome() {
+  const { t } = useTranslation();
   const { user, isLoading } = useAuth();
   const theme = useTheme();
   const backgroundColor = theme.background?.val;
@@ -23,11 +24,7 @@ export default function MemberHome() {
   }
 
   if (!user) {
-    return (
-      <YStack flex={1} alignItems="center" justifyContent="center">
-        <ErrorText>User not found</ErrorText>
-      </YStack>
-    );
+    return <UserNotFound />;
   }
 
   return (
@@ -35,7 +32,7 @@ export default function MemberHome() {
       <Stack.Screen
         options={{
           headerShown: true,
-          title: 'Profile',
+          title: t('nav:profile'),
           headerTintColor: textColor,
           headerBackground: () => (
             <HeaderBackground style={{ backgroundColor: backgroundColor }} />

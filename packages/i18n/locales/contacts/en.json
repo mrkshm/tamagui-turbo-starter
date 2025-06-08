@@ -1,0 +1,22 @@
+{
+  "search_contacts": "Search contacts",
+  "search_placeholder": "Search contacts...",
+  "no_results": "No contacts found",
+  "title": "Contacts",
+  "fields": {
+    "display_name": "Display name",
+    "display_name_placeholder": "Enter display name",
+    "first_name": "First name",
+    "first_name_placeholder": "Enter first name",
+    "last_name": "Last name",
+    "last_name_placeholder": "Enter last name",
+    "email": "Email",
+    "email_placeholder": "Enter email",
+    "phone": "Phone",
+    "phone_placeholder": "Enter phone",
+    "location": "Location",
+    "location_placeholder": "Enter location",
+    "notes": "Notes",
+    "notes_placeholder": "Add notes..."
+  }
+}

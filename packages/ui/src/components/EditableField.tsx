@@ -23,6 +23,8 @@ type EditableFieldProps = {
   editingField: string | null;
   // Optional error message to display
   errorMessage?: string;
+  // Optional label for the field
+  label?: string;
   // Optional background colors
   activeColor?: string;
   inactiveColor?: string;
@@ -59,6 +61,7 @@ export function EditableField({
   onCancel,
   editingField,
   errorMessage,
+  label,
   activeColor = '$purple5',
   inactiveColor = '$gray5',
   placeholder = 'Type something...',
@@ -69,51 +72,62 @@ export function EditableField({
   onUndo,
   children,
 }: EditableFieldProps) {
-  // Handle container click - now also starts editing if no field is being edited
-  const handleContainerClick = (e: GestureResponderEvent) => {
-    // Stop propagation to prevent the parent container's click handler from being triggered
-    e.stopPropagation();
-
-    // If another field is being edited, stop editing that field
-    if (editingField !== null && editingField !== fieldId) {
-      console.log(`Container clicked, canceling edit of ${editingField}`);
-      handleEditEnd();
-      return;
-    }
-
-    // If no field is being edited, start editing this field
-    if (editingField === null) {
-      console.log(`Container clicked, starting to edit ${fieldId}`);
+  // Handle container click - only used to handle clicks on the field itself
+  const handleContainerClick = useCallback(() => {
+    // Only handle clicks if this field is not already being edited
+    if (!isEditing) {
+      console.log(`Field ${fieldId} clicked, starting edit`);
+      // Start editing this field
       handleEditStart(fieldId);
     }
-  };
+  }, [isEditing, fieldId, handleEditStart]);
 
   // Handle edit start for this field
-  const handleFieldEditStart = () => {
-    console.log(
-      `Edit start for ${fieldId}, current editingField:`,
-      editingField
-    );
+  const handleFieldEditStart = useCallback(
+    (e?: React.MouseEvent | string, id?: string) => {
+      // Handle the case where e is the ID (for backward compatibility)
+      let targetFieldId: string;
 
-    // If another field is being edited, stop editing that field first
-    if (editingField !== null && editingField !== fieldId) {
+      if (typeof e === 'string') {
+        targetFieldId = e;
+      } else if (id) {
+        targetFieldId = id;
+      } else {
+        targetFieldId = fieldId;
+      }
+
       console.log(
-        `Canceling edit of ${editingField} before editing ${fieldId}`
+        `Edit start requested for ${targetFieldId}, current editingField: ${editingField}`
       );
-      handleEditEnd();
-      // Return false to prevent immediate editing
-      return false;
-    }
 
-    // Only try to start editing if no field is being edited
-    if (editingField === null) {
-      console.log(`No field being edited, starting to edit ${fieldId}`);
+      // Only handle if the requested ID matches this field
+      if (targetFieldId !== fieldId) {
+        console.log(
+          `Requested edit for different field (${targetFieldId}), ignoring`
+        );
+        return false;
+      }
+
+      // If already editing this field, return true
+      if (isEditing) {
+        console.log(`Already editing field ${fieldId}`);
+        return true;
+      }
+
+      // If another field is being edited, don't allow editing this one
+      if (editingField !== null && editingField !== fieldId) {
+        console.log(
+          `Cannot start edit of ${fieldId}, current editing field: ${editingField}`
+        );
+        return false;
+      }
+
+      // Start editing this field
+      console.log(`Starting edit of ${fieldId}`);
       return handleEditStart(fieldId);
-    }
-
-    // Already editing this field
-    return true;
-  };
+    },
+    [fieldId, editingField, isEditing, handleEditStart]
+  );
 
   // Create a click handler for the entire field
   const handleFieldClick = (e: GestureResponderEvent) => {
@@ -183,7 +197,7 @@ export function EditableField({
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       // Log the key event for debugging
       console.log(`KeyDown event in field ${fieldId}, key:`, e.key);
-      
+
       // Handle the key event
       keyboardHandlers(e as React.KeyboardEvent);
     },
@@ -193,20 +207,24 @@ export function EditableField({
   // Log key events for debugging in the web input component
 
   return (
-    <YStack gap="$1">
+    <YStack
+      onPress={handleContainerClick}
+      backgroundColor={isEditing ? activeColor : inactiveColor}
+      borderRadius="$4"
+      padding="$3"
+      marginBottom="$3"
+      position="relative"
+      minHeight={height}
+      justifyContent="center"
+      data-editable-field={fieldId}
+    >
       <XStack
-        height={height}
-        backgroundColor={isEditing ? activeColor : inactiveColor}
-        borderRadius="$2"
-        alignItems="center"
-        justifyContent="center"
-        padding="$4"
         onPress={handleContainerClick}
-        // Add pressStyle for better visual feedback
-        pressStyle={{ opacity: 0.8 }}
-        // Add border color when there's an error
-        borderColor={errorMessage ? '$red9' : 'transparent'}
-        borderWidth={errorMessage ? 1 : 0}
+        width="100%"
+        gap="$2"
+        opacity={isEditing ? 1 : 0.9}
+        paddingHorizontal="$4"
+        paddingVertical="$2"
       >
         {children ? (
           // If we have custom children, wrap them in a pressable container
@@ -228,14 +246,9 @@ export function EditableField({
             placeholder={placeholder}
             showUndo={showUndo}
             onUndo={onUndo}
-            /* Log the showUndo prop being passed to InlineEditable */
+            label={label}
             id={`${fieldId}-inline-editable`}
-            renderInput={({
-              value,
-              onChange,
-              autoFocus,
-              onSubmitEditing,
-            }) => {
+            renderInput={({ value, onChange, autoFocus, onSubmitEditing }) => {
               const inputRef = useRef<TextInput>(null);
 
               if (Platform.OS === 'web') {

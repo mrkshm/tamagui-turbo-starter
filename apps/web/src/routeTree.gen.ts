@@ -21,6 +21,8 @@ import { Route as AuthPasswordResetConfirmImport } from './routes/auth/password-
 import { Route as AuthPasswordResetImport } from './routes/auth/password-reset'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as MemberProfileIndexImport } from './routes/member/profile/index'
+import { Route as MemberContactsIndexImport } from './routes/member/contacts/index'
+import { Route as MemberContactsContactSlugImport } from './routes/member/contacts/$contactSlug'
 
 // Create/Update Routes
 
@@ -81,6 +83,18 @@ const AuthLoginRoute = AuthLoginImport.update({
 const MemberProfileIndexRoute = MemberProfileIndexImport.update({
   id: '/member/profile/',
   path: '/member/profile/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MemberContactsIndexRoute = MemberContactsIndexImport.update({
+  id: '/member/contacts/',
+  path: '/member/contacts/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MemberContactsContactSlugRoute = MemberContactsContactSlugImport.update({
+  id: '/member/contacts/$contactSlug',
+  path: '/member/contacts/$contactSlug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -151,6 +165,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MemberIndexImport
       parentRoute: typeof rootRoute
     }
+    '/member/contacts/$contactSlug': {
+      id: '/member/contacts/$contactSlug'
+      path: '/member/contacts/$contactSlug'
+      fullPath: '/member/contacts/$contactSlug'
+      preLoaderRoute: typeof MemberContactsContactSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/member/contacts/': {
+      id: '/member/contacts/'
+      path: '/member/contacts'
+      fullPath: '/member/contacts'
+      preLoaderRoute: typeof MemberContactsIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/member/profile/': {
       id: '/member/profile/'
       path: '/member/profile'
@@ -173,6 +201,8 @@ export interface FileRoutesByFullPath {
   '/auth/waiting': typeof AuthWaitingRoute
   '/landing': typeof LandingIndexRoute
   '/member': typeof MemberIndexRoute
+  '/member/contacts/$contactSlug': typeof MemberContactsContactSlugRoute
+  '/member/contacts': typeof MemberContactsIndexRoute
   '/member/profile': typeof MemberProfileIndexRoute
 }
 
@@ -186,6 +216,8 @@ export interface FileRoutesByTo {
   '/auth/waiting': typeof AuthWaitingRoute
   '/landing': typeof LandingIndexRoute
   '/member': typeof MemberIndexRoute
+  '/member/contacts/$contactSlug': typeof MemberContactsContactSlugRoute
+  '/member/contacts': typeof MemberContactsIndexRoute
   '/member/profile': typeof MemberProfileIndexRoute
 }
 
@@ -200,6 +232,8 @@ export interface FileRoutesById {
   '/auth/waiting': typeof AuthWaitingRoute
   '/landing/': typeof LandingIndexRoute
   '/member/': typeof MemberIndexRoute
+  '/member/contacts/$contactSlug': typeof MemberContactsContactSlugRoute
+  '/member/contacts/': typeof MemberContactsIndexRoute
   '/member/profile/': typeof MemberProfileIndexRoute
 }
 
@@ -215,6 +249,8 @@ export interface FileRouteTypes {
     | '/auth/waiting'
     | '/landing'
     | '/member'
+    | '/member/contacts/$contactSlug'
+    | '/member/contacts'
     | '/member/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -227,6 +263,8 @@ export interface FileRouteTypes {
     | '/auth/waiting'
     | '/landing'
     | '/member'
+    | '/member/contacts/$contactSlug'
+    | '/member/contacts'
     | '/member/profile'
   id:
     | '__root__'
@@ -239,6 +277,8 @@ export interface FileRouteTypes {
     | '/auth/waiting'
     | '/landing/'
     | '/member/'
+    | '/member/contacts/$contactSlug'
+    | '/member/contacts/'
     | '/member/profile/'
   fileRoutesById: FileRoutesById
 }
@@ -253,6 +293,8 @@ export interface RootRouteChildren {
   AuthWaitingRoute: typeof AuthWaitingRoute
   LandingIndexRoute: typeof LandingIndexRoute
   MemberIndexRoute: typeof MemberIndexRoute
+  MemberContactsContactSlugRoute: typeof MemberContactsContactSlugRoute
+  MemberContactsIndexRoute: typeof MemberContactsIndexRoute
   MemberProfileIndexRoute: typeof MemberProfileIndexRoute
 }
 
@@ -266,6 +308,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthWaitingRoute: AuthWaitingRoute,
   LandingIndexRoute: LandingIndexRoute,
   MemberIndexRoute: MemberIndexRoute,
+  MemberContactsContactSlugRoute: MemberContactsContactSlugRoute,
+  MemberContactsIndexRoute: MemberContactsIndexRoute,
   MemberProfileIndexRoute: MemberProfileIndexRoute,
 }
 
@@ -288,6 +332,8 @@ export const routeTree = rootRoute
         "/auth/waiting",
         "/landing/",
         "/member/",
+        "/member/contacts/$contactSlug",
+        "/member/contacts/",
         "/member/profile/"
       ]
     },
@@ -317,6 +363,12 @@ export const routeTree = rootRoute
     },
     "/member/": {
       "filePath": "member/index.tsx"
+    },
+    "/member/contacts/$contactSlug": {
+      "filePath": "member/contacts/$contactSlug.tsx"
+    },
+    "/member/contacts/": {
+      "filePath": "member/contacts/index.tsx"
     },
     "/member/profile/": {
       "filePath": "member/profile/index.tsx"

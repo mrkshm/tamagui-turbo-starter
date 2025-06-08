@@ -2,6 +2,8 @@
 import auth_en from '../locales/auth/en.json';
 import common_en from '../locales/common/en.json';
 import common_fr from '../locales/common/fr.json';
+import contacts_en from '../locales/contacts/en.json';
+import errors_en from '../locales/errors/en.json';
 import nav_en from '../locales/nav/en.json';
 import profile_en from '../locales/profile/en.json';
 import terms_en from '../locales/terms/en.json';
@@ -10,6 +12,8 @@ const resources: any = {};
 resources['en'] = {
   'auth': auth_en,
   'common': common_en,
+  'contacts': contacts_en,
+  'errors': errors_en,
   'nav': nav_en,
   'profile': profile_en,
   'terms': terms_en,

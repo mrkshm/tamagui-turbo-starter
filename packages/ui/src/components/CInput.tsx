@@ -1,14 +1,15 @@
-import type { FontSizeTokens, SizeTokens } from 'tamagui';
+import type { SizeTokens } from 'tamagui';
 import { View } from 'tamagui';
 import { Input } from './parts/inputParts';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { YStack, Paragraph } from 'tamagui';
+import { Paragraph } from 'tamagui';
 
 export interface CInputProps {
   errors?: string | string[];
   size?: SizeTokens;
   focusOnMount?: boolean;
   labelText?: string;
+  value?: string;
   onChangeText?: (text: string) => void;
   secureTextEntry?: boolean;
   placeholder?: string;
@@ -30,6 +31,8 @@ export interface CInputProps {
     | 'new-password'
     | undefined;
   id?: string; // Optional custom ID
+  testID?: string; // For testing
+  style?: React.CSSProperties; // For custom styles
 }
 
 export const CInput = forwardRef<any, CInputProps>(
@@ -38,28 +41,27 @@ export const CInput = forwardRef<any, CInputProps>(
       labelText = 'Label',
       size,
       focusOnMount = false,
+      value = '',
       onChangeText,
-      secureTextEntry = false,
       placeholder,
+      secureTextEntry = false,
       autoCapitalize = 'none',
-      keyboardType,
+      keyboardType = 'default',
       autoComplete,
-      errors,
       id,
+      errors,
+      testID,
+      style
     },
     ref
   ) => {
-    // Normalize errors to an array for consistent rendering
-    const normalizedErrors = errors
-      ? Array.isArray(errors)
-        ? errors
-        : [errors]
-      : [];
     // Set default placeholder based on field type
     const defaultPlaceholder = secureTextEntry ? '••••••' : 'email@example.com';
-    
+
     // Generate a unique ID if none is provided
-    const uniqueId = id || `input-${labelText.toLowerCase()}-${Math.random().toString(36).substring(2, 9)}`;
+    const uniqueId =
+      id ||
+      `input-${labelText.toLowerCase()}-${Math.random().toString(36).substring(2, 9)}`;
 
     // Create a ref for the input area
     const inputAreaRef = useRef<any>(null);
@@ -81,46 +83,48 @@ export const CInput = forwardRef<any, CInputProps>(
     }));
 
     return (
-      <View flexDirection="column" width="100%" tabIndex={-1}>
+      <View flexDirection="column" width="100%" paddingRight="$4" tabIndex={-1}>
         <Input size={size} width="100%" tabIndex={-1}>
-          <Input.Label
-            htmlFor={uniqueId}
-            marginBottom="$1.5"
-            tabIndex={-1}
-          >
+          <Input.Label htmlFor={uniqueId} marginBottom="$1.5" tabIndex={-1}>
             {labelText}
           </Input.Label>
           <Input.Box
-            tabIndex={-1}
-            height={50}
-            justifyContent="center"
-            alignItems="center"
+            ref={inputAreaRef}
+            id={uniqueId}
+            testID={testID}
+            style={style}
+            backgroundColor="$background"
+            borderRadius="$4"
+            borderWidth="$1"
+            borderColor="$borderColor"
           >
             <Input.Area
-              ref={inputAreaRef}
-              id={uniqueId}
-              placeholder={placeholder || defaultPlaceholder}
-              autoFocus={focusOnMount}
+              value={value}
               onChangeText={onChangeText}
+              placeholder={placeholder || defaultPlaceholder}
               secureTextEntry={secureTextEntry}
               autoCapitalize={autoCapitalize}
               keyboardType={keyboardType}
               autoComplete={autoComplete}
-              height={40}
-              color="$color12"
+              autoFocus={focusOnMount}
+              placeholderTextColor="$color10"
+              paddingHorizontal="$4"
+              paddingVertical="$3"
+              borderRadius="$3"
+              borderWidth={0}
+              backgroundColor="transparent"
+              color="$color"
               fontSize="$4"
+              lineHeight="$4"
+              width="100%"
             />
           </Input.Box>
           {/* Render errors if provided */}
-          {normalizedErrors.length > 0 && (
-            <YStack marginTop="$1" gap={2}>
-              {normalizedErrors.map((error: string, i: number) => (
-                <Paragraph color="$error" size={size as FontSizeTokens} key={i}>
-                  {error}
-                </Paragraph>
-              ))}
-            </YStack>
-          )}
+          {errors ? (
+            <Paragraph color="$red10" marginTop="$1.5">
+              {Array.isArray(errors) ? errors[0] : errors}
+            </Paragraph>
+          ) : null}
         </Input>
       </View>
     );

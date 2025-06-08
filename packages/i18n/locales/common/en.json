@@ -16,8 +16,18 @@
   "preview": "Preview",
   "ok": "OK",
   "save": "Save",
+  "search": "Search",
   "share": "Share",
   "sign_up": "Sign up",
+  "sort": "Sort",
+  "sort_by": {
+    "": "Sort by",
+    "date_added": "Date added",
+    "email": "Email",
+    "last_modified": "Last modified",
+    "name": "Name",
+    "username": "Username"
+  },
   "take_photo": "Take a photo",
   "upload": "Upload",
   "uploading": "Uploading...",

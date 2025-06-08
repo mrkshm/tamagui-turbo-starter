@@ -3,7 +3,15 @@
   "include": ["src"],
   "compilerOptions": {
     "composite": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "paths": {
+      "@bbook/utils": ["../utils/src"],
+      "@bbook/utils/*": ["../utils/src/*"]
+    }
   },
-  "references": []
+  "references": [
+    {
+      "path": "../utils"
+    }
+  ]
 }

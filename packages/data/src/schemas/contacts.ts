@@ -1,18 +1,24 @@
 import * as v from 'valibot';
-import { PaginatedApiResponseSchema, paginationQueryParamsSchema } from './api';
+import {
+  PaginatedApiResponseSchema,
+  paginationQueryParamsSchema,
+  SingleEntityApiResponseSchema,
+} from './api';
 
 export const contactSchema = v.object({
+  id: v.nullish(v.string()),
   display_name: v.string(),
-  slug: v.optional(v.string()),
-  first_name: v.optional(v.string()),
-  last_name: v.optional(v.string()),
-  email: v.optional(v.string()),
-  location: v.optional(v.string()),
-  phone: v.optional(v.nullable(v.string())),
-  notes: v.optional(v.nullable(v.string())),
-  avatar_path: v.optional(v.nullable(v.string())),
-  creator: v.optional(v.string()),
-  tags: v.optional(
+  slug: v.nullish(v.string()),
+  first_name: v.nullish(v.string()),
+  last_name: v.nullish(v.string()),
+  email: v.nullish(v.string()),
+  location: v.nullish(v.string()),
+  phone: v.nullish(v.string()),
+  notes: v.nullish(v.string()),
+  avatar_path: v.nullish(v.string()),
+  organization: v.nullish(v.string()),
+  creator: v.nullish(v.string()),
+  tags: v.nullish(
     v.array(
       v.object({
         id: v.number(),
@@ -22,10 +28,18 @@ export const contactSchema = v.object({
       })
     )
   ),
-  created_at: v.optional(v.string()),
-  updated_at: v.optional(v.string()),
+  created_at: v.nullish(v.string()),
+  updated_at: v.nullish(v.string()),
 });
+
 export type Contact = v.InferInput<typeof contactSchema>;
+
+export const singleContactSchema = SingleEntityApiResponseSchema(contactSchema);
+
+// Override with stricter TypeScript-friendly type
+export type ContactApiResponse =
+  | { success: true; data: Contact }
+  | { success: false; error: string; data: null; status?: number };
 
 export const paginatedContactsSchema =
   PaginatedApiResponseSchema(contactSchema);

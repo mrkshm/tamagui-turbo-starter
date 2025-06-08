@@ -18,15 +18,54 @@ export interface TokenService {
   removeTokens: (userId: string) => Promise<void>;
 }
 
-// Helper to check token expiration
+// Helper to check token expiration – compatible with both web and React Native
 const isTokenExpired = (token: string): boolean => {
   try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
+    const [, payloadPart] = token.split('.');
+    if (!payloadPart) {
+      return true;
+    }
+
+    // Base64 decode that works in every runtime.
+    const decodeBase64 = (b64: string): string => {
+      if (typeof atob === 'function') {
+        return atob(b64);
+      }
+      // React Native (Hermes) & other non-browser environments
+      if (typeof Buffer !== 'undefined') {
+        return Buffer.from(b64, 'base64').toString('utf8');
+      }
+      throw new Error('Base64 decoding not supported in this environment');
+    };
+
+    // JWT spec uses URL-safe base64 which needs standard padding/characters
+    const normalised = b64UrlToBase64(payloadPart);
+    const payloadJson = decodeBase64(normalised);
+    const payload = JSON.parse(payloadJson);
+
+    if (typeof payload.exp !== 'number') {
+      // If no exp claim, treat as expired to be safe
+      return true;
+    }
+
     return Date.now() >= payload.exp * 1000;
-  } catch {
-    return true;
+  } catch (err) {
+    // If decoding fails, assume token is *not* expired so we can still attempt the request.
+    // The server will return 401 if really invalid and we will refresh once.
+    console.warn('[tokenService] Failed to decode JWT, skipping exp check:', err);
+    return false;
   }
 };
+
+// Convert URL-safe base64 to standard base64 (adds padding where required)
+function b64UrlToBase64(b64Url: string): string {
+  let base64 = b64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const pad = base64.length % 4;
+  if (pad) {
+    base64 += '='.repeat(4 - pad);
+  }
+  return base64;
+}
 
 async function makeRequest(url: string, token: string) {
   try {

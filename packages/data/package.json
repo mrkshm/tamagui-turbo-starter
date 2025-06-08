@@ -13,6 +13,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.6.1",
   "dependencies": {
+    "@bbook/utils": "workspace:*",
     "@tanstack/react-query": "^5.74.3",
     "use-debounce": "^10.0.4"
   },

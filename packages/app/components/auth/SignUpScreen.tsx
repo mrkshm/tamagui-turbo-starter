@@ -5,6 +5,7 @@ import { View, Paragraph, CButton, H1, Text } from '@bbook/ui';
 import { CInput, FormCard } from '@bbook/ui';
 import { useTranslation, Trans } from '@bbook/i18n';
 import { useAuth } from '../../provider/auth-provider';
+import { prepareErrors } from '@bbook/utils';
 
 export interface SignUpScreenProps {
   onSignUpSuccess?: (user: any) => void;
@@ -104,23 +105,18 @@ export function SignUpScreen({
                 }}
               >
                 {(field) => (
-                  <>
-                    <CInput
-                      id="signup-email"
-                      labelText={t('auth:email_label')}
-                      size="$3"
-                      focusOnMount={true}
-                      onChangeText={field.handleChange}
-                      keyboardType="email-address"
-                      autoComplete="email"
-                      placeholder={t('auth:email_placeholder')}
-                    />
-                    {field.state.meta.errors?.map((error, i) => (
-                      <Paragraph color="$error" key={i}>
-                        {error}
-                      </Paragraph>
-                    ))}
-                  </>
+                  <CInput
+                    id="signup-email"
+                    labelText={t('auth:email_label')}
+                    size="$3"
+                    focusOnMount={true}
+                    value={field.state.value}
+                    onChangeText={field.handleChange}
+                    keyboardType="email-address"
+                    autoComplete="email"
+                    placeholder={t('auth:email_placeholder')}
+                    errors={prepareErrors(field.state.meta.errors)}
+                  />
                 )}
               </form.Field>
 
@@ -149,22 +145,17 @@ export function SignUpScreen({
                 }}
               >
                 {(field) => (
-                  <>
-                    <CInput
-                      id="signup-password"
-                      labelText={t('auth:password_label')}
-                      size="$3"
-                      onChangeText={field.handleChange}
-                      secureTextEntry={true}
-                      autoComplete="new-password"
-                      placeholder={t('auth:password_placeholder')}
-                    />
-                    {field.state.meta.errors?.map((error, i) => (
-                      <Paragraph color="$error" key={i}>
-                        {error}
-                      </Paragraph>
-                    ))}
-                  </>
+                  <CInput
+                    id="signup-password"
+                    labelText={t('auth:password_label')}
+                    size="$3"
+                    value={field.state.value}
+                    onChangeText={field.handleChange}
+                    secureTextEntry={true}
+                    autoComplete="new-password"
+                    placeholder={t('auth:password_placeholder')}
+                    errors={prepareErrors(field.state.meta.errors)}
+                  />
                 )}
               </form.Field>
 
@@ -191,22 +182,17 @@ export function SignUpScreen({
                 }}
               >
                 {(field) => (
-                  <>
-                    <CInput
-                      id="signup-password-confirm"
-                      labelText={t('auth:password_confirm_label')}
-                      size="$3"
-                      onChangeText={field.handleChange}
-                      secureTextEntry={true}
-                      autoComplete="new-password"
-                      placeholder={t('auth:password_confirm_placeholder')}
-                    />
-                    {field.state.meta.errors?.map((error, i) => (
-                      <Paragraph color="$error" key={i}>
-                        {error}
-                      </Paragraph>
-                    ))}
-                  </>
+                  <CInput
+                    id="signup-password-confirm"
+                    labelText={t('auth:password_confirm_label')}
+                    size="$3"
+                    value={field.state.value}
+                    onChangeText={field.handleChange}
+                    secureTextEntry={true}
+                    autoComplete="new-password"
+                    placeholder={t('auth:password_confirm_placeholder')}
+                    errors={prepareErrors(field.state.meta.errors)}
+                  />
                 )}
               </form.Field>
 

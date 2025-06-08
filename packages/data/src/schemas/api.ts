@@ -9,6 +9,22 @@ export function PaginatedApiResponseSchema(
   });
 }
 
+export function SingleEntityApiResponseSchema(
+  entitySchema: v.BaseSchema<any, any, any>
+) {
+  return v.union([
+    v.object({
+      success: v.literal(true),
+      data: entitySchema,
+    }),
+    v.object({
+      success: v.literal(false),
+      error: v.string(),
+      data: v.nullish(entitySchema),
+    }),
+  ]);
+}
+
 export const paginationQueryParamsSchema = v.object({
   limit: v.optional(v.number()),
   offset: v.optional(v.number()),

@@ -1,7 +1,12 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isReactNative } from '@bbook/utils';
-import { useUpdateUserMutation } from '@bbook/data';
+import {
+  UserApiResponse,
+  useUpdateUser,
+  type UseMutationResult,
+  type ProfilePayload,
+} from '@bbook/data';
 
 export type ThemeKey = 'light' | 'dark';
 
@@ -79,40 +84,24 @@ useThemeStore.subscribe((state: ThemeStore) => {
 
 // Create a hook to sync theme with backend
 // Return type explicitly defined to avoid TypeScript inference issues
-export const useThemeSync = (): {
-  mutate: (data: { preferred_theme: string }) => void;
-} => {
-  console.log('useThemeSync hook called');
-  
-  const updateUser = useUpdateUserMutation({
-    onSuccess: () => {
-      console.log('Theme synced with backend successfully');
-    },
-    onError: (error: Error) => {
-      console.error('Failed to sync theme with backend:', error);
-    },
-  });
-  
-  console.log('updateUser mutation created:', !!updateUser);
-  
-  // Connect the store's syncWithBackend method to our mutation
+export const useThemeSync = (): UseMutationResult<
+  UserApiResponse,
+  Error,
+  Partial<ProfilePayload>
+> => {
+  // Create mutation using the new hook. We don't need userId here; the hook
+  // defaults to `current_user` which is correct for theme preference changes.
+  const mutation = useUpdateUser();
+
+  // Wire the store so every local theme change is sent to the backend.
   useThemeStore.setState({
     syncWithBackend: (themeValue: ThemeKey) => {
       console.log('syncWithBackend called with theme:', themeValue);
-      
-      // Force a manual theme update to test the API call
-      if (updateUser && typeof updateUser.mutate === 'function') {
-        console.log('Calling updateUser.mutate with:', { preferred_theme: themeValue });
-        
-        // This will trigger the API call to update the user's theme preference
-        updateUser.mutate({
-          preferred_theme: themeValue,
-        });
-      } else {
-        console.error('updateUser.mutate is not available');
-      }
+      mutation.mutate({ preferred_theme: themeValue });
     },
   });
-  
-  return updateUser;
+
+  // Expose the full mutation object so callers can inspect status or trigger
+  // manual syncs if they like.
+  return mutation;
 };

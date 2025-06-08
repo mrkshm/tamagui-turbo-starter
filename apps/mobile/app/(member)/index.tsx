@@ -13,6 +13,10 @@ export default function MemberHome() {
     router.push('/(member)/profile');
   };
 
+  const handleContactsPress = () => {
+    router.push('/(member)/contacts');
+  };
+
   return (
     <>
       <Stack.Screen options={{ headerShown: false, title: 'Dashboard' }} />
@@ -41,7 +45,10 @@ export default function MemberHome() {
           </Button>
         ) : null}
       </YStack>
-      <MobileNav onSettingsPress={handleSettingsPress} />
+      <MobileNav
+        onSettingsPress={handleSettingsPress}
+        onContactsPress={handleContactsPress}
+      />
     </>
   );
 }

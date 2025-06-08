@@ -23,7 +23,7 @@ export const animations = createAnimations({
   quick: {
     type: 'spring',
     damping: 20,
-    mass: 1.2,
+    mass: 0.8,
     stiffness: 250,
   },
   medium: {

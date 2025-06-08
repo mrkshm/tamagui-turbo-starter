@@ -2,12 +2,17 @@ import { HTTP_METHODS } from '../constants/constants';
 
 export type HttpMethod = (typeof HTTP_METHODS)[keyof typeof HTTP_METHODS];
 
+type UrlType<TParams extends any[] = []> = TParams extends []
+  ? string
+  : (...args: TParams) => string;
+
 export type Endpoint<
   TRequest = undefined,
   TResponse = unknown,
   TQuery = undefined,
+  TUrlParams extends any[] = [],
 > = {
-  url: string;
+  url: UrlType<TUrlParams>;
   method: HttpMethod;
   requiresAuth?: boolean;
   requestType?: TRequest;
@@ -18,7 +23,7 @@ export type Endpoint<
 export type EndpointDefinitions<
   T extends {
     [Category in string]: {
-      [Route in string]: Endpoint<unknown, unknown, unknown>;
+      [Route in string]: Endpoint<unknown, unknown, unknown, any[]>;
     };
   },
 > = {
@@ -26,9 +31,10 @@ export type EndpointDefinitions<
     [Route in keyof T[Category]]: T[Category][Route] extends Endpoint<
       infer Req,
       infer Res,
-      infer Query
+      infer Query,
+      infer UrlParams
     >
-      ? Endpoint<Req, Res, Query>
+      ? Endpoint<Req, Res, Query, UrlParams>
       : never;
   };
 };
@@ -59,10 +65,12 @@ type PathsToStringLiteral<T extends readonly any[]> = T extends []
 
 import { userEndpoints } from './user';
 import { authEndpoints } from './auth';
+import { contactsEndpoints } from './contacts';
 
 export const API_ENDPOINTS = {
   AUTH: authEndpoints,
   USER: userEndpoints,
+  CONTACTS: contactsEndpoints,
 } as const;
 
 export type ApiEndpointPath = PathsToStringLiteral<

@@ -101,8 +101,17 @@ export const InlineEditable: React.FC<InlineEditableProps> = ({
   const handleSave = useCallback(() => {
     if (disabled) return;
     console.log('InlineEditable handleSave called');
-    onEditEnd();
-  }, [disabled, onEditEnd]);
+
+    // Call onSubmitEditing if provided (for saving the value)
+    // Then call onEditEnd to exit edit mode
+    if (renderInput) {
+      // If using custom renderInput, we assume it handles onSubmitEditing
+      onEditEnd();
+    } else {
+      // For the default input, we need to call onEditEnd after any potential save
+      onEditEnd();
+    }
+  }, [disabled, onEditEnd, renderInput]);
 
   // Handle cancel
   const handleCancel = useCallback(() => {
@@ -141,9 +150,6 @@ export const InlineEditable: React.FC<InlineEditableProps> = ({
       });
       return (
         <Stack
-          onPress={() => {
-            onEdit();
-          }}
           flexDirection="row"
           alignItems="center"
           flex={1}
@@ -186,6 +192,19 @@ export const InlineEditable: React.FC<InlineEditableProps> = ({
       onSubmitEditing,
       onBlur,
     }: InputRendererProps) => {
+      // Handle blur by saving the value
+      const handleBlur = useCallback(() => {
+        console.log('Input blur');
+        handleSave();
+        onBlur?.();
+      }, [handleSave, onBlur]);
+
+      // Handle submit (Enter key)
+      const handleSubmit = useCallback(() => {
+        console.log('Input submit');
+        handleSave();
+        onSubmitEditing?.();
+      }, [handleSave, onSubmitEditing]);
       // Handle platform-specific props
       const platformProps =
         Platform.OS === 'web' ? { onKeyDown } : { onSubmitEditing };
@@ -194,7 +213,8 @@ export const InlineEditable: React.FC<InlineEditableProps> = ({
         <Input.Area
           value={value}
           onChangeText={onChange}
-          onBlur={onBlur}
+          onBlur={handleBlur}
+          onSubmitEditing={handleSubmit}
           {...platformProps}
           autoFocus={autoFocus}
           flex={1}
@@ -219,7 +239,7 @@ export const InlineEditable: React.FC<InlineEditableProps> = ({
     value,
     isEditing,
     showUndo,
-    hasUndoHandler: !!onUndo
+    hasUndoHandler: !!onUndo,
   });
 
   // Use custom renderers if provided, otherwise use defaults

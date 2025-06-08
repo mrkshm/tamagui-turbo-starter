@@ -476,38 +476,35 @@ export function useEditableFields<T = string>(
   // Handler for starting edit mode
   const handleEditStart = useCallback(
     (fieldName: string) => {
-      // If no field is currently being edited, allow this field to become editable
-      if (editingField === null) {
-        console.log(`Starting edit of ${fieldName}`);
-
-        // If we have initialValues, store the current value for undo functionality
-        if (initialValues) {
-          const originalValue = values[fieldName];
-          console.log(`EDIT START: Storing original value for ${fieldName}:`, {
-            originalValue,
-            currentValue: values[fieldName],
-            initialValue: initialValues[fieldName],
-          });
-
-          // Always store the original value when editing starts
-          previousValuesRef.current[fieldName] = originalValue;
-
-          // Reset the undoable state for this field when editing starts
-          // This ensures we're starting with a clean slate
-          setUndoableFields((prev) => ({
-            ...prev,
-            [fieldName]: false,
-          }));
-        }
-
-        setEditingField(fieldName);
+      // 1. If we're already editing this field, nothing to do.
+      if (editingField === fieldName) {
+        console.log(`Already editing ${fieldName}`);
         return true;
       }
-      // If another field is being edited, prevent this field from becoming editable
-      console.log(
-        `Cannot start edit of ${fieldName}, current editing field: ${editingField}`
-      );
-      return false;
+
+      // 2. If another field is being edited, close it and ask caller to retry.
+      if (editingField !== null && editingField !== fieldName) {
+        console.log(
+          `Field ${editingField} currently editing. Closing it before ${fieldName} can start.`
+        );
+        setEditingField(null);
+        return false; // caller will need a second tap
+      }
+
+      // 3. Begin editing the requested field.
+      console.log(`Starting edit of ${fieldName}`);
+
+      if (initialValues) {
+        const originalValue = values[fieldName];
+        previousValuesRef.current[fieldName] = originalValue;
+        setUndoableFields((prev) => ({
+          ...prev,
+          [fieldName]: false,
+        }));
+      }
+
+      setEditingField(fieldName);
+      return true;
     },
     [editingField, initialValues, values]
   );
