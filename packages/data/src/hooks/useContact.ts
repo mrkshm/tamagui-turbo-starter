@@ -166,10 +166,54 @@ export function useUpdateContact(
 
 interface UseUploadContactAvatarOptions {
   userId?: string;
+  /** Optional progress callback (0-100) */
+  onProgress?: (progress: number) => void;
+  onSuccess?: () => void;
+  onError?: (error: Error) => void;
 }
+
+// Duplicate useDeleteContactAvatar removed to avoid redeclaration
+/*
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationKey: ['deleteContactAvatar'],
+    mutationFn: async (id: string) => {
+      const token = await tokenService.getValidToken('current_user');
+      if (!token) {
+        throw new Error('No valid authentication token available');
+      }
+
+      const response = await fetch(`${API_BASE_URL}/api/v1/contacts/${id}/avatar`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || 'Failed to delete avatar');
+      }
+
+      const result = await response.json();
+      return result.avatar_path as string | null;
+    },
+    onSuccess: (_, id) => {
+      // Invalidate queries for this contact and contact lists
+      queryClient.invalidateQueries({ queryKey: contactQueryKeys.detail(id) });
+      queryClient.invalidateQueries({ queryKey: contactQueryKeys.lists() });
+    },
+  });
+}
+
+*/
 
 export function useUploadContactAvatar({
   userId = 'current_user',
+  onProgress,
+  onSuccess: externalSuccess,
+  onError: externalError,
 }: UseUploadContactAvatarOptions = {}) {
   const queryClient = useQueryClient();
 
@@ -184,16 +228,15 @@ export function useUploadContactAvatar({
         throw new Error('No valid authentication token available');
       }
 
-      const response = await fetch(
-        `${API_BASE_URL}/api/v1/contacts/${id}/avatar`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        }
-      );
+      // We cannot get granular upload progress with fetch; notify start (0) and finish (100)
+      onProgress?.(0);
+
+      const response = await fetch(`${API_BASE_URL}/contacts/${id}/avatar/`, {        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -201,6 +244,7 @@ export function useUploadContactAvatar({
       }
 
       const result = await response.json();
+      onProgress?.(100);
       return result.avatar_path;
     },
     onSuccess: (avatarPath, { id }) => {
@@ -209,6 +253,10 @@ export function useUploadContactAvatar({
         (old) => (old ? { ...old, avatar_path: avatarPath } : undefined)
       );
       queryClient.invalidateQueries({ queryKey: contactQueryKeys.lists() });
+      externalSuccess?.();
+    },
+    onError: (error: Error) => {
+      externalError?.(error);
     },
   });
 }

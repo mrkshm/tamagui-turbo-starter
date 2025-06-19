@@ -1,9 +1,10 @@
-import { Stack, YStack, Text } from '@bbook/ui';
+import { YStack, ScrollView } from '@bbook/ui';
 import { Contact } from '@bbook/data';
 import { ContactEditor } from './ContactEditor';
 import { useToastController } from '@bbook/ui';
-
+import { useTranslation } from '@bbook/i18n';
 import { useUpdateContact } from '@bbook/data';
+import { ContactAvatarUploader } from '../avatar';
 
 export interface ContactMainProps {
   contact: Contact;
@@ -11,6 +12,7 @@ export interface ContactMainProps {
 
 export function ContactMain({ contact }: ContactMainProps) {
   const toast = useToastController();
+  const { t } = useTranslation();
   const { mutateAsync: updateContact, isPending } = useUpdateContact(
     contact?.slug || ''
   );
@@ -22,42 +24,58 @@ export function ContactMain({ contact }: ContactMainProps) {
       if (result.success && result.data) {
         handleUpdateSuccess(result.data);
       } else {
-        throw new Error(result.error || 'Failed to update contact');
+        throw new Error(result.error || t('contacts:errors.update_error'));
       }
     } catch (error) {
       handleError(
-        error instanceof Error ? error : new Error('Failed to update contact')
+        error instanceof Error
+          ? error
+          : new Error(t('contacts:errors.update_error'))
       );
     }
   };
 
-  const handleUpdateSuccess = (updatedContact: Contact) => {
-    toast.show('Contact updated successfully!');
+  const handleUpdateSuccess = (_updatedContact: Contact) => {
+    toast.show(t('contacts:success.update_success'));
   };
 
   const handleError = (error: Error) => {
-    toast.show(error.message || 'Failed to update contact', {
+    toast.show(error.message || t('contacts:errors.update_error'), {
       type: 'error',
     });
   };
 
   return (
-    <YStack gap="$4" padding="$4" flex={1}>
-      <Stack>
-        <Text fontSize="$8" fontWeight="bold">
-          Contact Details
+    <ScrollView>
+      <YStack
+        gap="$4"
+        justifyContent="center"
+        alignItems="center"
+        padding="$4"
+        flex={1}
+      >
+        {/* <Text fontSize="$8" fontWeight="bold">
+          {t('contacts:contact_details')}
         </Text>
         <Text color="$gray10" marginTop="$1">
-          Update contact information
-        </Text>
-      </Stack>
+          {t('contacts:update_contact_info')}
+        </Text> */}
 
-      <ContactEditor
-        contact={contact}
-        onSubmit={handleContactUpdate}
-        isPending={isPending}
-        onError={handleError}
-      />
-    </YStack>
+        {contact.slug && (
+          <ContactAvatarUploader
+            contactSlug={String(contact.slug)}
+            image={contact.avatar_path ?? undefined}
+            text={contact.display_name}
+            size="lg"
+          />
+        )}
+        <ContactEditor
+          contact={contact}
+          onSubmit={handleContactUpdate}
+          isPending={isPending}
+          onError={handleError}
+        />
+      </YStack>
+    </ScrollView>
   );
 }

@@ -8,9 +8,15 @@ The editable field system consists of several main parts:
 
 1. `InlineEditable` - A low-level UI component for inline editing
 2. `EditableField` - A higher-level component that wraps `InlineEditable` with common functionality
-3. `useEditableFields` - A hook that manages the state for editable fields
-4. `useFieldNavigation` - A hook that manages tab navigation between fields
-5. `useFieldHandlers` - A hook that provides reusable handlers for undo and cancel operations
+
+- `EditableTextArea` – textarea-flavoured `EditableField`
+- `FormField` – adds label / help / error chrome around any editable input
+- `RenderFormField` – simple switch that delegates to a custom renderer based on field type
+
+3. `useEditableForm` – top-level hook that orchestrates values, validation, undo state & save logic across the form
+4. `useEditableFields` – helper for per-field state (still exported for granular use)
+5. `useInlineEditHandlers` / `useFieldHandlers` – shared callbacks for undo / cancel / save
+6. `useFieldNavigation` – keyboard navigation helpers
 
 ## Real-World Example
 
@@ -91,75 +97,58 @@ interface EditableFieldProps {
 }
 ```
 
-## Hooks
+## Additional Hooks
 
-### useEditableFields
+### useEditableForm
 
-A hook that manages the state for editable fields, including which field is currently being edited, field values, and undo functionality.
-
-```typescript
-function useEditableFields(
-  fieldIds: string[],
-  options?: {
-    initialValues?: Record<string, string>;
-    onSave?: (fieldId: string, value: string) => Promise<void>;
-  }
-): {
-  editingField: string | null;
-  handleEditStart: (fieldName: string) => boolean;
-  handleEditEnd: () => void;
-  isEditing: (fieldName: string) => boolean;
-  updateFieldValue: (fieldId: string, value: string) => void;
-  saveField?: (fieldId: string) => Promise<void>;
-  undoStates?: Record<
-    string,
-    {
-      undo?: () => void;
-      showUndo?: boolean;
-      previousValue?: string;
-      resetUndo?: () => void;
-    }
-  >;
-  navigateToField: (fieldId: string, direction: 'next' | 'prev') => void;
-  fieldValues?: Record<string, string>;
-};
-```
-
-### useFieldNavigation
-
-A hook that creates navigation functions for each field to handle tab navigation.
+A convenience wrapper around `useEditableFields` that bundles the most common concerns (validation, undo, save) into a single call. It returns everything you need to wire a dynamic form quickly:
 
 ```typescript
-function useFieldNavigation(
-  navigateToField: (fieldId: string, direction: 'next' | 'prev') => void,
-  fieldIds: string[]
-): Record<string, (direction: 'next' | 'prev') => void>;
+const {
+  fieldValues,
+  updateFieldValue,
+  editingField,
+  beginEdit,
+  endEdit,
+  saveField,
+  undoStates,
+  navigateToField,
+} = useEditableForm(fieldIds, options);
 ```
 
-### useFieldHandlers
+### useInlineEditHandlers
 
-A hook that provides reusable handlers for undo and cancel operations for editable fields.
+Glue logic that combines undo, cancel and save behaviour for a specific field in one place. Used internally by `FormField` but exported for advanced cases.
 
-```typescript
-function useFieldHandlers(
-  fieldId: string,
-  undoStates:
-    | Record<string, { undo?: () => void; resetUndo?: () => void }>
-    | undefined,
-  saveField: ((fieldId: string) => Promise<void>) | undefined,
-  originalHandleEditEnd: () => void
-): {
-  handleUndo: () => void;
-  handleCancel: () => void;
-};
+## Component Registry Pattern
+
+`RenderFormField` uses a simple registry map to decide which concrete component to render for a given `type`. Register your own with:
+
+```ts
+registerFormField('currency', CurrencyField);
 ```
+
+## Real-world Usage – `ContactEditor`
+
+See `packages/app/components/contacts/ContactEditor.tsx` for a compact example that leverages **all** building blocks (navigation, undo, textarea, validation) while staying under 200 LOC.
+
+## Future Simplification Roadmap
+
+While the current architecture is solid, we plan to flatten the API surface once the dust settles. Proposed steps:
+
+1. **Merge handler hooks** – expose one `useEditableForm` that covers editing, navigation and handlers; keep the smaller hooks internal.
+2. **Collapse UI wrappers** – combine `FormField` and `RenderFormField`; treat `inline`, `textarea`, & custom types as variants.
+3. **Unify inline/plain variants** – fold `InlineEditable` into `EditableField` via a `variant` prop.
+4. **Lean on TanStack Form** – evaluate migrating validation & state management to TanStack Form controllers to cut bespoke code.
+
+These refactors will reduce conceptual overhead (~25 % fewer exports) without sacrificing flexibility.
 
 ## Usage Example
 
 ```tsx
 import { EditableField } from '@bbook/app';
 import {
-  useEditableFields,
+  useEditableForm,
   useFieldNavigation,
   useFieldHandlers,
 } from '@bbook/utils';
@@ -179,7 +168,7 @@ function ProfileForm() {
     undoStates,
     navigateToField,
     fieldValues,
-  } = useEditableFields(fieldIds, {
+  } = useEditableForm(fieldIds, {
     initialValues: {
       firstName: 'John',
       lastName: 'Doe',

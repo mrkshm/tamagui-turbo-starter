@@ -4,6 +4,7 @@ import { useContact } from '@bbook/data';
 import { ContactMain } from '@bbook/app';
 import { Spinner, Text, YStack } from '@bbook/ui';
 import { useTheme } from '@bbook/ui';
+import { useTranslation } from '@bbook/i18n';
 import { HeaderBackground } from '@react-navigation/elements';
 
 export default function ContactDetailPage() {
@@ -12,6 +13,7 @@ export default function ContactDetailPage() {
   const theme = useTheme();
   const backgroundColor = theme.background?.val;
   const textColor = theme.textPrimary?.val;
+  const { t } = useTranslation();
 
   if (isLoading) {
     return (
@@ -24,7 +26,10 @@ export default function ContactDetailPage() {
   if (error || !contactResponse) {
     return (
       <YStack flex={1} alignItems="center" justifyContent="center">
-        <Text>Error loading contact: {error?.message}</Text>
+        <Text>
+          {t('contacts:errors.loading_error')}:{' '}
+          {error?.message || t('contacts:errors.loading_error_description')}
+        </Text>
       </YStack>
     );
   }
@@ -32,7 +37,10 @@ export default function ContactDetailPage() {
   if (!contactResponse.success) {
     return (
       <YStack flex={1} alignItems="center" justifyContent="center">
-        <Text>Error: {contactResponse.error || 'Failed to load contact'}</Text>
+        <Text>
+          {t('common:error')}:{' '}
+          {contactResponse.error || t('contacts:errors.loading_error')}
+        </Text>
       </YStack>
     );
   }
@@ -41,7 +49,7 @@ export default function ContactDetailPage() {
   if (!contact) {
     return (
       <YStack flex={1} alignItems="center" justifyContent="center">
-        <Text>Contact data is not available</Text>
+        <Text>{t('contacts:errors.not_found')}</Text>
       </YStack>
     );
   }
@@ -51,7 +59,7 @@ export default function ContactDetailPage() {
       <Stack.Screen
         options={{
           headerShown: true,
-          title: 'Contact',
+          title: t('contacts:title_singular'),
           headerTintColor: textColor,
           headerBackground: () => (
             <HeaderBackground style={{ backgroundColor: backgroundColor }} />

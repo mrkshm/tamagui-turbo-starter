@@ -3,6 +3,9 @@
   "search_placeholder": "Search contacts...",
   "no_results": "No contacts found",
   "title": "Contacts",
+  "title_singular": "Contact",
+  "contact_details": "Contact Details",
+  "update_contact_info": "Update contact information",
   "fields": {
     "display_name": "Display name",
     "display_name_placeholder": "Enter display name",
@@ -18,5 +21,14 @@
     "location_placeholder": "Enter location",
     "notes": "Notes",
     "notes_placeholder": "Add notes..."
+  },
+  "errors": {
+    "not_found": "We could not find the contact you are looking for.",
+    "loading_error": "Failed to load contact",
+    "loading_error_description": "Please reload the page and try again.",
+    "update_error": "Failed to update contact"
+  },
+  "success": {
+    "update_success": "Contact updated successfully!"
   }
 }

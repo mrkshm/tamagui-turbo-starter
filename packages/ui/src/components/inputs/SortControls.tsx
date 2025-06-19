@@ -181,7 +181,12 @@ export const SortControls = ({
 
   // Desktop version uses a dropdown
   return (
-    <XStack alignItems="center" gap="$4" testID={testID}>
+    <XStack
+      alignItems="center"
+      justifyContent="space-between"
+      gap="$0"
+      testID={testID}
+    >
       <Text>Sort by:</Text>
       <Select
         id="sort-field"
@@ -189,7 +194,7 @@ export const SortControls = ({
         onValueChange={handleFieldChange}
         disablePreventBodyScroll
       >
-        <Select.Trigger width="300px">
+        <Select.Trigger width="75%">
           <Select.Value placeholder="Select a field" />
         </Select.Trigger>
 
@@ -230,14 +235,18 @@ export const SortControls = ({
         size="$2"
         circular
         onPress={toggleDirection}
-        backgroundColor="transparent"
+        backgroundColor="$background"
+        borderColor="$borderColor"
+        borderWidth={1}
         hoverStyle={{ backgroundColor: '$backgroundHover' }}
+        pressStyle={{ backgroundColor: '$backgroundPress' }}
         testID={`${testID}-direction`}
+        aria-label={`Sort direction: ${direction === 'asc' ? 'Ascending' : 'Descending'}`}
       >
         {direction === 'asc' ? (
-          <ArrowDownAZ size={18} color="$textSecondary" />
+          <ArrowUpAZ size={18} color="$text" />
         ) : (
-          <ArrowUpAZ size={18} color="$textSecondary" />
+          <ArrowDownAZ size={18} color="$text" />
         )}
       </Button>
     </XStack>

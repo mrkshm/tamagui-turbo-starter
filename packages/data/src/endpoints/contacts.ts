@@ -5,6 +5,7 @@ import {
   PaginatedContacts,
   ContactsQueryParams,
 } from '../schemas/contacts';
+import { AvatarUrlResponse } from '../schemas/api';
 
 export interface CreateContactPayload {
   display_name: string;
@@ -85,4 +86,15 @@ export const contactsEndpoints = {
     requiresAuth: true,
     responseType: {} as Contact,
   } as Endpoint<never, Contact, undefined, [string]>,
+
+  // Get contact avatar
+  GET_AVATAR: {
+    url: (avatarPath: string) => `/contacts/avatars/${avatarPath}`,
+    method: HTTP_METHODS.GET,
+    requiresAuth: true,
+    responseType: {} as AvatarUrlResponse,
+  } as Endpoint<never, AvatarUrlResponse, undefined, [string]>,
 };
+
+export const getContactAvatarUrl = (avatarPath: string) =>
+  contactsEndpoints.GET_AVATAR.url(avatarPath);

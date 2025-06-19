@@ -10,7 +10,7 @@ import { AvatarWithUrl } from './AvatarWithUrl';
 import { useTranslation } from '@bbook/i18n';
 import { useAvatarUpload } from './useAvatarUpload';
 import { AvatarUploaderProps, DialogState } from './types';
-import { Ionicons } from '@expo/vector-icons';
+import { AvatarEntityTypeLiteral } from '@bbook/data';
 
 // Function to get file info and prepare for upload
 const getFileInfo = async (uri: string, filename: string) => {
@@ -38,6 +38,8 @@ interface SheetContentsProps {
   error: string | null;
   progress: number;
   previewUrl: string | null;
+  entityType: AvatarEntityTypeLiteral;
+  currentImageUrl?: string;
   onChooseFromGallery: () => void;
   onTakePhoto: () => void;
   onDeleteAvatar: () => void;
@@ -54,6 +56,8 @@ const SheetContents = ({
   error,
   progress,
   previewUrl,
+  entityType = 'user',
+  currentImageUrl,
   onChooseFromGallery,
   onTakePhoto,
   onDeleteAvatar,
@@ -78,9 +82,13 @@ const SheetContents = ({
       {dialogState === 'initial' && (
         <YStack gap="$4">
           {/* Show current avatar if available */}
-          {hasImage && (
+          {hasImage && currentImageUrl && (
             <YStack alignItems="center" marginBottom="$4">
-              <AvatarWithUrl size="md" />
+              <AvatarWithUrl
+                size="md"
+                entityType={entityType}
+                imagePath={currentImageUrl}
+              />
             </YStack>
           )}
 
@@ -89,11 +97,14 @@ const SheetContents = ({
               <CButton
                 variant="primary"
                 onPress={onChooseFromGallery}
-                icon={<Upload size={18} />}
+                icon={<Upload color="$onPrimary" size={18} />}
               >
                 {t('common:choose_from_library')}
               </CButton>
-              <CButton onPress={onTakePhoto} icon={<Camera size={18} />}>
+              <CButton
+                onPress={onTakePhoto}
+                icon={<Camera color="$onPrimary" size={18} />}
+              >
                 {t('common:take_photo')}
               </CButton>
             </YStack>
@@ -106,7 +117,7 @@ const SheetContents = ({
                 variant="destructive"
                 onPress={onDeleteAvatar}
                 disabled={isLoading}
-                icon={<Trash size={18} />}
+                icon={<Trash color="$onDestructive" size={18} />}
               >
                 {t('common:delete_avatar')}
               </CButton>
@@ -132,7 +143,11 @@ const SheetContents = ({
 
           {/* Cancel button */}
           <YStack gap="$4">
-            <CButton onPress={onCancel} icon={<X size={18} />}>
+            <CButton
+              variant="secondary"
+              onPress={onCancel}
+              icon={<X color="$onSecondary" size={18} />}
+            >
               {t('common:cancel')}
             </CButton>
           </YStack>
@@ -143,7 +158,13 @@ const SheetContents = ({
       {dialogState === 'preview' && (
         <YStack gap="$4" alignItems="center" width="100%">
           {/* Preview image */}
-          {previewUrl && <AvatarWithUrl size="lg" imagePath={previewUrl} />}
+          {previewUrl && (
+            <AvatarWithUrl
+              entityType={entityType}
+              size="lg"
+              imagePath={previewUrl}
+            />
+          )}
 
           {/* Error message */}
           {error && (
@@ -165,9 +186,7 @@ const SheetContents = ({
           <XStack gap="$4">
             <CButton
               onPress={onUpload}
-              icon={
-                <Ionicons name="cloud-upload-outline" size={18} color="black" />
-              }
+              icon={<Upload size={18} />}
               disabled={isLoading}
             >
               {t('common:upload')}
@@ -220,7 +239,12 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
   text,
   circular = true,
   onUploadComplete,
+  entityType = 'user',
+  entityId,
 }) => {
+  // Current user info (needed for entity id and existing avatar path)
+  const { user } = useAuth();
+
   const {
     dialogState,
     setDialogState,
@@ -241,10 +265,14 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
     handleClosePreview,
     handleDeleteAvatar,
     uploadMutation,
-  } = useAvatarUpload();
+  } = useAvatarUpload({
+    entityType,
+    entityId:
+      entityType === 'user'
+        ? String(entityId ?? user?.id ?? 'current_user')
+        : (entityId as string),
+  });
 
-  // Check if user has an avatar
-  const { user } = useAuth();
   const hasImage = Boolean(user?.avatar_path || image);
 
   // Handle choosing image from gallery
@@ -370,6 +398,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
           size={size}
           text={text}
           circular={circular}
+          entityType={entityType}
         />
       </XStack>
 
@@ -394,7 +423,9 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
             isLoading={isLoading}
             error={error}
             progress={progress}
+            entityType={entityType}
             previewUrl={previewUrl}
+            currentImageUrl={image}
             onChooseFromGallery={handleChooseFromGallery}
             onTakePhoto={handleTakePhoto}
             onDeleteAvatar={handleDeleteAvatar}

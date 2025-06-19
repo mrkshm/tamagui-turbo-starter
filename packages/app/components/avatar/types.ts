@@ -8,6 +8,8 @@ export interface AvatarUploaderProps {
   text?: string;
   circular?: boolean;
   onUploadComplete?: () => void;
+  entityType?: 'user' | 'contact';
+  entityId?: string;
 }
 
 // Common props for the content components

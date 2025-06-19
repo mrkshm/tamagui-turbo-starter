@@ -4,6 +4,10 @@ An opinionated starter template for Tamagui in a monorepo with Turbo. Expo 53 fo
 
 Featuring Tanstack Query, Tanstack Form, Zustand, i18n, Valibot, all that good stuff.
 
+The mobile app is currently only getting tested for iOS.
+
+This is very much a work in progress, breaking changes are expected, use at your own peril.
+
 ## Getting Started
 
 ### Prerequisites
@@ -21,8 +25,11 @@ cd turbobook
 # Install dependencies
 pnpm install
 
-# Start development servers
-pnpm dev
+# Start web app
+pnpm dev-web
+
+# Start mobile app
+pnpm dev-mobile
 ```
 
 ### Backend Integration
@@ -78,7 +85,7 @@ The Django Ninja API Starter provides:
 - Image upload to S3 compatible storage and processing endpoints
 - API documentation with OpenAPI/Swagger
 
-Using both starters together gives you a complete full-stack solution with minimal configuration.
+Using both starters together gives you a complete full-stack solution with hopefully minimal configuration.
 
 For detailed documentation on API setup and authentication, see:
 
@@ -91,12 +98,12 @@ For detailed documentation on API setup and authentication, see:
 
 - `apps/web` — Vite + React + Tanstack Router web app
 - `apps/mobile` — Expo + React Native mobile app
-- `packages/ui` — Shared Tamagui UI components
-- `packages/app` — Shared app logic, providers, hooks
-- `packages/config` — Tamagui config, tokens, themes
-- `packages/i18n` — i18n config
-- `packages/data` — QueryClient, API hooks, API route definitions
+- `packages/ui` — Tamagui configuration, shared low level Tamagui UI components
+- `packages/utils` — Shared utililty functions
+- `packages/app` — Shared app logic, providers, hooks, shared components
+- `packages/data` — QueryClient, API hooks, API route definitions, Valibot schemas and types
 - `packages/stores` — Zustand stores
+- `packages/i18n` — i18n configuration and translations
 
 ## Features
 
@@ -125,7 +132,7 @@ pnpm run-ios
 
 ## TODO / Roadmap
 
-- [x] Make both apps boot
+- [x] Make apps boot
 - [x] Add i18n
 - [x] QueryClient setup
 - [x] Add example Zustand store
@@ -135,8 +142,17 @@ pnpm run-ios
 - [x] Create basic documentation
 - [x] Add theme toggle with persistence
 - [x] Add Login Screens
-- [ ] Add Profile Screen
-- [ ] Add Contacts Screen
+- [x] Add Profile Screen
+- [x] Add Contacts Screen
+- [x] Add reusable components for inline editable fields
+- [x] Avatars for Profile and Contacts
+- [x] Add reusable components for avatar upload/display
+- [ ] Add tagging for contacts with reusable tag components
+- [ ] Add reusable image upload/display component for contacts
+- [ ] Add reusable gallery component for contacts
+- [ ] Make app presentable and theme a bit nicer
+- [ ] Clean up translation files
+- [ ] Better testing
 - [ ] Add CI/CD example
 - [ ] Clean up console logs etc
 - [ ] Write more docs

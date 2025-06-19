@@ -155,14 +155,21 @@ export const SearchInput = ({
   const inputPaddingRight = 32; // Space for clear button when visible
 
   return (
-    <XStack alignItems="center" gap="$2" position="relative" width="100%">
+    <XStack
+      flex={1}
+      alignItems="center"
+      gap="$4"
+      position="relative"
+      width="100%"
+      backgroundColor="green"
+    >
       {/* Search Icon */}
-      <View position="absolute" left={8} zIndex={1}>
-        <Search size={'$2'} color="$textPrimary" />
+      <View position="relative" zIndex={1}>
+        <Search size={'$1'} color="$textPrimary" />
       </View>
 
       {/* Input Field */}
-      <View flex={1}>
+      <View flex={1} backgroundColor="green" width="100%">
         <View position="relative" width="100%">
           <CInput
             testID={testID}

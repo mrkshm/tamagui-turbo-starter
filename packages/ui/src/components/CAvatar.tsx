@@ -77,23 +77,34 @@ export const CAvatar = ({
   let imageUrl = image;
 
   if (image) {
-    // Case 1: It's already a full URL (e.g., pre-signed URL from R2)
-    if (image.startsWith('http://') || image.startsWith('https://')) {
+    // Case 1: It's a blob:, data:, or file: URL - use as is
+    if (image.startsWith('blob:') || image.startsWith('data:') || image.startsWith('file:')) {
       imageUrl = image;
     }
-    // Case 2: It's a user ID or path that should use the avatar endpoint
+    // Case 2: It's already a full URL (e.g., pre-signed URL from R2)
+    else if (image.startsWith('http://') || image.startsWith('https://')) {
+      imageUrl = image;
+    }
+    // Case 3: It's a user ID or path that should use the avatar endpoint
     else if (image.startsWith('/')) {
       // Remove leading slash if present
       const cleanPath = image.startsWith('/') ? image.substring(1) : image;
       imageUrl = `${AVATAR_URL_PATTERN}/${cleanPath}`;
     }
-    // Case 3: It's a simple ID or filename
+    // Case 4: It's a simple ID or filename
     else {
       imageUrl = `${AVATAR_URL_PATTERN}/${image}`;
     }
   }
 
-  console.log('CAvatar processed image URL:', imageUrl);
+  console.log('CAvatar processed image URL:', {
+    original: image,
+    processed: imageUrl,
+    isBlob: image?.startsWith('blob:'),
+    isData: image?.startsWith('data:'),
+    isFile: image?.startsWith('file:'),
+    isHttp: image?.startsWith('http')
+  });
 
   return (
     <TamaguiAvatar size={sizeMap[size]} circular={circular} {...props}>

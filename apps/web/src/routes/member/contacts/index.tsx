@@ -1,10 +1,11 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { useAuth } from '@bbook/app/provider/auth-provider';
 import { ContactList } from '@bbook/app/components/contacts/ContactList';
-import { SearchAndSortBar } from '@bbook/ui';
-import { View, YStack } from '@bbook/ui';
+import { SearchAndSortBar, Spinner } from '@bbook/ui';
+import { View, YStack, Text } from '@bbook/ui';
 import type { SortField } from '@bbook/ui/src/components/inputs/SortControls';
 import { useState, useCallback } from 'react';
+import { useTranslation } from '@bbook/i18n';
 import type {
   Contact,
   SortableField,
@@ -17,27 +18,19 @@ export const Route = createFileRoute('/member/contacts/')({
 
 function RouteComponent() {
   const { user, isLoading } = useAuth();
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState<SortableField>('display_name');
   const [sortDirection, setSortDirection] = useState<SortOrder>('asc');
   const router = useRouter();
 
   const handleContactPress = (contact: Contact) => {
-    console.log('handleContactPress called with contact:', {
-      id: contact.id,
-      name: contact.display_name,
-      slug: contact.slug,
-      email: contact.email,
-    });
-
-    alert(`Contact pressed: ${contact.display_name}`);
-
     router.navigate({ to: `/member/contacts/${contact.slug}` });
   };
   const sortFields: SortField[] = [
-    { id: 'display_name', label: 'Name' },
-    { id: 'email', label: 'Email' },
-    { id: 'created_at', label: 'Date Added' },
+    { id: 'display_name', label: t('common:sort_by.name') },
+    { id: 'email', label: t('common:sort_by.email') },
+    { id: 'created_at', label: t('common:sort_by.date_added') },
   ];
 
   const handleSearch = useCallback((text: string) => {
@@ -53,14 +46,13 @@ function RouteComponent() {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (!user) {
-    return <div>User not found</div>;
+    return <Text>{t('contacts:errors.not_found')}</Text>;
   }
 
-  // Spread the user props directly to ProfileMain
   return (
     <YStack flex={1} height="100vh" overflow="hidden">
       <View

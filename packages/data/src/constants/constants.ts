@@ -5,3 +5,10 @@ export const HTTP_METHODS = {
   PATCH: 'PATCH',
   DELETE: 'DELETE',
 } as const;
+
+export enum AvatarEntityType {
+  User = 'user',
+  Contact = 'contact',
+}
+
+export type AvatarEntityTypeLiteral = `${AvatarEntityType}`;

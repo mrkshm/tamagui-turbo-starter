@@ -3,11 +3,24 @@ import { useInteractionState } from '@bbook/utils';
 import {
   useUpdateUserAvatar,
   useDeleteUserAvatar,
+  useUploadContactAvatar,
+  useDeleteContactAvatar,
   useCurrentUser,
+  AvatarEntityType,
+  AvatarEntityTypeLiteral,
 } from '@bbook/data';
 import { DialogState } from './types';
 
-export function useAvatarUpload() {
+interface UseAvatarUploadOptions {
+  entityType: AvatarEntityTypeLiteral;
+  entityId: string;
+  currentAvatarUrl?: string | null;
+}
+
+export function useAvatarUpload({
+  entityType,
+  entityId,
+}: UseAvatarUploadOptions) {
   // State for the dialog
   const [dialogState, setDialogState] = useState<DialogState>('initial');
   const [error, setError] = useState<string | null>(null);
@@ -22,12 +35,18 @@ export function useAvatarUpload() {
   // Dialog interaction state
   const dialogInteraction = useInteractionState();
 
-  // User data and mutations
-  const { data: userData, refetch: refetchUser } = useCurrentUser();
-  const uploadMutation = useUpdateUserAvatar({
-    onProgress: (progress) => setProgress(progress),
+  // User refetch (only relevant for user entity)
+  const { refetch: refetchUser } = useCurrentUser();
+
+  // Mutations depending on entity type
+  const baseUploadMutation = (
+    entityType === 'user' ? useUpdateUserAvatar : useUploadContactAvatar
+  )({
+    onProgress: (progress: number) => setProgress(progress),
     onSuccess: () => {
-      refetchUser();
+      if (entityType === 'user') {
+        refetchUser();
+      }
       setDialogState('initial');
       setPreviewUrl(null);
       setSelectedImageUri(null);
@@ -36,7 +55,7 @@ export function useAvatarUpload() {
       setIsLoading(false);
       dialogInteraction.onOut();
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       console.error('Upload error:', error);
       setError(error.message);
       setDialogState('initial');
@@ -44,7 +63,19 @@ export function useAvatarUpload() {
     },
   });
 
-  const deleteMutation = useDeleteUserAvatar();
+  // Wrap upload mutation to unify signature: always accept File
+  const uploadMutation = {
+    ...baseUploadMutation,
+    mutateAsync: (file: File) =>
+      entityType === 'user'
+        ? (baseUploadMutation as any).mutateAsync(file)
+        : (baseUploadMutation as any).mutateAsync({ id: entityId, file }),
+  } as typeof baseUploadMutation & {
+    mutateAsync: (file: File) => Promise<any>;
+  };
+
+  const deleteMutation =
+    entityType === 'user' ? useDeleteUserAvatar() : useDeleteContactAvatar();
 
   // Validate file size
   const validateFileSize = (size: number): boolean => {
@@ -76,7 +107,11 @@ export function useAvatarUpload() {
       setIsLoading(true);
       setError(null);
 
-      await deleteMutation.mutateAsync();
+      if (entityType === 'user') {
+        await (deleteMutation as any).mutateAsync();
+      } else {
+        await (deleteMutation as any).mutateAsync(entityId);
+      }
 
       // Success case
       setIsLoading(false);

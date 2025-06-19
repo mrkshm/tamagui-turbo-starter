@@ -3,7 +3,7 @@ import { User } from '@bbook/data';
 import { ProfileEditor } from './ProfileEditor';
 import { useToastController } from '@bbook/ui';
 import { useUpdateUser } from '@bbook/data';
-import { AvatarUploader } from '../avatar';
+import { ProfileAvatarUploader } from '../avatar/ProfileAvatarUploader';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 
 export interface ProfileMainProps {
@@ -47,19 +47,11 @@ export function ProfileMain({ user, onUpdateSuccess }: ProfileMainProps) {
   };
 
   return (
-    <YStack gap="$4" padding="$4" flex={1}>
-      <Stack>
-        <Text fontSize="$8" fontWeight="bold">
-          Profile
-        </Text>
-        <Text color="$gray10" marginTop="$1">
-          Update your profile information
-        </Text>
-      </Stack>
-
-      <AvatarUploader
+    <YStack gap="$4" alignItems="center" padding="$4" flex={1}>
+      <ProfileAvatarUploader
         image={user?.avatar_path || undefined}
         text={user.username}
+        size="lg"
       />
 
       <ProfileEditor

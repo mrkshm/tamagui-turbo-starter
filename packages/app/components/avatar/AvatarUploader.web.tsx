@@ -7,6 +7,7 @@ import { AvatarWithUrl } from './AvatarWithUrl';
 import { useTranslation } from '@bbook/i18n';
 import { useAvatarUpload } from './useAvatarUpload';
 import { AvatarUploaderProps, DialogState } from './types';
+import { AvatarEntityTypeLiteral } from '@bbook/data';
 
 // Define the DialogContents component
 interface DialogContentsProps {
@@ -16,6 +17,8 @@ interface DialogContentsProps {
   error: string | null;
   progress: number;
   previewUrl: string | null;
+  currentImageUrl?: string;
+  entityType: AvatarEntityTypeLiteral;
   onFileInputClick: () => void;
   onDeleteAvatar: () => void;
   onCancel: () => void;
@@ -30,6 +33,8 @@ const DialogContents = ({
   error,
   progress,
   previewUrl,
+  entityType = 'user',
+  currentImageUrl,
   onFileInputClick,
   onDeleteAvatar,
   onCancel,
@@ -53,9 +58,13 @@ const DialogContents = ({
       {dialogState === 'initial' && (
         <YStack gap="$4">
           {/* Show current avatar if available */}
-          {hasImage && (
+          {hasImage && currentImageUrl && (
             <YStack alignItems="center" marginBottom="$4">
-              <AvatarWithUrl size="md" />
+              <AvatarWithUrl
+                size="md"
+                entityType={entityType}
+                imagePath={currentImageUrl}
+              />
             </YStack>
           )}
 
@@ -115,7 +124,14 @@ const DialogContents = ({
       {dialogState === 'preview' && (
         <YStack gap="$4" alignItems="center" width="100%">
           {/* Preview image */}
-          {previewUrl && <AvatarWithUrl size="md" imagePath={previewUrl} />}
+          {previewUrl && (
+            <YStack alignItems="center" marginBottom="$4">
+              <AvatarWithUrl size="lg" imagePath={previewUrl} />
+              <Text marginTop="$2" color="$gray10" fontSize="$2">
+                {t('common:preview')}
+              </Text>
+            </YStack>
+          )}
 
           {/* Error message */}
           {error && (
@@ -190,7 +206,12 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
   text,
   circular = true,
   onUploadComplete,
+  entityType = 'user',
+  entityId,
 }) => {
+  // Current user info (used to resolve entity id and existing avatar path)
+  const { user } = useAuth();
+
   const {
     dialogState,
     setDialogState,
@@ -202,15 +223,18 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
     previewUrl,
     setPreviewUrl,
     dialogInteraction,
+    uploadMutation,
     validateFileSize,
     handleCancel,
     handleClosePreview,
     handleDeleteAvatar,
-    uploadMutation,
-  } = useAvatarUpload();
-
-  // Check if user has an avatar
-  const { user } = useAuth();
+  } = useAvatarUpload({
+    entityType,
+    entityId:
+      entityType === 'user'
+        ? String(entityId ?? user?.id ?? 'current_user')
+        : (entityId as string),
+  });
   const hasImage = Boolean(user?.avatar_path || image);
 
   // File input reference
@@ -218,15 +242,30 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
 
   // Handle file selection
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('File input changed', event.target.files);
     const files = event.target.files;
-    if (!files || files.length === 0) return;
+    if (!files || files.length === 0) {
+      console.log('No files selected');
+      return;
+    }
 
     const file = files[0];
+    console.log('Selected file:', {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    });
 
-    // Create a preview URL
-    const objectUrl = URL.createObjectURL(file);
-    setPreviewUrl(objectUrl);
-    setDialogState('preview');
+    try {
+      // Create a preview URL
+      const objectUrl = URL.createObjectURL(file);
+      console.log('Created object URL:', objectUrl);
+      setPreviewUrl(objectUrl);
+      setDialogState('preview');
+    } catch (error) {
+      console.error('Error creating preview URL:', error);
+      setError('Failed to create image preview');
+    }
   };
 
   // Handle file input click
@@ -290,8 +329,22 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
         type="file"
         ref={fileInputRef}
         onChange={handleFileChange}
-        accept="image/*"
-        style={{ display: 'none' }}
+        onClick={(e) => {
+          // Reset the value so the same file can be selected again
+          (e.target as HTMLInputElement).value = '';
+        }}
+        accept="image/png, image/jpeg, image/jpg, image/gif"
+        style={{
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          padding: 0,
+          margin: '-1px',
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          whiteSpace: 'nowrap',
+          border: 0,
+        }}
       />
       <XStack
         onPress={() => {
@@ -348,6 +401,8 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
               error={error}
               progress={progress}
               previewUrl={previewUrl}
+              entityType={entityType}
+              currentImageUrl={image}
               onFileInputClick={handleFileInputClick}
               onDeleteAvatar={handleDeleteAvatar}
               onCancel={handleCancel}

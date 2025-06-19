@@ -8,6 +8,7 @@
   "delete_avatar": "Delete Avatar",
   "done": "Done",
   "edit": "Edit",
+  "error": "Error",
   "export": "Export",
   "loading": "Loading",
   "login": "Login",
@@ -29,6 +30,11 @@
     "username": "Username"
   },
   "take_photo": "Take a photo",
+  "theme": {
+    "label": "Theme",
+    "dark": "Dark",
+    "light": "Light"
+  },
   "upload": "Upload",
   "uploading": "Uploading...",
   "upload_avatar": "Upload Avatar",

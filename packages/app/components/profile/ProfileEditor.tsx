@@ -10,6 +10,7 @@ import { YStack } from '@bbook/ui';
 import { RenderFormField } from '@bbook/ui/src/components/form/RenderFormField';
 import { ProfilePayload, User } from '@bbook/data';
 import { getChangedFields } from '@bbook/utils';
+import { useTranslation } from '@bbook/i18n';
 
 type FieldKey = 'first_name' | 'last_name' | 'email' | 'username';
 
@@ -20,47 +21,47 @@ interface ProfileEditorProps {
   isPending?: boolean;
 }
 
-const fieldConfigs: UIFieldConfig<FieldKey>[] = [
-  {
-    id: 'first_name',
-    label: 'First Name',
-    placeholder: 'First Name',
-    type: 'text',
-  },
-  {
-    id: 'last_name',
-    label: 'Last Name',
-    placeholder: 'Last Name',
-    type: 'text',
-  },
-  {
-    id: 'email',
-    label: 'Email',
-    placeholder: 'Email',
-    type: 'email',
-    keyboardType: 'email-address',
-    autoCapitalize: 'none',
-    validate: combineValidators(
-      required('Email is required'),
-      emailValidator('Please enter a valid email')
-    ),
-  },
-  {
-    id: 'username',
-    label: 'Username',
-    placeholder: 'Username',
-    type: 'text',
-    autoCapitalize: 'none',
-    validate: required('Username is required'),
-  },
-];
-
 export function ProfileEditor({
   user,
   onSubmit,
   onError,
   isPending,
 }: ProfileEditorProps) {
+  const { t } = useTranslation();
+  const fieldConfigs: UIFieldConfig<FieldKey>[] = [
+    {
+      id: 'first_name',
+      label: t('profile:fields.first_name.label'),
+      placeholder: t('profile:fields.first_name.placeholder'),
+      type: 'text',
+    },
+    {
+      id: 'last_name',
+      label: t('profile:fields.last_name.label'),
+      placeholder: t('profile:fields.last_name.placeholder'),
+      type: 'text',
+    },
+    {
+      id: 'email',
+      label: t('profile:fields.email.label'),
+      placeholder: t('profile:fields.email.placeholder'),
+      type: 'email',
+      keyboardType: 'email-address',
+      autoCapitalize: 'none',
+      validate: combineValidators(
+        required('Email is required'),
+        emailValidator('Please enter a valid email')
+      ),
+    },
+    {
+      id: 'username',
+      label: t('profile:fields.username.label'),
+      placeholder: t('profile:fields.username.placeholder'),
+      type: 'text',
+      autoCapitalize: 'none',
+      validate: required('Username is required'),
+    },
+  ];
   // Initialize form with useEditableForm
   const {
     fieldValues,

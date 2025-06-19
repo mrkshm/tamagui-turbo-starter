@@ -46528,6 +46528,9 @@ var paginationQueryParamsSchema = object({
   limit: optional(number()),
   offset: optional(number())
 });
+var avatarUrlResponseSchema = object({
+  url: string()
+});
 
 // ../../packages/data/src/schemas/contacts.ts
 var contactSchema = object({
@@ -46615,6 +46618,13 @@ var userEndpoints = {
     method: HTTP_METHODS.DELETE,
     requiresAuth: true,
     responseType: {}
+  },
+  // Get user avatar
+  GET_AVATAR: {
+    url: /* @__PURE__ */ __name((avatarPath) => `/users/avatars/${avatarPath}`, "url"),
+    method: HTTP_METHODS.GET,
+    requiresAuth: true,
+    responseType: {}
   }
 };
 
@@ -46629,7 +46639,7 @@ var contactsEndpoints = {
   },
   // Get a single contact by slug
   GET_CONTACT: {
-    url: /* @__PURE__ */ __name((slug) => `/contacts/${slug}`, "url"),
+    url: /* @__PURE__ */ __name((slug) => `/contacts/${slug}/`, "url"),
     method: HTTP_METHODS.GET,
     requiresAuth: true,
     responseType: {}
@@ -46671,6 +46681,24 @@ var contactsEndpoints = {
     method: HTTP_METHODS.DELETE,
     requiresAuth: true,
     responseType: {}
+  },
+  // Get contact avatar
+  GET_AVATAR: {
+    url: /* @__PURE__ */ __name((avatarPath) => `/contacts/avatars/${avatarPath}`, "url"),
+    method: HTTP_METHODS.GET,
+    requiresAuth: true,
+    responseType: {}
+  }
+};
+
+// ../../packages/data/src/query.ts
+var defaultConfig2 = {
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 10 * 1e3,
+      retry: 1,
+      refetchOnWindowFocus: false
+    }
   }
 };
 
@@ -47722,7 +47750,9 @@ var CAvatar = /* @__PURE__ */ __name(({
   });
   let imageUrl = image;
   if (image) {
-    if (image.startsWith("http://") || image.startsWith("https://")) {
+    if (image.startsWith("blob:") || image.startsWith("data:") || image.startsWith("file:")) {
+      imageUrl = image;
+    } else if (image.startsWith("http://") || image.startsWith("https://")) {
       imageUrl = image;
     } else if (image.startsWith("/")) {
       const cleanPath = image.startsWith("/") ? image.substring(1) : image;
@@ -47731,7 +47761,14 @@ var CAvatar = /* @__PURE__ */ __name(({
       imageUrl = `${AVATAR_URL_PATTERN}/${image}`;
     }
   }
-  console.log("CAvatar processed image URL:", imageUrl);
+  console.log("CAvatar processed image URL:", {
+    original: image,
+    processed: imageUrl,
+    isBlob: image?.startsWith("blob:"),
+    isData: image?.startsWith("data:"),
+    isFile: image?.startsWith("file:"),
+    isHttp: image?.startsWith("http")
+  });
   return /* @__PURE__ */ (0, import_jsx_runtime91.jsxs)(Avatar, { size: sizeMap[size6], circular: circular2, ...props, children: [
     imageUrl ? /* @__PURE__ */ (0, import_jsx_runtime91.jsx)(
       Avatar.Image,
@@ -47821,9 +47858,6 @@ var InlineEditable = /* @__PURE__ */ __name(({
       return /* @__PURE__ */ (0, import_jsx_runtime92.jsxs)(
         import_core58.Stack,
         {
-          onPress: () => {
-            onEdit();
-          },
           flexDirection: "row",
           alignItems: "center",
           flex: 1,
@@ -48101,6 +48135,7 @@ function EditableField({
         /* @__PURE__ */ (0, import_jsx_runtime93.jsx)(
           XStack,
           {
+            onPress: handleContainerClick,
             width: "100%",
             gap: "$2",
             opacity: isEditing ? 1 : 0.9,

@@ -60,9 +60,9 @@ export const SearchAndSortBar = memo(
     debounceMs = 400,
   }: SearchAndSortBarProps) => {
     return (
-      <YStack 
-        gap="$2" 
-        borderBottomWidth={1} 
+      <YStack
+        gap="$2"
+        borderBottomWidth={1}
         borderBottomColor="$borderColor"
         width="100%"
         maxWidth="100%"

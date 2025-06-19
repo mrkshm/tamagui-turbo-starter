@@ -115,15 +115,6 @@ export default function MemberHome() {
   }, []);
 
   const handleContactPress = (contact: Contact) => {
-    console.log('handleContactPress called with contact:', {
-      id: contact.id,
-      name: contact.display_name,
-      slug: contact.slug,
-      email: contact.email,
-    });
-
-    alert(`Contact pressed: ${contact.display_name}`);
-
     router.navigate(`/(member)/contacts/${contact.slug}`);
   };
 

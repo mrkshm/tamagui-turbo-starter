@@ -1,4 +1,4 @@
-import { QueryClient } from '@tanstack/react-query';
+import { QueryClient, QueryClientConfig } from '@tanstack/react-query';
 
 export {
   QueryClient,
@@ -7,12 +7,22 @@ export {
   useMutation,
 } from '@tanstack/react-query';
 
-export const createQueryClient = () =>
+const defaultConfig: QueryClientConfig = {
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 10 * 1000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+};
+
+export const createQueryClient = (config?: QueryClientConfig) =>
   new QueryClient({
+    ...defaultConfig,
+    ...config,
     defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-        retry: 1,
-      },
+      ...defaultConfig.defaultOptions,
+      ...config?.defaultOptions,
     },
   });

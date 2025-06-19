@@ -6,10 +6,11 @@ import {
   combineValidators,
   UIFieldConfig,
 } from '@bbook/utils';
-import { YStack, ScrollView } from '@bbook/ui';
+import { YStack } from '@bbook/ui';
 import { RenderFormField } from '@bbook/ui/src/components/form/RenderFormField';
 import { Contact } from '@bbook/data';
 import { getChangedFields } from '@bbook/utils';
+import { useTranslation } from '@bbook/i18n';
 
 export type FieldKey =
   | 'display_name'
@@ -18,7 +19,6 @@ export type FieldKey =
   | 'email'
   | 'phone'
   | 'location'
-  | 'organization'
   | 'notes';
 
 interface ContactEditorProps {
@@ -28,70 +28,65 @@ interface ContactEditorProps {
   isPending?: boolean;
 }
 
-const fieldConfigs: UIFieldConfig<FieldKey>[] = [
-  {
-    id: 'display_name',
-    label: 'Display Name',
-    placeholder: 'Display Name',
-    type: 'text',
-    validate: required('Display name is required'),
-  },
-  {
-    id: 'first_name',
-    label: 'First Name',
-    placeholder: 'First Name',
-    type: 'text',
-  },
-  {
-    id: 'last_name',
-    label: 'Last Name',
-    placeholder: 'Last Name',
-    type: 'text',
-  },
-  {
-    id: 'email',
-    label: 'Email',
-    placeholder: 'Email',
-    type: 'email',
-    validate: combineValidators(
-      required('Email is required'),
-      emailValidator('Please enter a valid email')
-    ),
-  },
-  {
-    id: 'phone',
-    label: 'Phone',
-    placeholder: 'Phone',
-    type: 'text',
-    keyboardType: 'phone-pad',
-  },
-  {
-    id: 'location',
-    label: 'Location',
-    placeholder: 'Location',
-    type: 'text',
-  },
-  {
-    id: 'organization',
-    label: 'Organization',
-    placeholder: 'Organization',
-    type: 'text',
-  },
-  {
-    id: 'notes',
-    label: 'Notes',
-    placeholder: 'Notes',
-    type: 'textarea',
-    autoCapitalize: 'sentences',
-  },
-];
-
 export function ContactEditor({
   contact,
   onSubmit,
   onError,
   isPending,
 }: ContactEditorProps) {
+  const { t } = useTranslation();
+
+  const fieldConfigs: UIFieldConfig<FieldKey>[] = [
+    {
+      id: 'display_name',
+      label: t('contacts:fields.display_name'),
+      placeholder: t('contacts:fields.display_name_placeholder'),
+      type: 'text',
+      validate: required('Display name is required'),
+    },
+    {
+      id: 'first_name',
+      label: t('contacts:fields.first_name'),
+      placeholder: t('contacts:fields.first_name_placeholder'),
+      type: 'text',
+    },
+    {
+      id: 'last_name',
+      label: t('contacts:fields.last_name'),
+      placeholder: t('contacts:fields.last_name_placeholder'),
+      type: 'text',
+    },
+    {
+      id: 'email',
+      label: t('contacts:fields.email'),
+      placeholder: t('contacts:fields.email_placeholder'),
+      type: 'email',
+      validate: combineValidators(
+        required('Email is required'),
+        emailValidator('Please enter a valid email')
+      ),
+    },
+    {
+      id: 'phone',
+      label: t('contacts:fields.phone'),
+      placeholder: t('contacts:fields.phone_placeholder'),
+      type: 'text',
+      keyboardType: 'phone-pad',
+    },
+    {
+      id: 'location',
+      label: t('contacts:fields.location'),
+      placeholder: t('contacts:fields.location_placeholder'),
+      type: 'text',
+    },
+    {
+      id: 'notes',
+      label: t('contacts:fields.notes'),
+      placeholder: t('contacts:fields.notes_placeholder'),
+      type: 'textarea',
+      autoCapitalize: 'sentences',
+    },
+  ];
   // Initialize form with useEditableForm
   const {
     fieldValues,
@@ -109,7 +104,6 @@ export function ContactEditor({
       email: contact.email || '',
       phone: contact.phone || '',
       location: contact.location || '',
-      organization: contact.organization || '',
       notes: contact.notes || '',
     },
     fieldConfigs: fieldConfigs.reduce(
@@ -133,7 +127,7 @@ export function ContactEditor({
           onError(
             error instanceof Error
               ? error
-              : new Error('Failed to update contact')
+              : new Error(t('contacts:errors.update_error'))
           );
         }
       }
@@ -185,16 +179,14 @@ export function ContactEditor({
   }, [fieldValues, isEditing, handleEditEnd]);
 
   return (
-    <ScrollView>
-      <YStack
-        onPress={handleContainerClick}
-        flex={1}
-        paddingHorizontal="$4"
-        paddingTop="$4"
-        paddingBottom="$4"
-      >
-        <YStack gap="$4">{fieldConfigs.map(renderField)}</YStack>
-      </YStack>
-    </ScrollView>
+    <YStack
+      onPress={handleContainerClick}
+      flex={1}
+      paddingHorizontal="$4"
+      paddingTop="$4"
+      paddingBottom="$4"
+    >
+      <YStack gap="$4">{fieldConfigs.map(renderField)}</YStack>
+    </YStack>
   );
 }

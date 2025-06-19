@@ -2,6 +2,20 @@
 
 ## Overview
 
+The avatar subsystem now supports **multiple entity types** (currently *user* and *contact*) through a unified API and a shared `useAvatarUpload` hook. Each entity has:
+
+1. A **POST** endpoint that accepts `multipart/form-data` with the image:
+   - User: `POST /api/v1/users/avatar/`
+   - Contact: `POST /api/v1/contacts/{slug}/avatar/`
+
+2. A **GET** endpoint that returns a **signed URL** for private storage access:
+   - User:   `GET /api/v1/users/avatars/{path}`
+   - Contact: `GET /api/v1/contacts/avatars/{path}` *(to be implemented; mirrors the user route)*
+
+The backend should return an `avatar_path` (e.g. `ct_don-when-avatar-17504-20250621T092252.webp`) in the upload response. `AvatarWithUrl` then performs the GET request above to obtain a time-limited URL for rendering. This keeps uploaded files private while avoiding CORS issues.
+
+> **Note:** When new entities (e.g. groups, projects) need avatars, implement the same pair of routes under `/api/v1/{entity}` and no changes are required on the front-end.
+
 The avatar upload system provides a complete solution for handling user avatars in the Turbobook application. It includes components for displaying, uploading, and managing avatar images across both web and mobile platforms.
 
 ## Component Organization
@@ -10,12 +24,14 @@ All avatar-related components are now organized in the `packages/app/components/
 
 ```
 avatar/
-├── AvatarUploader.tsx          # Platform-agnostic entry point
-├── AvatarUploader.native.tsx    # Native-specific implementation
-├── AvatarUploader.web.tsx       # Web-specific implementation
-├── AvatarWithUrl.tsx            # Avatar display component
-├── types.ts                    # Shared type definitions
-└── useAvatarUpload.ts          # Shared hook for upload logic
+├── AvatarUploader.tsx            # Platform-agnostic entry point (delegates to .native / .web)
+├── AvatarUploader.native.tsx      # Native-specific implementation
+├── AvatarUploader.web.tsx         # Web-specific implementation
+├── ContactAvatarUploader.tsx      # Wrapper: pins entityType="contact"
+├── ProfileAvatarUploader.tsx      # Wrapper: pins entityType="user" (current profile)
+├── AvatarWithUrl.tsx              # Avatar display component
+├── types.ts                       # Shared type definitions
+└── useAvatarUpload.ts             # Shared hook for upload logic
 ```
 
 ## Components
@@ -24,7 +40,7 @@ avatar/
 
 The `AvatarUploader` component is the main entry point for avatar management. It provides a platform-appropriate interface for users to upload, preview, and delete their avatars.
 
-**Location:** `packages/app/components/avatar/AvatarUploader.tsx`
+**Location:** `packages/app/components/avatar/AvatarUploader.*.tsx`
 
 **Features:**
 - **Native Platform:**
@@ -45,12 +61,20 @@ The `AvatarUploader` component is the main entry point for avatar management. It
 **Props:**
 ```typescript
 interface AvatarUploaderProps {
-  size?: 'sm' | 'md' | 'lg';  // Size of the avatar (small, medium, large)
-  image?: string;             // Current avatar image path
-  text?: string;              // Text to display as fallback
-  circular?: boolean;         // Whether the avatar should be circular
+  size?: 'sm' | 'md' | 'lg';   // Size of the avatar (small, medium, large)
+  image?: string;              // Current avatar image path / preview
+  text?: string;               // Text fallback when no image
+  circular?: boolean;          // Whether the avatar should be circular
   onUploadComplete?: () => void; // Callback after successful upload
+
+  /* Entity configuration */
+  entityType?: 'user' | 'contact'; // Which backend route to use (default: 'user')
+  entityId?: string;               // ID/slug of the entity (auto-resolved for current user)
 }
+
+/* Convenience wrappers */
+// ContactAvatarUploader – forwards entityType="contact" and expects `entityId` (contactSlug).
+// ProfileAvatarUploader – forwards entityType="user" and derives `entityId` from the auth context.
 ```
 
 **Usage:**
