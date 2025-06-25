@@ -2,8 +2,8 @@ import {
   useQuery,
   useMutation,
   useQueryClient,
-  UseQueryResult,
-} from '@tanstack/react-query';
+} from '../query';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { tokenService } from '../services/token-service';
 import {
   type Contact,

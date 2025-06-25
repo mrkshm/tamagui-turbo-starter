@@ -6,7 +6,7 @@ import {
 } from './api';
 
 export const contactSchema = v.object({
-  id: v.nullish(v.string()),
+  id: v.nullish(v.number()),
   display_name: v.string(),
   slug: v.nullish(v.string()),
   first_name: v.nullish(v.string()),

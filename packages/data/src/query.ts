@@ -5,6 +5,8 @@ export {
   QueryClientProvider,
   useQuery,
   useMutation,
+  useQueryClient,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
 
 const defaultConfig: QueryClientConfig = {

@@ -40,11 +40,13 @@ export function useKeyboardHandling(handlers: KeyboardHandlers) {
       switch (e.key) {
         case 'Enter':
           e.preventDefault();
+          e.stopPropagation();
           handlers.onEnter?.(e);
           break;
 
         case 'Escape':
           e.preventDefault();
+          e.stopPropagation();
           handlers.onEscape?.(e);
           break;
 
@@ -52,6 +54,7 @@ export function useKeyboardHandling(handlers: KeyboardHandlers) {
           // Only handle Tab if we have a handler for it
           if (handlers.onTab) {
             e.preventDefault();
+            e.stopPropagation();
             const direction = e.shiftKey
               ? ('prev' as const)
               : ('next' as const);
@@ -60,29 +63,33 @@ export function useKeyboardHandling(handlers: KeyboardHandlers) {
           break;
 
         case 'ArrowUp':
+          e.preventDefault();
+          e.stopPropagation();
           if (handlers.onArrowUp) {
-            e.preventDefault();
             handlers.onArrowUp(e);
           }
           break;
 
         case 'ArrowDown':
+          e.preventDefault();
+          e.stopPropagation();
           if (handlers.onArrowDown) {
-            e.preventDefault();
             handlers.onArrowDown(e);
           }
           break;
 
         case 'ArrowLeft':
+          e.preventDefault();
+          e.stopPropagation();
           if (handlers.onArrowLeft) {
-            e.preventDefault();
             handlers.onArrowLeft(e);
           }
           break;
 
         case 'ArrowRight':
+          e.preventDefault();
+          e.stopPropagation();
           if (handlers.onArrowRight) {
-            e.preventDefault();
             handlers.onArrowRight(e);
           }
           break;

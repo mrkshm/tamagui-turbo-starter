@@ -1,7 +1,7 @@
 import type { SizeTokens } from 'tamagui';
 import { View } from 'tamagui';
 import { Input } from './parts/inputParts';
-import { forwardRef, useImperativeHandle, useRef } from 'react';
+import { forwardRef, useId, useImperativeHandle, useRef } from 'react';
 import { Paragraph } from 'tamagui';
 
 export interface CInputProps {
@@ -51,7 +51,7 @@ export const CInput = forwardRef<any, CInputProps>(
       id,
       errors,
       testID,
-      style
+      style,
     },
     ref
   ) => {
@@ -59,9 +59,8 @@ export const CInput = forwardRef<any, CInputProps>(
     const defaultPlaceholder = secureTextEntry ? '••••••' : 'email@example.com';
 
     // Generate a unique ID if none is provided
-    const uniqueId =
-      id ||
-      `input-${labelText.toLowerCase()}-${Math.random().toString(36).substring(2, 9)}`;
+    const generatedId = useId();
+    const uniqueId = id || generatedId;
 
     // Create a ref for the input area
     const inputAreaRef = useRef<any>(null);

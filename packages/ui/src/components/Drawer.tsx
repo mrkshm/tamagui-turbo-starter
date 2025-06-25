@@ -57,7 +57,7 @@ const SwipeDismissableComponent = React.forwardRef<
           });
         }
       },
-      onPanResponderRelease: (e, gestureState) => {
+      onPanResponderRelease: (_, gestureState) => {
         setDragStarted(false);
         if (gestureState.dx < -dismissAfterRef.current) {
           if (onDismiss) {
@@ -165,21 +165,23 @@ type DrawerOverlayComponent = React.ForwardRefExoticComponent<
   Omit<DrawerOverlayProps, 'ref'> & React.RefAttributes<TamaguiElement>
 >;
 
-const DrawerOverlay: DrawerOverlayComponent = React.forwardRef<
-  TamaguiElement,
-  DrawerOverlayProps
->((props, ref) => {
+const DrawerOverlayComponent = (
+  props: DrawerOverlayProps,
+  ref: React.Ref<TamaguiElement>
+) => {
   const { setOpen } = DrawerContext.useStyledContext();
   return <Overlay ref={ref} onPress={() => setOpen(false)} {...props} />;
-});
+};
+
+const DrawerOverlay = React.forwardRef(DrawerOverlayComponent);
 
 // Add display name for better dev tools
 DrawerOverlay.displayName = 'DrawerOverlay';
 
-const DrawerSwipeable = forwardRef<
-  TamaguiElement,
-  Omit<React.ComponentProps<typeof SwipeDismissableComponent>, 'onDismiss'>
->((props, ref) => {
+const DrawerSwipeableComponent = (
+  props: Omit<React.ComponentProps<typeof SwipeDismissableComponent>, 'onDismiss'>,
+  ref: React.Ref<TamaguiElement>
+) => {
   const { setOpen } = DrawerContext.useStyledContext();
   return (
     <SwipeDismissableComponent
@@ -190,7 +192,9 @@ const DrawerSwipeable = forwardRef<
       ref={ref}
     />
   );
-});
+};
+
+const DrawerSwipeable = forwardRef(DrawerSwipeableComponent);
 
 type DrawerContentProps = GetProps<typeof DrawerFrame>;
 type DrawerContentComponent = React.ForwardRefExoticComponent<
@@ -198,10 +202,10 @@ type DrawerContentComponent = React.ForwardRefExoticComponent<
     React.RefAttributes<TamaguiElement> & { children?: React.ReactNode }
 >;
 
-const DrawerContent: DrawerContentComponent = React.forwardRef<
-  TamaguiElement,
-  DrawerContentProps
->((props, ref) => {
+const DrawerContentComponent = (
+  props: DrawerContentProps,
+  ref: React.Ref<TamaguiElement>
+) => {
   const { children, ...rest } = props;
 
   return (
@@ -217,7 +221,9 @@ const DrawerContent: DrawerContentComponent = React.forwardRef<
       </DrawerFrame>
     </FocusScope>
   );
-});
+};
+
+const DrawerContent = React.forwardRef(DrawerContentComponent);
 
 // Add display name for better dev tools
 DrawerContent.displayName = 'DrawerContent';
@@ -225,9 +231,7 @@ DrawerContent.displayName = 'DrawerContent';
 const DrawerImpl = ({
   open = false,
   onOpenChange,
-  children,
-  portalToRoot,
-  ...rest
+  children
 }: DrawerProps & { children?: React.ReactNode }) => {
   const [_open, setOpen] = useControllableState({
     prop: open,

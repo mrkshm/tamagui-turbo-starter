@@ -5,6 +5,8 @@ import { useToastController } from '@bbook/ui';
 import { useTranslation } from '@bbook/i18n';
 import { useUpdateContact } from '@bbook/data';
 import { ContactAvatarUploader } from '../avatar';
+import { TagListContainer } from '../tags/TagListContainer';
+import { useAuth } from '../../provider/auth-provider';
 
 export interface ContactMainProps {
   contact: Contact;
@@ -16,6 +18,8 @@ export function ContactMain({ contact }: ContactMainProps) {
   const { mutateAsync: updateContact, isPending } = useUpdateContact(
     contact?.slug || ''
   );
+
+  const { user } = useAuth();
 
   const handleContactUpdate = async (changes: Partial<Contact>) => {
     try {
@@ -75,6 +79,15 @@ export function ContactMain({ contact }: ContactMainProps) {
           isPending={isPending}
           onError={handleError}
         />
+        {user?.org_slug && contact?.id && (
+          <TagListContainer
+            orgSlug={user.org_slug}
+            entityType="contact"
+            entityId={contact.id}
+            tags={contact.tags ?? undefined}
+            editable
+          />
+        )}
       </YStack>
     </ScrollView>
   );

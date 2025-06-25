@@ -8876,7 +8876,7 @@ var require_ScrollView = __commonJS({
     var _excluded = ["contentContainerStyle", "horizontal", "onContentSizeChange", "refreshControl", "stickyHeaderIndices", "pagingEnabled", "forwardedRef", "keyboardDismissMode", "onScroll", "centerContent"];
     var emptyObject = {};
     var IS_ANIMATING_TOUCH_START_THRESHOLD_MS = 16;
-    var ScrollView4 = class extends _react.default.Component {
+    var ScrollView5 = class extends _react.default.Component {
       static {
         __name(this, "ScrollView");
       }
@@ -9442,7 +9442,7 @@ var require_ScrollView = __commonJS({
       }
     });
     var ForwardedScrollView = /* @__PURE__ */ _react.default.forwardRef((props, forwardedRef) => {
-      return /* @__PURE__ */ _react.default.createElement(ScrollView4, (0, _extends2.default)({}, props, {
+      return /* @__PURE__ */ _react.default.createElement(ScrollView5, (0, _extends2.default)({}, props, {
         forwardedRef
       }));
     });
@@ -23614,7 +23614,9 @@ __export(src_exports, {
   CheckboxFrame: () => CheckboxFrame,
   CheckboxIndicatorFrame: () => CheckboxIndicatorFrame,
   CheckboxStyledContext: () => CheckboxStyledContext,
+  Chip: () => Chip,
   Circle: () => Circle,
+  Combobox: () => Combobox,
   ComponentContext: () => import_core58.ComponentContext,
   Configuration: () => import_core58.Configuration,
   CustomToast: () => CustomToast,
@@ -23758,6 +23760,8 @@ __export(src_exports, {
   SwitchThumb: () => SwitchThumb,
   Tabs: () => Tabs,
   TabsProvider: () => TabsProvider,
+  TagBubble: () => TagBubble,
+  TagList: () => TagList,
   TamaguiProvider: () => TamaguiProvider,
   Text: () => Text4,
   TextArea: () => TextArea,
@@ -46528,13 +46532,16 @@ var paginationQueryParamsSchema = object({
   limit: optional(number()),
   offset: optional(number())
 });
+var searchQueryParamsSchema = object({
+  q: optional(string())
+});
 var avatarUrlResponseSchema = object({
   url: string()
 });
 
 // ../../packages/data/src/schemas/contacts.ts
 var contactSchema = object({
-  id: nullish(string()),
+  id: nullish(number()),
   display_name: string(),
   slug: nullish(string()),
   first_name: nullish(string()),
@@ -47463,7 +47470,8 @@ var CInput = (0, import_react79.forwardRef)(
     style
   }, ref) => {
     const defaultPlaceholder = secureTextEntry ? "\u2022\u2022\u2022\u2022\u2022\u2022" : "email@example.com";
-    const uniqueId = id || `input-${labelText.toLowerCase()}-${Math.random().toString(36).substring(2, 9)}`;
+    const generatedId = (0, import_react79.useId)();
+    const uniqueId = id || generatedId;
     const inputAreaRef = (0, import_react79.useRef)(null);
     (0, import_react79.useImperativeHandle)(ref, () => ({
       focus: /* @__PURE__ */ __name(() => {
@@ -48396,9 +48404,228 @@ function EditableTextArea(props) {
 }
 __name(EditableTextArea, "EditableTextArea");
 
-// ../../packages/ui/src/components/inputs/SearchInput.tsx
-var import_react85 = require("react");
+// ../../packages/ui/src/components/chipsParts.tsx
 var import_jsx_runtime96 = require("react/jsx-runtime");
+var ChipContext = (0, import_core58.createStyledContext)({
+  size: "$true"
+});
+var CHIP_NAME = "Chip";
+var ChipImpl = (0, import_core58.styled)(import_core58.View, {
+  name: CHIP_NAME,
+  flexDirection: "row",
+  context: ChipContext,
+  variants: {
+    rounded: {
+      true: {
+        borderRadius: 1e9
+      }
+    },
+    unstyled: {
+      false: {
+        borderRadius: 5,
+        paddingHorizontal: "$3",
+        backgroundColor: "$color6",
+        justifyContent: "center",
+        alignItems: "center",
+        hoverStyle: {
+          backgroundColor: "$color7"
+        }
+      }
+    },
+    size: {
+      "...size": /* @__PURE__ */ __name((val, allTokens) => {
+        const { tokens: tokens3 } = allTokens;
+        return {
+          paddingHorizontal: tokens3.space[val],
+          paddingVertical: tokens3.space[val].val * 0.2
+        };
+      }, "...size")
+    },
+    pressable: {
+      true: {
+        focusable: true,
+        role: "button",
+        hoverStyle: {
+          backgroundColor: "$color8"
+        },
+        pressStyle: {
+          backgroundColor: "$color9"
+        },
+        focusVisibleStyle: {
+          outlineColor: "$outlineColor",
+          outlineStyle: "solid",
+          outlineWidth: 2
+        }
+      }
+    }
+  },
+  defaultVariants: {
+    unstyled: process.env.TAMAGUI_HEADLESS === "1" ? true : false
+  }
+});
+var ChipText = (0, import_core58.styled)(Text4, {
+  name: "ChipText",
+  context: ChipContext,
+  variants: {
+    unstyled: {
+      false: {
+        fontFamily: "$body",
+        size: "$true",
+        color: "$color"
+      }
+    },
+    size: {
+      "...fontSize": getFontSized
+    }
+  },
+  defaultVariants: {
+    unstyled: process.env.TAMAGUI_HEADLESS === "1" ? true : false
+  }
+});
+var ChipIconFrame = (0, import_core58.styled)(import_core58.View, {
+  name: "ChipIcon",
+  context: ChipContext,
+  variants: {
+    size: {
+      "...size": /* @__PURE__ */ __name((val, { tokens: tokens3 }) => {
+        if (typeof val === "number") {
+          return {
+            paddingHorizontal: val * 0.25,
+            paddingVertical: val * 0.25
+          };
+        }
+        return {
+          paddingHorizontal: tokens3.space[val].val * 0.25,
+          paddingVertical: tokens3.space[val].val * 0.25
+        };
+      }, "...size")
+    }
+  }
+});
+var ChipIcon = ChipIconFrame.styleable((props, ref) => {
+  const { children, scaleIcon = 0.7, size: size6, color, ...rest } = props;
+  const chipContext = ChipContext.useStyledContext();
+  const finalSize = size6 || chipContext.size;
+  const iconSize = (typeof finalSize === "number" ? finalSize * 0.5 : getFontSize(finalSize)) * scaleIcon;
+  const getThemedIcon = useGetThemedIcon({ size: iconSize, color });
+  return /* @__PURE__ */ (0, import_jsx_runtime96.jsx)(ChipIconFrame, { ref, ...rest, children: getThemedIcon(children) });
+});
+var ButtonComp = (0, import_core58.styled)(import_core58.View, {
+  name: "ChipButton",
+  context: ChipContext,
+  focusable: true,
+  role: "button",
+  variants: {
+    size: {},
+    unstyled: {
+      false: {
+        borderRadius: 1e9,
+        backgroundColor: "$background",
+        justifyContent: "center",
+        alignItems: "center",
+        hoverStyle: {
+          backgroundColor: "$backgroundHover"
+        },
+        pressStyle: {
+          backgroundColor: "$backgroundPress"
+        },
+        focusStyle: {
+          backgroundColor: "$backgroundFocus"
+        }
+      }
+    },
+    alignRight: {
+      ":boolean": /* @__PURE__ */ __name((val, { props, tokens: tokens3 }) => {
+        if (val) {
+          const size6 = props.size;
+          if (typeof size6 === "number") {
+            return { x: size6 * 0.55 };
+          }
+          return { x: tokens3.space[size6].val * 0.55 };
+        }
+      }, ":boolean")
+    },
+    alignLeft: {
+      ":boolean": /* @__PURE__ */ __name((val, { props, tokens: tokens3 }) => {
+        if (val) {
+          const size6 = props.size;
+          if (typeof size6 === "number") {
+            return { x: size6 * -0.55 };
+          }
+          return { x: tokens3.space[size6].val * -0.55 };
+        }
+      }, ":boolean")
+    }
+  },
+  defaultVariants: {
+    unstyled: process.env.TAMAGUI_HEADLESS === "1" ? true : false
+  }
+});
+var Chip = (0, import_core58.withStaticProperties)(ChipImpl, {
+  Text: ChipText,
+  Icon: ChipIcon,
+  Button: ButtonComp
+});
+
+// ../../packages/ui/src/components/TagBubble.tsx
+var import_react85 = require("react");
+var import_jsx_runtime97 = require("react/jsx-runtime");
+var themePalette = [
+  "red",
+  "green",
+  "blue",
+  "purple",
+  "pink",
+  "orange"
+];
+var pickTheme = /* @__PURE__ */ __name((tagId) => themePalette[tagId % themePalette.length], "pickTheme");
+var TagBubble = (0, import_react85.memo)(/* @__PURE__ */ __name(function TagBubble2({
+  tag,
+  size: size6,
+  editable = false,
+  onRemove,
+  onPress
+}) {
+  const theme = (0, import_react85.useMemo)(() => pickTheme(tag.id), [tag.id]);
+  return /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(
+    Chip,
+    {
+      rounded: true,
+      size: size6,
+      theme,
+      pressable: !!onPress,
+      onPress: onPress ? () => onPress(tag) : void 0,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Chip.Text, { children: tag.name }),
+        editable && /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Chip.Button, { alignRight: true, onPress: () => onRemove?.(tag), children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Chip.Icon, { children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(X, { color: "$color9" }) }) })
+      ]
+    }
+  );
+}, "TagBubble"));
+
+// ../../packages/ui/src/components/TagList.tsx
+var import_jsx_runtime98 = require("react/jsx-runtime");
+function TagList({
+  tags,
+  gap = "$2",
+  editable,
+  onRemoveTag
+}) {
+  return /* @__PURE__ */ (0, import_jsx_runtime98.jsx)(YStack, { flexDirection: "row", flexWrap: "wrap", gap, children: tags.map((t3) => /* @__PURE__ */ (0, import_jsx_runtime98.jsx)(
+    TagBubble,
+    {
+      tag: t3,
+      editable,
+      onRemove: onRemoveTag
+    },
+    t3.id
+  )) });
+}
+__name(TagList, "TagList");
+
+// ../../packages/ui/src/components/inputs/SearchInput.tsx
+var import_react86 = require("react");
+var import_jsx_runtime99 = require("react/jsx-runtime");
 var SearchInput = /* @__PURE__ */ __name(({
   value,
   onSearch,
@@ -48414,12 +48641,12 @@ var SearchInput = /* @__PURE__ */ __name(({
   autoComplete,
   testID = "search-input"
 }) => {
-  const [searchTerm, setSearchTerm] = (0, import_react85.useState)(value);
-  const debounceTimerRef = (0, import_react85.useRef)(null);
-  (0, import_react85.useEffect)(() => {
+  const [searchTerm, setSearchTerm] = (0, import_react86.useState)(value);
+  const debounceTimerRef = (0, import_react86.useRef)(null);
+  (0, import_react86.useEffect)(() => {
     setSearchTerm(value);
   }, [value]);
-  const handleChangeText = (0, import_react85.useCallback)(
+  const handleChangeText = (0, import_react86.useCallback)(
     (text) => {
       setSearchTerm(text);
       if (onChangeText) {
@@ -48434,10 +48661,10 @@ var SearchInput = /* @__PURE__ */ __name(({
     },
     [onChangeText, onSearch, debounceMs]
   );
-  const handleClear = (0, import_react85.useCallback)(() => {
+  const handleClear = (0, import_react86.useCallback)(() => {
     handleChangeText("");
   }, [handleChangeText]);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     return () => {
       if (debounceTimerRef.current) {
         clearTimeout(debounceTimerRef.current);
@@ -48445,53 +48672,64 @@ var SearchInput = /* @__PURE__ */ __name(({
     };
   }, []);
   const inputPaddingRight = 32;
-  return /* @__PURE__ */ (0, import_jsx_runtime96.jsxs)(XStack, { alignItems: "center", gap: "$2", position: "relative", width: "100%", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime96.jsx)(import_core58.View, { position: "absolute", left: 8, zIndex: 1, children: /* @__PURE__ */ (0, import_jsx_runtime96.jsx)(Search, { size: "$2", color: "$textPrimary" }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime96.jsx)(import_core58.View, { flex: 1, children: /* @__PURE__ */ (0, import_jsx_runtime96.jsxs)(import_core58.View, { position: "relative", width: "100%", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime96.jsx)(
-        CInput,
-        {
-          testID,
-          value: searchTerm,
-          onChangeText: handleChangeText,
-          placeholder,
-          focusOnMount: autoFocus,
-          labelText: "",
-          errors,
-          size: size6,
-          secureTextEntry,
-          autoCapitalize,
-          keyboardType,
-          autoComplete,
-          style: {
-            paddingRight: inputPaddingRight,
-            backgroundColor: "$background",
-            borderRadius: "$4",
-            width: "100%"
-          }
-        }
-      ),
-      searchTerm && /* @__PURE__ */ (0, import_jsx_runtime96.jsx)(
-        Button2,
-        {
-          size: "$2",
-          unstyled: true,
-          position: "absolute",
-          right: 16,
-          top: "35%",
-          onPress: handleClear,
-          "aria-label": "Clear search",
-          testID: "clear-search-button",
-          zIndex: 2,
-          children: /* @__PURE__ */ (0, import_jsx_runtime96.jsx)(X, { size: 16, color: "$textPrimary" })
-        }
-      )
-    ] }) })
-  ] });
+  return /* @__PURE__ */ (0, import_jsx_runtime99.jsxs)(
+    XStack,
+    {
+      flex: 1,
+      alignItems: "center",
+      gap: "$4",
+      position: "relative",
+      width: "100%",
+      backgroundColor: "green",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(import_core58.View, { position: "relative", zIndex: 1, children: /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(Search, { size: "$1", color: "$textPrimary" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(import_core58.View, { flex: 1, backgroundColor: "green", width: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime99.jsxs)(import_core58.View, { position: "relative", width: "100%", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(
+            CInput,
+            {
+              testID,
+              value: searchTerm,
+              onChangeText: handleChangeText,
+              placeholder,
+              focusOnMount: autoFocus,
+              labelText: "",
+              errors,
+              size: size6,
+              secureTextEntry,
+              autoCapitalize,
+              keyboardType,
+              autoComplete,
+              style: {
+                paddingRight: inputPaddingRight,
+                backgroundColor: "$background",
+                borderRadius: "$4",
+                width: "100%"
+              }
+            }
+          ),
+          searchTerm && /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(
+            Button2,
+            {
+              size: "$2",
+              unstyled: true,
+              position: "absolute",
+              right: 16,
+              top: "35%",
+              onPress: handleClear,
+              "aria-label": "Clear search",
+              testID: "clear-search-button",
+              zIndex: 2,
+              children: /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(X, { size: 16, color: "$textPrimary" })
+            }
+          )
+        ] }) })
+      ]
+    }
+  );
 }, "SearchInput");
 
 // ../../packages/ui/src/components/inputs/SortControls.tsx
-var import_react86 = require("react");
+var import_react87 = require("react");
 
 // ../../packages/ui/src/hooks/useIsMobile.ts
 var import_react_native5 = __toESM(require_cjs(), 1);
@@ -48502,7 +48740,7 @@ function useIsMobile() {
 __name(useIsMobile, "useIsMobile");
 
 // ../../packages/ui/src/components/inputs/SortControls.tsx
-var import_jsx_runtime97 = require("react/jsx-runtime");
+var import_jsx_runtime100 = require("react/jsx-runtime");
 var SortControls = /* @__PURE__ */ __name(({
   fields,
   selectedField,
@@ -48511,16 +48749,16 @@ var SortControls = /* @__PURE__ */ __name(({
   testID = "sort-controls"
 }) => {
   const isMobile = useIsMobile();
-  const [isOpen, setIsOpen] = (0, import_react86.useState)(false);
+  const [isOpen, setIsOpen] = (0, import_react87.useState)(false);
   const currentField = fields.find((field) => field.id === selectedField) || fields[0];
-  const handleToggleDirection = (0, import_react86.useCallback)(() => {
+  const handleToggleDirection = (0, import_react87.useCallback)(() => {
     onSortChange(selectedField, direction === "asc" ? "desc" : "asc");
     if (isMobile) {
       setIsOpen(false);
     }
   }, [selectedField, direction, onSortChange, isMobile]);
   const toggleDirection = handleToggleDirection;
-  const handleFieldChange = (0, import_react86.useCallback)(
+  const handleFieldChange = (0, import_react87.useCallback)(
     (value) => {
       onSortChange(value, direction);
       setIsOpen(false);
@@ -48528,8 +48766,8 @@ var SortControls = /* @__PURE__ */ __name(({
     [direction, onSortChange]
   );
   if (isMobile) {
-    return /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(YStack, { width: "100%", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(YStack, { width: "100%", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
         Button2,
         {
           onPress: () => setIsOpen(true),
@@ -48540,13 +48778,13 @@ var SortControls = /* @__PURE__ */ __name(({
           paddingHorizontal: "$3",
           paddingVertical: "$2",
           testID,
-          children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(
+          children: /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
             XStack,
             {
               alignItems: "center",
               justifyContent: "space-between",
               width: "100%",
-              children: /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(Text4, { children: [
+              children: /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(Text4, { children: [
                 "Sort by: ",
                 currentField.label
               ] })
@@ -48554,7 +48792,7 @@ var SortControls = /* @__PURE__ */ __name(({
           )
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(
         Sheet,
         {
           modal: true,
@@ -48565,12 +48803,12 @@ var SortControls = /* @__PURE__ */ __name(({
           position: 0,
           zIndex: 1e5,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Sheet.Overlay, {}),
-            /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(Sheet.Frame, { padding: "$4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Sheet.Handle, {}),
-              /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(YStack, { gap: "$4", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Text4, { fontWeight: "bold", fontSize: "$5", children: "Sort by" }),
-                /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(YStack, { gap: "$2", children: fields.map((field) => /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Sheet.Overlay, {}),
+            /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(Sheet.Frame, { padding: "$4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Sheet.Handle, {}),
+              /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(YStack, { gap: "$4", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Text4, { fontWeight: "bold", fontSize: "$5", children: "Sort by" }),
+                /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(YStack, { gap: "$2", children: fields.map((field) => /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
                   Button2,
                   {
                     onPress: () => handleFieldChange(field.id),
@@ -48580,15 +48818,15 @@ var SortControls = /* @__PURE__ */ __name(({
                     paddingHorizontal: "$3",
                     borderRadius: "$2",
                     testID: `${testID}-field-${field.id}`,
-                    children: /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(
+                    children: /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(
                       XStack,
                       {
                         width: "100%",
                         justifyContent: "space-between",
                         alignItems: "center",
                         children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Text4, { children: field.label }),
-                          field.id === selectedField && /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(
+                          /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Text4, { children: field.label }),
+                          field.id === selectedField && /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
                             Button2,
                             {
                               size: "$2",
@@ -48599,7 +48837,7 @@ var SortControls = /* @__PURE__ */ __name(({
                               },
                               backgroundColor: "transparent",
                               testID: `${testID}-direction`,
-                              children: direction === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(ArrowUpAZ, { size: 18, color: "#999" }) : /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(ArrowDownAZ, { size: 18, color: "#999" })
+                              children: direction === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(ArrowUpAZ, { size: 18, color: "#999" }) : /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(ArrowDownAZ, { size: 18, color: "#999" })
                             }
                           )
                         ]
@@ -48615,63 +48853,76 @@ var SortControls = /* @__PURE__ */ __name(({
       )
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(XStack, { alignItems: "center", gap: "$4", testID, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Text4, { children: "Sort by:" }),
-    /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(
-      Select,
-      {
-        id: "sort-field",
-        value: selectedField,
-        onValueChange: handleFieldChange,
-        disablePreventBodyScroll: true,
-        children: [
-          /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Select.Trigger, { width: "300px", children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Select.Value, { placeholder: "Select a field" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Adapt, { when: "sm", platform: "touch", children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(
-            Sheet,
-            {
-              modal: true,
-              snapPoints: [50],
-              dismissOnSnapToBottom: true,
-              position: 0,
-              zIndex: 1e5,
-              children: /* @__PURE__ */ (0, import_jsx_runtime97.jsxs)(Sheet.Frame, { padding: "$4", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Sheet.Handle, {}),
-                /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Adapt.Contents, {})
-              ] })
-            }
-          ) }),
-          /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Select.Content, { zIndex: 2e5, children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Select.Viewport, { minWidth: 200, children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Select.Group, { children: fields.map((field) => /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(
-            Select.Item,
-            {
-              index: 0,
-              value: field.id,
-              testID: `${testID}-field-${field.id}`,
-              children: /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(Select.ItemText, { children: field.label })
-            },
-            field.id
-          )) }) }) })
-        ]
-      }
-    ),
-    /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(
-      Button2,
-      {
-        size: "$2",
-        circular: true,
-        onPress: toggleDirection,
-        backgroundColor: "transparent",
-        hoverStyle: { backgroundColor: "$backgroundHover" },
-        testID: `${testID}-direction`,
-        children: direction === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(ArrowDownAZ, { size: 18, color: "$textSecondary" }) : /* @__PURE__ */ (0, import_jsx_runtime97.jsx)(ArrowUpAZ, { size: 18, color: "$textSecondary" })
-      }
-    )
-  ] });
+  return /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(
+    XStack,
+    {
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: "$0",
+      testID,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Text4, { children: "Sort by:" }),
+        /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(
+          Select,
+          {
+            id: "sort-field",
+            value: selectedField,
+            onValueChange: handleFieldChange,
+            disablePreventBodyScroll: true,
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Select.Trigger, { width: "75%", children: /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Select.Value, { placeholder: "Select a field" }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Adapt, { when: "sm", platform: "touch", children: /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
+                Sheet,
+                {
+                  modal: true,
+                  snapPoints: [50],
+                  dismissOnSnapToBottom: true,
+                  position: 0,
+                  zIndex: 1e5,
+                  children: /* @__PURE__ */ (0, import_jsx_runtime100.jsxs)(Sheet.Frame, { padding: "$4", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Sheet.Handle, {}),
+                    /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Adapt.Contents, {})
+                  ] })
+                }
+              ) }),
+              /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Select.Content, { zIndex: 2e5, children: /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Select.Viewport, { minWidth: 200, children: /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Select.Group, { children: fields.map((field) => /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
+                Select.Item,
+                {
+                  index: 0,
+                  value: field.id,
+                  testID: `${testID}-field-${field.id}`,
+                  children: /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(Select.ItemText, { children: field.label })
+                },
+                field.id
+              )) }) }) })
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
+          Button2,
+          {
+            size: "$2",
+            circular: true,
+            onPress: toggleDirection,
+            backgroundColor: "$background",
+            borderColor: "$borderColor",
+            borderWidth: 1,
+            hoverStyle: { backgroundColor: "$backgroundHover" },
+            pressStyle: { backgroundColor: "$backgroundPress" },
+            testID: `${testID}-direction`,
+            "aria-label": `Sort direction: ${direction === "asc" ? "Ascending" : "Descending"}`,
+            children: direction === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(ArrowUpAZ, { size: 18, color: "$text" }) : /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(ArrowDownAZ, { size: 18, color: "$text" })
+          }
+        )
+      ]
+    }
+  );
 }, "SortControls");
 
 // ../../packages/ui/src/components/inputs/SearchAndSortBar.tsx
-var import_react87 = require("react");
-var import_jsx_runtime98 = require("react/jsx-runtime");
-var SearchAndSortBar = (0, import_react87.memo)(
+var import_react88 = require("react");
+var import_jsx_runtime101 = require("react/jsx-runtime");
+var SearchAndSortBar = (0, import_react88.memo)(
   ({
     searchValue,
     onSearch,
@@ -48681,7 +48932,7 @@ var SearchAndSortBar = (0, import_react87.memo)(
     onSortChange,
     debounceMs = 400
   }) => {
-    return /* @__PURE__ */ (0, import_jsx_runtime98.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime101.jsxs)(
       YStack,
       {
         gap: "$2",
@@ -48690,7 +48941,7 @@ var SearchAndSortBar = (0, import_react87.memo)(
         width: "100%",
         maxWidth: "100%",
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime98.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(
             SearchInput,
             {
               testID: "search-input",
@@ -48700,7 +48951,7 @@ var SearchAndSortBar = (0, import_react87.memo)(
               debounceMs
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime98.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(
             SortControls,
             {
               fields: sortFields,
@@ -48716,10 +48967,152 @@ var SearchAndSortBar = (0, import_react87.memo)(
 );
 SearchAndSortBar.displayName = "SearchAndSortBar";
 
+// ../../packages/ui/src/components/Combobox.tsx
+var import_react89 = require("react");
+var import_react_native6 = __toESM(require_cjs(), 1);
+var import_jsx_runtime102 = require("react/jsx-runtime");
+function Combobox({
+  items,
+  inputValue,
+  onInputValueChange,
+  onSelectItem,
+  renderItem,
+  inputProps,
+  popoverProps,
+  isLoading = false,
+  placeholder = "Select an item..."
+}) {
+  const [open, setOpen] = (0, import_react89.useState)(false);
+  const [highlightedIndex, setHighlightedIndex] = (0, import_react89.useState)(-1);
+  const listboxId = (0, import_react89.useId)();
+  const highlightedId = highlightedIndex > -1 ? `${listboxId}-${items[highlightedIndex].id}` : void 0;
+  const handleOpenChange = /* @__PURE__ */ __name((isOpen) => {
+    setOpen(isOpen);
+    if (!isOpen) {
+      setHighlightedIndex(-1);
+    }
+  }, "handleOpenChange");
+  const handleKeyDown = useKeyboardHandling({
+    onArrowDown: /* @__PURE__ */ __name(() => {
+      if (items.length > 0) {
+        setHighlightedIndex((prev) => (prev + 1) % items.length);
+      }
+    }, "onArrowDown"),
+    onArrowUp: /* @__PURE__ */ __name(() => {
+      if (items.length > 0) {
+        setHighlightedIndex((prev) => (prev - 1 + items.length) % items.length);
+      }
+    }, "onArrowUp"),
+    onEnter: /* @__PURE__ */ __name((e) => {
+      if (highlightedIndex >= 0 && highlightedIndex < items.length) {
+        e.preventDefault();
+        onSelectItem(items[highlightedIndex]);
+        handleOpenChange(false);
+      }
+    }, "onEnter"),
+    onEscape: /* @__PURE__ */ __name(() => {
+      handleOpenChange(false);
+    }, "onEscape")
+  });
+  const listComponent = /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(YStack, { id: listboxId, role: "listbox", children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(YStack, { padding: "$4", alignItems: "center", justifyContent: "center", children: /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Spinner, {}) }) : /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(import_react_native6.ScrollView, { style: { maxHeight: 200 }, children: items.length > 0 ? items.map((item, index3) => /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(
+    YStack,
+    {
+      id: `${listboxId}-${item.id}`,
+      role: "option",
+      "aria-selected": index3 === highlightedIndex,
+      onPress: () => {
+        onSelectItem(item);
+        handleOpenChange(false);
+      },
+      backgroundColor: index3 === highlightedIndex ? "$backgroundHover" : void 0,
+      hoverStyle: {
+        backgroundColor: "$backgroundHover"
+      },
+      padding: "$3",
+      cursor: "pointer",
+      children: renderItem(item)
+    },
+    item.id
+  )) : /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(YStack, { padding: "$4", children: /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Paragraph, { children: "No results found." }) }) }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime102.jsxs)(
+    Popover,
+    {
+      size: "$5",
+      allowFlip: true,
+      open,
+      onOpenChange: handleOpenChange,
+      ...popoverProps,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Popover.Trigger, { asChild: true, children: /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(
+          Input,
+          {
+            value: inputValue,
+            onKeyDown: handleKeyDown,
+            onChangeText: (text) => {
+              onInputValueChange(text);
+              setHighlightedIndex(-1);
+              if (!open) {
+                setOpen(true);
+              }
+            },
+            placeholder,
+            ...inputProps,
+            role: "combobox",
+            "aria-expanded": open,
+            "aria-haspopup": "listbox",
+            "aria-controls": listboxId,
+            "aria-autocomplete": "list",
+            "aria-activedescendant": highlightedId
+          }
+        ) }),
+        /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Adapt, { when: "sm", platform: "touch", children: /* @__PURE__ */ (0, import_jsx_runtime102.jsxs)(Sheet, { modal: true, dismissOnSnapToBottom: true, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Sheet.Frame, { padding: "$4", children: /* @__PURE__ */ (0, import_jsx_runtime102.jsxs)(YStack, { gap: "$4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(
+              Input,
+              {
+                focusOnMount: true,
+                value: inputValue,
+                onChangeText: onInputValueChange,
+                placeholder,
+                ...inputProps
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Adapt.Contents, {})
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Sheet.Overlay, { opacity: 0.2 })
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime102.jsxs)(
+          Popover.Content,
+          {
+            borderWidth: 1,
+            borderColor: "$borderColor",
+            enterStyle: { y: -10, opacity: 0 },
+            exitStyle: { y: -10, opacity: 0 },
+            elevate: true,
+            animation: [
+              "quick",
+              {
+                opacity: {
+                  overshootClamping: true
+                }
+              }
+            ],
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(Popover.Arrow, { borderWidth: 1, borderColor: "$borderColor" }),
+              listComponent
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
+__name(Combobox, "Combobox");
+
 // ../../packages/ui/src/components/form/FormField.tsx
-var import_react88 = __toESM(require("react"), 1);
-var import_jsx_runtime99 = require("react/jsx-runtime");
-var FormField = import_react88.default.forwardRef(
+var import_react90 = __toESM(require("react"), 1);
+var import_jsx_runtime103 = require("react/jsx-runtime");
+var FormField = import_react90.default.forwardRef(
   ({
     label,
     fieldId,
@@ -48771,7 +49164,7 @@ var FormField = import_react88.default.forwardRef(
     };
     const renderInput = /* @__PURE__ */ __name(() => {
       if (type === "textarea") {
-        return /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(EditableTextArea, { ...commonProps, height: rows ? rows * 24 : 80 });
+        return /* @__PURE__ */ (0, import_jsx_runtime103.jsx)(EditableTextArea, { ...commonProps, height: rows ? rows * 24 : 80 });
       }
       const inputType = type === "select" || type === "date" ? "text" : type || "text";
       const getInputProps = /* @__PURE__ */ __name(() => {
@@ -48797,23 +49190,23 @@ var FormField = import_react88.default.forwardRef(
         }
         return props;
       }, "getInputProps");
-      return /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(EditableField, { ...getInputProps() });
+      return /* @__PURE__ */ (0, import_jsx_runtime103.jsx)(EditableField, { ...getInputProps() });
     }, "renderInput");
-    return /* @__PURE__ */ (0, import_jsx_runtime99.jsxs)(YStack, { gap: "$1.5", className, children: [
-      label && /* @__PURE__ */ (0, import_jsx_runtime99.jsxs)(XStack, { gap: "$1", alignItems: "center", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(Label, { htmlFor: fieldId, fontWeight: "500", fontSize: "$4", children: label }),
-        required && /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(Text4, { color: "$red9", fontSize: "$3", children: "*" })
+    return /* @__PURE__ */ (0, import_jsx_runtime103.jsxs)(YStack, { gap: "$1.5", className, children: [
+      label && /* @__PURE__ */ (0, import_jsx_runtime103.jsxs)(XStack, { gap: "$1", alignItems: "center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime103.jsx)(Label, { htmlFor: fieldId, fontWeight: "500", fontSize: "$4", children: label }),
+        required && /* @__PURE__ */ (0, import_jsx_runtime103.jsx)(Text4, { color: "$red9", fontSize: "$3", children: "*" })
       ] }),
       renderInput(),
-      helpText && !showErrorState && /* @__PURE__ */ (0, import_jsx_runtime99.jsx)(Text4, { color: "$gray10", fontSize: "$2", marginTop: "$1.5", children: helpText })
+      helpText && !showErrorState && /* @__PURE__ */ (0, import_jsx_runtime103.jsx)(Text4, { color: "$gray10", fontSize: "$2", marginTop: "$1.5", children: helpText })
     ] });
   }
 );
 FormField.displayName = "FormField";
 
 // ../../packages/ui/src/components/form/RenderFormField.tsx
-var import_react89 = require("react");
-var import_jsx_runtime100 = require("react/jsx-runtime");
+var import_react91 = require("react");
+var import_jsx_runtime104 = require("react/jsx-runtime");
 function RenderFormField({
   field,
   fieldProps,
@@ -48824,16 +49217,16 @@ function RenderFormField({
 }) {
   const fieldId = field.id;
   const isFieldEditing = isEditing(fieldId);
-  const handleFieldChangeSafe = (0, import_react89.useCallback)((id, value) => {
+  const handleFieldChangeSafe = (0, import_react91.useCallback)((id, value) => {
     handleFieldChange(id, value);
   }, [handleFieldChange]);
-  const handleEditStartWrapper = (0, import_react89.useCallback)((id) => {
+  const handleEditStartWrapper = (0, import_react91.useCallback)((id) => {
     return Boolean(handleEditStart(id));
   }, [handleEditStart]);
-  const handleEditEndWrapper = (0, import_react89.useCallback)(() => {
+  const handleEditEndWrapper = (0, import_react91.useCallback)(() => {
     handleEditEnd();
   }, [handleEditEnd]);
-  return /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(FormCard, { children: /* @__PURE__ */ (0, import_jsx_runtime100.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime104.jsx)(FormCard, { children: /* @__PURE__ */ (0, import_jsx_runtime104.jsx)(
     FormField,
     {
       fieldId,
@@ -48863,7 +49256,7 @@ function RenderFormField({
 __name(RenderFormField, "RenderFormField");
 
 // ../../packages/ui/src/components/form/FormField.demo.tsx
-var import_jsx_runtime101 = require("react/jsx-runtime");
+var import_jsx_runtime105 = require("react/jsx-runtime");
 var useEditableForm = /* @__PURE__ */ __name((config2) => {
   return {
     isEditing: false,
@@ -48943,10 +49336,10 @@ function FormFieldDemo() {
       }
     }
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(Card, { padding: "$4", width: "100%", maxWidth: 600, children: /* @__PURE__ */ (0, import_jsx_runtime101.jsxs)(YStack, { gap: "$4", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(Text4, { fontSize: "$8", fontWeight: "bold", marginBottom: "$2", children: "Edit Profile" }),
-    /* @__PURE__ */ (0, import_jsx_runtime101.jsxs)(YStack, { gap: "$4", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(Card, { padding: "$4", width: "100%", maxWidth: 600, children: /* @__PURE__ */ (0, import_jsx_runtime105.jsxs)(YStack, { gap: "$4", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(Text4, { fontSize: "$8", fontWeight: "bold", marginBottom: "$2", children: "Edit Profile" }),
+    /* @__PURE__ */ (0, import_jsx_runtime105.jsxs)(YStack, { gap: "$4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(
         FormField,
         {
           fieldId: "name",
@@ -48954,7 +49347,7 @@ function FormFieldDemo() {
           ...getFieldProps("name")
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(
         FormField,
         {
           fieldId: "email",
@@ -48963,7 +49356,7 @@ function FormFieldDemo() {
           ...getFieldProps("email")
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(
         FormField,
         {
           fieldId: "bio",
@@ -48975,8 +49368,8 @@ function FormFieldDemo() {
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(XStack, { gap: "$3", justifyContent: "flex-end", marginTop: "$4", children: !isEditing ? /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(Button2, { onPress: handleEditStart, theme: "blue", children: "Edit Profile" }) : /* @__PURE__ */ (0, import_jsx_runtime101.jsxs)(import_jsx_runtime101.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(XStack, { gap: "$3", justifyContent: "flex-end", marginTop: "$4", children: !isEditing ? /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(Button2, { onPress: handleEditStart, theme: "blue", children: "Edit Profile" }) : /* @__PURE__ */ (0, import_jsx_runtime105.jsxs)(import_jsx_runtime105.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(
         Button2,
         {
           variant: "outlined",
@@ -48985,7 +49378,7 @@ function FormFieldDemo() {
           children: "Cancel"
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime101.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(
         Button2,
         {
           theme: "blue",
@@ -49015,12 +49408,12 @@ function useComposedRefs4(...refs) {
 __name(useComposedRefs4, "useComposedRefs");
 
 // ../../node_modules/@tamagui/constants/dist/esm/constants.mjs
-var import_react90 = require("react");
+var import_react92 = require("react");
 var isWeb10 = true;
 var isWindowDefined2 = typeof window < "u";
 var isServer3 = isWeb10 && !isWindowDefined2;
 var isClient4 = isWeb10 && isWindowDefined2;
-var useIsomorphicLayoutEffect3 = isServer3 ? import_react90.useEffect : import_react90.useLayoutEffect;
+var useIsomorphicLayoutEffect3 = isServer3 ? import_react92.useEffect : import_react92.useLayoutEffect;
 var isChrome3 = typeof navigator < "u" && /Chrome/.test(navigator.userAgent || "");
 var isWebTouchable3 = isClient4 && ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 var isAndroid4 = false;
@@ -49046,14 +49439,14 @@ var defaultValue2 = /* @__PURE__ */ __name(() => {
 }, "defaultValue");
 
 // ../../node_modules/@tamagui/start-transition/dist/esm/index.mjs
-var import_react91 = require("react");
+var import_react93 = require("react");
 var startTransition2 = /* @__PURE__ */ __name((callback) => {
-  (0, import_react91.startTransition)(callback);
+  (0, import_react93.startTransition)(callback);
 }, "startTransition");
 
 // ../../node_modules/@tamagui/focus-scope/dist/esm/FocusScope.mjs
 var React93 = __toESM(require("react"), 1);
-var import_jsx_runtime102 = require("react/jsx-runtime");
+var import_jsx_runtime106 = require("react/jsx-runtime");
 var AUTOFOCUS_ON_MOUNT2 = "focusScope.autoFocusOnMount";
 var AUTOFOCUS_ON_UNMOUNT2 = "focusScope.autoFocusOnUnmount";
 var EVENT_OPTIONS3 = {
@@ -49062,7 +49455,7 @@ var EVENT_OPTIONS3 = {
 };
 var FocusScope2 = React93.forwardRef(function(props, forwardedRef) {
   const childProps = useFocusScope2(props, forwardedRef);
-  return typeof props.children == "function" ? /* @__PURE__ */ (0, import_jsx_runtime102.jsx)(import_jsx_runtime102.Fragment, {
+  return typeof props.children == "function" ? /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(import_jsx_runtime106.Fragment, {
     children: props.children(childProps)
   }) : React93.cloneElement(React93.Children.only(props.children), childProps);
 });
@@ -49322,12 +49715,12 @@ var ZStack2 = (0, import_core69.styled)(YStack2, {
 ZStack2.displayName = "ZStack";
 
 // ../../node_modules/@tamagui/z-index-stack/dist/esm/useStackedZIndex.mjs
-var import_react93 = require("react");
+var import_react95 = require("react");
 
 // ../../node_modules/@tamagui/z-index-stack/dist/esm/context.mjs
-var import_react92 = require("react");
-var ZIndexStackContext2 = (0, import_react92.createContext)(1);
-var ZIndexHardcodedContext2 = (0, import_react92.createContext)(void 0);
+var import_react94 = require("react");
+var ZIndexStackContext2 = (0, import_react94.createContext)(1);
+var ZIndexHardcodedContext2 = (0, import_react94.createContext)(void 0);
 
 // ../../node_modules/@tamagui/z-index-stack/dist/esm/useStackedZIndex.mjs
 var ZIndicesByContext2 = {};
@@ -49337,14 +49730,14 @@ var useStackedZIndex2 = /* @__PURE__ */ __name((props) => {
     const {
       stackZIndex,
       zIndex: zIndexProp = 1e3
-    } = props, id = (0, import_react93.useId)(), zIndex3 = (0, import_react93.useMemo)(() => {
+    } = props, id = (0, import_react95.useId)(), zIndex3 = (0, import_react95.useMemo)(() => {
       if (stackZIndex && stackZIndex !== "global") {
         const highest = Object.values(CurrentPortalZIndices2).reduce((acc, cur) => Math.max(acc, cur), 0);
         return Math.max(stackZIndex === true ? 1 : stackZIndex, highest + 1);
       }
       return zIndexProp || 1e3;
     }, [stackZIndex]);
-    return (0, import_react93.useEffect)(() => {
+    return (0, import_react95.useEffect)(() => {
       if (typeof stackZIndex == "number") return CurrentPortalZIndices2[id] = stackZIndex, () => {
         delete CurrentPortalZIndices2[id];
       };
@@ -49353,9 +49746,9 @@ var useStackedZIndex2 = /* @__PURE__ */ __name((props) => {
     const {
       stackZIndex,
       zIndex: zIndexProp
-    } = props, id = (0, import_react93.useId)(), stackingContextLevel = (0, import_react93.useContext)(ZIndexStackContext2), stackLayer = stackZIndex === "global" ? 0 : stackingContextLevel, hardcoded = (0, import_react93.useContext)(ZIndexHardcodedContext2);
+    } = props, id = (0, import_react95.useId)(), stackingContextLevel = (0, import_react95.useContext)(ZIndexStackContext2), stackLayer = stackZIndex === "global" ? 0 : stackingContextLevel, hardcoded = (0, import_react95.useContext)(ZIndexHardcodedContext2);
     ZIndicesByContext2[stackLayer] ||= {};
-    const stackContext = ZIndicesByContext2[stackLayer], zIndex3 = (0, import_react93.useMemo)(() => {
+    const stackContext = ZIndicesByContext2[stackLayer], zIndex3 = (0, import_react95.useMemo)(() => {
       if (typeof zIndexProp == "number") return zIndexProp;
       if (stackZIndex) {
         if (hardcoded) return hardcoded + 1;
@@ -49364,7 +49757,7 @@ var useStackedZIndex2 = /* @__PURE__ */ __name((props) => {
       }
       return 1;
     }, [stackLayer, zIndexProp, stackZIndex]);
-    return (0, import_react93.useEffect)(() => {
+    return (0, import_react95.useEffect)(() => {
       if (stackZIndex) return stackContext[id] = zIndex3, () => {
         delete stackContext[id];
       };
@@ -49373,8 +49766,8 @@ var useStackedZIndex2 = /* @__PURE__ */ __name((props) => {
 }, "useStackedZIndex");
 
 // ../../node_modules/@tamagui/z-index-stack/dist/esm/StackZIndex.mjs
-var import_react94 = require("react");
-var import_jsx_runtime103 = require("react/jsx-runtime");
+var import_react96 = require("react");
+var import_jsx_runtime107 = require("react/jsx-runtime");
 
 // ../../node_modules/@tamagui/portal/dist/esm/Portal.mjs
 var React94 = __toESM(require("react"), 1);
@@ -49389,7 +49782,7 @@ var getStackedZIndexProps2 = /* @__PURE__ */ __name((propsIn) => ({
 var resolveViewZIndex2 = /* @__PURE__ */ __name((zIndex3) => typeof zIndex3 > "u" || zIndex3 === "unset" ? void 0 : typeof zIndex3 == "number" ? zIndex3 : (0, import_web25.getTokenValue)(zIndex3, "zIndex"), "resolveViewZIndex");
 
 // ../../node_modules/@tamagui/portal/dist/esm/Portal.mjs
-var import_jsx_runtime104 = require("react/jsx-runtime");
+var import_jsx_runtime108 = require("react/jsx-runtime");
 var Portal2 = React94.memo((propsIn) => {
   if (isServer3) return null;
   const {
@@ -49398,7 +49791,7 @@ var Portal2 = React94.memo((propsIn) => {
     children,
     ...props
   } = propsIn, zIndex3 = useStackedZIndex2(getStackedZIndexProps2(propsIn));
-  return (0, import_react_dom7.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime104.jsx)(YStack2, {
+  return (0, import_react_dom7.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime108.jsx)(YStack2, {
     contain: "strict",
     fullscreen: true,
     position: "fixed",
@@ -49412,7 +49805,7 @@ var Portal2 = React94.memo((propsIn) => {
 });
 
 // ../../node_modules/@tamagui/portal/dist/esm/GorhomPortal.mjs
-var import_react95 = __toESM(require("react"), 1);
+var import_react97 = __toESM(require("react"), 1);
 
 // ../../node_modules/@tamagui/portal/dist/esm/constants.mjs
 var IS_FABRIC2 = typeof global < "u" && !!(global._IS_FABRIC ?? global.nativeFabricUIManager);
@@ -49421,7 +49814,7 @@ var allPortalHosts2 = /* @__PURE__ */ new Map();
 var portalListeners2 = {};
 
 // ../../node_modules/@tamagui/portal/dist/esm/GorhomPortal.mjs
-var import_jsx_runtime105 = require("react/jsx-runtime");
+var import_jsx_runtime109 = require("react/jsx-runtime");
 var INITIAL_STATE2 = {};
 var registerHost2 = /* @__PURE__ */ __name((state, hostName) => (hostName in state || (state[hostName] = []), state), "registerHost");
 var deregisterHost2 = /* @__PURE__ */ __name((state, hostName) => (delete state[hostName], state), "deregisterHost");
@@ -49463,34 +49856,34 @@ var reducer2 = /* @__PURE__ */ __name((state, action) => {
       return state;
   }
 }, "reducer");
-var PortalStateContext2 = (0, import_react95.createContext)(null);
-var PortalDispatchContext2 = (0, import_react95.createContext)(null);
+var PortalStateContext2 = (0, import_react97.createContext)(null);
+var PortalDispatchContext2 = (0, import_react97.createContext)(null);
 var usePortalState2 = /* @__PURE__ */ __name((hostName) => {
-  const state = (0, import_react95.useContext)(PortalStateContext2);
+  const state = (0, import_react97.useContext)(PortalStateContext2);
   if (state === null) throw new Error("'PortalStateContext' cannot be null, please add 'PortalProvider' to the root component.");
   return state[hostName] || [];
 }, "usePortalState");
 var usePortal2 = /* @__PURE__ */ __name((hostName = "root") => {
-  const dispatch = (0, import_react95.useContext)(PortalDispatchContext2);
+  const dispatch = (0, import_react97.useContext)(PortalDispatchContext2);
   if (dispatch === null) throw new Error("'PortalDispatchContext' cannot be null, please add 'PortalProvider' to the root component.");
-  const registerHost22 = (0, import_react95.useCallback)(() => {
+  const registerHost22 = (0, import_react97.useCallback)(() => {
     dispatch({
       type: 0,
       hostName
     });
-  }, []), deregisterHost22 = (0, import_react95.useCallback)(() => {
+  }, []), deregisterHost22 = (0, import_react97.useCallback)(() => {
     dispatch({
       type: 1,
       hostName
     });
-  }, []), addUpdatePortal22 = (0, import_react95.useCallback)((name2, node) => {
+  }, []), addUpdatePortal22 = (0, import_react97.useCallback)((name2, node) => {
     dispatch({
       type: 2,
       hostName,
       portalName: name2,
       node
     });
-  }, []), removePortal22 = (0, import_react95.useCallback)((name2) => {
+  }, []), removePortal22 = (0, import_react97.useCallback)((name2) => {
     dispatch({
       type: 3,
       hostName,
@@ -49510,38 +49903,38 @@ var PortalProviderComponent2 = /* @__PURE__ */ __name(({
   shouldAddRootHost = true,
   children
 }) => {
-  const [state, dispatch] = (0, import_react95.useReducer)(reducer2, INITIAL_STATE2), transitionDispatch = (0, import_react95.useMemo)(() => (value) => {
+  const [state, dispatch] = (0, import_react97.useReducer)(reducer2, INITIAL_STATE2), transitionDispatch = (0, import_react97.useMemo)(() => (value) => {
     startTransition2(() => {
       dispatch(value);
     });
   }, [dispatch]);
-  return /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(PortalDispatchContext2.Provider, {
+  return /* @__PURE__ */ (0, import_jsx_runtime109.jsx)(PortalDispatchContext2.Provider, {
     value: transitionDispatch,
-    children: /* @__PURE__ */ (0, import_jsx_runtime105.jsxs)(PortalStateContext2.Provider, {
+    children: /* @__PURE__ */ (0, import_jsx_runtime109.jsxs)(PortalStateContext2.Provider, {
       value: state,
-      children: [children, shouldAddRootHost && /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(PortalHost2, {
+      children: [children, shouldAddRootHost && /* @__PURE__ */ (0, import_jsx_runtime109.jsx)(PortalHost2, {
         name: rootHostName
       })]
     })
   });
 }, "PortalProviderComponent");
-var PortalProvider3 = (0, import_react95.memo)(PortalProviderComponent2);
+var PortalProvider3 = (0, import_react97.memo)(PortalProviderComponent2);
 PortalProvider3.displayName = "PortalProvider";
-var defaultRenderer2 = /* @__PURE__ */ __name((children) => /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(import_jsx_runtime105.Fragment, {
+var defaultRenderer2 = /* @__PURE__ */ __name((children) => /* @__PURE__ */ (0, import_jsx_runtime109.jsx)(import_jsx_runtime109.Fragment, {
   children
 }), "defaultRenderer");
-var PortalHost2 = (0, import_react95.memo)(function(props) {
-  return isWeb10 ? /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(PortalHostWeb2, {
+var PortalHost2 = (0, import_react97.memo)(function(props) {
+  return isWeb10 ? /* @__PURE__ */ (0, import_jsx_runtime109.jsx)(PortalHostWeb2, {
     ...props
-  }) : /* @__PURE__ */ (0, import_jsx_runtime105.jsx)(PortalHostNonNative2, {
+  }) : /* @__PURE__ */ (0, import_jsx_runtime109.jsx)(PortalHostNonNative2, {
     ...props
   });
 });
 function PortalHostWeb2(props) {
-  const [mounted, setMounted] = (0, import_react95.useState)(false);
-  return (0, import_react95.useEffect)(() => (setMounted(true), () => {
+  const [mounted, setMounted] = (0, import_react97.useState)(false);
+  return (0, import_react97.useEffect)(() => (setMounted(true), () => {
     setMounted(false), allPortalHosts2.delete(props.name);
-  }), [props.name]), /* @__PURE__ */ (0, import_jsx_runtime105.jsx)("div", {
+  }), [props.name]), /* @__PURE__ */ (0, import_jsx_runtime109.jsx)("div", {
     style: {
       display: "contents"
     },
@@ -49560,7 +49953,7 @@ function PortalHostNonNative2(props) {
     registerHost: registerHost22,
     deregisterHost: deregisterHost22
   } = usePortal2(props.name);
-  return (0, import_react95.useEffect)(() => {
+  return (0, import_react97.useEffect)(() => {
     if (!(typeof window > "u")) return registerHost22(), () => {
       deregisterHost22();
     };
@@ -49570,7 +49963,7 @@ function PortalHostNonNative2(props) {
       children,
       ...restForwardProps
     } = forwardProps;
-    return forwardProps ? import_react95.default.Children.map(next, (child) => import_react95.default.isValidElement(child) ? import_react95.default.cloneElement(child, {
+    return forwardProps ? import_react97.default.Children.map(next, (child) => import_react97.default.isValidElement(child) ? import_react97.default.cloneElement(child, {
       key: child.key,
       ...restForwardProps
     }) : child) : next;
@@ -49579,28 +49972,28 @@ function PortalHostNonNative2(props) {
 __name(PortalHostNonNative2, "PortalHostNonNative");
 
 // ../../node_modules/@tamagui/portal/dist/esm/GorhomPortalItem.mjs
-var import_react96 = require("react");
+var import_react98 = require("react");
 var import_react_dom8 = require("react-dom");
 
 // ../../packages/ui/src/components/Drawer.tsx
-var import_react97 = __toESM(require("react"), 1);
-var import_react_native6 = __toESM(require_cjs(), 1);
-var import_jsx_runtime106 = require("react/jsx-runtime");
+var import_react99 = __toESM(require("react"), 1);
+var import_react_native7 = __toESM(require_cjs(), 1);
+var import_jsx_runtime110 = require("react/jsx-runtime");
 var DrawerContext = (0, import_core58.createStyledContext)({
   open: false,
   setOpen: /* @__PURE__ */ __name(() => {
   }, "setOpen")
 });
-var SwipeDismissableComponent = import_react97.default.forwardRef(({ onDismiss, children, dismissAfter = 80, ...rest }, ref) => {
+var SwipeDismissableComponent = import_react99.default.forwardRef(({ onDismiss, children, dismissAfter = 80, ...rest }, ref) => {
   const { animationDriver } = (0, import_core58.useConfiguration)();
   const { useAnimatedNumber: useAnimatedNumber2, useAnimatedNumberStyle: useAnimatedNumberStyle2 } = animationDriver;
   const AnimatedView2 = animationDriver.View ?? import_core58.Stack;
   const pan = useAnimatedNumber2(0);
   const [props, style] = (0, import_core58.usePropsAndStyle)(rest);
-  const [dragStarted, setDragStarted] = (0, import_react97.useState)(false);
-  const dismissAfterRef = (0, import_react97.useRef)(dismissAfter);
-  const panResponder = (0, import_react97.useRef)(
-    import_react_native6.PanResponder.create({
+  const [dragStarted, setDragStarted] = (0, import_react99.useState)(false);
+  const dismissAfterRef = (0, import_react99.useRef)(dismissAfter);
+  const panResponder = (0, import_react99.useRef)(
+    import_react_native7.PanResponder.create({
       onStartShouldSetPanResponder: /* @__PURE__ */ __name((_, gestureState) => {
         return Math.abs(gestureState.dx) > Math.abs(gestureState.dy);
       }, "onStartShouldSetPanResponder"),
@@ -49613,7 +50006,7 @@ var SwipeDismissableComponent = import_react97.default.forwardRef(({ onDismiss, 
           });
         }
       }, "onPanResponderMove"),
-      onPanResponderRelease: /* @__PURE__ */ __name((e, gestureState) => {
+      onPanResponderRelease: /* @__PURE__ */ __name((_, gestureState) => {
         setDragStarted(false);
         if (gestureState.dx < -dismissAfterRef.current) {
           if (onDismiss) {
@@ -49634,7 +50027,7 @@ var SwipeDismissableComponent = import_react97.default.forwardRef(({ onDismiss, 
       transform: [{ translateX: val }]
     };
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(
     AnimatedView2,
     {
       ref,
@@ -49699,14 +50092,15 @@ var Overlay2 = (0, import_core58.styled)(YStack, {
     unstyled: process.env.TAMAGUI_HEADLESS === "1"
   }
 });
-var DrawerOverlay = import_react97.default.forwardRef((props, ref) => {
+var DrawerOverlayComponent = /* @__PURE__ */ __name((props, ref) => {
   const { setOpen } = DrawerContext.useStyledContext();
-  return /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(Overlay2, { ref, onPress: () => setOpen(false), ...props });
-});
+  return /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(Overlay2, { ref, onPress: () => setOpen(false), ...props });
+}, "DrawerOverlayComponent");
+var DrawerOverlay = import_react99.default.forwardRef(DrawerOverlayComponent);
 DrawerOverlay.displayName = "DrawerOverlay";
-var DrawerSwipeable = (0, import_react97.forwardRef)((props, ref) => {
+var DrawerSwipeableComponent = /* @__PURE__ */ __name((props, ref) => {
   const { setOpen } = DrawerContext.useStyledContext();
-  return /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(
     SwipeDismissableComponent,
     {
       onDismiss: () => setOpen(false),
@@ -49716,10 +50110,11 @@ var DrawerSwipeable = (0, import_react97.forwardRef)((props, ref) => {
       ref
     }
   );
-});
-var DrawerContent = import_react97.default.forwardRef((props, ref) => {
+}, "DrawerSwipeableComponent");
+var DrawerSwipeable = (0, import_react99.forwardRef)(DrawerSwipeableComponent);
+var DrawerContentComponent = /* @__PURE__ */ __name((props, ref) => {
   const { children, ...rest } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(FocusScope2, { trapped: true, enabled: true, loop: true, children: /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(FocusScope2, { trapped: true, enabled: true, loop: true, children: /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(
     DrawerFrame,
     {
       ref,
@@ -49730,33 +50125,32 @@ var DrawerContent = import_react97.default.forwardRef((props, ref) => {
       children
     }
   ) });
-});
+}, "DrawerContentComponent");
+var DrawerContent = import_react99.default.forwardRef(DrawerContentComponent);
 DrawerContent.displayName = "DrawerContent";
 var DrawerImpl = /* @__PURE__ */ __name(({
   open = false,
   onOpenChange,
-  children,
-  portalToRoot,
-  ...rest
+  children
 }) => {
   const [_open, setOpen] = useControllableState({
     prop: open,
     defaultProp: false,
     onChange: onOpenChange
   });
-  const content = open && /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(import_jsx_runtime106.Fragment, { children });
-  return /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(DrawerContext.Provider, { open: _open, setOpen, children: /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(AnimatePresence, { children: open && content }) });
+  const content = open && /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(import_jsx_runtime110.Fragment, { children });
+  return /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(DrawerContext.Provider, { open: _open, setOpen, children: /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(AnimatePresence, { children: open && content }) });
 }, "DrawerImpl");
 var DrawerPortal = /* @__PURE__ */ __name((props) => {
-  return import_react_native6.Platform.select({
-    web: /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(Portal2, { zIndex: 1e9, ...props }),
-    native: /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(import_react_native6.Modal, { animationType: "none", transparent: true, children: props.children })
+  return import_react_native7.Platform.select({
+    web: /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(Portal2, { zIndex: 1e9, ...props }),
+    native: /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(import_react_native7.Modal, { animationType: "none", transparent: true, children: props.children })
   });
 }, "DrawerPortal");
 var DrawerTrigger = /* @__PURE__ */ __name(({
   children
 }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime106.jsx)(import_jsx_runtime106.Fragment, { children });
+  return /* @__PURE__ */ (0, import_jsx_runtime110.jsx)(import_jsx_runtime110.Fragment, { children });
 }, "DrawerTrigger");
 DrawerTrigger.displayName = "DrawerTrigger";
 var Drawer = (0, import_core58.withStaticProperties)(DrawerImpl, {
@@ -49818,7 +50212,9 @@ var Drawer = (0, import_core58.withStaticProperties)(DrawerImpl, {
   CheckboxFrame,
   CheckboxIndicatorFrame,
   CheckboxStyledContext,
+  Chip,
   Circle,
+  Combobox,
   ComponentContext,
   Configuration,
   CustomToast,
@@ -49962,6 +50358,8 @@ var Drawer = (0, import_core58.withStaticProperties)(DrawerImpl, {
   SwitchThumb,
   Tabs,
   TabsProvider,
+  TagBubble,
+  TagList,
   TamaguiProvider,
   Text,
   TextArea,

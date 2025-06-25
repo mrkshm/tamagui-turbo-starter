@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import { useInfiniteQuery, useQueryClient } from '../query';
 import { useDebounce } from 'use-debounce';
 import { ITEMS_PER_PAGE } from '../constants';
 import { fetchContacts } from '../contacts';

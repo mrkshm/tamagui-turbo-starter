@@ -33,6 +33,11 @@ export type PaginationQueryParams = v.InferInput<
   typeof paginationQueryParamsSchema
 >;
 
+export const searchQueryParamsSchema = v.object({
+  q: v.optional(v.string()),
+});
+export type SearchQueryParams = v.InferInput<typeof searchQueryParamsSchema>;
+
 export const avatarUrlResponseSchema = v.object({
   url: v.string(),
 });
