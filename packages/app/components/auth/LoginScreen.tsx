@@ -106,7 +106,7 @@ export function LoginScreen({
                       setEmailValid(false);
                       return [t('auth:email_required')];
                     }
-                    
+
                     // Then check if it's a valid email
                     const result = v.safeParse(
                       v.pipe(v.string(), v.email(t('auth:email_invalid'))),
@@ -122,7 +122,7 @@ export function LoginScreen({
                   <CInput
                     id="login-email"
                     labelText={t('auth:email_label')}
-                    size="$3"
+                    size="$4"
                     focusOnMount={true}
                     value={field.state.value}
                     onChangeText={field.handleChange}
@@ -142,7 +142,7 @@ export function LoginScreen({
                       setPasswordValid(false);
                       return [t('auth:password_required')];
                     }
-                    
+
                     // Then check if it meets the minimum length
                     const result = v.safeParse(
                       v.pipe(
@@ -162,7 +162,7 @@ export function LoginScreen({
                     <CInput
                       id="login-password"
                       labelText={t('auth:password_label')}
-                      size="$3"
+                      size="$4"
                       value={field.state.value}
                       onChangeText={field.handleChange}
                       secureTextEntry={true}

@@ -1,9 +1,8 @@
-import React from 'react';
 import { Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import { Sheet, YStack, XStack, Text, Spinner, Progress } from '@bbook/ui';
-import { Trash, Upload, X, Camera } from '@tamagui/lucide-icons';
+import { Trash, Upload, X, Camera } from '@bbook/ui';
 import { CButton } from '@bbook/ui';
 import { useAuth } from '../../provider/auth-provider';
 import { AvatarWithUrl } from './AvatarWithUrl';

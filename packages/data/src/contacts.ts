@@ -9,7 +9,7 @@ export interface PaginatedContactsResponse {
 
 /**
  * Fetches contacts with pagination, search, and sorting
- * 
+ *
  * @param params - Query parameters for filtering, sorting and pagination
  * @param userId - User ID for authentication (defaults to 'current_user')
  * @returns Paginated contacts response with items and total count
@@ -19,68 +19,60 @@ export async function fetchContacts(
   userId: string = 'current_user'
 ): Promise<PaginatedContactsResponse> {
   console.log('fetchContacts: starting request', { params, userId });
-  
+
   try {
-    const response = await apiClient.get('/contacts/', paginatedContactsSchema, { 
-      params,
-      userId // Pass userId for authentication
-    });
-    
+    const response = await apiClient.get(
+      '/contacts/',
+      paginatedContactsSchema,
+      {
+        params,
+        userId, // Pass userId for authentication
+      }
+    );
+
     console.log('fetchContacts: raw response', response);
-    
+
     // Check if response is wrapped in a data property (API format)
-    if (response && typeof response === 'object' && 'data' in response && 
-        typeof response.data === 'object' && response.data !== null) {
+    if (
+      response &&
+      typeof response === 'object' &&
+      'data' in response &&
+      typeof response.data === 'object' &&
+      response.data !== null
+    ) {
       const data = response.data as any;
-      
+
       // Check if the data has the expected structure
       if ('items' in data && 'count' in data) {
-        // Create mock data for testing if the API returns empty
-        if (Array.isArray(data.items) && data.items.length === 0 && process.env.NODE_ENV !== 'production') {
-          console.log('fetchContacts: creating mock data for testing');
-          return {
-            items: Array.from({ length: 10 }).map((_, i) => ({
-              id: `mock-${i}`,
-              display_name: `Test Contact ${i + 1}`,
-              first_name: `First${i}`,
-              last_name: `Last${i}`,
-              email: `test${i + 1}@example.com`,
-              slug: `test-contact-${i + 1}`,
-              avatar_path: null
-            })),
-            count: 20
-          };
-        }
-        
         const result = {
           items: data.items as Contact[],
-          count: data.count as number
+          count: data.count as number,
         };
-        
-        console.log('fetchContacts: returning data', { 
-          itemsCount: result.items.length, 
-          totalCount: result.count 
+
+        console.log('fetchContacts: returning data', {
+          itemsCount: result.items.length,
+          totalCount: result.count,
         });
-        
+
         return result;
       }
     }
-    
+
     // Direct format check
     if ('items' in response && 'count' in response) {
       const result = {
         items: response.items as Contact[],
-        count: response.count as number
+        count: response.count as number,
       };
-      
-      console.log('fetchContacts: returning data (direct format)', { 
-        itemsCount: result.items.length, 
-        totalCount: result.count 
+
+      console.log('fetchContacts: returning data (direct format)', {
+        itemsCount: result.items.length,
+        totalCount: result.count,
       });
-      
+
       return result;
     }
-    
+
     console.error('fetchContacts: invalid response format', response);
     // Handle error case
     throw new Error('Invalid response format from contacts API');

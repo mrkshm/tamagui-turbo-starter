@@ -1,5 +1,5 @@
 import { XStack, YStack, H3 } from '@bbook/ui';
-import { Settings, Users } from '@tamagui/lucide-icons';
+import { Settings, Users } from '@bbook/ui';
 import { useTranslation } from '@bbook/i18n';
 
 export type MobileNavProps = {

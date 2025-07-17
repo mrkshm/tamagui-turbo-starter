@@ -6,6 +6,7 @@ import {
   useUnassignTags,
   useCreateTag,
 } from '@bbook/data/src/hooks/useTags';
+import { useTranslation } from '@bbook/i18n';
 import type { TaggableEntity } from '@bbook/data/src/constants/taggable_entities';
 import type { Tag } from '@bbook/data/src/schemas/tags';
 
@@ -28,6 +29,7 @@ export function TagListContainer({
   editable,
   tags: initialTags,
 }: TagListContainerProps) {
+  const { t } = useTranslation();
   const [error, setError] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState('');
   const { data: fetchedTags, isLoading } = useEntityTags(
@@ -41,9 +43,12 @@ export function TagListContainer({
 
   const tags = initialTags ?? (fetchedTags?.success ? fetchedTags.data : []);
 
-  const { mutate: assignTags, isPending: isAssigning } = useAssignTags(orgSlug, {
-    userId: 'current_user',
-  });
+  const { mutate: assignTags, isPending: isAssigning } = useAssignTags(
+    orgSlug,
+    {
+      userId: 'current_user',
+    }
+  );
   const { mutate: unassignTags } = useUnassignTags(orgSlug, {
     userId: 'current_user',
   });
@@ -59,8 +64,9 @@ export function TagListContainer({
       { entityType, entityId, tagIds: [tag.id] },
       {
         onError: (err: any) => {
-          let msg = 'Failed to assign tag.';
-          if (err?.message?.includes('Network')) msg = 'Failed to assign tag: Network error.';
+          let msg = t('errors.tags.assign_error');
+          if (err?.message?.includes('Network'))
+            msg = t('errors.tags.assign_network_error');
           setError(msg);
         },
         onSuccess: () => {
@@ -83,9 +89,11 @@ export function TagListContainer({
           }
         },
         onError: (err: any) => {
-          let msg = 'Failed to create tag.';
-          if (err?.message?.includes('exists')) msg = 'Failed to create tag: Tag name already exists.';
-          else if (err?.message?.includes('Network')) msg = 'Failed to create tag: Network error.';
+          let msg = t('errors.tags.create_error');
+          if (err?.message?.includes('exists'))
+            msg = t('errors.tags.create_exists_error');
+          else if (err?.message?.includes('Network'))
+            msg = t('errors.tags.create_network_error');
           setError(msg);
         },
       }
@@ -101,33 +109,31 @@ export function TagListContainer({
   }
 
   return (
-    <YStack>
-      <XStack gap="$2" flexWrap="wrap" alignItems="center">
-        <TagList
-          tags={tags ?? []}
-          editable={editable}
-          onRemoveTag={handleRemove}
-        />
-        {editable && (
-          <YStack>
-            <TagCombobox
-              orgSlug={orgSlug}
-              onAssignTag={handleAssignTag}
-              onCreateTag={handleCreateTag}
-              userId="current_user"
-              assignedTags={tags ?? []}
-              isProcessing={isAssigning || isCreating}
-              inputValue={inputValue}
-              onInputValueChange={setInputValue}
-            />
-            {error && (
-              <Text color="$red10" mt="$2" fontSize="$3">
-                {error}
-              </Text>
-            )}
-          </YStack>
-        )}
-      </XStack>
-    </YStack>
+    <XStack gap="$2" flexWrap="wrap" alignItems="center">
+      <TagList
+        tags={tags ?? []}
+        editable={editable}
+        onRemoveTag={handleRemove}
+      />
+      {editable && (
+        <YStack>
+          <TagCombobox
+            orgSlug={orgSlug}
+            onAssignTag={handleAssignTag}
+            onCreateTag={handleCreateTag}
+            userId="current_user"
+            assignedTags={tags ?? []}
+            isProcessing={isAssigning || isCreating}
+            inputValue={inputValue}
+            onInputValueChange={setInputValue}
+          />
+          {error && (
+            <Text color="$red10" marginTop="$2" fontSize="$3">
+              {error}
+            </Text>
+          )}
+        </YStack>
+      )}
+    </XStack>
   );
 }

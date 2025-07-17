@@ -1,6 +1,7 @@
 import { Combobox, type ComboboxItem, Text } from '@bbook/ui';
 import { useMemo } from 'react';
 import { useSearchTags } from '@bbook/data/src/hooks/useTags';
+import { useTranslation } from '@bbook/i18n';
 import { type Tag } from '@bbook/data/src/schemas/tags';
 
 const CREATE_TAG_ID = 'create-new-tag';
@@ -30,7 +31,10 @@ export function TagCombobox({
   inputValue,
   onInputValueChange,
 }: TagComboboxProps) {
-  const { data, isLoading: isSearching } = useSearchTags(orgSlug, inputValue, { userId });
+  const { t } = useTranslation();
+  const { data, isLoading: isSearching } = useSearchTags(orgSlug, inputValue, {
+    userId,
+  });
 
   const items: TagComboboxItem[] = useMemo(() => {
     const allRemoteItems = data?.success ? data.data.items : [];
@@ -44,7 +48,7 @@ export function TagCombobox({
       !unassignedRemoteItems.find((item) => item.name === inputValue)
     ) {
       return [
-        { id: CREATE_TAG_ID, name: `Create "${inputValue}"` },
+        { id: CREATE_TAG_ID, name: t('common.create') + ` "${inputValue}"` },
         ...unassignedRemoteItems,
       ];
     }
@@ -64,7 +68,7 @@ export function TagCombobox({
         }
       }}
       renderItem={(item) => <Text>{item.name}</Text>}
-      placeholder="Search for a tag..."
+      placeholder={t('common.search_for_tag_placeholder')}
       isLoading={isSearching || isProcessing}
     />
   );

@@ -1,4 +1,4 @@
-import { Stack, YStack, Text } from '@bbook/ui';
+import { YStack } from '@bbook/ui';
 import { User } from '@bbook/data';
 import { ProfileEditor } from './ProfileEditor';
 import { useToastController } from '@bbook/ui';

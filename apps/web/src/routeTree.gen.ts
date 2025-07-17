@@ -8,188 +8,82 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as MemberIndexRouteImport } from './routes/member/index'
+import { Route as LandingIndexRouteImport } from './routes/landing/index'
+import { Route as AuthWaitingRouteImport } from './routes/auth/waiting'
+import { Route as AuthVerifyRouteImport } from './routes/auth/verify'
+import { Route as AuthSignupRouteImport } from './routes/auth/signup'
+import { Route as AuthPasswordResetConfirmRouteImport } from './routes/auth/password-reset-confirm'
+import { Route as AuthPasswordResetRouteImport } from './routes/auth/password-reset'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as MemberProfileIndexRouteImport } from './routes/member/profile/index'
+import { Route as MemberContactsIndexRouteImport } from './routes/member/contacts/index'
+import { Route as MemberContactsContactSlugRouteImport } from './routes/member/contacts/$contactSlug'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as MemberIndexImport } from './routes/member/index'
-import { Route as LandingIndexImport } from './routes/landing/index'
-import { Route as AuthWaitingImport } from './routes/auth/waiting'
-import { Route as AuthVerifyImport } from './routes/auth/verify'
-import { Route as AuthSignupImport } from './routes/auth/signup'
-import { Route as AuthPasswordResetConfirmImport } from './routes/auth/password-reset-confirm'
-import { Route as AuthPasswordResetImport } from './routes/auth/password-reset'
-import { Route as AuthLoginImport } from './routes/auth/login'
-import { Route as MemberProfileIndexImport } from './routes/member/profile/index'
-import { Route as MemberContactsIndexImport } from './routes/member/contacts/index'
-import { Route as MemberContactsContactSlugImport } from './routes/member/contacts/$contactSlug'
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const MemberIndexRoute = MemberIndexImport.update({
+const MemberIndexRoute = MemberIndexRouteImport.update({
   id: '/member/',
   path: '/member/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const LandingIndexRoute = LandingIndexImport.update({
+const LandingIndexRoute = LandingIndexRouteImport.update({
   id: '/landing/',
   path: '/landing/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthWaitingRoute = AuthWaitingImport.update({
+const AuthWaitingRoute = AuthWaitingRouteImport.update({
   id: '/auth/waiting',
   path: '/auth/waiting',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthVerifyRoute = AuthVerifyImport.update({
+const AuthVerifyRoute = AuthVerifyRouteImport.update({
   id: '/auth/verify',
   path: '/auth/verify',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthSignupRoute = AuthSignupImport.update({
+const AuthSignupRoute = AuthSignupRouteImport.update({
   id: '/auth/signup',
   path: '/auth/signup',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthPasswordResetConfirmRoute = AuthPasswordResetConfirmImport.update({
-  id: '/auth/password-reset-confirm',
-  path: '/auth/password-reset-confirm',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthPasswordResetRoute = AuthPasswordResetImport.update({
+const AuthPasswordResetConfirmRoute =
+  AuthPasswordResetConfirmRouteImport.update({
+    id: '/auth/password-reset-confirm',
+    path: '/auth/password-reset-confirm',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthPasswordResetRoute = AuthPasswordResetRouteImport.update({
   id: '/auth/password-reset',
   path: '/auth/password-reset',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthLoginRoute = AuthLoginImport.update({
+const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/auth/login',
   path: '/auth/login',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const MemberProfileIndexRoute = MemberProfileIndexImport.update({
+const MemberProfileIndexRoute = MemberProfileIndexRouteImport.update({
   id: '/member/profile/',
   path: '/member/profile/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const MemberContactsIndexRoute = MemberContactsIndexImport.update({
+const MemberContactsIndexRoute = MemberContactsIndexRouteImport.update({
   id: '/member/contacts/',
   path: '/member/contacts/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const MemberContactsContactSlugRoute = MemberContactsContactSlugImport.update({
-  id: '/member/contacts/$contactSlug',
-  path: '/member/contacts/$contactSlug',
-  getParentRoute: () => rootRoute,
-} as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/password-reset': {
-      id: '/auth/password-reset'
-      path: '/auth/password-reset'
-      fullPath: '/auth/password-reset'
-      preLoaderRoute: typeof AuthPasswordResetImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/password-reset-confirm': {
-      id: '/auth/password-reset-confirm'
-      path: '/auth/password-reset-confirm'
-      fullPath: '/auth/password-reset-confirm'
-      preLoaderRoute: typeof AuthPasswordResetConfirmImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/signup': {
-      id: '/auth/signup'
-      path: '/auth/signup'
-      fullPath: '/auth/signup'
-      preLoaderRoute: typeof AuthSignupImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/verify': {
-      id: '/auth/verify'
-      path: '/auth/verify'
-      fullPath: '/auth/verify'
-      preLoaderRoute: typeof AuthVerifyImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/waiting': {
-      id: '/auth/waiting'
-      path: '/auth/waiting'
-      fullPath: '/auth/waiting'
-      preLoaderRoute: typeof AuthWaitingImport
-      parentRoute: typeof rootRoute
-    }
-    '/landing/': {
-      id: '/landing/'
-      path: '/landing'
-      fullPath: '/landing'
-      preLoaderRoute: typeof LandingIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/member/': {
-      id: '/member/'
-      path: '/member'
-      fullPath: '/member'
-      preLoaderRoute: typeof MemberIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/member/contacts/$contactSlug': {
-      id: '/member/contacts/$contactSlug'
-      path: '/member/contacts/$contactSlug'
-      fullPath: '/member/contacts/$contactSlug'
-      preLoaderRoute: typeof MemberContactsContactSlugImport
-      parentRoute: typeof rootRoute
-    }
-    '/member/contacts/': {
-      id: '/member/contacts/'
-      path: '/member/contacts'
-      fullPath: '/member/contacts'
-      preLoaderRoute: typeof MemberContactsIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/member/profile/': {
-      id: '/member/profile/'
-      path: '/member/profile'
-      fullPath: '/member/profile'
-      preLoaderRoute: typeof MemberProfileIndexImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Create and export the route tree
+const MemberContactsContactSlugRoute =
+  MemberContactsContactSlugRouteImport.update({
+    id: '/member/contacts/$contactSlug',
+    path: '/member/contacts/$contactSlug',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -205,7 +99,6 @@ export interface FileRoutesByFullPath {
   '/member/contacts': typeof MemberContactsIndexRoute
   '/member/profile': typeof MemberProfileIndexRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
@@ -220,9 +113,8 @@ export interface FileRoutesByTo {
   '/member/contacts': typeof MemberContactsIndexRoute
   '/member/profile': typeof MemberProfileIndexRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/password-reset': typeof AuthPasswordResetRoute
@@ -236,7 +128,6 @@ export interface FileRoutesById {
   '/member/contacts/': typeof MemberContactsIndexRoute
   '/member/profile/': typeof MemberProfileIndexRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
@@ -282,7 +173,6 @@ export interface FileRouteTypes {
     | '/member/profile/'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthLoginRoute: typeof AuthLoginRoute
@@ -296,6 +186,95 @@ export interface RootRouteChildren {
   MemberContactsContactSlugRoute: typeof MemberContactsContactSlugRoute
   MemberContactsIndexRoute: typeof MemberContactsIndexRoute
   MemberProfileIndexRoute: typeof MemberProfileIndexRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/member/': {
+      id: '/member/'
+      path: '/member'
+      fullPath: '/member'
+      preLoaderRoute: typeof MemberIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/': {
+      id: '/landing/'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/waiting': {
+      id: '/auth/waiting'
+      path: '/auth/waiting'
+      fullPath: '/auth/waiting'
+      preLoaderRoute: typeof AuthWaitingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/verify': {
+      id: '/auth/verify'
+      path: '/auth/verify'
+      fullPath: '/auth/verify'
+      preLoaderRoute: typeof AuthVerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/password-reset-confirm': {
+      id: '/auth/password-reset-confirm'
+      path: '/auth/password-reset-confirm'
+      fullPath: '/auth/password-reset-confirm'
+      preLoaderRoute: typeof AuthPasswordResetConfirmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/password-reset': {
+      id: '/auth/password-reset'
+      path: '/auth/password-reset'
+      fullPath: '/auth/password-reset'
+      preLoaderRoute: typeof AuthPasswordResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/member/profile/': {
+      id: '/member/profile/'
+      path: '/member/profile'
+      fullPath: '/member/profile'
+      preLoaderRoute: typeof MemberProfileIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/member/contacts/': {
+      id: '/member/contacts/'
+      path: '/member/contacts'
+      fullPath: '/member/contacts'
+      preLoaderRoute: typeof MemberContactsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/member/contacts/$contactSlug': {
+      id: '/member/contacts/$contactSlug'
+      path: '/member/contacts/$contactSlug'
+      fullPath: '/member/contacts/$contactSlug'
+      preLoaderRoute: typeof MemberContactsContactSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -312,67 +291,6 @@ const rootRouteChildren: RootRouteChildren = {
   MemberContactsIndexRoute: MemberContactsIndexRoute,
   MemberProfileIndexRoute: MemberProfileIndexRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/auth/login",
-        "/auth/password-reset",
-        "/auth/password-reset-confirm",
-        "/auth/signup",
-        "/auth/verify",
-        "/auth/waiting",
-        "/landing/",
-        "/member/",
-        "/member/contacts/$contactSlug",
-        "/member/contacts/",
-        "/member/profile/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/auth/login": {
-      "filePath": "auth/login.tsx"
-    },
-    "/auth/password-reset": {
-      "filePath": "auth/password-reset.tsx"
-    },
-    "/auth/password-reset-confirm": {
-      "filePath": "auth/password-reset-confirm.tsx"
-    },
-    "/auth/signup": {
-      "filePath": "auth/signup.tsx"
-    },
-    "/auth/verify": {
-      "filePath": "auth/verify.tsx"
-    },
-    "/auth/waiting": {
-      "filePath": "auth/waiting.tsx"
-    },
-    "/landing/": {
-      "filePath": "landing/index.tsx"
-    },
-    "/member/": {
-      "filePath": "member/index.tsx"
-    },
-    "/member/contacts/$contactSlug": {
-      "filePath": "member/contacts/$contactSlug.tsx"
-    },
-    "/member/contacts/": {
-      "filePath": "member/contacts/index.tsx"
-    },
-    "/member/profile/": {
-      "filePath": "member/profile/index.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

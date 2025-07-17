@@ -1,4 +1,4 @@
-import { config } from '@bbook/ui';
+import { config } from './config/tamagui.config';
 
 export type Conf = typeof config;
 

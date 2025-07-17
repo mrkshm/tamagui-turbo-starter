@@ -11,7 +11,9 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.bentobook",
-      "associatedDomains": ["applinks:turbobook.example.com"]
+      "associatedDomains": [
+        "applinks:turbobook.example.com"
+      ]
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +38,10 @@
               "pathPrefix": "/auth/password-reset-confirm"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ]
     },
@@ -56,7 +61,9 @@
           "backgroundColor": "#ffffff"
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

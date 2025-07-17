@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Dialog, YStack, XStack, Text, Spinner, Progress } from '@bbook/ui';
-import { Trash, Upload, X } from '@tamagui/lucide-icons';
+import { Trash, Upload, X } from '@bbook/ui';
 import { CButton } from '@bbook/ui';
 import { useAuth } from '../../provider/auth-provider';
 import { AvatarWithUrl } from './AvatarWithUrl';

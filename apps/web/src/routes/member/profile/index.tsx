@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useAuth } from '@bbook/app/provider/auth-provider';
 import { ProfileMain } from '@bbook/app';
-import { Stack, Spinner, Text, Button } from 'tamagui';
+import { Stack, Spinner, Text, Button } from '@bbook/ui';
 
 export const Route = createFileRoute('/member/profile/')({
   component: RouteComponent,

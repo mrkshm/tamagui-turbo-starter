@@ -12,8 +12,8 @@ import {
 import { ReactNode, useEffect, useId, useRef, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { X } from '@tamagui/lucide-icons';
+import { useTranslation } from '@bbook/i18n';
 
-// --- Component Props ---
 export interface ComboboxItem {
   id: string;
   [key: string]: any; // Allow other properties
@@ -31,7 +31,6 @@ export interface ComboboxProps<T extends ComboboxItem> {
   placeholder?: string;
 }
 
-// --- Component ---
 export function Combobox<T extends ComboboxItem>({
   items,
   inputValue,
@@ -41,7 +40,7 @@ export function Combobox<T extends ComboboxItem>({
   inputProps,
   popoverProps,
   isLoading = false,
-  placeholder = 'Select an item...',
+  placeholder,
 }: ComboboxProps<T>) {
   const [open, setOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -51,6 +50,11 @@ export function Combobox<T extends ComboboxItem>({
     highlightedIndex > -1
       ? `${listboxId}-${items[highlightedIndex].id}`
       : undefined;
+
+  const { t } = useTranslation();
+
+  const defaultPlaceholder = t('common.select_an_item_placeholder');
+  const resolvedPlaceholder = placeholder ?? defaultPlaceholder;
 
   const handleOpenChange = (isOpen: boolean) => {
     setOpen(isOpen);
@@ -134,7 +138,7 @@ export function Combobox<T extends ComboboxItem>({
             ))
           ) : (
             <YStack padding="$4">
-              <Paragraph>No results found.</Paragraph>
+              <Paragraph>{t('common.no_results_found')}</Paragraph>
             </YStack>
           )}
         </ScrollView>
@@ -198,7 +202,7 @@ export function Combobox<T extends ComboboxItem>({
                 focusOnMount
                 value={inputValue}
                 onChangeText={onInputValueChange}
-                placeholder={placeholder}
+                placeholder={resolvedPlaceholder}
                 {...inputProps}
               />
               <Adapt.Contents />

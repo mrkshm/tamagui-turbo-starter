@@ -22,8 +22,11 @@ export {
   ArrowUpAZ,
   ArrowDown01,
   ArrowUp01,
+  Camera,
   X,
   Menu,
+  Settings,
   Upload,
+  Users,
   Trash,
 } from '@tamagui/lucide-icons';

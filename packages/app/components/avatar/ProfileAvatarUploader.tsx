@@ -1,4 +1,3 @@
-import React from 'react';
 import { AvatarUploader, AvatarUploaderProps } from './AvatarUploader';
 import { useAuth } from '../../provider/auth-provider';
 

@@ -1,3 +1,12 @@
 {
-  "user_not_found": "User not found"
+  "user_not_found": "User not found",
+  "tags": {
+    "assign_error": "Failed to assign tag",
+    "create_error": "Failed to create tag",
+    "unassign_error": "Failed to unassign tag",
+    "assign_network_error": "Failed to assign tag: Network error",
+    "create_network_error": "Failed to create tag: Network error",
+    "create_exists_error": "Failed to create tag: Tag name already exists.",
+    "unassign_network_error": "Failed to unassign tag: Network error"
+  }
 }
