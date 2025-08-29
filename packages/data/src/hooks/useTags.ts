@@ -125,12 +125,17 @@ export function useEntityTags(
 
   return useQuery({
     queryKey,
-    queryFn: () =>
-      apiClient.get<Tag[]>(
+    queryFn: async () => {
+      const res = await apiClient.get<PaginatedTags>(
         tagsEndpoints.GET_ENTITY_TAGS.url(orgSlug, entityType, entityId),
-        v.array(tagSchema),
+        paginatedTagsSchema,
         { userId }
-      ),
+      );
+      if (res.success) {
+        return { success: true, data: res.data.items };
+      }
+      return res as any;
+    },
     enabled,
   });
 }

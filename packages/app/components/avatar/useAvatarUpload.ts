@@ -6,7 +6,6 @@ import {
   useUploadContactAvatar,
   useDeleteContactAvatar,
   useCurrentUser,
-  AvatarEntityType,
   AvatarEntityTypeLiteral,
 } from '@bbook/data';
 import { DialogState } from './types';
@@ -38,10 +37,8 @@ export function useAvatarUpload({
   // User refetch (only relevant for user entity)
   const { refetch: refetchUser } = useCurrentUser();
 
-  // Mutations depending on entity type
-  const baseUploadMutation = (
-    entityType === 'user' ? useUpdateUserAvatar : useUploadContactAvatar
-  )({
+  // Mutations (hooks must be called unconditionally)
+  const userUploadMutation = useUpdateUserAvatar({
     onProgress: (progress: number) => setProgress(progress),
     onSuccess: () => {
       if (entityType === 'user') {
@@ -62,20 +59,43 @@ export function useAvatarUpload({
       setIsLoading(false);
     },
   });
+  const contactUploadMutation = useUploadContactAvatar({
+    onProgress: (progress: number) => setProgress(progress),
+    onSuccess: () => {
+      // For contact, just reset UI state
+      setDialogState('initial');
+      setPreviewUrl(null);
+      setSelectedImageUri(null);
+      setSelectedFileName(null);
+      setProgress(0);
+      setIsLoading(false);
+      dialogInteraction.onOut();
+    },
+    onError: (error: Error) => {
+      console.error('Upload error:', error);
+      setError(error.message);
+      setDialogState('initial');
+      setIsLoading(false);
+    },
+  });
 
   // Wrap upload mutation to unify signature: always accept File
   const uploadMutation = {
-    ...baseUploadMutation,
     mutateAsync: (file: File) =>
       entityType === 'user'
-        ? (baseUploadMutation as any).mutateAsync(file)
-        : (baseUploadMutation as any).mutateAsync({ id: entityId, file }),
-  } as typeof baseUploadMutation & {
+        ? (userUploadMutation as any).mutateAsync(file)
+        : (contactUploadMutation as any).mutateAsync({ id: entityId, file }),
+    // Pass-through common fields from the selected mutation
+    get status() {
+      return (entityType === 'user' ? (userUploadMutation as any) : (contactUploadMutation as any)).status;
+    },
+  } as {
     mutateAsync: (file: File) => Promise<any>;
+    status?: string;
   };
 
-  const deleteMutation =
-    entityType === 'user' ? useDeleteUserAvatar() : useDeleteContactAvatar();
+  const deleteUserMutation = useDeleteUserAvatar();
+  const deleteContactMutation = useDeleteContactAvatar();
 
   // Validate file size
   const validateFileSize = (size: number): boolean => {
@@ -108,9 +128,9 @@ export function useAvatarUpload({
       setError(null);
 
       if (entityType === 'user') {
-        await (deleteMutation as any).mutateAsync();
+        await (deleteUserMutation as any).mutateAsync();
       } else {
-        await (deleteMutation as any).mutateAsync(entityId);
+        await (deleteContactMutation as any).mutateAsync(entityId);
       }
 
       // Success case

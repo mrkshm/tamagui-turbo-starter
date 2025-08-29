@@ -2,10 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "composite": true,
+    "composite": false,
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {}
   },
-  "references": [{ "path": "../stores" }]
+  "references": []
 }

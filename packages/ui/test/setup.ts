@@ -25,8 +25,6 @@ Object.defineProperty(window, 'matchMedia', {
 
 // Mock ResizeObserver which is not available in JSDOM
 class ResizeObserver {
-  // @ts-ignore - We don't need to implement the callback in tests
-  constructor(_callback: ResizeObserverCallback) {}
   // @ts-ignore - We don't need the implementation in tests
   observe(_target: Element, _options?: ResizeObserverOptions): void {}
   // @ts-ignore - We don't need the implementation in tests

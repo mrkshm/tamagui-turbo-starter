@@ -26,11 +26,11 @@ const ThemeSwitcherUI = React.memo(
     // Get theme options from the themes object
     const themeOptions = React.useMemo(() => {
       if (!themes || typeof themes !== 'object') return [];
-      return Object.entries(themes).map(([key, theme]) => ({
+      return Object.entries(themes).map(([key]) => ({
         key,
         label: t(`common:theme.${key}`),
       }));
-    }, []);
+    }, [t]);
 
     return (
       <XStack
@@ -112,13 +112,17 @@ const ThemeSwitcherUI = React.memo(
   }
 );
 
+ThemeSwitcherUI.displayName = 'ThemeSwitcherUI';
+
 // This component initializes theme sync without re-rendering on keystrokes
-const ThemeSyncInitializer = React.memo(() => {
+const ThemeSyncInitializer = React.memo((): null => {
   // Initialize the theme sync with backend
   // This is necessary, do not delete it even if linter complains
   useThemeSync();
   return null;
 });
+
+ThemeSyncInitializer.displayName = 'ThemeSyncInitializer';
 
 // This is the main component that handles the theme sync
 export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = (props) => {

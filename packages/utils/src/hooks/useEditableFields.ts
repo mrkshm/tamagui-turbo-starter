@@ -262,7 +262,7 @@ export function useEditableFields<T = string>(
     });
 
     return result;
-  }, [initialValues, undoFieldValue, undoableFields, values]);
+  }, [initialValues, undoFieldValue, undoableFields, fieldIds]);
 
   // Update a field value (only if initialValues is provided)
   const updateFieldValue = useCallback(
@@ -356,7 +356,7 @@ export function useEditableFields<T = string>(
         isDifferent
       );
     },
-    [initialValues, undoableFields, values]
+    [initialValues, undoableFields]
   );
 
   // Save a field value (only if onSave is provided)

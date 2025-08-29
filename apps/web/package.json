@@ -7,7 +7,9 @@
     "build": "vite build && tsc",
     "serve": "vite preview",
     "test": "vitest run",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@bbook/app": "workspace:*",
@@ -23,9 +25,9 @@
     "@tamagui/font-inter": "^1.132.8",
     "@tamagui/polyfill-dev": "^1.132.8",
     "@tanstack/react-form": "^1.14.1",
-    "@tanstack/react-router": "^1.128.0",
-    "@tanstack/react-router-devtools": "^1.128.0",
-    "@tanstack/router-plugin": "^1.128.0",
+    "@tanstack/react-router": "^1.131.28",
+    "@tanstack/react-router-devtools": "^1.131.28",
+    "@tanstack/router-plugin": "^1.131.28",
     "raf": "^3.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

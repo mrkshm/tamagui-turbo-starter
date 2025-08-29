@@ -1,7 +1,7 @@
 import { Sheet } from '@bbook/ui';
 import { TermsAndConditions } from '@bbook/app/components/terms-and-conditions';
 import { useInteractionState } from '@bbook/utils';
-import { Button, H2, YStack } from '@bbook/ui';
+import { Button, YStack } from '@bbook/ui';
 import { useTranslation } from '@bbook/i18n';
 import { memo } from 'react';
 
@@ -11,7 +11,6 @@ type TermsSheetProps = {
 };
 
 export function TermsSheet({ open, onOpenChange }: TermsSheetProps) {
-  const { t } = useTranslation();
 
   return (
     <Sheet
@@ -61,6 +60,8 @@ const SheetContents = memo(({ onClose }: { onClose: () => void }) => {
     </YStack>
   );
 });
+
+SheetContents.displayName = 'SheetContents';
 
 // Hook to manage the terms sheet state
 export function useTermsSheet() {

@@ -1,5 +1,5 @@
-import { useFonts } from 'expo-font';
-import { Redirect, Stack, useSegments, useRouter } from 'expo-router';
+import 'react-native-gesture-handler';
+import { Redirect, Stack, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -22,6 +22,10 @@ import {
   Inter_700Bold,
 } from '@expo-google-fonts/inter';
 import { View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SvgPreloader } from '../components/svg-preloader';
+import { HeaderBackground } from '@react-navigation/elements';
+import { useTheme } from '@bbook/ui/src';
 
 // Initialize adapters
 initializeStorage(mobileStorageAdapter);
@@ -40,8 +44,6 @@ export default function RootLayout() {
     Inter_700Bold,
   });
   const loaded = juraLoaded && interLoaded;
-  const segments = useSegments();
-  const router = useRouter();
 
   // Handle deep links
   useEffect(() => {
@@ -86,7 +88,7 @@ export default function RootLayout() {
     return () => {
       subscription.remove();
     };
-  }, [router]);
+  }, []);
 
   useEffect(() => {
     if (loaded) {
@@ -175,20 +177,18 @@ function RootLayoutNav() {
     </Stack>
   );
 }
-
-// Import the SVG preloader
-import { SvgPreloader } from '../components/svg-preloader';
-import { HeaderBackground } from '@react-navigation/elements';
-import { useTheme } from '@bbook/ui/src';
+ 
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider>
-      {/* Initialize SVG components early in the tree. 
-      This is necessary otherwise components imported 
-      from other packages will CRASH the app. */}
-      <SvgPreloader />
-      <View style={{ flex: 1 }}>{children}</View>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        {/* Initialize SVG components early in the tree. 
+        This is necessary otherwise components imported 
+        from other packages will CRASH the app. */}
+        <SvgPreloader />
+        <View style={{ flex: 1 }}>{children}</View>
+      </GestureHandlerRootView>
     </Provider>
   );
 };

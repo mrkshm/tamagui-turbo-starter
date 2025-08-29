@@ -1,6 +1,6 @@
 import { XStack, YStack, Text } from 'tamagui';
 import { InlineEditable } from './InlineEditable';
-import { ReactNode, useRef, useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { GestureResponderEvent, Platform, TextInput } from 'react-native';
 import { useKeyboardHandling } from '@bbook/utils';
 
@@ -249,8 +249,6 @@ export function EditableField({
             label={label}
             id={`${fieldId}-inline-editable`}
             renderInput={({ value, onChange, autoFocus, onSubmitEditing }) => {
-              const inputRef = useRef<TextInput>(null);
-
               if (Platform.OS === 'web') {
                 return (
                   <div
@@ -286,7 +284,6 @@ export function EditableField({
               // For React Native
               return (
                 <TextInput
-                  ref={inputRef}
                   value={value}
                   onChangeText={onChange}
                   autoFocus={autoFocus}

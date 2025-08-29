@@ -60,6 +60,9 @@ export const CInput = forwardRef<any, CInputProps>(
 
     // Generate a unique ID if none is provided
     const generatedId = useId();
+
+// Add display name for better dev tools and to satisfy lint rule
+CInput.displayName = 'CInput';
     const uniqueId = id || generatedId;
 
     // Create a ref for the input area
@@ -129,3 +132,6 @@ export const CInput = forwardRef<any, CInputProps>(
     );
   }
 );
+
+// Add display name for better dev tools and to satisfy lint rule
+CInput.displayName = 'CInput';

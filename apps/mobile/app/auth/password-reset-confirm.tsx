@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SafeAreaView } from 'react-native';
-import { YStack, FormCard, H1, Text, View } from '@bbook/ui';
+import { YStack, FormCard, H1, Text } from '@bbook/ui';
 import { useTranslation } from '@bbook/i18n';
 import { PasswordResetForm } from '@bbook/app/components/auth/PasswordResetForm';
 import { useRouter, useLocalSearchParams } from 'expo-router';

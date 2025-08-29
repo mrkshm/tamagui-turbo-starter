@@ -1,4 +1,9 @@
 import { HTTP_METHODS } from '../constants/constants';
+import { userEndpoints } from './user';
+import { authEndpoints } from './auth';
+import { contactsEndpoints } from './contacts';
+import { imagesEndpoints } from './images';
+export type { PolymorphicTarget } from './images';
 
 export type HttpMethod = (typeof HTTP_METHODS)[keyof typeof HTTP_METHODS];
 
@@ -63,14 +68,11 @@ type PathsToStringLiteral<T extends readonly any[]> = T extends []
       ? `${string & First}.${PathsToStringLiteral<Rest>}`
       : string;
 
-import { userEndpoints } from './user';
-import { authEndpoints } from './auth';
-import { contactsEndpoints } from './contacts';
-
 export const API_ENDPOINTS = {
   AUTH: authEndpoints,
   USER: userEndpoints,
   CONTACTS: contactsEndpoints,
+  IMAGES: imagesEndpoints,
 } as const;
 
 export type ApiEndpointPath = PathsToStringLiteral<

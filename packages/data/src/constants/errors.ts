@@ -31,8 +31,8 @@ export type ErrorResponse = {
 export interface AppError {
   severity: ErrorSeverity;
   category: ErrorCategory;
-  timestamp: String;
-  userMessage: String;
+  timestamp: string;
+  userMessage: string;
   context?: Record<string, unknown>;
 }
 

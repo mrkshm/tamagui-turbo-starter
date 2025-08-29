@@ -20,7 +20,7 @@ export function createFieldValidator<T = unknown>(schema: v.BaseSchema<T, unknow
  * @returns A function that returns the first error found or undefined if all validations pass
  */
 export function combineValidators<T>(
-  ...validators: Array<(value: T) => string | undefined>
+  ...validators: ((value: T) => string | undefined)[]
 ) {
   return (value: T): string | undefined => {
     for (const validate of validators) {

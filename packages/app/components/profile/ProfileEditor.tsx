@@ -115,9 +115,9 @@ export function ProfileEditor({
       const fieldProps = getFieldProps(field.id);
 
       // Create a custom handleEditEnd that saves the field when editing ends
-      const handleFieldEditEnd = useCallback(() => {
+      const handleFieldEditEnd = () => {
         saveField?.(field.id);
-      }, [field.id, saveField]);
+      };
 
       return (
         <RenderFormField<FieldKey>

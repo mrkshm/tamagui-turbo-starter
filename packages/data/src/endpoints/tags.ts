@@ -99,10 +99,11 @@ export const tagsEndpoints = {
     ) => buildEntityTagUrl(org_slug, entityType, entityId),
     method: HTTP_METHODS.GET,
     requiresAuth: true,
-    responseType: {} as Tag[],
+    // Backend returns a paginated response for entity tags
+    responseType: {} as PaginatedTags,
   } as Endpoint<
     undefined,
-    Tag[],
+    PaginatedTags,
     undefined,
     [string, TaggableEntity, string | number]
   >,

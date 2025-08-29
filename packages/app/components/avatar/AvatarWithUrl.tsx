@@ -72,7 +72,7 @@ export function AvatarWithUrl({
     try {
       const url = new URL(imagePath);
       return url.protocol === 'http:' || url.protocol === 'https:';
-    } catch (e) {
+    } catch {
       return false;
     }
   }, [imagePath]);

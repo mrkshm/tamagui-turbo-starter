@@ -2,7 +2,6 @@ import { useContacts } from '@bbook/data/src/hooks/useContacts';
 import { ContactCard } from './ContactCard';
 import { Spinner, Text, YStack } from '@bbook/ui';
 import { FlatList, ListRenderItem, Pressable } from 'react-native';
-import { LinkComponent } from 'utils/types';
 import type {
   Contact,
   SortableField,

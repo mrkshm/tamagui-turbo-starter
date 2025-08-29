@@ -22,7 +22,6 @@ export function EditableTextArea(props: EditableTextAreaProps) {
     handleEditEnd,
     onCancel,
     placeholder,
-    height = 150,
   } = props;
 
   // Create a custom renderer for the InlineEditable component
@@ -49,11 +48,10 @@ export function EditableTextArea(props: EditableTextAreaProps) {
           onSubmitEditing={onSubmitEditing}
           onCancel={onCancel}
           placeholder={placeholder}
-          // minHeight={typeof height === 'number' ? height : undefined}
         />
       );
     },
-    [onCancel, placeholder, height]
+    [onCancel, placeholder]
   );
 
   return (

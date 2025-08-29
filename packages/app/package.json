@@ -6,19 +6,20 @@
   "main": "index.ts",
   "scripts": {
     "build": "echo 'Add build script for app package'",
-    "clean": "rm -rf .turbo && rm -rf node_modules"
+    "clean": "rm -rf .turbo && rm -rf node_modules",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "peerDependencies": {
+    "expo-file-system": "*",
+    "expo-image-picker": "*",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.79.5",
-    "typescript": "^5.8.3",
-    "expo-image-picker": "*",
-    "expo-file-system": "*"
+    "expo-image": "*"
   },
   "devDependencies": {
-    "expo-image-picker": "16.1.4",
-    "expo-file-system": "18.1.11",
+    "typescript": "^5.8.3",
     "@types/react": "^19.1.8"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "@bbook/stores": "workspace:*",
     "@bbook/ui": "workspace:*",
     "@bbook/utils": "workspace:*",
+    "@nandorojo/galeria": "^1.2.0",
     "@react-navigation/native": "^7.1.14",
     "@tamagui/lucide-icons": "^1.132.8",
     "@tanstack/react-form": "^1.14.1",

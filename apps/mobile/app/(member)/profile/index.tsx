@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { useAuth } from '@bbook/app/provider/auth-provider';
 import { ProfileMain } from '@bbook/app/components/profile/ProfileMain';
-import { ScrollView, Text, YStack } from '@bbook/ui';
+import { ScrollView, YStack } from '@bbook/ui';
 import { useTheme } from '@bbook/ui';
 import { HeaderBackground } from '@react-navigation/elements';
 import { Spinner } from '@bbook/ui';

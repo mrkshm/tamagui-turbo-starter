@@ -1,5 +1,6 @@
 import { Spinner, XStack, YStack, Text } from '@bbook/ui';
 import { TagList } from '@bbook/ui';
+import { useState } from 'react';
 import {
   useEntityTags,
   useAssignTags,
@@ -20,7 +21,6 @@ export interface TagListContainerProps {
   tags?: Tag[];
 }
 
-import { useState } from 'react';
 
 export function TagListContainer({
   orgSlug,

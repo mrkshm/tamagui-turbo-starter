@@ -3,7 +3,7 @@ import { ValiError, BaseSchema, parse, BaseIssue, MapPathItem } from 'valibot';
 export class ValidationError extends Error {
   constructor(
     message: string,
-    public issues: Array<{ path: string; message: string }>,
+    public issues: { path: string; message: string }[],
     public receivedData: unknown
   ) {
     super(message);
@@ -34,7 +34,7 @@ const createSuccess = <T>(data: T): ValidationSuccess<T> => ({
 
 const createFailure = (
   message: string,
-  issues: Array<{ path: string; message: string }>,
+  issues: { path: string; message: string }[],
   receivedData: unknown
 ): ValidationFailure => ({
   success: false,

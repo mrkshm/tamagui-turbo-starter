@@ -13,7 +13,8 @@
       "bundleIdentifier": "com.anonymous.bentobook",
       "associatedDomains": [
         "applinks:turbobook.example.com"
-      ]
+      ],
+      "appleTeamId": "KSUBWD8DHH"
     },
     "android": {
       "adaptiveIcon": {

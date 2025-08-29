@@ -161,7 +161,6 @@ export const SearchInput = ({
       gap="$4"
       position="relative"
       width="100%"
-      backgroundColor="green"
     >
       {/* Search Icon */}
       <View position="relative" zIndex={1}>
@@ -169,7 +168,7 @@ export const SearchInput = ({
       </View>
 
       {/* Input Field */}
-      <View flex={1} backgroundColor="green" width="100%">
+      <View flex={1} width="100%">
         <View position="relative" width="100%">
           <CInput
             testID={testID}

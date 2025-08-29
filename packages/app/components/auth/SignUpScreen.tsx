@@ -218,7 +218,7 @@ export function SignUpScreen({
                               onNavigateToTerms();
                             } else {
                               // Fallback if no callback is provided
-                              <Text>No link supplied </Text>;
+                              console.warn('No terms navigation callback provided');
                             }
                           }}
                         />,

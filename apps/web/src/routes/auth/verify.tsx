@@ -60,7 +60,7 @@ function RouteComponent() {
         console.error('Could not extract email from token:', error);
       }
     }
-  }, [token]);
+  }, [token, verifyMutation]);
 
   const handleResendEmail = (email: string) => {
     if (email) {

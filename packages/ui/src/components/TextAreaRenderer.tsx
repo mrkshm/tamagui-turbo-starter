@@ -26,8 +26,7 @@ export const TextAreaRenderer = ({
   autoFocus = true,
   onSubmitEditing,
   // onBlur is received but not used directly - we handle blur through save/cancel buttons
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onBlur,
+  onBlur: _onBlur,
   onCancel,
   placeholder = 'Enter text...',
   minHeight = 150,
@@ -101,7 +100,7 @@ export const TextAreaRenderer = ({
         <Button size="$2" variant="outlined" onPress={handleCancel} chromeless>
           Cancel
         </Button>
-        <Button size="$2" theme="blue" onPress={handleSave}>
+        <Button size="$2" onPress={handleSave}>
           Save
         </Button>
       </XStack>

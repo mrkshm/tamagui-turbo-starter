@@ -192,19 +192,19 @@ export const InlineEditable: React.FC<InlineEditableProps> = ({
       onSubmitEditing,
       onBlur,
     }: InputRendererProps) => {
-      // Handle blur by saving the value
-      const handleBlur = useCallback(() => {
+      // Handle blur by saving the value (no hooks inside callback)
+      const handleBlur = () => {
         console.log('Input blur');
         handleSave();
         onBlur?.();
-      }, [handleSave, onBlur]);
+      };
 
-      // Handle submit (Enter key)
-      const handleSubmit = useCallback(() => {
+      // Handle submit (Enter key) (no hooks inside callback)
+      const handleSubmit = () => {
         console.log('Input submit');
         handleSave();
         onSubmitEditing?.();
-      }, [handleSave, onSubmitEditing]);
+      };
       // Handle platform-specific props
       const platformProps =
         Platform.OS === 'web' ? { onKeyDown } : { onSubmitEditing };
@@ -231,7 +231,7 @@ export const InlineEditable: React.FC<InlineEditableProps> = ({
         />
       );
     },
-    [disabled, placeholder]
+    [disabled, placeholder, handleSave]
   );
 
   // Debug the showUndo prop

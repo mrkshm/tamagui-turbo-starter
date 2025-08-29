@@ -1,4 +1,4 @@
-import { Text, YStack } from '@bbook/ui';
+import { YStack } from '@bbook/ui';
 import { SafeAreaView } from 'react-native';
 import { LoginScreen } from '@bbook/app/components/auth/LoginScreen';
 import { Stack, useRouter } from 'expo-router';

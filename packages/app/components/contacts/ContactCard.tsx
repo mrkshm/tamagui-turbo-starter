@@ -1,4 +1,5 @@
-import { Card, H3, Paragraph, XStack, Avatar, YStack } from '@bbook/ui';
+import { Card, H3, Paragraph, XStack, YStack } from '@bbook/ui';
+import { AvatarWithUrl } from '../avatar/AvatarWithUrl';
 
 interface ContactCardProps {
   displayName: string;
@@ -27,10 +28,13 @@ export function ContactCard({
       onPress={onPress}
     >
       <XStack gap="$4" alignItems="center" p="$3">
-        <Avatar circular size="$4">
-          <Avatar.Image src={avatarUrl} />
-          <Avatar.Fallback backgroundColor="$gray5" />
-        </Avatar>
+        <AvatarWithUrl
+          entityType="contact"
+          size="md"
+          imagePath={avatarUrl}
+          text={displayName}
+          circular
+        />
         <YStack flex={1} gap="$1">
           <H3 size="$5" numberOfLines={1}>
             {displayName}

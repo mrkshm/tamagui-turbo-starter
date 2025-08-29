@@ -358,6 +358,7 @@ export const AvatarUploader: React.FC<AvatarUploaderProps> = ({
           size={size}
           text={text}
           circular={circular}
+          entityType={entityType}
         />
       </XStack>
 

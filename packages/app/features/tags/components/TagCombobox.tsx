@@ -53,7 +53,7 @@ export function TagCombobox({
       ];
     }
     return unassignedRemoteItems;
-  }, [data, inputValue, assignedTags]);
+  }, [data, inputValue, assignedTags, t]);
 
   return (
     <Combobox

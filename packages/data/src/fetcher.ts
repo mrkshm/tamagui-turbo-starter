@@ -141,6 +141,13 @@ export async function fetcher<T>(
         }
       }
 
+      // Debug: outgoing request summary
+      console.debug('[fetcher] request', {
+        url: urlObj.toString(),
+        method: fetchOptions.method || HTTP_METHODS.GET,
+        params,
+      });
+
       const response = await fetch(urlObj.toString(), {
         ...fetchOptions,
         headers,
@@ -151,6 +158,18 @@ export async function fetcher<T>(
 
       if (!response.ok) {
         await handleResponseError(response, userId);
+      }
+
+      // Handle No Content without attempting to parse JSON
+      if (response.status === 204 || response.status === 205) {
+        return { success: true, data: undefined as unknown as T };
+      }
+
+      // Some backends may return an empty body with 200; guard it
+      const contentLength = response.headers.get('content-length');
+      const contentType = response.headers.get('content-type') || '';
+      if ((contentLength === '0' || contentLength === null) && !contentType.includes('application/json')) {
+        return { success: true, data: undefined as unknown as T };
       }
 
       const data = await response.json();
@@ -169,6 +188,8 @@ export async function fetcher<T>(
 
       if (!validationResult.success) {
         console.error('[Validation Error]:', {
+          url: urlObj.toString(),
+          method: fetchOptions.method || HTTP_METHODS.GET,
           error: validationResult.error,
           issues: validationResult.error.issues,
           failedAt: validationResult.error.issues.map((issue) =>
@@ -176,6 +197,14 @@ export async function fetcher<T>(
               ? issue.path.map((p) => p.key).join('.')
               : 'unknown'
           ),
+          // show a small sample of the response for diagnosis
+          responseSample: (() => {
+            try {
+              return JSON.stringify(data, null, 2).slice(0, 2000);
+            } catch {
+              return '[unserializable response]';
+            }
+          })(),
         });
       }
 

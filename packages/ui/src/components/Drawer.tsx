@@ -101,6 +101,9 @@ const SwipeDismissableComponent = React.forwardRef<
   );
 });
 
+// Add display name for better dev tooling
+SwipeDismissableComponent.displayName = 'SwipeDismissableComponent';
+
 const DrawerFrame: TamaguiComponent = styled(YStack, {
   name: 'DrawerFrame',
   variants: {
@@ -161,11 +164,8 @@ const Overlay: TamaguiComponent = styled(YStack, {
 });
 
 type DrawerOverlayProps = GetProps<typeof Overlay>;
-type DrawerOverlayComponent = React.ForwardRefExoticComponent<
-  Omit<DrawerOverlayProps, 'ref'> & React.RefAttributes<TamaguiElement>
->;
 
-const DrawerOverlayComponent = (
+const DrawerOverlayImpl = (
   props: DrawerOverlayProps,
   ref: React.Ref<TamaguiElement>
 ) => {
@@ -173,7 +173,7 @@ const DrawerOverlayComponent = (
   return <Overlay ref={ref} onPress={() => setOpen(false)} {...props} />;
 };
 
-const DrawerOverlay = React.forwardRef(DrawerOverlayComponent);
+const DrawerOverlay = React.forwardRef(DrawerOverlayImpl);
 
 // Add display name for better dev tools
 DrawerOverlay.displayName = 'DrawerOverlay';
@@ -197,12 +197,8 @@ const DrawerSwipeableComponent = (
 const DrawerSwipeable = forwardRef(DrawerSwipeableComponent);
 
 type DrawerContentProps = GetProps<typeof DrawerFrame>;
-type DrawerContentComponent = React.ForwardRefExoticComponent<
-  Omit<DrawerContentProps, 'ref'> &
-    React.RefAttributes<TamaguiElement> & { children?: React.ReactNode }
->;
 
-const DrawerContentComponent = (
+const DrawerContentImpl = (
   props: DrawerContentProps,
   ref: React.Ref<TamaguiElement>
 ) => {
@@ -223,7 +219,7 @@ const DrawerContentComponent = (
   );
 };
 
-const DrawerContent = React.forwardRef(DrawerContentComponent);
+const DrawerContent = React.forwardRef(DrawerContentImpl);
 
 // Add display name for better dev tools
 DrawerContent.displayName = 'DrawerContent';

@@ -7,3 +7,5 @@ export * from './components/nav';
 export { ContactEditor } from './components/contacts/ContactEditor';
 export { ContactMain } from './components/contacts/ContactMain';
 export { ProfileMain } from './components/profile/ProfileMain';
+export { ContactImages } from './components/images/ContactImages';
+export { default as ImageGallery } from './components/images/ImageGallery';

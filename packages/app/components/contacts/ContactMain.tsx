@@ -7,6 +7,7 @@ import { useUpdateContact } from '@bbook/data';
 import { ContactAvatarUploader } from '../avatar';
 import { TagListContainer } from '../tags/TagListContainer';
 import { useAuth } from '../../provider/auth-provider';
+import { ContactImages } from '../images/ContactImages';
 
 export interface ContactMainProps {
   contact: Contact;
@@ -87,6 +88,9 @@ export function ContactMain({ contact }: ContactMainProps) {
             tags={contact.tags ?? undefined}
             editable
           />
+        )}
+        {user?.org_slug && contact?.id && (
+          <ContactImages orgSlug={user.org_slug} contactId={contact.id} />
         )}
       </YStack>
     </ScrollView>

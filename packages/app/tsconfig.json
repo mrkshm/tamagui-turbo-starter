@@ -1,11 +1,11 @@
 {
-  "extends": "../../tsconfig.base",
-  "include": ["**/*.ts", "**/*.tsx", "../ui/src/components/EditableField.tsx"],
+  "extends": "../../tsconfig.base.json",
+  "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "composite": true,
+    "composite": false,
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {}
   },
-  "references": [{ "path": "../ui" }, { "path": "../stores" }]
+  "references": []
 }

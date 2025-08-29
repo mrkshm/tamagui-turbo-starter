@@ -6,7 +6,7 @@ Featuring Tanstack Query, Tanstack Form, Zustand, i18n, Valibot, all that good s
 
 The mobile app is currently only getting tested for iOS.
 
-This is very much a work in progress, breaking changes are expected, use at your peril.
+Disclaimer: This is primarily a starter template for my own projects, YMMV. Styling is intentionally minimal (read: bad) so that each project built on top needs to develop its own distinct design.
 
 ## Getting Started
 
@@ -148,14 +148,14 @@ pnpm run-ios
 - [x] Avatars for Profile and Contacts
 - [x] Add reusable components for avatar upload/display
 - [x] Add tagging for contacts with reusable Combobox
-- [ ] Add reusable image upload/display component for contacts
-- [ ] Add reusable gallery component for contacts
+- [x] Add reusable image upload/display component for contacts
+- [x] Add reusable gallery component for contacts
 - [ ] Make app presentable and theme a bit nicer
 - [ ] Clean up translation files
 - [ ] Better testing
 - [ ] Add CI/CD example
 - [ ] Clean up console logs etc
-- [ ] Write more docs
+- [ ] More and better docs
 
 ## i18n
 

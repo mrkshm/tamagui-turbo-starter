@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 import { NavigationDirection } from './useEditableFields';
 
 /**
@@ -13,18 +13,16 @@ export function useFieldNavigation(
   navigateToField: (fieldId: string, direction: NavigationDirection) => void,
   fieldIds: string[]
 ) {
-  // Create an object to store all the navigation functions
-  const navigationFunctions: Record<string, (direction: NavigationDirection) => void> = {};
-  
-  // Create a navigation function for each field ID
-  fieldIds.forEach(fieldId => {
-    navigationFunctions[fieldId] = useCallback(
-      (direction: NavigationDirection) => {
+  // Create the navigation functions in a memoized map to keep stable identities
+  const navigationFunctions = useMemo(() => {
+    const map: Record<string, (direction: NavigationDirection) => void> = {};
+    for (const fieldId of fieldIds) {
+      map[fieldId] = (direction: NavigationDirection) => {
         navigateToField(fieldId, direction);
-      },
-      [navigateToField, fieldId]
-    );
-  });
-  
+      };
+    }
+    return map;
+  }, [navigateToField, fieldIds]);
+
   return navigationFunctions;
 }

@@ -22,7 +22,6 @@ import type { Contact } from '@bbook/data/src/schemas/contacts';
 import { useTranslation } from '@bbook/i18n';
 import { UserNotFound } from '@bbook/app/components/errors/UserNotFound';
 import { useCallback, useState, useEffect } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AnimatePresence } from '@bbook/ui';
 import type { SortableField } from '@bbook/data/src/schemas/contacts';
 import { ListFilter, Search } from '@bbook/ui';
@@ -58,7 +57,6 @@ export default function MemberHome() {
   const { t } = useTranslation();
   const { user, isLoading } = useAuth();
   const theme = useTheme();
-  const insets = useSafeAreaInsets();
   const backgroundColor = theme.background?.val;
   const textColor = theme.textPrimary?.val;
   const router = useRouter();
@@ -96,7 +94,11 @@ export default function MemberHome() {
     if (showSearch) {
       closeSearch();
     }
-    showSort ? closeSort() : openSort();
+    if (showSort) {
+      closeSort();
+    } else {
+      openSort();
+    }
   }, [showSearch, showSort, closeSearch, openSort, closeSort]);
 
   // Handle search with debounce

@@ -2,11 +2,13 @@
 export * from './services/jwt-storage';
 export * from './services/token-service';
 export * from './services/error-tracking';
+export * from './services/images';
 
 // Export schemas
 export * from './schemas/user';
 export * from './schemas/contacts';
 export * from './schemas/api';
+export * from './schemas/images';
 
 // Export constants
 export * from './constants/errors';
@@ -19,6 +21,7 @@ export * from './endpoints';
 // Export React Query and hooks
 export * from './query';
 export type { UseMutationResult } from '@tanstack/react-query';
+export * from './hooks';
 
 // Auth hooks
 export * from './hooks/use-auth-query';
@@ -41,4 +44,4 @@ export {
   useUploadContactAvatar,
   useDeleteContactAvatar,
 } from './hooks/useContact';
-export type { Contact } from './schemas/contacts';
+
