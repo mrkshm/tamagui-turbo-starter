@@ -189,4 +189,4 @@ locales/
 
 ---
 
-Feel free to fork or copy for your own projects. PRs welcome once this is less embarrassing.
+Feel free to fork or copy for your own projects.
